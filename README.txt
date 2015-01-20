@@ -1,1 +1,0 @@
-Alle Dateien für das Studienprojekt hier
