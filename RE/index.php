@@ -2,6 +2,8 @@
 
 <html>
 	<head>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript" src="loginScript.js"></script>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -11,15 +13,16 @@
 	<body>
 		<div class="jumbotron">
 			<h1>Willkommen!</h2>
+			<p  class="panel " id="read"></p>
 			<p>In der Requirements Engineering Web-Applikation<br>Bitte loggen Sie sich ein:</p>
-			<p>
+			<p>	
 			<fieldset>
-			<label id="name" for="name">Username:	</label><input type="text" class="form-control" name="username"></br>
-			<label id="pass" for="pass">Passwort:	</label><input type="password" class="form-control" name="passwort"></br>
-			<input type="button" class="btn btn-success" onClick="checkCredentials" value="Einloggen"></button> 
+			<label for="name">Username:	</label><input type="text" class="form-control" name="username" id="userPHP" ></br>
+			<label for="pass">Passwort:	</label><input type="password" class="form-control" name="password" id="passPHP"></br>
+			<input type="button" class="btn btn-success" onClick="checkCredentials()" value="Einloggen"></button> 
 			<label class="showLabel"> Neu hier? --> </label> 
 			<a href="bla.html"><input type="button" class="btn btn-warning" value="Registrieren" /></a>
-			</fieldset>
+			</fieldset>		
 			</p>
 		</div>
 	</body>
