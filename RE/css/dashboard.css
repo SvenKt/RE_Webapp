@@ -1,0 +1,55 @@
+
+body {
+width: 100%; 
+margin:auto; 
+background-color: #EEEEEE;
+}
+
+a{
+color:black;
+font-size:15px;
+}
+
+hr{
+background-color:black;
+height:1px;
+}
+#head{border: 2px solid red;
+min-height:150px; 
+background-image: url(../img/header.jpg);
+}
+
+#left_nav{
+min-height:500px;
+padding:1%;
+}
+
+#content-wrapper{
+background-color: #EEEEEE;
+min-height:500px;
+padding:1%;
+}
+
+#footer{
+min-height:100px;
+position: absolute; 
+bottom: 0;
+width:100%;
+}
+
+#copyright{
+position: absolute; 
+bottom: 0;
+}
+
+.navlist {
+margin-top:2%;
+}
+
+.req-label {
+width: 89%;
+}
+
+.req-btn {
+width: 10%;
+}

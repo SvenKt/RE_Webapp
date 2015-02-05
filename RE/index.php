@@ -3,17 +3,17 @@
 <html>
 	<head>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
-		<script type="text/javascript" src="loginScript.js"></script>
+		<script type="text/javascript" src="js/loginScript.js"></script>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="login.css">
+		<link rel="stylesheet" href="css/login.css">
 		<title> Login Page</title>
 	</head>
 	<body>
 		<div class="jumbotron">
 			<h1>Willkommen!</h2>
-			<p  class="panel " id="read"></p>
+			<p  class="alert alert-danger" id="read"></p>
 			<p>In der Requirements Engineering Web-Applikation<br>Bitte loggen Sie sich ein:</p>
 			<p>	
 			<fieldset>
