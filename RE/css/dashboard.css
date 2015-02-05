@@ -14,7 +14,7 @@ hr{
 background-color:black;
 height:1px;
 }
-#head{border: 2px solid red;
+#head{
 min-height:150px; 
 background-image: url(../img/header.jpg);
 }
