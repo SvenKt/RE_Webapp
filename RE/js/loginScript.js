@@ -38,6 +38,7 @@ $.ajax({
 			dataType: "json",
 			success: function(success){
 				$("#head_modal").text(success).slideDown(500).delay(2000).slideUp(500);
+				if (success.search("Fehler") == -1){ window.setTimeout(function(){$('#register').modal('hide'); }, 2000);};
 			},
 			error: function(){alert("error");}
 			});
