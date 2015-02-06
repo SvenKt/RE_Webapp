@@ -44,3 +44,23 @@ $.ajax({
 			});
 
 }
+
+function changeData(){
+var password=$("#ch_pw").val();
+var password_repeat=$("#ch_pw2").val();
+var email=$("#ch_email").val();
+var username=$("#user_cd").text();
+
+$.ajax({
+			url: "php/changeData.php",
+			type: "POST",
+			data: {"username": username, "password": password, "password2": password_repeat, "email": email},
+			dataType: "json",
+			success: function(success){
+				$("#head_modal_dash").text(success).slideDown(500).delay(2000).slideUp(500);
+				if (success.search("Fehler") == -1){ window.setTimeout(function(){$('#profil').modal('hide'); }, 2000);};
+			},
+			error: function(){alert("error");}
+			});
+
+}
