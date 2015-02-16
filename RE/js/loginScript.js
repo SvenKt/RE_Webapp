@@ -64,3 +64,61 @@ $.ajax({
 			});
 
 }
+
+function createReqForm(){
+var body=$('#content');
+var user= getUsername();
+
+body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforderung ein:</h3>\
+				<fieldset>\
+				<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' value='Wer?'></div>\
+				<div class='col-md-2'><input type='text' class='form-control' name='muss' id='muss' value='muss/soll/kann'></div>\
+				<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='wem?'></div>\
+				<div class='col-md-2'><input type='text' class='form-control' name='bieten' id='bieten' value='möglich/fähig?'></div>\
+				<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' value='Objekt?'></div>\
+				<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' value='Verb?'></div>\
+		</fieldset></br>\
+		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq()'>Bestätigen</button>");
+
+}
+
+function getUsername(){
+var value = window.location.search.replace("?", "");
+var result= value.split('=')[1];
+return result;
+}
+
+function push(){
+var body=$('#content');
+body.html("<label class='req-label'>Das System muss dem Nutzer die Möglichkeit bieten, sich einloggen zu können.</label>\
+					  <label class='req-btn'>\
+						<button type='button' class='btn btn-default' aria-label='Left Align'>\
+							<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>\
+						</button>\
+						<button type='button' class='btn btn-default' aria-label='Left Align'>\
+							<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
+						</button>\
+					  </label>");
+
+}
+
+function insertReq(){
+var user=$('#content');
+var wer=$('#system').val();
+var muss=$('#muss').val();
+var wem=$('#wem').val();
+var bieten=$('#bieten').val();
+var Objekt=$('#objekt').val();
+var tun=$('#verb').val();
+
+body.html("<label class='req-label'>Das System muss dem Nutzer die Möglichkeit bieten, sich einloggen zu können.</label>\
+					  <label class='req-btn'>\
+						<button type='button' class='btn btn-default' aria-label='Left Align'>\
+							<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>\
+						</button>\
+						<button type='button' class='btn btn-default' aria-label='Left Align'>\
+							<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
+						</button>\
+					  </label>");
+
+}

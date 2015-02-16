@@ -20,8 +20,8 @@
 				<input type="text" id="search_field" class="form-control" placeholder="Suche...">
 			</div><!--input-group-->
 			<ul class="nav nav-pills nav-stacked">
-				<li role="presentation" class="active navlist"><a href="#">Home</a></li>
-				<li class="navlist "role="presentation"><a href="#">Anforderung erstellen</a></li>
+				<li role="presentation" class="active navlist"><a onClick="push()">Home</a></li>
+				<li class="navlist "role="presentation"><a onClick="createReqForm()">Anforderung erstellen</a></li>
 				<li class="navlist" role="presentation"><a data-toggle="modal" data-target="#profil">Profil</a></li>
 			</ul>
 		</div><!--left_nav-->
@@ -70,7 +70,38 @@
 					</div>
 				</div>
 			</div>
-		
+			
+			<!--modal newReq -->
+			<!--<div class="modal fade" id="newReq" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h3 class="modal-title" id="myModalLabel">Neue Anforderung</h3>
+						</div>
+						<div class="modal-body">
+							<p id="head_modal_dash"><h4>Erstellen Sie eine neue Anforderung:</h4></p></br>
+							
+							<fieldset>
+								<div class="col-md-2"><input type="text" class="form-control" name="system" id="system" value="Wer?"></div>
+								<div class="col-md-2"><input type="text" class="form-control" name="muss" id="muss" value="muss/soll/kann"></div>
+								<div class="col-md-2"><input type="text" class="form-control" name="wem" id="wem" value="wem?"></div>
+								<div class="col-md-2"><input type="text" class="form-control" name="bieten" id="bieten" value="möglich/fähig?"></div>
+								<div class="col-md-2"><input type="text" class="form-control" name="objekt" id="objekt" value="Objekt?"></div>
+								<div class="col-md-2"><input type="text" class="form-control" name="verb" id="verb" value="Verb?"></div>
+							</fieldset>
+						</div>
+							</br>
+							<label id="infotxt"><h4>Drücken Sie zum Speichern der Anforderung auf <span class="send">Bestätigen</span></h4></label>
+						<div class="modal-footer">
+						
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button class="btn btn-success" id="reg_submit" onClick="">Bestätigen</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		-->
 		
 		
 	</body>

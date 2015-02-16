@@ -42,6 +42,18 @@ position: absolute;
 bottom: 0;
 }
 
+#infotxt{
+margin-left: 1%;
+}
+
+.marginClass{
+margin: 1.5%;
+}
+
+.send {
+color: green;
+}
+
 .navlist {
 margin-top:2%;
 }
@@ -52,4 +64,11 @@ width: 89%;
 
 .req-btn {
 width: 10%;
+}
+
+body .modal-dialog {
+    /* new custom width */
+    width: 80%;
+    /* must be half of the width, minus scrollbar on the left (30px) */
+    margin: auto;
 }
