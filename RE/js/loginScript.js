@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
 $("#read").hide();
+$("#error").hide();
 });
 
 function checkCredentials(){
@@ -71,13 +72,23 @@ var user= getUsername();
 
 body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforderung ein:</h3>\
 				<fieldset>\
-				<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' value='Wer?'></div>\
-				<div class='col-md-2'><input type='text' class='form-control' name='muss' id='muss' value='muss/soll/kann'></div>\
-				<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='wem?'></div>\
-				<div class='col-md-2'><input type='text' class='form-control' name='bieten' id='bieten' value='möglich/fähig?'></div>\
-				<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' value='Objekt?'></div>\
-				<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' value='Verb?'></div>\
-		</fieldset></br>\
+				<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' placeholder='Wann?/Bedingung?'></div>\
+				<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
+				  <option>muss</option>\
+				  <option>sollte</option>\
+				  <option>wird</option>\
+				</select></div>\
+				<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' placeholder='Systemname?'></div>\
+				<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' placeholder='wem? (optional)'></div>\
+				<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
+				  <option>fähig sein</option>\
+				  <option>die Möglichkeit bieten</option>\
+				</select></div>\
+				</fieldset></br>\
+				<fieldset>\
+				<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' placeholder='Objekt?'></div>\
+				<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' placeholder='Verb?'></div>\
+				</fieldset>\
 		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq()'>Bestätigen</button>");
 
 }
@@ -102,23 +113,27 @@ body.html("<label class='req-label'>Das System muss dem Nutzer die Möglichkeit 
 
 }
 
+function fieldError(){
+$('#error').text("Bitte alle nicht-optionalen Felder ausfüllen").slideDown(500).delay(2000).slideUp(500);
+}
+
 function insertReq(){
 var user=$('#content');
-var wer=$('#system').val();
+var wann=$('#wann').val(); if(wann==""){fieldError(); return;}
 var muss=$('#muss').val();
-var wem=$('#wem').val();
-var bieten=$('#bieten').val();
-var Objekt=$('#objekt').val();
-var tun=$('#verb').val();
+var system=$('#system').val(); if(system==""){fieldError(); return;}
+var wem="";
+var bieten="";
+var objekt=$('#objekt').val(); if(objekt==""){fieldError(); return;}
+var verb=$('#verb').val(); if(verb==""){fieldError(); return;}
 
-body.html("<label class='req-label'>Das System muss dem Nutzer die Möglichkeit bieten, sich einloggen zu können.</label>\
-					  <label class='req-btn'>\
-						<button type='button' class='btn btn-default' aria-label='Left Align'>\
-							<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>\
-						</button>\
-						<button type='button' class='btn btn-default' aria-label='Left Align'>\
-							<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
-						</button>\
-					  </label>");
+if($('#bieten').val() != "-"){
+	bieten=$('#bieten').val() + " ";
+}
+if($('#wem').val() != ""){
+	wem=$('#wem').val() + " ";
+}
 
+var theRequirement = wann + " " + muss + " " + system + " " + wem + bieten + objekt + " " + verb + ".";
+alert(theRequirement);
 }

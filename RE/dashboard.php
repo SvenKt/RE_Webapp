@@ -28,6 +28,7 @@
 		<div id="content-wrapper" class="panel col-md-10">
 			<h2>Anforderungen</h2>
 			<hr>
+				<p class="panel panel-warning"id="error"></p>
 				<div id="content" class="panel panel-body">
 					<label class="req-label">Das System muss dem Nutzer die Möglichkeit bieten, sich einloggen zu können.</label>
 					  <label class="req-btn">
