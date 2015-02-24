@@ -135,5 +135,17 @@ if($('#wem').val() != ""){
 }
 
 var theRequirement = wann + " " + muss + " " + system + " " + wem + bieten + objekt + " " + verb + ".";
-alert(theRequirement);
+//alert(theRequirement);
+
+$.ajax({
+			url: "php/insertRequirement.php",
+			type: "POST",
+			data: {"req": theRequirement, "username": getUsername()},
+			dataType: "json",
+			success: function(success){
+				alert(success);
+			},
+			error: function(){alert("error");}
+			});
+
 }
