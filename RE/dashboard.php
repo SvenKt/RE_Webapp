@@ -4,10 +4,13 @@
 	<head>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<meta charset="UTF-8">
+		<meta http-equiv="Expires" CONTENT="0">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="Pragma" CONTENT="no-cache">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<script src="bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/loginScript.js"></script>
+		<script type="text/javascript" src="js/dashboardScript.js"></script>
 		<link rel="stylesheet" href="css/dashboard.css">
 		<title> Dashboard</title>
 	</head>
@@ -20,9 +23,10 @@
 				<input type="text" id="search_field" class="form-control" placeholder="Suche...">
 			</div><!--input-group-->
 			<ul class="nav nav-pills nav-stacked">
-				<li role="presentation" class="active navlist"><a onClick="push()">Home</a></li>
+				<li role="presentation" class="active navlist"><a onClick="getRequirements()">Home</a></li>
 				<li class="navlist "role="presentation"><a onClick="createReqForm()">Anforderung erstellen</a></li>
 				<li class="navlist" role="presentation"><a data-toggle="modal" data-target="#profil">Profil</a></li>
+				<li class="navlist" role="presentation"><a onClick="logOut()">Logout</a></li>
 			</ul>
 		</div><!--left_nav-->
 		<div id="content-wrapper" class="panel col-md-10">
@@ -30,15 +34,7 @@
 			<hr>
 				<p class="panel panel-warning"id="error"></p>
 				<div id="content" class="panel panel-body">
-					<label class="req-label">Das System muss dem Nutzer die Möglichkeit bieten, sich einloggen zu können.</label>
-					  <label class="req-btn">
-						<button type="button" class="btn btn-default" aria-label="Left Align">
-							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-						</button>
-						<button type="button" class="btn btn-default" aria-label="Left Align">
-							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-						</button>
-					  </label>
+					
 				</div><!--content-->
 			<hr>
 		</div><!--content-wrapper-->

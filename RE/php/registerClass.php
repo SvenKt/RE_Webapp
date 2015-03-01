@@ -11,15 +11,19 @@ var $inputOK=false;
 var $passwordEq=false;
 var $userExists=false;
 var $passSafe=false;
+var $emailValid=false;
 var $md5pw;
 
 function initInput(){
 	if($_POST['username'] != "" && $_POST['password'] != "" && $_POST['password2'] != "" && $_POST['email'] != ""){
+		$this->inputOK=true;
 		$this->username=$_POST['username'];
 		$this->password=$_POST['password'];
 		$this->password2=$_POST['password2'];
 		$this->email=$_POST['email'];
-		$this->inputOK=true;
+		if(preg_match("/([0-9a-zA-Z_.+-])@([0-9a-zA-Z_.+-]).(\w+)/",$this->email)){
+			$this->emailValid=true;
+		} 
 	} 
 }
 
@@ -67,9 +71,12 @@ function registerUser(){
 		
 		//register success
 		echo json_encode("Registrierung erfolgreich");
-	} else  if(!$this->inputOK){
+		
+	} else if(!$this->inputOK){
 				echo json_encode("Fehler: Bitte alle Felder ausfüllen!");
-			}else if (!$this->passwordEq){
+			}else  if(!$this->emailValid){
+				echo json_encode("Fehler: Email ist nicht gültig!");
+			}else  if (!$this->passwordEq){
 				//passwords are not equal
 				echo json_encode("Fehler: Passwörter stimmen nicht überein...");
 			}	else if ($this->userExists){

@@ -7,7 +7,7 @@ $admin->initInput();
 $admin->checkPassLength();
 $admin->checkPasswordsEqual();
 
-if ($admin->inputOK && $admin->passwordEq && $admin->passSafe){
+if ($admin->inputOK && $admin->passwordEq && $admin->passSafe && $admin->emailValid){
 	
 	$md5hash = md5($admin->password);
 
@@ -25,7 +25,10 @@ if ($admin->inputOK && $admin->passwordEq && $admin->passSafe){
 	}
 } else if (!$admin->inputOK){
 			echo json_encode("Fehler: Bitte alle Fehler ausfüllen!");
-		} else if (!$admin->passwordEq){
+		} else 
+		if (!$admin->emailValid){
+				echo json_encode("Fehler: Email nicht gültig!");
+			} else	if (!$admin->passwordEq){
 				echo json_encode("Fehler: Passwörter sind nicht identisch!");
 			} else if (!$admin->passSafe){
 					echo json_encode("Fehler: Passwort zu unsicher - mindestens 8 Zeichen eingeben!!");
