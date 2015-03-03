@@ -19,11 +19,11 @@
 		</div><!--head-->
 		<div id="left_nav" class="col-md-2">
 			<div class="input-group">
-				<span class="input-group-addon" id="search">Go</span>
+				<span class="input-group-addon" onClick="getResult()" id="search">Go</span>
 				<input type="text" id="search_field" class="form-control" placeholder="Suche...">
 			</div><!--input-group-->
 			<ul class="nav nav-pills nav-stacked">
-				<li role="presentation" class="active navlist"><a onClick="getRequirements()">Home</a></li>
+				<li role="presentation" class="active navlist"><a onClick="getRequirements()" >Home</a></li>
 				<li class="navlist "role="presentation"><a onClick="createReqForm()">Anforderung erstellen</a></li>
 				<li class="navlist" role="presentation"><a data-toggle="modal" data-target="#profil">Profil</a></li>
 				<li class="navlist" role="presentation"><a onClick="logOut()">Logout</a></li>

@@ -92,6 +92,7 @@ $.ajax({
 			dataType: "json",
 			success: function(success){
 				$('#error').text("Anforderung erfolgreich eingetragen").slideDown(500).delay(2000).slideUp(500);
+				window.setTimeout(function(){window.location="/RE/dashboard.php?username="+getUsername(); }, 3000);
 			}
 			});
 
@@ -110,13 +111,15 @@ function deleteReq(id){
 
 }
 
-function getRequirements(){
+function getRequirements(query){
 var body=$('#content');
+var user= getUsername();
+var search = query;
 
 $.ajax({
 			url: "php/getRequirements.php",
 			type: "POST",
-			data: {"username": getUsername()},
+			data: {"username": user, "query": search},
 			dataType: "json",
 			success: function(success){
 					var string="";
@@ -195,4 +198,11 @@ function createEditForm(id){
 function edit(id){
 	insertReq();
 	deleteReq(id);
+}
+
+function getResult(){
+	var searchQuery=$("#search_field").val();
+	getRequirements(searchQuery);
+	
+	
 }
