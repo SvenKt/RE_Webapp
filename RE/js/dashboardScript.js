@@ -83,7 +83,7 @@ if($('#wem').val() != ""){
 	wem=$('#wem').val() + " ";
 }
 
-var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten + ":" + objekt + ":" + verb + ":.";
+var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten + ":" + objekt + ":" + verb;
 
 $.ajax({
 			url: "php/insertRequirement.php",
@@ -128,7 +128,7 @@ $.ajax({
 							var req = success[i][0].replace(/:/g," ");
 							
 							string+="<div class='panel'> \
-									<label id='result"+success[i][1]+"' class='req-label'>"+req+"</label>\
+									<label id='result"+success[i][1]+"' class='req-label'>"+req+".</label>\
 									<label class='req-btn'>\
 										<button type='button' class='btn btn-default' onClick='createEditForm("+success[i][1]+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
