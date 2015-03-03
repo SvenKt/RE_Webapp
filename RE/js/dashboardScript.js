@@ -92,7 +92,7 @@ $.ajax({
 			dataType: "json",
 			success: function(success){
 				$('#error').text("Anforderung erfolgreich eingetragen").slideDown(500).delay(2000).slideUp(500);
-				window.setTimeout(function(){window.location="/RE/dashboard.php?username="+getUsername(); }, 3000);
+				window.setTimeout(function(){createReqForm(); }, 3000);
 			}
 			});
 
@@ -122,12 +122,13 @@ $.ajax({
 			data: {"username": user, "query": search},
 			dataType: "json",
 			success: function(success){
-					var string="";
+					var string="<div id='field'>";
 					for (var i = 0; i<= success.length; i++){
 						if (success[i] != null && success[i] != ""){
 							var req = success[i][0].replace(/:/g," ");
 							
-							string+="<label id='result"+success[i][1]+"' class='req-label'>"+req+"</label>\
+							string+="<div class='panel'> \
+									<label id='result"+success[i][1]+"' class='req-label'>"+req+"</label>\
 									<label class='req-btn'>\
 										<button type='button' class='btn btn-default' onClick='createEditForm("+success[i][1]+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
@@ -137,9 +138,10 @@ $.ajax({
 										<button type='button' class='btn btn-default' onClick='deleteReq("+success[i][1]+")' aria-label='Right Align'>\
 											<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>\
 										</button>\
-									</label>";
+									</label></div>";
 						}
 					}
+					string+="</div>";
 					body.html(string);
 				},
 			error: function(){alert("error");}

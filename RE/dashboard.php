@@ -39,7 +39,7 @@
 			<hr>
 		</div><!--content-wrapper-->
 		<div id="footer">
-		<p id="copyright">This project was created as open source application. Feel free to use it.</p>
+		
 		</div><!--footer-->
 		
 		<!-- Modal Profil-->
