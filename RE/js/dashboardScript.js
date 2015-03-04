@@ -1,18 +1,18 @@
+////////////////
+//USES user.js//
+////////////////
+
 $(document).ready(function(){
 $("#error").hide();
 getRequirements();
-pageCall();
 });
 
-function pageCall(){
-  history.go(1);  
-}
 
 function changeData(){
 var password=$("#ch_pw").val();
 var password_repeat=$("#ch_pw2").val();
 var email=$("#ch_email").val();
-var username=$("#user_cd").text();
+var username=getUserName;
 
 $.ajax({
 			url: "php/changeData.php",
@@ -30,7 +30,7 @@ $.ajax({
 
 function createReqForm(){
 var body=$('#content');
-var user= getUsername();
+var user= getUserName();
 
 body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforderung ein:</h3>\
 				<fieldset>\
@@ -43,8 +43,8 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 				<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' placeholder='Systemname?'></div>\
 				<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' placeholder='wem? (optional)'></div>\
 				<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
-				  <option>fähig sein</option>\
-				  <option>die Möglichkeit bieten</option>\
+				  <option>fähig sein,</option>\
+				  <option>die Möglichkeit bieten,</option>\
 				</select></div>\
 				</fieldset></br>\
 				<fieldset>\
@@ -54,13 +54,6 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq()'>Bestätigen</button>");
 
 }
-
-function getUsername(){
-var value = window.location.search.replace("?", "");
-var result= value.split('=')[1];
-return result;
-}
-
 
 function fieldError(){
 $('#error').text("Bitte alle nicht-optionalen Felder ausfüllen").slideDown(500).delay(2000).slideUp(500);
@@ -85,18 +78,22 @@ if($('#wem').val() != ""){
 
 var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten + ":" + objekt + ":" + verb;
 
-$.ajax({
+	if(	loadCookieFromDatabase(cookiesEqual)){
+		$.ajax({
 			url: "php/insertRequirement.php",
 			type: "POST",
-			data: {"req": theRequirement, "username": getUsername()},
+			data: {"req": theRequirement, "username": getUserName()},
 			dataType: "json",
 			success: function(success){
 				$('#error').text("Anforderung erfolgreich eingetragen").slideDown(500).delay(2000).slideUp(500);
-				window.setTimeout(function(){createReqForm(); }, 3000);
+				createReqForm(); 
 			}
-			});
+		});
+	} else alert("fehler");
+} 
 
-}
+
+
 
 function deleteReq(id){
 	$.ajax({
@@ -105,7 +102,7 @@ function deleteReq(id){
 			data: {"id": id},
 			dataType: "json",
 			success: function(success){
-				window.location="/RE/dashboard.php?username="+getUsername();
+				getRequirements();
 			}
 			});
 
@@ -113,7 +110,7 @@ function deleteReq(id){
 
 function getRequirements(query){
 var body=$('#content');
-var user= getUsername();
+var user= getUserName();
 var search = query;
 
 $.ajax({
@@ -154,7 +151,7 @@ function logOut(){
 
 function createEditForm(id){
 	var body=$('#content');
-	var user= getUsername();
+	var user= getUserName();
 
 	
 	$.ajax({
@@ -207,4 +204,10 @@ function getResult(){
 	getRequirements(searchQuery);
 	
 	
+}
+
+
+function cookiesEqual(){
+	//console.log("user "+getUserCookie() + " db " + getDatabaseCookie());
+	return (getUserCookie() == getDatabaseCookie());
 }

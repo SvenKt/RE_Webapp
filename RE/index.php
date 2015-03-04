@@ -4,6 +4,7 @@
 	<head>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript" src="js/loginScript.js"></script>
+		<script type="text/javascript" src="js/user.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/dashboardScript.js"></script>
+		<script type="text/javascript" src="js/user.js"></script>
 		<link rel="stylesheet" href="css/dashboard.css">
 		<title> Dashboard</title>
 	</head>
@@ -54,7 +55,6 @@
 							<p id="head_modal_dash"><h4>Geben Sie Ihre neuen Daten ein:</h4></p></br>
 							
 							<fieldset>
-								<label for="pw"><h4>Ihr Nutzername: <label id="user_cd"><?php echo $_GET['username'];?></label></h4></label></br>
 								<label for="pw">Neues Passwort</label><input type="password" class="form-control" name="passwd" id="ch_pw" ></br>
 								<label for="pw_repeat">Neues Passwort wiederholen</label><input type="password" class="form-control" name="passwd_repeat" id="ch_pw2" ></br>
 								<label for="email">Neue E-Mail</label><input type="text" class="form-control" name="email" id="ch_email" ></br>

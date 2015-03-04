@@ -1,4 +1,6 @@
-
+////////////////
+//USES user.js//
+////////////////
 $(document).ready(function(){
 $("#read").hide();
 $("#error").hide();
@@ -7,6 +9,7 @@ $("#error").hide();
 function checkCredentials(){
 var user=$("#userPHP").val();
 var pass=$("#passPHP").val();
+var cookie="";
 
 $.ajax({
 			url: "php/loginCheck.php",
@@ -15,7 +18,11 @@ $.ajax({
 			dataType: "json",
 			success: function(exists){
 				if(exists == 'true'){
-				window.location="/RE/dashboard.php?username="+user;
+				cookie = Math.round(Math.random()*999999);
+				
+				createUser(user,cookie);
+				StoreCookieIntoDatabase(cookie, user, redirectToDashboard);		
+				
 				} else {
 				$("#read").text("Bitte korrekte Daten eingeben!").slideDown(500).delay(2000).slideUp(500);
 				}
@@ -46,4 +53,3 @@ $.ajax({
 			});
 
 }
-
