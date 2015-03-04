@@ -96,7 +96,8 @@ var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten 
 
 
 function deleteReq(id){
-	$.ajax({
+	if(	loadCookieFromDatabase(cookiesEqual)){
+		$.ajax({
 			url: "php/delete.php",
 			type: "POST",
 			data: {"id": id},
@@ -104,8 +105,10 @@ function deleteReq(id){
 			success: function(success){
 				getRequirements();
 			}
-			});
-
+		});
+	} else {
+		alert("fehler");
+	}
 }
 
 function getRequirements(query){
@@ -195,8 +198,12 @@ function createEditForm(id){
 }
 
 function edit(id){
-	insertReq();
-	deleteReq(id);
+	if (loadCookieFromDatabase(cookiesEqual)){
+		insertReq();
+		deleteReq(id);
+	} else {
+		alert ("fehler");
+	}
 }
 
 function getResult(){
