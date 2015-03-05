@@ -52,7 +52,7 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 				<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' placeholder='Verb?'></div>\
 				</fieldset></br>\
 				<fieldset>\
-				<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=9 min=0 step=1 value=1 onkeydown='return false'></div>\
+				<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=9 min=0 step=1 value=0 onkeydown='return false'></div>\
 				</fieldset>\
 		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq()'>Bestätigen</button>");
 
@@ -205,6 +205,7 @@ function createEditForm(id){
 						<fieldset>\
 						<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' value='"+wann+"'></div>\
 						<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
+							<option>"+muss+"</option>\
 							<option>muss</option>\
 							<option>sollte</option>\
 							<option>wird</option>\
@@ -212,6 +213,7 @@ function createEditForm(id){
 						<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' value='"+wer+"'></div>\
 						<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='"+wem+"' placeholder='wem? (optional)'></div>\
 						<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
+							<option>"+bieten+"</option>\
 							<option>fähig sein</option>\
 							<option>die Möglichkeit bieten</option>\
 						</select></div>\
