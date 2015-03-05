@@ -152,7 +152,7 @@ $.ajax({
 									</th></tr>";
 						}
 					}
-					body.html("<div class='panel panel-default'>\
+					body.html("<div id='field' class='panel panel-default'>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
 									<th>Anforderung</th>\
