@@ -52,7 +52,7 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 				<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' placeholder='Verb?'></div>\
 				</fieldset></br>\
 				<fieldset>\
-				<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=10 min=1 step=1 value=1 onkeydown='return false'></div>\
+				<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=9 min=0 step=1 value=1 onkeydown='return false'></div>\
 				</fieldset>\
 		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq()'>Bestätigen</button>");
 
@@ -119,6 +119,7 @@ function getRequirements(query){
 var body=$('#content');
 var user= getUserName();
 var search = query;
+var priority;
 
 $.ajax({
 			url: "php/getRequirements.php",
@@ -126,27 +127,43 @@ $.ajax({
 			data: {"username": user, "query": search},
 			dataType: "json",
 			success: function(success){
-					var string="<div id='field'>";
+					var string="";
+					success.sort(function(a, b) { //works for single-digit prio (0-9)
+						if (a[2] < b[2]) return -1;
+						if (a[2] > b[2]) return 1;
+						return 0;
+					});
 					for (var i = 0; i<= success.length; i++){
 						if (success[i] != null && success[i] != ""){
 							var req = success[i][0].replace(/:/g," ");
 							
-							string+="<div class='panel'> \
-									<label id='result"+success[i][1]+"' class='req-label'>"+req+"."+"</label>\
-									<label class='req-btn'>\
+							string+="<tr>\
+									<th scope='row'>"+success[i][2]+"</th>\
+									<th id='result"+success[i][1]+"'>"+req+"."+"</th>\
+									<th class='req-btn'>\
 										<button type='button' class='btn btn-default' onClick='createEditForm("+success[i][1]+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
 										</button>\
-									</label>\
-									<label class='req-btn'>\
+									</th>\
+									<th class='req-btn'>\
 										<button type='button' class='btn btn-default' onClick='deleteReq("+success[i][1]+")' aria-label='Right Align'>\
 											<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>\
 										</button>\
-									</label></div>";
+									</th></tr>";
 						}
 					}
-					string+="</div>";
-					body.html(string);
+					body.html("<div class='panel panel-default'>\
+								<table class='table'><thead style='background-color:#E6E6E6'>\
+								<tr>\
+									<th>Priorität</th>\
+									<th>Anforderung</th>\
+									<th>Edit</th>\
+									<th>Delete</th>\
+								</tr></thead>\
+								<tbody>\
+									"+string+"\
+								</tbody></table></div>"
+					);
 				},
 			error: function(){alert("error");}
 			});
@@ -204,7 +221,7 @@ function createEditForm(id){
 						<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' value='"+verb+"'></div>\
 						</fieldset></br>\
 						<fieldset>\
-						<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=10 min=1 step=1 value='"+priority+"' onkeydown='return false'></div>\
+						<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=9 min=0 step=1 value='"+priority+"' onkeydown='return false'></div>\
 						</fieldset>\
 						<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
 				}

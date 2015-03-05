@@ -17,9 +17,9 @@ $req_array[] = "";
 	establishDBConnection();
 
 if(isset($_POST['query'])){
-	$abfrage = "SELECT requirements.id, requirements.requirement FROM requirements, users where users.username='".$user."' AND users.id=requirements.owner_id AND requirements.requirement like '%".$query."%';";
+	$abfrage = "SELECT requirements.id, requirements.requirement, requirements.priority FROM requirements, users where users.username='".$user."' AND users.id=requirements.owner_id AND requirements.requirement like '%".$query."%';";
 } else {
-	$abfrage = "SELECT requirements.id, requirements.requirement FROM requirements, users where users.username='".$user."' AND users.id=requirements.owner_id;";
+	$abfrage = "SELECT requirements.id, requirements.requirement, requirements.priority FROM requirements, users where users.username='".$user."' AND users.id=requirements.owner_id;";
 }
 	
 	$ergebnis = mysql_query($abfrage) OR die(mysql_error());
@@ -27,7 +27,7 @@ if(isset($_POST['query'])){
 		if($ergebnis){
 			while($row = mysql_fetch_object($ergebnis))
 		{
-			$req_array[] = array($row->requirement, $row->id);
+			$req_array[] = array($row->requirement, $row->id, $row->priority);
 		}
 		}
 		
