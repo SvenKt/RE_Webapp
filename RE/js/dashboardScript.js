@@ -178,15 +178,7 @@ function createEditForm(id){
 	var user= getUserName();
 	var wann, muss, wer, wem, bieten, objekt, verb, priority;
 	
-	$.ajax({
-			url: "php/getPrioForEdit.php",
-			type: "POST",
-			data: {"id": id},
-			dataType: "json",
-			success: function(prio){
-					priority = prio;
-				}
-			});
+	
 	$.ajax({
 			url: "php/getReqForEdit.php",
 			type: "POST",
@@ -200,32 +192,41 @@ function createEditForm(id){
 					bieten =req.split(":")[4];
 					objekt = req.split(":")[5];
 					verb = req.split(":")[6];
+					$.ajax({
+					url: "php/getPrioForEdit.php",
+					type: "POST",
+					data: {"id": id},
+					dataType: "json",
+					success: function(prio){
+							priority = prio;
 					
-					body.html("<h3 class='marginClass'>Hallo "+user+", bearbeiten Sie Ihre Anforderung:</h3>\
-						<fieldset>\
-						<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' value='"+wann+"'></div>\
-						<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
-							<option>"+muss+"</option>\
-							<option>muss</option>\
-							<option>sollte</option>\
-							<option>wird</option>\
-						</select></div>\
-						<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' value='"+wer+"'></div>\
-						<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='"+wem+"' placeholder='wem? (optional)'></div>\
-						<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
-							<option>"+bieten+"</option>\
-							<option>fähig sein</option>\
-							<option>die Möglichkeit bieten</option>\
-						</select></div>\
-						</fieldset></br>\
-						<fieldset>\
-						<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' value='"+objekt+"'></div>\
-						<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' value='"+verb+"'></div>\
-						</fieldset></br>\
-						<fieldset>\
-						<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=9 min=0 step=1 value='"+priority+"' onkeydown='return false'></div>\
-						</fieldset>\
-						<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
+						body.html("<h3 class='marginClass'>Hallo "+user+", bearbeiten Sie Ihre Anforderung:</h3>\
+							<fieldset>\
+							<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' value='"+wann+"'></div>\
+							<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
+								<option>"+muss+"</option>\
+								<option>muss</option>\
+								<option>sollte</option>\
+								<option>wird</option>\
+							</select></div>\
+							<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' value='"+wer+"'></div>\
+							<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='"+wem+"' placeholder='wem? (optional)'></div>\
+							<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
+								<option>"+bieten+"</option>\
+								<option>fähig sein</option>\
+								<option>die Möglichkeit bieten</option>\
+							</select></div>\
+							</fieldset></br>\
+							<fieldset>\
+							<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' value='"+objekt+"'></div>\
+							<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' value='"+verb+"'></div>\
+							</fieldset></br>\
+							<fieldset>\
+							<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=9 min=0 step=1 value='"+priority+"' onkeydown='return false'></div>\
+							</fieldset>\
+							<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
+						}
+					});
 				}
 			});	
 }
