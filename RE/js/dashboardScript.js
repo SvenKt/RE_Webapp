@@ -138,8 +138,8 @@ $.ajax({
 							var req = success[i][0].replace(/:/g," ");
 							
 							string+="<tr>\
-									<th scope='row'>"+success[i][2]+"</th>\
 									<th id='result"+success[i][1]+"'>"+req+"."+"</th>\
+									<th scope='row'>"+success[i][2]+"</th>\
 									<th class='req-btn'>\
 										<button type='button' class='btn btn-default' onClick='createEditForm("+success[i][1]+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
@@ -155,10 +155,10 @@ $.ajax({
 					body.html("<div class='panel panel-default'>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
-									<th>Priorität</th>\
 									<th>Anforderung</th>\
-									<th>Edit</th>\
-									<th>Delete</th>\
+									<th>Priorität</th>\
+									<th>Bearbeiten</th>\
+									<th>Löschen</th>\
 								</tr></thead>\
 								<tbody>\
 									"+string+"\
@@ -179,52 +179,73 @@ function createEditForm(id){
 	var wann, muss, wer, wem, bieten, objekt, verb, priority;
 	
 	
+	
+	//hole requirement aus datenbank
 	$.ajax({
 			url: "php/getReqForEdit.php",
 			type: "POST",
 			data: {"id": id},
 			dataType: "json",
 			success: function(req){
-					wann = req.split(":")[0];
-					muss =req.split(":")[1];
-					wer =req.split(":")[2];
-					wem = req.split(":")[3];
-					bieten =req.split(":")[4];
-					objekt = req.split(":")[5];
-					verb = req.split(":")[6];
-					$.ajax({
-					url: "php/getPrioForEdit.php",
-					type: "POST",
-					data: {"id": id},
-					dataType: "json",
-					success: function(prio){
-							priority = prio;
+						wann = req.split(":")[0];
+						muss =req.split(":")[1];
+						wer =req.split(":")[2];
+						wem = req.split(":")[3];
+						bieten =req.split(":")[4];
+						objekt = req.split(":")[5];
+						verb = req.split(":")[6];
+						
+						//wenn requirement da, dann hole die priorität aus datenbank
+							$.ajax({
+								url: "php/getPrioForEdit.php",
+								type: "POST",
+								data: {"id": id},
+								dataType: "json",
+								success: function(prio){
+									priority = prio;
 					
-						body.html("<h3 class='marginClass'>Hallo "+user+", bearbeiten Sie Ihre Anforderung:</h3>\
-							<fieldset>\
-							<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' value='"+wann+"'></div>\
-							<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
-								<option>"+muss+"</option>\
-								<option>muss</option>\
-								<option>sollte</option>\
-								<option>wird</option>\
-							</select></div>\
-							<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' value='"+wer+"'></div>\
-							<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='"+wem+"' placeholder='wem? (optional)'></div>\
-							<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
-								<option>"+bieten+"</option>\
-								<option>fähig sein</option>\
-								<option>die Möglichkeit bieten</option>\
-							</select></div>\
-							</fieldset></br>\
-							<fieldset>\
-							<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' value='"+objekt+"'></div>\
-							<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' value='"+verb+"'></div>\
-							</fieldset></br>\
-							<fieldset>\
-							<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=9 min=0 step=1 value='"+priority+"' onkeydown='return false'></div>\
-							</fieldset>\
-							<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
+									//wenn beides da, schreibe es in einen string und setze es auf html seite
+									body.html("<h3 class='marginClass'>Hallo "+user+", bearbeiten Sie Ihre Anforderung:</h3>\
+												<fieldset>\
+													<div class='col-md-3'>\
+														<input type='text' class='form-control' name='wann' id='wann' value='"+wann+"'>\
+													</div>\
+													<div class='col-md-2'>\
+														<select class='form-control' name='muss' id='muss'>\
+															<option>"+muss+"</option>\
+															<option>muss</option>\
+															<option>sollte</option>\
+															<option>wird</option>\
+														</select>\
+													</div>\
+													<div class='col-md-2'>\
+														<input type='text' class='form-control' name='system' id='system' value='"+wer+"'>\
+													</div>\
+													<div class='col-md-2'>\
+														<input type='text' class='form-control' name='wem' id='wem' value='"+wem+"' placeholder='wem? (optional)'>\
+													</div>\
+													<div class='col-md-2'>\
+														<select class='form-control' name='bieten' id='bieten'>\
+															<option>"+bieten+"</option>\
+															<option>fähig sein</option>\
+															<option>die Möglichkeit bieten</option>\
+														</select>\
+													</div>\
+												</fieldset></br>\
+												<fieldset>\
+													<div class='col-md-2'>\
+														<input type='text' class='form-control' name='objekt'	id='objekt' value='"+objekt+"'>\
+													</div>\
+													<div class='col-md-2'>\
+														<input type='text' class='form-control' name='verb' id='verb' value='"+verb+"'>\
+													</div>\
+												</fieldset></br>\
+												<fieldset>\
+													<div class='col-md-1'>\
+														Priorität:<input type='number' class='form-control' name='prio' id='prio' max=9 min=0 step=1 value='"+priority+"' onkeydown='return false'>\
+													</div>\
+												</fieldset>\
+												<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
 						}
 					});
 				}
