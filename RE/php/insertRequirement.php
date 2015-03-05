@@ -2,6 +2,7 @@
 require 'db_conf.php';
 
 $requirement=$_POST['req'];
+$priority=$_POST['prio'];
 $user=$_POST['username'];
 	//connect to DB
 	establishDBConnection();
@@ -14,7 +15,7 @@ $user=$_POST['username'];
 	$userid= $row->id;
 	}
    
-   $injection = "insert into requirements (requirement, owner_id) values ('".$requirement."','".$userid."');";
+   $injection = "insert into requirements (requirement, priority, owner_id) values ('".$requirement."', '".$priority."', '".$userid."');";
    $done = mysql_query($injection);
 	
 	if ($done){

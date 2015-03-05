@@ -50,6 +50,9 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 				<fieldset>\
 				<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' placeholder='Objekt?'></div>\
 				<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' placeholder='Verb?'></div>\
+				</fieldset></br>\
+				<fieldset>\
+				<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=10 min=1 step=1 value=1 onkeydown='return false'></div>\
 				</fieldset>\
 		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq()'>Bestätigen</button>");
 
@@ -68,6 +71,7 @@ var wem="";
 var bieten="";
 var objekt=$('#objekt').val(); if(objekt==""){fieldError(); return;}
 var verb=$('#verb').val(); if(verb==""){fieldError(); return;}
+var prio=$('#prio').val();
 
 if($('#bieten').val() != "-"){
 	bieten=$('#bieten').val() + " ";
@@ -82,7 +86,7 @@ var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten 
 		$.ajax({
 			url: "php/insertRequirement.php",
 			type: "POST",
-			data: {"req": theRequirement, "username": getUserName()},
+			data: {"req": theRequirement, "prio": prio, "username": getUserName()},
 			dataType: "json",
 			success: function(success){
 				$('#error').text("Anforderung erfolgreich eingetragen").slideDown(500).delay(2000).slideUp(500);
@@ -155,22 +159,31 @@ function logOut(){
 function createEditForm(id){
 	var body=$('#content');
 	var user= getUserName();
-
+	var wann, muss, wer, wem, bieten, objekt, verb, priority;
 	
+	$.ajax({
+			url: "php/getPrioForEdit.php",
+			type: "POST",
+			data: {"id": id},
+			dataType: "json",
+			success: function(prio){
+					priority = prio;
+				}
+			});
 	$.ajax({
 			url: "php/getReqForEdit.php",
 			type: "POST",
 			data: {"id": id},
 			dataType: "json",
 			success: function(req){
-					var wann = req.split(":")[0];
-					var muss =req.split(":")[1];
-					var wer =req.split(":")[2];
-					var wem = req.split(":")[3];
-					var bieten =req.split(":")[4];
-					var objekt = req.split(":")[5];
-					var verb = req.split(":")[6];
-
+					wann = req.split(":")[0];
+					muss =req.split(":")[1];
+					wer =req.split(":")[2];
+					wem = req.split(":")[3];
+					bieten =req.split(":")[4];
+					objekt = req.split(":")[5];
+					verb = req.split(":")[6];
+					
 					body.html("<h3 class='marginClass'>Hallo "+user+", bearbeiten Sie Ihre Anforderung:</h3>\
 						<fieldset>\
 						<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' value='"+wann+"'></div>\
@@ -180,7 +193,7 @@ function createEditForm(id){
 							<option>wird</option>\
 						</select></div>\
 						<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' value='"+wer+"'></div>\
-						<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='"+wem+"'></div>\
+						<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='"+wem+"' placeholder='wem? (optional)'></div>\
 						<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
 							<option>fähig sein</option>\
 							<option>die Möglichkeit bieten</option>\
@@ -189,12 +202,13 @@ function createEditForm(id){
 						<fieldset>\
 						<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' value='"+objekt+"'></div>\
 						<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' value='"+verb+"'></div>\
+						</fieldset></br>\
+						<fieldset>\
+						<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=10 min=1 step=1 value='"+priority+"' onkeydown='return false'></div>\
 						</fieldset>\
 						<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
 				}
-			});
-	
-	
+			});	
 }
 
 function edit(id){
