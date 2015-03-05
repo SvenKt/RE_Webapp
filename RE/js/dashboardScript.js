@@ -129,8 +129,8 @@ $.ajax({
 			success: function(success){
 					var string="";
 					success.sort(function(a, b) { //works for single-digit prio (0-9)
-						if (a[2] < b[2]) return -1;
-						if (a[2] > b[2]) return 1;
+						if (a[2] > b[2]) return -1;
+						if (a[2] < b[2]) return 1;
 						return 0;
 					});
 					for (var i = 0; i<= success.length; i++){
@@ -187,24 +187,15 @@ function createEditForm(id){
 			data: {"id": id},
 			dataType: "json",
 			success: function(req){
-						wann = req.split(":")[0];
-						muss =req.split(":")[1];
-						wer =req.split(":")[2];
-						wem = req.split(":")[3];
-						bieten =req.split(":")[4];
-						objekt = req.split(":")[5];
-						verb = req.split(":")[6];
+						wann = req[0].split(":")[0];
+						muss =req[0].split(":")[1];
+						wer =req[0].split(":")[2];
+						wem = req[0].split(":")[3];
+						bieten =req[0].split(":")[4];
+						objekt = req[0].split(":")[5];
+						verb = req[0].split(":")[6];
+						priority = req[1];
 						
-						//wenn requirement da, dann hole die priorität aus datenbank
-							$.ajax({
-								url: "php/getPrioForEdit.php",
-								type: "POST",
-								data: {"id": id},
-								dataType: "json",
-								success: function(prio){
-									priority = prio;
-					
-									//wenn beides da, schreibe es in einen string und setze es auf html seite
 									body.html("<h3 class='marginClass'>Hallo "+user+", bearbeiten Sie Ihre Anforderung:</h3>\
 												<fieldset>\
 													<div class='col-md-3'>\
@@ -246,8 +237,6 @@ function createEditForm(id){
 													</div>\
 												</fieldset>\
 												<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
-						}
-					});
 				}
 			});	
 }
