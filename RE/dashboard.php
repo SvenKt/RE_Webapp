@@ -9,8 +9,10 @@
 		<meta http-equiv="Pragma" CONTENT="no-cache">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/dashboardScript.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/user.js"></script>
 		<link rel="stylesheet" href="css/dashboard.css">
 		<title> Dashboard</title>
@@ -21,19 +23,21 @@
 		<div id="left_nav" class="col-md-2">
 			<div class="input-group">
 				<span class="input-group-addon" onClick="getResult()" id="search">Go</span>
-				<input type="text" id="search_field" class="form-control" placeholder="Suche...">
+				<input type="text" id="search_field" class="form-control" placeholder="Suche..."  title="Durchsuchen Sie Ihre Anforderungen">
 			</div><!--input-group-->
 			<ul class="nav nav-pills nav-stacked">
-				<li role="presentation" class="active navlist"><a onClick="getRequirements()" >Home</a></li>
-				<li class="navlist "role="presentation"><a onClick="createReqForm()">Anforderung erstellen</a></li>
-				<li class="navlist" role="presentation"><a data-toggle="modal" data-target="#profil">Profil</a></li>
-				<li class="navlist" role="presentation"><a onClick="logOut()">Logout</a></li>
+				<li role="presentation" class="active navlist"><a onClick="getRequirements()" title="Gehen Sie zurück auf den Startbildschirm" >Home</a></li>
+				<li class="navlist "role="presentation"><a onClick="createReqForm()" title="Erstellen Sie eine neue Anforderung" >Anforderung erstellen</a></li>
+				<li class="navlist" role="presentation"><a data-toggle="modal" title="Ändern Sie Ihre persönlichen Informationen" data-target="#profil">Profil</a></li>
+				<li class="navlist" role="presentation"><a id="download_reqs" title="Laden Sie Ihre Anforderungen als .csv Datei herunter" >Download</a></li>
+				<li class="navlist" role="presentation"><a onClick="logOut()" title="Melden Sie sich vom System ab">Logout</a></li>
 			</ul>
 		</div><!--left_nav-->
 		<div id="content-wrapper" class="panel col-md-10">
 			<h2>Anforderungen</h2>
 			<hr>
 				<p class="panel panel-warning"id="error"></p>
+				<div class="panel panel-warning" id="dialog"></div>
 				<div id="content" class="panel panel-body">
 					
 				</div><!--content-->
@@ -67,38 +71,7 @@
 					</div>
 				</div>
 			</div>
-			
-			<!--modal newReq -->
-			<!--<div class="modal fade" id="newReq" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h3 class="modal-title" id="myModalLabel">Neue Anforderung</h3>
-						</div>
-						<div class="modal-body">
-							<p id="head_modal_dash"><h4>Erstellen Sie eine neue Anforderung:</h4></p></br>
-							
-							<fieldset>
-								<div class="col-md-2"><input type="text" class="form-control" name="system" id="system" value="Wer?"></div>
-								<div class="col-md-2"><input type="text" class="form-control" name="muss" id="muss" value="muss/soll/kann"></div>
-								<div class="col-md-2"><input type="text" class="form-control" name="wem" id="wem" value="wem?"></div>
-								<div class="col-md-2"><input type="text" class="form-control" name="bieten" id="bieten" value="möglich/fähig?"></div>
-								<div class="col-md-2"><input type="text" class="form-control" name="objekt" id="objekt" value="Objekt?"></div>
-								<div class="col-md-2"><input type="text" class="form-control" name="verb" id="verb" value="Verb?"></div>
-							</fieldset>
-						</div>
-							</br>
-							<label id="infotxt"><h4>Drücken Sie zum Speichern der Anforderung auf <span class="send">Bestätigen</span></h4></label>
-						<div class="modal-footer">
-						
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button class="btn btn-success" id="reg_submit" onClick="">Bestätigen</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		-->
+		
 		
 		
 	</body>

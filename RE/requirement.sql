@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 05. Mrz 2015 um 00:02
+-- Erstellungszeit: 15. Mrz 2015 um 23:40
 -- Server Version: 5.6.21
 -- PHP-Version: 5.6.3
 
@@ -29,21 +29,22 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `requirements` (
 `id` int(11) unsigned NOT NULL,
   `requirement` varchar(200) CHARACTER SET utf8 COLLATE utf8_german2_ci DEFAULT NULL,
-  `owner_id` int(11) unsigned DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+  `owner_id` int(11) unsigned DEFAULT NULL,
+  `priority` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `requirements`
 --
 
-INSERT INTO `requirements` (`id`, `requirement`, `owner_id`) VALUES
-(47, 'ljkn:muss:kjn:kj :fÃ¤hig sein, :kljn:kljn', 1),
-(48, '1:muss:1:1 :fÃ¤hig sein, :1:1', 1),
-(49, 'asd:muss:asd:asd :fÃ¤hig sein, :ad:asd', 1),
-(50, 'dsf:muss:sdf:sdf :fÃ¤hig sein, :sdf:sdf', 1),
-(58, 'sdf:muss:sdf:sdf :fÃ¤hig sein, :sdf:sdf', 7),
-(59, 'asd:muss:asd::fÃ¤hig sein, :asd:asd', 7),
-(61, 'asc:muss:asc:asc :fÃ¤hig sein, :asc:asc', 1);
+INSERT INTO `requirements` (`id`, `requirement`, `owner_id`, `priority`) VALUES
+(58, 'sdf:muss:sdf:sdf :fÃ¤hig sein, :sdf:sdf', 7, NULL),
+(59, 'asd:muss:asd::fÃ¤hig sein, :asd:asd', 7, NULL),
+(66, 'sdfsdfsd:muss:liglig:lgÃ¶oih :fÃ¤hig sein, :luioh:luhluh', 1, 0),
+(67, 'uzbho75457:muss:gergerg:46877eerg :fÃ¤hig sein, :ergerg:egerg', 1, 0),
+(68, 'erger:muss:gerg:ergt :fÃ¤hig sein, :zhr:rjhrjz', 1, 0),
+(71, 'asef:muss:liuh:liuh  :fÃ¤hig sein, :liuh:luih', 1, 3),
+(72, 'fgafg:muss:afgafg:adfgadfg   :fÃ¤hig sein, :adfg:adfgadfg', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `cookie`) VALUES
-(1, 'sven', '25d55ad283aa400af464c76d713c07ad', '1234@1234.de', 352737),
+(1, 'sven', '25d55ad283aa400af464c76d713c07ad', '1234@1234.de', 922396),
 (2, 'test', 'test', NULL, NULL),
 (3, 'SvenKt', 'c3fbcd8f3855a7050a359679effbbdf4', 'sv-kujat@t-online.de', NULL),
 (4, 'peter', '25d55ad283aa400af464c76d713c07ad', '123', NULL),
@@ -96,7 +97,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT für Tabelle `requirements`
 --
 ALTER TABLE `requirements`
-MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=62;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=73;
 --
 -- AUTO_INCREMENT für Tabelle `users`
 --

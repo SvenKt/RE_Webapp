@@ -4,8 +4,12 @@
 
 $(document).ready(function(){
 $("#error").hide();
+$("#dialog").hide();
 getRequirements();
+$(this).tooltip();
 });
+
+
 
 
 function changeData(){
@@ -144,21 +148,19 @@ $.ajax({
 										<button type='button' class='btn btn-default' onClick='createEditForm("+success[i][1]+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
 										</button>\
-									</th>\
-									<th class='req-btn'>\
-										<button type='button' class='btn btn-default' onClick='deleteReq("+success[i][1]+")' aria-label='Right Align'>\
+										<button type='button' class='btn btn-default' onClick='confirmRemoval("+success[i][1]+")' aria-label='Right Align'>\
 											<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>\
 										</button>\
-									</th></tr>";
+									</th>\
+									</tr>";
 						}
 					}
 					body.html("<div id='field' class='panel panel-default'>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
-									<th>Anforderung</th>\
-									<th>Priorität</th>\
-									<th>Bearbeiten</th>\
-									<th>Löschen</th>\
+									<th class='col-md-9'>Anforderung</th>\
+									<th class='col-md-1'>Priorität</th>\
+									<th class='col-md-1'>Optionen</th>\
 								</tr></thead>\
 								<tbody>\
 									"+string+"\
@@ -167,6 +169,7 @@ $.ajax({
 				},
 			error: function(){alert("error");}
 			});
+	refreshExport();
 }
 
 function logOut(){
@@ -262,3 +265,68 @@ function cookiesEqual(){
 	//console.log("user "+getUserCookie() + " db " + getDatabaseCookie());
 	return (getUserCookie() == getDatabaseCookie());
 }
+
+function confirmRemoval(reqID){
+	$( "#dialog" ).dialog({
+		resizable: false,
+		height: 140,
+		width: 400,
+		title: "Anforderung wirklich löschen?",
+		modal: true,
+		buttons: {
+			"Anforderung löschen!": function() {
+				deleteReq(reqID);
+				$( this ).dialog( "close" );
+			},
+			"doch nicht": function() {
+				$( this ).dialog( "close" );
+			}
+		}
+	});
+}
+	
+	
+function refreshExport(){
+var user = getUserName();
+var csvRows = new Array();
+var prio;
+var req;
+
+	$.ajax({
+			url: "php/getRequirements.php",
+			type: "POST",
+			data: {"username": user},
+			dataType: "json",
+			success: function(success){
+					var string="";
+					success.sort(function(a, b) { //works for single-digit prio (0-9)
+						if (a[2] > b[2]) return -1;
+						if (a[2] < b[2]) return 1;
+						return 0;
+					});
+					// csv daten aufbereiten
+					
+			csvRows.push("Anforderung"+"\t"+"Prioriät");
+					for (var i = 0; i<= success.length; i++){
+						if (success[i] != null && success[i] != ""){
+							req = success[i][0].replace(/:/g," ");
+							prio = success[i][2];
+							
+							csvRows.push(req+"\t"+prio);
+						}
+					}
+					
+					//csv datei anlegen
+					var csvData = csvRows.join("\n");
+					var uri = "data:text/csv;charset=utf-8,%EF%BB%BF" + encodeURIComponent(csvData);
+					var fileName = "Anforderungen.csv";
+					
+					//link setzen
+					$("#download_reqs").attr("href",uri);
+					$("#download_reqs").attr("target",'_blank');
+					$("#download_reqs").attr("download", 'Anforderungen.csv,' );
+			}
+	
+	});
+} 
+
