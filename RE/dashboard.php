@@ -30,7 +30,7 @@
 				<li class="navlist "role="presentation"><a onClick="createReqForm()" title="Erstellen Sie eine neue Anforderung" >Anforderung erstellen</a></li>
 				<li class="navlist" role="presentation"><a data-toggle="modal" title="Ändern Sie Ihre persönlichen Informationen" data-target="#profil">Profil</a></li>
 				<li class="navlist" role="presentation"><a id="download_reqs" title="Laden Sie Ihre Anforderungen als .csv Datei herunter" >Download</a></li>
-				<li class="navlist" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="sizeAccordion()" title="Erstellen Sie ein Team und arbeiten Sie mit Ihren Freunde zusammen" >Team</a></li>
+				<li class="navlist" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()" title="Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen" >Team</a></li>
 				<li class="navlist" role="presentation"><a onClick="logOut()" title="Melden Sie sich vom System ab">Logout</a></li>
 			</ul>
 		</div><!--left_nav-->
@@ -79,20 +79,24 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h3 class="modal-title" id="myModalLabel">Team Optionen</h3>
+							<h3 class="modal-title" id="myModalLabel">Team</h3>
 						</div>
 						<div class="modal-body">
 							<p id="head_modal_dash_team"><h4>Teamoptionen</h4></p></br>
 							<div id="accordion">
+								<h3>Meine Teams</h3>
+								<div id="content_team">
+									
+								</div>
 								<h3>Team erstellen</h3>
 								<div>
 									<label for="pw">Teamname</label><input type="text" class="form-control" id="team_name" ></br>
-									<button class="btn btn-success" id="reg_submit" onClick="createTeam()">Team erstellen</button>
+									<button class="btn btn-success" onClick="createTeam()">Team erstellen</button>
 								</div>
 								<h3>Mitglieder hinzufügen</h3>
 								<div>
 									<label for="pw">Mitglieder</label><input type="text" class="form-control" id="team_name" ></br>
-									<button class="btn btn-success" id="reg_submit" onClick="createTeam()">Team erstellen</button>
+									<button class="btn btn-success">Mitglieder hinzufügen</button>
 								</div>
 							</div>
 							

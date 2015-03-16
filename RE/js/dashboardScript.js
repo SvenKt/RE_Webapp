@@ -150,7 +150,7 @@ $.ajax({
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
 										</button>\
 										<button type='button' class='btn btn-default' onClick='confirmRemoval("+success[i][1]+")' aria-label='Right Align'>\
-											<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>\
+											<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>\
 										</button>\
 									</th>\
 									</tr>";
@@ -333,8 +333,8 @@ var req;
 
 function createTeam(){
 var teamname = $("#team_name").val();	
-	
-	$.ajax({
+if (teamname != ""){
+		$.ajax({
 			url: "php/createTeam.php",
 			type: "POST",
 			data: {"team": teamname,"user":getUserName()},
@@ -354,9 +354,86 @@ var teamname = $("#team_name").val();
 					};
 			}
 	});
-		
+} else {
+	$("#head_modal_dash_team").text("Fehler: Name darf nicht leer sein!").slideDown(500).delay(2000).slideUp(500);
+	
+}
+	
+
+//teams neu laden --> meine Teams
+getMyGroups();	
 }
 
 function sizeAccordion(){
 $("#accordion").accordion({ heightStyle: "content" });
+}
+
+function getMyGroups(){
+var user = getUserName();
+var curTeam;
+var teams = "Noch kein Team vorhanden";
+	$.ajax({
+			url: "php/getMyGroups.php",
+			type: "POST",
+			data: {"user":user},
+			dataType: "json",
+			success: function(success){
+				teams="";
+				memberOf=success[1];
+				for(var i = 0; i <= success[0].length; i++){
+					if (success[0][i] != null && success[i] != ""){
+					curTeam=success[0][i];
+					//wenn aktueller teamname == teamname, in dem nutzer mitglied ist, dann erstelle noch zusätzlich einen leave team button
+					if (curTeam == memberOf){
+									teams+="<tr>\
+									<th id='team"+curTeam+"'>"+curTeam+"</th>\
+									<th>Sie sind Mitglied dieser Gruppe"+"</th>\
+									<th class='req-btn'>\
+										<button type='button' class='btn btn-default' onClick='' aria-label='Left Align'>\
+											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
+										</button>\
+										<button type='button' class='btn btn-default' onClick='' aria-label='Right Align'>\
+											<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>\
+										</button>\
+										<button type='button' class='btn btn-default' onClick='' aria-label='Right Align'>\
+											<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>\
+										</button>\
+									</th>\
+									</tr>";	
+						
+					}   else {
+									teams+="<tr>\
+									<th id='team"+curTeam+"'>"+curTeam+"</th>\
+									<th></th>\
+									<th class='req-btn'>\
+										<button type='button' class='btn btn-default' onClick='' aria-label='Left Align'>\
+											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
+										</button>\
+										<button type='button' class='btn btn-default' onClick='' aria-label='Right Align'>\
+											<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>\
+										</button>\
+									</th>\
+									</tr>";	
+						}	
+									
+					}
+				}
+					
+					$("#content_team").html("<table class='table'><thead style='background-color:#E6E6E6'>\
+								<tr>\
+									<th class='col-md-4'>Team</th>\
+									<th class='col-md-6'></th>\
+									<th class='col-md-2'>Optionen</th>\
+								</tr></thead>\
+								<tbody>\
+									"+teams+"\
+								</tbody></table>");					
+			}
+	});
+	
+}
+
+function loadTeamOptions(){
+	sizeAccordion();
+	getMyGroups();	
 }
