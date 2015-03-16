@@ -7,6 +7,7 @@ $("#error").hide();
 $("#dialog").hide();
 getRequirements();
 $(this).tooltip();
+$("#accordion").accordion({collapsible: true});
 });
 
 
@@ -330,3 +331,32 @@ var req;
 	});
 } 
 
+function createTeam(){
+var teamname = $("#team_name").val();	
+	
+	$.ajax({
+			url: "php/createTeam.php",
+			type: "POST",
+			data: {"team": teamname,"user":getUserName()},
+			dataType: "json",
+			success: function(success){
+					$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);
+					if (success.search("Fehler") == -1){ 
+						$.ajax({
+							url: "php/insertGroupOwner.php",
+							type: "POST",
+							data: {"team": teamname,"user":getUserName()},
+							dataType: "json",
+							success: function(success){
+								window.setTimeout(function(){$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);},3000);
+							}
+						});					
+					};
+			}
+	});
+		
+}
+
+function sizeAccordion(){
+$("#accordion").accordion({ heightStyle: "content" });
+}

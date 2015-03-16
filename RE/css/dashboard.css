@@ -79,3 +79,7 @@ body .modal-dialog {
     /* must be half of the width, minus scrollbar on the left (30px) */
     margin: auto;
 }
+
+#accordion .ui-accordion-content {
+   height: 40vh;
+}
