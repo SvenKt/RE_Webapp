@@ -4,6 +4,14 @@
 $(document).ready(function(){
 $("#read").hide();
 $("#error").hide();
+//leite auch weiter, wenn enter gedrückt wurde
+$(document).keypress(function(event){
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == '13'){
+			checkCredentials();
+		}
+		event.stopPropagation();
+	});
 });
 
 function checkCredentials(){

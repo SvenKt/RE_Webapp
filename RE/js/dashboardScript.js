@@ -5,9 +5,24 @@
 $(document).ready(function(){
 $("#error").hide();
 $("#dialog").hide();
+$("#dialog_team_modal").hide();
 getRequirements();
 $(this).tooltip();
 $("#accordion").accordion({collapsible: true});
+$("#team_name").keypress(function(event){
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == '13'){
+			createTeam();
+		}
+		event.stopPropagation();
+	});
+$("#team_user").keypress(function(event){
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	if(keycode == '13'){
+		addTeamMember();
+	}
+	event.stopPropagation();
+});
 });
 
 
@@ -133,13 +148,15 @@ $.ajax({
 			dataType: "json",
 			success: function(success){
 					var string="";
-					success.sort(function(a, b) { //works for single-digit prio (0-9)
+					if (success.length != 0){
+						success.sort(function(a, b) { //works for single-digit prio (0-9)
 						if (a[2] > b[2]) return -1;
 						if (a[2] < b[2]) return 1;
 						return 0;
-					});
-					for (var i = 0; i<= success.length; i++){
-						if (success[i] != null && success[i] != ""){
+						});
+					}
+					
+					for (var i = 0; i < success.length; i++){
 							var req = success[i][0].replace(/:/g," ");
 							
 							string+="<tr>\
@@ -155,13 +172,14 @@ $.ajax({
 									</th>\
 									</tr>";
 						}
-					}
+					
+					
 					body.html("<div id='field' class='panel panel-default'>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
-									<th class='col-md-9'>Anforderung</th>\
+									<th class='col-md-8'>Anforderung</th>\
 									<th class='col-md-1'>Priorität</th>\
-									<th class='col-md-1'>Optionen</th>\
+									<th class='col-md-2'>Optionen</th>\
 								</tr></thead>\
 								<tbody>\
 									"+string+"\
@@ -300,21 +318,22 @@ var req;
 			dataType: "json",
 			success: function(success){
 					var string="";
-					success.sort(function(a, b) { //works for single-digit prio (0-9)
-						if (a[2] > b[2]) return -1;
-						if (a[2] < b[2]) return 1;
-						return 0;
-					});
+					if (success.length != 0){
+						success.sort(function(a, b) { //works for single-digit prio (0-9)
+							if (a[2] > b[2]) return -1;
+							if (a[2] < b[2]) return 1;
+							return 0;
+						});
+					}
 					// csv daten aufbereiten
 					
 			csvRows.push("Anforderung"+"\t"+"Prioriät");
-					for (var i = 0; i<= success.length; i++){
-						if (success[i] != null && success[i] != ""){
+					for (var i = 0; i< success.length; i++){
 							req = success[i][0].replace(/:/g," ");
 							prio = success[i][2];
 							
 							csvRows.push(req+"\t"+prio);
-						}
+						
 					}
 					
 					//csv datei anlegen
@@ -348,6 +367,9 @@ if (teamname != ""){
 							data: {"team": teamname,"user":getUserName()},
 							dataType: "json",
 							success: function(success){
+								//teams neu laden --> meine Teams
+								refreshTeamData();	
+								$("#team_name").val('');	
 								window.setTimeout(function(){$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);},3000);
 							}
 						});					
@@ -358,10 +380,7 @@ if (teamname != ""){
 	$("#head_modal_dash_team").text("Fehler: Name darf nicht leer sein!").slideDown(500).delay(2000).slideUp(500);
 	
 }
-	
 
-//teams neu laden --> meine Teams
-getMyGroups();	
 }
 
 function sizeAccordion(){
@@ -380,36 +399,58 @@ var teams = "Noch kein Team vorhanden";
 			success: function(success){
 				teams="";
 				memberOf=success[1];
-				for(var i = 0; i <= success[0].length; i++){
-					if (success[0][i] != null && success[i] != ""){
-					curTeam=success[0][i];
-					//wenn aktueller teamname == teamname, in dem nutzer mitglied ist, dann erstelle noch zusätzlich einen leave team button
-					if (curTeam == memberOf){
-									teams+="<tr>\
-									<th id='team"+curTeam+"'>"+curTeam+"</th>\
-									<th>Sie sind Mitglied dieser Gruppe"+"</th>\
+				
+					if (success[0] != null){
+					for(var i = 0; i < success[0].length; i++){
+						//wenn elemente (teams) im rückgabeobjek enthalten sind, führe nachfolgendes aus
+						
+						curTeam=success[0][i][0];
+						curTeamID=success[0][i][1];
+						
+						//wenn user aktuell kein member irgendeines teams -> zeichne 'team beitreten' button
+						if(memberOf == ""){
+							teams+="<tr>\
+									<th id='team"+curTeamID+"'>"+curTeam+"</th>\
+									<th></th>\
 									<th class='req-btn'>\
-										<button type='button' class='btn btn-default' onClick='' aria-label='Left Align'>\
+										<button  class='btn btn-default' onClick='' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
 										</button>\
-										<button type='button' class='btn btn-default' onClick='' aria-label='Right Align'>\
+										<button  class='btn btn-default' onClick='confirmTeamRemoval("+curTeamID+")' aria-label='Right Align'>\
 											<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>\
 										</button>\
-										<button type='button' class='btn btn-default' onClick='' aria-label='Right Align'>\
+										<button class='btn btn-default' onClick='intoTeam("+curTeamID+")' aria-label='Right Align'>\
+											<span class='glyphicon glyphicon-plus' aria-hidden='true'></span>\
+										</button>\
+									</th>\
+									</tr>";	
+						//wenn aktueller teamname == teamname, in dem nutzer mitglied ist, dann erstelle noch zusätzlich einen 'leave team' button
+						} else if (curTeam == memberOf){
+									teams+="<tr>\
+									<th id='team"+curTeamID+"'>"+curTeam+"</th>\
+									<th>Sie sind Mitglied dieser Gruppe"+"</th>\
+									<th class='req-btn'>\
+										<button  class='btn btn-default' onClick='' aria-label='Left Align'>\
+											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
+										</button>\
+										<button  class='btn btn-default' onClick='confirmTeamRemoval("+curTeamID+")' aria-label='Right Align'>\
+											<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>\
+										</button>\
+										<button class='btn btn-default' onClick='leaveTeam()' aria-label='Right Align'>\
 											<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>\
 										</button>\
 									</th>\
 									</tr>";	
-						
+						//bei teams, die der user erstellt hat, in welchen er aber nicht mitglied ist
 					}   else {
 									teams+="<tr>\
-									<th id='team"+curTeam+"'>"+curTeam+"</th>\
+									<th id='team"+curTeamID+"'>"+curTeam+"</th>\
 									<th></th>\
 									<th class='req-btn'>\
-										<button type='button' class='btn btn-default' onClick='' aria-label='Left Align'>\
+										<button class='btn btn-default' onClick='' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
 										</button>\
-										<button type='button' class='btn btn-default' onClick='' aria-label='Right Align'>\
+										<button class='btn btn-default' onClick='confirmTeamRemoval("+curTeamID+")' aria-label='Right Align'>\
 											<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>\
 										</button>\
 									</th>\
@@ -417,7 +458,12 @@ var teams = "Noch kein Team vorhanden";
 						}	
 									
 					}
+				
+					
 				}
+				
+				
+				
 					
 					$("#content_team").html("<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
@@ -435,5 +481,134 @@ var teams = "Noch kein Team vorhanden";
 
 function loadTeamOptions(){
 	sizeAccordion();
-	getMyGroups();	
+	refreshTeamData();
+}
+
+function leaveTeam(){
+	var user = getUserName();
+	$.ajax({
+			url: "php/leaveTeam.php",
+			type: "POST",
+			data: {"user":user},
+			dataType: "json",
+			success: function(success){
+				refreshTeamData();
+				$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);
+				
+			}
+	});
+	
+}
+
+function intoTeam(team_id){
+	var user = getUserName();
+	$.ajax({
+			url: "php/intoTeam.php",
+			type: "POST",
+			data: {"user":user, "team_id": team_id},
+			dataType: "json",
+			success: function(success){
+				refreshTeamData();
+				$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);
+					
+			}
+	});
+
+	
+}
+
+function confirmTeamRemoval(team_id){
+$('#team_modal').hide();
+$( "#dialog" ).dialog({
+		resizable: false,
+		height: 140,
+		width: 400,
+		title: "Team wirklich löschen?",
+		modal: true,
+		bgiframe: true,
+		buttons: {
+			"Team löschen!": function() {
+				deleteTeam(team_id);
+				$( this ).dialog( "close" );
+				$('#team_modal').show();
+			},
+			"doch nicht": function() {
+				$( this ).dialog( "close" );
+				$('#team_modal').show();
+			}
+		}
+	});
+
+
+}
+
+function deleteTeam(team_id){
+//erst team verlassen, damit keine foreign key exceptions in mysql auftreten
+	var user = getUserName();
+	$.ajax({
+			url: "php/deleteTeam.php",
+			type: "POST",
+			data: {"user":user, "team_id": team_id},
+			dataType: "json",
+			success: function(success){
+				refreshTeamData();
+				$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);	
+			},
+			error: function(error){alert(error);}
+	});
+	
+}
+
+
+function refreshTeamDropdown(){
+//füllt das dropdown in [team]->[mitglieder hinzufügen] mit den teams des users
+var body = $("#team_list");
+var user = getUserName();
+var string = "";
+$.ajax({
+			url: "php/getMyGroups.php",
+			type: "POST",
+			data: {"user":user},
+			dataType: "json",
+			success: function(success){
+			
+			if (success[0] != null) {
+				for(var i = 0; i < success[0].length; i++){
+					curTeam=success[0][i][0];
+					string += "<option>"+curTeam+"</option>";
+				}
+			} 
+				
+				body.html(
+				"<select class='form-control' id='team_dropdown'>"+string+"</select>"
+				);
+			
+			}
+	});
+
+}
+
+function refreshTeamData(){
+	//hier alle funktionen rein, die abhängig von den ausgelesenen teams sind
+	refreshTeamDropdown();
+	getMyGroups();
+	
+}
+
+function addTeamMember(){
+var newMember = $("#team_user").val();
+var team = 	$("#team_list option:selected" ).text();
+
+$.ajax({
+			url: "php/addMember.php",
+			type: "POST",
+			data: {"member":newMember, "teamName": team},
+			dataType: "json",
+			success: function(success){
+				refreshTeamData();
+				$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);	
+			}
+	});
+
+	
 }

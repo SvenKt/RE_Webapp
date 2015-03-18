@@ -11,7 +11,7 @@ if (isset($_POST['query'])){
 
 
 
-$req_array[] = "";
+$req_array="";
 
 	//connect to DB
 	establishDBConnection();

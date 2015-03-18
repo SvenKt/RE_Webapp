@@ -83,10 +83,11 @@
 						</div>
 						<div class="modal-body">
 							<p id="head_modal_dash_team"><h4>Teamoptionen</h4></p></br>
+							<div class="panel panel-warning" id="dialog_team_modal"></div>
 							<div id="accordion">
 								<h3>Meine Teams</h3>
 								<div id="content_team">
-									
+									<!-- hier alle teams des users -> getMyGroups() -->
 								</div>
 								<h3>Team erstellen</h3>
 								<div>
@@ -95,8 +96,16 @@
 								</div>
 								<h3>Mitglieder hinzufügen</h3>
 								<div>
-									<label for="pw">Mitglieder</label><input type="text" class="form-control" id="team_name" ></br>
-									<button class="btn btn-success">Mitglieder hinzufügen</button>
+									<div class="row">
+										<div class="col-md-5">Mitglied</div>
+										<div class="col-md-3">Meine Gruppen</div>
+										<div class="col-md-2"></div>
+									</div>
+									<div class="row">
+										<div class="col-md-5"><input type="text" class="form-control" id="team_user" ></div>
+										<div id="team_list" class="col-md-3"><!--  dropdown for all teams here -> refreshTeamDropdown() --></div>
+										<div class="col-md-2"><button onClick="addTeamMember()" class="btn btn-success">Mitglied hinzufügen</button></div>
+									</div>
 								</div>
 							</div>
 							
