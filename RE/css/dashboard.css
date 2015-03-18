@@ -83,3 +83,7 @@ body .modal-dialog {
 #accordion .ui-accordion-content {
    height: 50vh;
 }
+
+#main-nav{
+	cursor:default;
+}

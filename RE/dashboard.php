@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-<html>
+<html ng-app="requirements">
 	<head>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<meta charset="UTF-8">
@@ -14,18 +14,22 @@
 		<script type="text/javascript" src="js/dashboardScript.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/user.js"></script>
+		<!--Angular-->
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.js"></script>
+		<script src="js/nav.js"></script>
+		
 		<link rel="stylesheet" href="css/dashboard.css">
 		<title> Dashboard</title>
 	</head>
 	<body>
 		<div id="head">
 		</div><!--head-->
-		<div id="left_nav" class="col-md-2">
+		<div id="left_nav" class="col-md-2" ng-controller="NavCtrl">
 			<div class="input-group">
 				<span class="input-group-addon" onClick="getResult()" id="search">Go</span>
 				<input type="text" id="search_field" class="form-control" placeholder="Suche..."  title="Durchsuchen Sie Ihre Anforderungen">
 			</div><!--input-group-->
-			<ul class="nav nav-pills nav-stacked">
+			<ul id="main-nav" class="nav nav-pills nav-stacked">
 				<li role="presentation" class="active navlist"><a onClick="getRequirements()" title="Gehen Sie zurück auf den Startbildschirm" >Home</a></li>
 				<li class="navlist "role="presentation"><a onClick="createReqForm()" title="Erstellen Sie eine neue Anforderung" >Anforderung erstellen</a></li>
 				<li class="navlist" role="presentation"><a data-toggle="modal" title="Ändern Sie Ihre persönlichen Informationen" data-target="#profil">Profil</a></li>
