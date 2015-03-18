@@ -35,7 +35,7 @@
 			</ul>
 		</div><!--left_nav-->
 		<div id="content-wrapper" class="panel col-md-10">
-			<h2>Anforderungen</h2>
+			<h2 id="headline_dashboard">Anforderungen</h2>
 			<hr>
 				<p class="panel panel-warning"id="error"></p>
 				<div class="panel panel-warning" id="dialog"></div>

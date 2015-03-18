@@ -7,8 +7,11 @@ $("#error").hide();
 $("#dialog").hide();
 $("#dialog_team_modal").hide();
 getRequirements();
+refreshTeamData();
 $(this).tooltip();
 $("#accordion").accordion({collapsible: true});
+
+//enter bestätigung beim erstellen von teams
 $("#team_name").keypress(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if(keycode == '13'){
@@ -16,6 +19,8 @@ $("#team_name").keypress(function(event){
 		}
 		event.stopPropagation();
 	});
+
+//enter bestätigung beim hinzufügen von teammitgliedern
 $("#team_user").keypress(function(event){
 	var keycode = (event.keyCode ? event.keyCode : event.which);
 	if(keycode == '13'){
@@ -23,6 +28,15 @@ $("#team_user").keypress(function(event){
 	}
 	event.stopPropagation();
 });
+
+//enter bestätigung im suchfeld
+$("#search_field").keypress(function(event){
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == '13'){
+			getResult();
+		}
+		event.stopPropagation();
+	});
 });
 
 
@@ -54,25 +68,34 @@ var user= getUserName();
 
 body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforderung ein:</h3>\
 				<fieldset>\
-				<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' placeholder='Wann?/Bedingung?'></div>\
-				<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
-				  <option>muss</option>\
-				  <option>sollte</option>\
-				  <option>wird</option>\
-				</select></div>\
-				<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' placeholder='Systemname?'></div>\
-				<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' placeholder='wem? (optional)'></div>\
-				<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
-				  <option>fähig sein,</option>\
-				  <option>die Möglichkeit bieten,</option>\
-				</select></div>\
+					<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' placeholder='Wann?/Bedingung?'></div>\
+					<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
+						<option>muss</option>\
+						<option>sollte</option>\
+						<option>wird</option>\
+					</select></div>\
+					<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' placeholder='Systemname?'></div>\
+					<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' placeholder='wem? (optional)'></div>\
+					<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
+						<option>fähig sein,</option>\
+						<option>die Möglichkeit bieten,</option>\
+					</select></div>\
 				</fieldset></br>\
 				<fieldset>\
-				<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' placeholder='Objekt?'></div>\
-				<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' placeholder='Verb?'></div>\
+					<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' placeholder='Objekt?'></div>\
+					<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' placeholder='Verb?'></div>\
+					<div class='col-md-2'><input type='text' class='form-control' name='identity' id='identity' placeholder='ID?'></div>\
+					<div class='col-md-2'><input type='text' class='form-control' name='relations' id='relations' placeholder='Abhängigkeiten? (optional)'></div>\
 				</fieldset></br>\
 				<fieldset>\
-				<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=9 min=0 step=1 value=0 onkeydown='return false'></div>\
+					<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=3 min=0 step=1 value=0 onkeydown='return false'></div>\
+					<div class='col-md-2'>Status:<select id='status' class='form-control'>\
+													<option>im Backlog</option>\
+													<option>in Bearbeitung</option>\
+													<option>in Testphase</option>\
+													<option>abgeschlossen</option>\
+												</select>\
+					</div>\
 				</fieldset>\
 		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq()'>Bestätigen</button>");
 
@@ -92,6 +115,10 @@ var bieten="";
 var objekt=$('#objekt').val(); if(objekt==""){fieldError(); return;}
 var verb=$('#verb').val(); if(verb==""){fieldError(); return;}
 var prio=$('#prio').val();
+//prüfe, ob id ein integer ist
+var reqId=$('#identity').val(); if(isNaN(reqId) || reqId < 0 || reqId == ""){$('#error').text("Bitte einen gültigen ID Wert angeben!").slideDown(500).delay(2000).slideUp(500);; return;}
+var reqStatus=$('#status option:selected').text();
+var relations=$('#relations').val();
 
 if($('#bieten').val() != "-"){
 	bieten=$('#bieten').val() + " ";
@@ -106,11 +133,12 @@ var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten 
 		$.ajax({
 			url: "php/insertRequirement.php",
 			type: "POST",
-			data: {"req": theRequirement, "prio": prio, "username": getUserName()},
+			data: {"req": theRequirement, "prio": prio, "username": getUserName(), "id": reqId, "status": reqStatus, "relations": relations},
 			dataType: "json",
 			success: function(success){
-				$('#error').text("Anforderung erfolgreich eingetragen").slideDown(500).delay(2000).slideUp(500);
-				createReqForm(); 
+				$('#error').text(success).slideDown(500).delay(2000).slideUp(500);
+				if (success.search("Fehler") == -1){ getRequirements() };
+				
 			}
 		});
 	} else alert("fehler");
@@ -119,7 +147,7 @@ var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten 
 
 
 
-function deleteReq(id){
+function deleteReq(id, doAfterThis){
 	if(	loadCookieFromDatabase(cookiesEqual)){
 		$.ajax({
 			url: "php/delete.php",
@@ -128,6 +156,7 @@ function deleteReq(id){
 			dataType: "json",
 			success: function(success){
 				getRequirements();
+				doAfterThis();
 			}
 		});
 	} else {
@@ -140,6 +169,11 @@ var body=$('#content');
 var user= getUserName();
 var search = query;
 var priority;
+var p_id;
+var p_status;
+var p_rel;
+var req;
+var req_id;
 
 $.ajax({
 			url: "php/getRequirements.php",
@@ -157,16 +191,25 @@ $.ajax({
 					}
 					
 					for (var i = 0; i < success.length; i++){
-							var req = success[i][0].replace(/:/g," ");
+							req = success[i][0].replace(/:/g," ");
+							req_id=success[i][1];
+							p_id=success[i][3];
+							p_status=success[i][4];
+							p_rel=success[i][5];
+							priority=success[i][2];
+							
 							
 							string+="<tr>\
-									<th id='result"+success[i][1]+"'>"+req+"."+"</th>\
-									<th scope='row'>"+success[i][2]+"</th>\
+									<th>"+p_id+"</th>\
+									<th id='result"+req_id+"'>"+req+".</th>\
+									<th scope='row'>"+priority+"</th>\
+									<th>"+p_status+"</th>\
+									<th>"+p_rel+"</th>\
 									<th class='req-btn'>\
-										<button type='button' class='btn btn-default' onClick='createEditForm("+success[i][1]+")' aria-label='Left Align'>\
+										<button type='button' class='btn btn-default' onClick='createEditForm("+req_id+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
 										</button>\
-										<button type='button' class='btn btn-default' onClick='confirmRemoval("+success[i][1]+")' aria-label='Right Align'>\
+										<button type='button' class='btn btn-default' onClick='confirmRemoval("+req_id+")' aria-label='Right Align'>\
 											<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>\
 										</button>\
 									</th>\
@@ -177,8 +220,11 @@ $.ajax({
 					body.html("<div id='field' class='panel panel-default'>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
-									<th class='col-md-8'>Anforderung</th>\
+									<th class='col-md-1'>ID</th>\
+									<th class='col-md-5'>Anforderung</th>\
 									<th class='col-md-1'>Priorität</th>\
+									<th class='col-md-1'>Status</th>\
+									<th class='col-md-2'>Abhängigkeiten</th>\
 									<th class='col-md-2'>Optionen</th>\
 								</tr></thead>\
 								<tbody>\
@@ -217,56 +263,55 @@ function createEditForm(id){
 						objekt = req[0].split(":")[5];
 						verb = req[0].split(":")[6];
 						priority = req[1];
+						p_id=req[2];
+						p_status=req[3];
+						p_rel=req[4];
+						
+						
 						
 									body.html("<h3 class='marginClass'>Hallo "+user+", bearbeiten Sie Ihre Anforderung:</h3>\
-												<fieldset>\
-													<div class='col-md-3'>\
-														<input type='text' class='form-control' name='wann' id='wann' value='"+wann+"'>\
-													</div>\
-													<div class='col-md-2'>\
-														<select class='form-control' name='muss' id='muss'>\
-															<option>"+muss+"</option>\
-															<option>muss</option>\
-															<option>sollte</option>\
-															<option>wird</option>\
-														</select>\
-													</div>\
-													<div class='col-md-2'>\
-														<input type='text' class='form-control' name='system' id='system' value='"+wer+"'>\
-													</div>\
-													<div class='col-md-2'>\
-														<input type='text' class='form-control' name='wem' id='wem' value='"+wem+"' placeholder='wem? (optional)'>\
-													</div>\
-													<div class='col-md-2'>\
-														<select class='form-control' name='bieten' id='bieten'>\
-															<option>"+bieten+"</option>\
-															<option>fähig sein</option>\
-															<option>die Möglichkeit bieten</option>\
-														</select>\
-													</div>\
-												</fieldset></br>\
-												<fieldset>\
-													<div class='col-md-2'>\
-														<input type='text' class='form-control' name='objekt'	id='objekt' value='"+objekt+"'>\
-													</div>\
-													<div class='col-md-2'>\
-														<input type='text' class='form-control' name='verb' id='verb' value='"+verb+"'>\
-													</div>\
-												</fieldset></br>\
-												<fieldset>\
-													<div class='col-md-1'>\
-														Priorität:<input type='number' class='form-control' name='prio' id='prio' max=9 min=0 step=1 value='"+priority+"' onkeydown='return false'>\
-													</div>\
-												</fieldset>\
-												<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
-				}
-			});	
+										<fieldset>\
+											<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' value='"+wann+"'></div>\
+											<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
+												<option>"+muss+"</option>\
+												<option>muss</option>\
+												<option>sollte</option>\
+												<option>wird</option>\
+											</select></div>\
+											<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' value='"+wer+"'></div>\
+											<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='"+wem+"'></div>\
+											<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
+												<option>"+bieten+"</option>\
+												<option>fähig sein,</option>\
+												<option>die Möglichkeit bieten,</option>\
+											</select></div>\
+										</fieldset></br>\
+										<fieldset>\
+											<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' value='"+objekt+"'></div>\
+											<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb'  value='"+verb+"'></div>\
+											<div class='col-md-2'><input type='text' class='form-control' name='identity' id='identity'  value='"+p_id+"'></div>\
+											<div class='col-md-2'><input type='text' class='form-control' name='relations' id='relations'  value='"+p_rel+"'></div>\
+										</fieldset></br>\
+										<fieldset>\
+											<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=3 min=0 step=1 value=0 onkeydown='return false'></div>\
+											<div class='col-md-2'>Status:<select id='status' class='form-control'>\
+												<option>"+p_status+"</option>\
+												<option>im Backlog</option>\
+												<option>in Bearbeitung</option>\
+												<option>in Testphase</option>\
+												<option>abgeschlossen</option>\
+											</select>\
+											</div>\
+										</fieldset>\
+										<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
+			}	
+	});
 }
 
 function edit(id){
 	if (loadCookieFromDatabase(cookiesEqual)){
-		insertReq();
-		deleteReq(id);
+		//muss erst gelöscht werden, damit abhängigkeiten und bedingungen erfüllt bleiben
+		deleteReq(id, insertReq);
 	} else {
 		alert ("fehler");
 	}
@@ -310,6 +355,10 @@ var user = getUserName();
 var csvRows = new Array();
 var prio;
 var req;
+var p_id; //id der anforderung im team p -> projekt
+var p_status;
+var p_rel;
+var req_id;
 
 	$.ajax({
 			url: "php/getRequirements.php",
@@ -327,12 +376,14 @@ var req;
 					}
 					// csv daten aufbereiten
 					
-			csvRows.push("Anforderung"+"\t"+"Prioriät");
+			csvRows.push("ID"+"\t"+"Anforderung"+"\t"+"Prioriät"+"\t"+"Status"+"\t"+"Abhängigkeiten");
 					for (var i = 0; i< success.length; i++){
 							req = success[i][0].replace(/:/g," ");
 							prio = success[i][2];
-							
-							csvRows.push(req+"\t"+prio);
+							p_id=success[i][3];
+							p_status=success[i][4];
+							p_rel=success[i][5];
+							csvRows.push(p_id+"\t"+req+"\t"+prio+"\t"+p_status+"\t"+p_rel);
 						
 					}
 					
@@ -441,6 +492,9 @@ var teams = "Noch kein Team vorhanden";
 										</button>\
 									</th>\
 									</tr>";	
+									
+									//überschrift anpassen
+									$("#headline_dashboard").text("Anforderungen von Team '"+curTeam+"'");
 						//bei teams, die der user erstellt hat, in welchen er aber nicht mitglied ist
 					}   else {
 									teams+="<tr>\
@@ -522,8 +576,8 @@ $('#team_modal').hide();
 $( "#dialog" ).dialog({
 		resizable: false,
 		height: 140,
-		width: 400,
-		title: "Team wirklich löschen?",
+		width: 600,
+		title: "Team mitsamt Anforderungen wirklich löschen?",
 		modal: true,
 		bgiframe: true,
 		buttons: {
@@ -590,8 +644,10 @@ $.ajax({
 
 function refreshTeamData(){
 	//hier alle funktionen rein, die abhängig von den ausgelesenen teams sind
+	$("#headline_dashboard").text("Anforderungen");
 	refreshTeamDropdown();
 	getMyGroups();
+	getRequirements();
 	
 }
 

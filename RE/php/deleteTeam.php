@@ -32,6 +32,9 @@ $numerOfUsersInTeam=0;
 			$teamLeft = mysql_query($leaveMyTeam) OR die(mysql_error());
 		}
 
+			$deleteAllTeamReqs = "delete from requirements where team_id=".$teamIDtoDelete.";";
+			$allTeamReqsDeleted =  mysql_query($deleteAllTeamReqs) OR die(mysql_error());
+		
 			$deleteTeam = "delete from team where id=".$teamIDtoDelete.";";
 			$teamdeleted = mysql_query($deleteTeam);
 			
