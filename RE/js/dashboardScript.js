@@ -74,7 +74,7 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 						<option>sollte</option>\
 						<option>wird</option>\
 					</select></div>\
-					<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' placeholder='Systemname?'></div>\
+					<div class='col-md-3'><input type='text' class='form-control' name='system' id='system' placeholder='Systemname?'></div>\
 					<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' placeholder='wem? (optional)'></div>\
 					<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
 						<option>fähig sein,</option>\
@@ -85,11 +85,11 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 					<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' placeholder='Objekt?'></div>\
 					<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' placeholder='Verb?'></div>\
 					<div class='col-md-2'><input type='text' class='form-control' name='identity' id='identity' placeholder='ID?'></div>\
-					<div class='col-md-2'><input type='text' class='form-control' name='relations' id='relations' placeholder='Abhängigkeiten? (optional)'></div>\
+					<div class='col-md-4'><input type='text' class='form-control' name='relations' id='relations' placeholder='Abhängigkeiten? (optional)'></div>\
 				</fieldset></br>\
 				<fieldset>\
-					<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=3 min=0 step=1 value=0 onkeydown='return false'></div>\
-					<div class='col-md-2'>Status:<select id='status' class='form-control'>\
+					<div class='col-md-2'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=3 min=0 step=1 value=0 onkeydown='return false'></div>\
+					<div class='col-md-3'>Status:<select id='status' class='form-control'>\
 													<option>im Backlog</option>\
 													<option>in Bearbeitung</option>\
 													<option>in Testphase</option>\
@@ -278,7 +278,7 @@ function createEditForm(id){
 												<option>sollte</option>\
 												<option>wird</option>\
 											</select></div>\
-											<div class='col-md-2'><input type='text' class='form-control' name='system' id='system' value='"+wer+"'></div>\
+											<div class='col-md-3'><input type='text' class='form-control' name='system' id='system' value='"+wer+"'></div>\
 											<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='"+wem+"'></div>\
 											<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
 												<option>"+bieten+"</option>\
@@ -290,11 +290,11 @@ function createEditForm(id){
 											<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' value='"+objekt+"'></div>\
 											<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb'  value='"+verb+"'></div>\
 											<div class='col-md-2'><input type='text' class='form-control' name='identity' id='identity'  value='"+p_id+"'></div>\
-											<div class='col-md-2'><input type='text' class='form-control' name='relations' id='relations'  value='"+p_rel+"'></div>\
+											<div class='col-md-3'><input type='text' class='form-control' name='relations' id='relations'  value='"+p_rel+"'></div>\
 										</fieldset></br>\
 										<fieldset>\
-											<div class='col-md-1'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=3 min=0 step=1 value=0 onkeydown='return false'></div>\
-											<div class='col-md-2'>Status:<select id='status' class='form-control'>\
+											<div class='col-md-2'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=3 min=0 step=1 value=0 onkeydown='return false'></div>\
+											<div class='col-md-3'>Status:<select id='status' class='form-control'>\
 												<option>"+p_status+"</option>\
 												<option>im Backlog</option>\
 												<option>in Bearbeitung</option>\
@@ -464,7 +464,7 @@ var teams = "Noch kein Team vorhanden";
 									<th id='team"+curTeamID+"'>"+curTeam+"</th>\
 									<th></th>\
 									<th class='req-btn'>\
-										<button  class='btn btn-default' onClick='' aria-label='Left Align'>\
+										<button  class='btn btn-default' data-toggle='modal' data-target='#modal_editTeam' onClick='editTeam("+curTeamID+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
 										</button>\
 										<button  class='btn btn-default' onClick='confirmTeamRemoval("+curTeamID+")' aria-label='Right Align'>\
@@ -481,7 +481,7 @@ var teams = "Noch kein Team vorhanden";
 									<th id='team"+curTeamID+"'>"+curTeam+"</th>\
 									<th>Sie sind Mitglied dieser Gruppe"+"</th>\
 									<th class='req-btn'>\
-										<button  class='btn btn-default' onClick='' aria-label='Left Align'>\
+										<button  class='btn btn-default' data-toggle='modal' data-target='#modal_editTeam' onClick='editTeam("+curTeamID+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
 										</button>\
 										<button  class='btn btn-default' onClick='confirmTeamRemoval("+curTeamID+")' aria-label='Right Align'>\
@@ -501,7 +501,7 @@ var teams = "Noch kein Team vorhanden";
 									<th id='team"+curTeamID+"'>"+curTeam+"</th>\
 									<th></th>\
 									<th class='req-btn'>\
-										<button class='btn btn-default' onClick='' aria-label='Left Align'>\
+										<button class='btn btn-default' data-toggle='modal' data-target='#modal_editTeam' onClick='editTeam("+curTeamID+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
 										</button>\
 										<button class='btn btn-default' onClick='confirmTeamRemoval("+curTeamID+")' aria-label='Right Align'>\
@@ -522,8 +522,8 @@ var teams = "Noch kein Team vorhanden";
 					$("#content_team").html("<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
 									<th class='col-md-4'>Team</th>\
-									<th class='col-md-6'></th>\
-									<th class='col-md-2'>Optionen</th>\
+									<th class='col-md-5'></th>\
+									<th class='col-md-3'>Optionen</th>\
 								</tr></thead>\
 								<tbody>\
 									"+teams+"\
@@ -667,4 +667,67 @@ $.ajax({
 	});
 
 	
+}
+
+function deleteUserFromTeam(userID,teamID){
+	$.ajax({
+			url: "php/deleteUserFromTeam.php",
+			type: "POST",
+			data: {"userID": userID},
+			dataType: "json",
+			success: function(success){
+				refreshTeamData();	
+				$("#head_modal_dash_team_edit").text(success).slideDown(500).delay(2000).slideUp(500);
+				//aktualisiert die ansicht im editier modal
+				editTeam(teamID);
+			}
+	});
+}
+
+function editTeam(teamID){
+var body = $("#content_editTeam");
+$.ajax({
+			url: "php/getMembers.php",
+			type: "POST",
+			data: {"teamID":teamID},
+			dataType: "json",
+			success: function(success){
+			body.html("");
+			var users ="";
+			
+			if (success != null){
+			for(var i = 0; i < success.length; i++){
+				
+				curUser = success[i][1];
+				curUserID = success[i][0];
+				users+="<tr>\
+							<th id='user"+curUserID+"'>"+curUser+"</th>\
+							<th></th>\
+							<th class='req-btn'>\
+								<button class='btn btn-default' onClick='deleteUserFromTeam("+curUserID+","+teamID+")' aria-label='Right Align'>\
+									<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>\
+								</button>\
+							</th>\
+						</tr>";	
+				
+			}
+				
+				body.html(
+				"<table class='table'>\
+					<thead style='background-color:#E6E6E6'>\
+						<tr>\
+							<th class='col-md-4'>Mitglieder</th>\
+							<th class='col-md-5'></th>\
+							<th class='col-md-3'>Optionen</th>\
+						</tr>\
+						</thead>\
+						<tbody>	"+users+"\
+						</tbody>\
+					</table>"		
+				);
+			}
+			}
+	});
+
+
 }
