@@ -309,10 +309,10 @@ function setTable(requirementsArray){
 					body.html("<div id='field' class='panel panel-default'>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
-									<th class='col-md-1' style='cursor:pointer' onclick='sortById(displayedRequirements)' title='Klicken zum Sortieren nach ID'>ID</th>\
-									<th class='col-md-5' style='cursor:pointer' onclick='sortByReq(displayedRequirements)' title='Klicken um alphabetisch zu sortieren'>Anforderung</th>\
-									<th class='col-md-1' style='cursor:pointer' onclick='sortByPrio(displayedRequirements)' title='Klicken zum Sortieren nach Priorität'>Priorität</th>\
-									<th class='col-md-1' style='cursor:pointer' onclick='sortByStatus(displayedRequirements)' title='Klicken zum Sortieren nach Status'>Status</th>\
+									<th class='col-md-1' id='sortHead' onclick='sortById(displayedRequirements)' title='Klicken zum Sortieren nach ID'>ID</th>\
+									<th class='col-md-5' id='sortHead' onclick='sortByReq(displayedRequirements)' title='Klicken um alphabetisch zu sortieren'>Anforderung</th>\
+									<th class='col-md-1' id='sortHead' onclick='sortByPrio(displayedRequirements)' title='Klicken zum Sortieren nach Priorität'>Priorität</th>\
+									<th class='col-md-1' id='sortHead' onclick='sortByStatus(displayedRequirements)' title='Klicken zum Sortieren nach Status'>Status</th>\
 									<th class='col-md-2'>Abhängigkeiten</th>\
 									<th class='col-md-2'>Optionen</th>\
 								</tr></thead>\
