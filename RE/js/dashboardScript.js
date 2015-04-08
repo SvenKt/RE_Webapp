@@ -137,6 +137,7 @@ function insertReq(){
 			wem=$('#wem').val() + " ";
 		}
 		var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten + ":" + objekt + ":" + verb;
+		
 		if(	loadCookieFromDatabase(cookiesEqual)){
 			$.ajax({
 				url: "php/insertRequirement.php",
@@ -152,6 +153,7 @@ function insertReq(){
 		} else alert("Cookie-fehler");
 	}//else alert("Anforderungsfehler");
 } 
+
 
 //löschen einer Anforderung
 function deleteReq(id, doAfterThis){
@@ -171,6 +173,7 @@ function deleteReq(id, doAfterThis){
 		alert("fehler");
 	}
 }
+
 
 //Auslesen der Anforderungen
 function getRequirements(query){
@@ -486,7 +489,7 @@ var req_id;
 					//link setzen
 					$("#download_reqs").attr("href",uri);
 					$("#download_reqs").attr("target",'_blank');
-					$("#download_reqs").attr("download", 'Anforderungen.csv,' );
+					$("#download_reqs").attr("download", 'Anforderungen.csv' );
 			}
 	
 	});
@@ -829,5 +832,14 @@ $.ajax({
 }
 
 function placeholder(){
-//do nothing
+//für funktionen, die eine funktion als param benötigen
+//aber diese für den jeweiligen zweck undienlich ist.
+}
+
+function getUsersTeamID(userID){
+//implementieren!!!!
+//über team_id des users die project_ids der reqs bei edit() prüfen
+//dann nur löschen, wenn req wieder eingefügt werden kann
+// checkInput() -> comparePIDs(getUserTeamID(),newIDFromInputField) -> delete -> insert 
+
 }
