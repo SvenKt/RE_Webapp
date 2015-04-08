@@ -182,7 +182,6 @@ $.ajax({
 			data: {"username": user, "query": search},
 			dataType: "json",
 			success: function(success){
-					
 						displayedRequirements = success;
 						reversedID = true;
 						sortById(displayedRequirements);
