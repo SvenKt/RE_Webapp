@@ -87,3 +87,8 @@ body .modal-dialog {
 #main-nav{
 	cursor:default;
 }
+
+#sortHead:hover{
+-	cursor:pointer;
+-	background-color:#D6D6D6;
+ }
