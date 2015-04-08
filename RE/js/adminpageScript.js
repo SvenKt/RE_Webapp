@@ -136,18 +136,20 @@ var curTeam;
 var usersTeams;
 var string="";
 $.ajax({
+			//hole alle teams des users
 			url: "php/getMyGroups.php",
 			type: "POST",
 			data: {"user":username},
 			dataType: "json",
 			success: function(success){
-			if (success[0] != null){
+
+				//memberOf ist das team, in welchem der nutzer sich befindet
 				memberOf=success[1];
+				//usersteams sind die teams, die dem nutzer gehören (owner/creator)
 				usersTeams=success[2];
 			
-				for (var i = 0; i < success[0].length ; i++){
 				
-				
+				//gehe alle nutzererstellten teams durch, wenn er welche erstellt hat / besitzt
 					if(usersTeams != null){
 						for (var i = 0; i < usersTeams.length; i++){
 						curTeamID=usersTeams[i][1];
@@ -169,7 +171,9 @@ $.ajax({
 					
 						}
 					} 
-				
+					
+					//wenn die vorige iteration mindestens einmal durchgeführt wurde -> user besitzt mindestens 1 team,
+					//dann erstelle eine tabelle
 					if(string != ""){
 						body.html(
 								"<div id='message' class='panel panel-warning'></div>\
@@ -184,17 +188,11 @@ $.ajax({
 									"+string+"\
 								</tbody></table>");		
 					} else {
-						alert("löschen");
+					//andernfalls lösche den nutzer
+						forceDeleteUser(userID);
 					}
 					$("#message").hide();
-						
-				}
-			} else {
-				forceDeleteUser(userID);
 			}
-		
-			
-		}
 	
 });
 }
