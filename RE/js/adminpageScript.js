@@ -151,6 +151,7 @@ $.ajax({
 				
 				//gehe alle nutzererstellten teams durch, wenn er welche erstellt hat / besitzt
 					if(usersTeams != null){
+					
 						for (var i = 0; i < usersTeams.length; i++){
 						curTeamID=usersTeams[i][1];
 						curTeam=usersTeams[i][0];
@@ -176,7 +177,7 @@ $.ajax({
 					//dann erstelle eine tabelle
 					if(string != ""){
 						body.html(
-								"<div id='message' class='panel panel-warning'></div>\
+								"<b id='message' class='panel panel-warning'></b></br></br>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
 									<th class='col-md-3'>Teamname</th>\
@@ -186,12 +187,12 @@ $.ajax({
 								</tr></thead>\
 								<tbody>\
 									"+string+"\
-								</tbody></table>");		
+								</tbody></table>");	
+					$("#message").text("Fehler: User ist der Ersteller von mindestens einem Team.\nLöschen Sie diese/s oder übertragen Sie es an einen anderen User!").slideDown(500);
 					} else {
 					//andernfalls lösche den nutzer
 						forceDeleteUser(userID);
 					}
-					$("#message").hide();
 			}
 	
 });
