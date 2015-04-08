@@ -41,7 +41,7 @@ $("#search_field").keypress(function(event){
 
 
 
-
+//ändern der Nutzerdaten
 function changeData(){
 var password=$("#ch_pw").val();
 var password_repeat=$("#ch_pw2").val();
@@ -62,6 +62,7 @@ $.ajax({
 
 }
 
+//erzeugen der Input-Felder
 function createReqForm(){
 var body=$('#content');
 var user= getUserName();
@@ -101,10 +102,12 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 
 }
 
+//error Benachrichtigung bei Fehlerhafter Eingabe
 function fieldError(){
 $('#error').text("Bitte alle nicht-optionalen Felder ausfüllen").slideDown(500).delay(2000).slideUp(500);
 }
 
+//Eintragen der zusammengefügten Anforderung
 function insertReq(){
 var user=$('#content');
 var wann=$('#wann').val(); if(wann==""){fieldError(); return;}
@@ -146,7 +149,7 @@ var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten 
 
 
 
-
+//löschen einer Anforderung
 function deleteReq(id, doAfterThis){
 	if(	loadCookieFromDatabase(cookiesEqual)){
 		$.ajax({
@@ -164,41 +167,127 @@ function deleteReq(id, doAfterThis){
 	}
 }
 
+//Auslesen der Anforderungen
 function getRequirements(query){
-var body=$('#content');
 var user= getUserName();
 var search = query;
-var priority;
-var p_id;
-var p_status;
-var p_rel;
-var req;
-var req_id;
-
 $.ajax({
 			url: "php/getRequirements.php",
 			type: "POST",
 			data: {"username": user, "query": search},
 			dataType: "json",
 			success: function(success){
-					var string="";
 					if (success.length != 0){
-						success.sort(function(a, b) { //works for single-digit prio (0-9)
-						if (a[2] > b[2]) return -1;
-						if (a[2] < b[2]) return 1;
-						return 0;
-						});
+						displayedRequirements = success;
+						sortById(displayedRequirements);
+						setTable(displayedRequirements);
 					}
-					
-					for (var i = 0; i < success.length; i++){
-							req = success[i][0].replace(/:/g," ");
-							req_id=success[i][1];
-							p_id=success[i][3];
-							p_status=success[i][4];
-							p_rel=success[i][5];
-							priority=success[i][2];
+				},
+			error: function(){alert("error");}
+			});
+	refreshExport();
+}
+//Sortier Funktionen -------------------------------------------------------------------------------------------
+//arr nach id sortieren
+var reversedID = false;//variable für Umkehren bei erneutem Klicken
+function sortById(arr){
+	if (arr.length != 0){
+						arr.sort(function(a, b){return a[3]-b[3]});
+						if(reversedID == false){
+							arr.reverse();
+							reversedID = true;
+						} else {
+							reversedID = false;
+						}
+					}
+	displayedRequirements = arr;
+	setTable(displayedRequirements);
+}
+
+//arr nach Anforderungen alphabetisch sortieren
+var reversedReq = false;//variable für Umkehren bei erneutem Klicken
+function sortByReq(arr){
+	if (arr.length != 0){
+						arr.sort(function(a, b){
+							var stringA=a[0].toLowerCase(), stringB=b[0].toLowerCase(); //gross und kleinschreibung ignorieren
+							if (stringA < stringB) //sortieren
+								return -1;
+							if (stringA > stringB)
+								return 1;
+							return 0; //default
+						});
+						if(reversedReq == false){
+							arr.reverse();
+							reversedReq = true;
+						} else {
+							reversedReq = false;
+						}
+					}
+	displayedRequirements = arr;
+	setTable(displayedRequirements);
+}
+
+//arr nach prio sortieren
+var reversedPrio = false;//variable für Umkehren bei erneutem Klicken
+function sortByPrio(arr){
+	if (arr.length != 0){
+						arr.sort(function(a, b){return a[2]-b[2]});
+						if(reversedPrio == false){
+							arr.reverse();
+							reversedPrio = true;
+						} else {
+							reversedPrio = false;
+						}
+					}
+	displayedRequirements = arr;
+	setTable(displayedRequirements);
+}
+
+//arr nach Anforderungen alphabetisch sortieren
+var reversedStatus = false; //variable für Umkehren bei erneutem Klicken
+function sortByStatus(arr){
+	if (arr.length != 0){
+						arr.sort(function(a, b){
+							var stringA=a[4].toLowerCase(), stringB=b[4].toLowerCase(); //gross und kleinschreibung ignorieren
+							if (stringA < stringB) //sortieren
+								return -1;
+							if (stringA > stringB)
+								return 1;
+							return 0; //default
+						});
+						if(reversedStatus == false){
+							arr.reverse();
+							reversedStatus = true;
+						} else {
+							reversedStatus = false;
+						}
+					}
+	displayedRequirements = arr;
+	setTable(displayedRequirements);
+}
+
+//Anzeigen der Anforderungen
+var displayedRequirements; //Globales Array für onclick() Funktionen der Tabelle
+function setTable(requirementsArray){
+	var string="";
+	var body=$('#content');
+	var priority;
+	var p_id;
+	var p_status;
+	var p_rel;
+	var req;
+	var req_id;
+	displayedRequirements = requirementsArray;
+	console.log(displayedRequirements);
+	for (var i = 0; i < requirementsArray.length; i++){
+							req = requirementsArray[i][0].replace(/:/g," ");
+							req_id=requirementsArray[i][1];
+							p_id=requirementsArray[i][3];
+							p_status=requirementsArray[i][4];
+							p_rel=requirementsArray[i][5];
+							priority=requirementsArray[i][2];
 							
-							
+							//Tabelleninhalt
 							string+="<tr>\
 									<th>"+p_id+"</th>\
 									<th id='result"+req_id+"'>"+req+".</th>\
@@ -216,14 +305,14 @@ $.ajax({
 									</tr>";
 						}
 					
-					
+					//Tabellenrahmen
 					body.html("<div id='field' class='panel panel-default'>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
-									<th class='col-md-1'>ID</th>\
-									<th class='col-md-5'>Anforderung</th>\
-									<th class='col-md-1'>Priorität</th>\
-									<th class='col-md-1'>Status</th>\
+									<th class='col-md-1' style='cursor:pointer' onclick=sortById(displayedRequirements) title='Klicken zum Sortieren nach ID'>ID</th>\
+									<th class='col-md-5' style='cursor:pointer' onclick=sortByReq(displayedRequirements) title='Klicken um alphabetisch zu sortieren'>Anforderung</th>\
+									<th class='col-md-1' style='cursor:pointer' onclick=sortByPrio(displayedRequirements) title='Klicken zum Sortieren nach Priorität'>Priorität</th>\
+									<th class='col-md-1' style='cursor:pointer' onclick=sortByStatus(displayedRequirements) title='Klicken zum Sortieren nach Status'>Status</th>\
 									<th class='col-md-2'>Abhängigkeiten</th>\
 									<th class='col-md-2'>Optionen</th>\
 								</tr></thead>\
@@ -231,16 +320,13 @@ $.ajax({
 									"+string+"\
 								</tbody></table></div>"
 					);
-				},
-			error: function(){alert("error");}
-			});
-	refreshExport();
 }
 
 function logOut(){
 	location.replace("index.php");
 }
 
+//Formular für Anforderung bearbeiten
 function createEditForm(id){
 	var body=$('#content');
 	var user= getUserName();
@@ -319,9 +405,7 @@ function edit(id){
 
 function getResult(){
 	var searchQuery=$("#search_field").val();
-	getRequirements(searchQuery);
-	
-	
+	getRequirements(searchQuery);	
 }
 
 
@@ -330,6 +414,7 @@ function cookiesEqual(){
 	return (getUserCookie() == getDatabaseCookie());
 }
 
+//Löschen bestätigen
 function confirmRemoval(reqID){
 	$( "#dialog" ).dialog({
 		resizable: false,
@@ -349,7 +434,7 @@ function confirmRemoval(reqID){
 	});
 }
 	
-	
+//Anforderungen als .csv exportieren
 function refreshExport(){
 var user = getUserName();
 var csvRows = new Array();
@@ -376,7 +461,7 @@ var req_id;
 					}
 					// csv daten aufbereiten
 					
-			csvRows.push("ID"+"\t"+"Anforderung"+"\t"+"Prioriät"+"\t"+"Status"+"\t"+"Abhängigkeiten");
+			csvRows.push("ID"+"\t"+"Anforderung"+"\t"+"Priorität"+"\t"+"Status"+"\t"+"Abhängigkeiten");
 					for (var i = 0; i< success.length; i++){
 							req = success[i][0].replace(/:/g," ");
 							prio = success[i][2];
@@ -401,6 +486,7 @@ var req_id;
 	});
 } 
 
+//Neues Team erstellen
 function createTeam(){
 var teamname = $("#team_name").val();	
 if (teamname != ""){
@@ -438,6 +524,7 @@ function sizeAccordion(){
 $("#accordion").accordion({ heightStyle: "content" });
 }
 
+//Teams für den User laden
 function getMyGroups(){
 var user = getUserName();
 var curTeam;
@@ -538,6 +625,7 @@ function loadTeamOptions(){
 	refreshTeamData();
 }
 
+//Team verlassen
 function leaveTeam(){
 	var user = getUserName();
 	$.ajax({
@@ -571,6 +659,7 @@ function intoTeam(team_id){
 	
 }
 
+//Team (&Anforderungen) löschen bestätigen
 function confirmTeamRemoval(team_id){
 $('#team_modal').hide();
 $( "#dialog" ).dialog({
@@ -596,6 +685,7 @@ $( "#dialog" ).dialog({
 
 }
 
+//Team (&Anforderungen) löschen
 function deleteTeam(team_id){
 //erst team verlassen, damit keine foreign key exceptions in mysql auftreten
 	var user = getUserName();
@@ -651,6 +741,7 @@ function refreshTeamData(){
 	
 }
 
+//User zum Team hinzufügen
 function addTeamMember(){
 var newMember = $("#team_user").val();
 var team = 	$("#team_list option:selected" ).text();
