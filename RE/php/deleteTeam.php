@@ -41,7 +41,7 @@ $creatorID;
 	
 	//prüfe erst, ob mehr als eine person im team ist, wenn ja, dann kann nicht gelöscht werden  -> unterbindet, dass creator aus dem team austritt, da gar nicht erst gematcht wird
 	
-	if($userID == $creatorID){
+	if($userID == $creatorID || $user == 'admin'){
 	
 		if($numerOfUsersInTeam > 1){
 			echo json_encode("Fehler: Sie können das Team nicht löschen, da sich noch mindestens eine weitere Person im Team befindet");
@@ -51,7 +51,7 @@ $creatorID;
 				$leaveMyTeam = "update users set team_id=NULL where username='".$user."';";
 				$teamLeft = mysql_query($leaveMyTeam) OR die(mysql_error());
 			}
-
+				//lösche alle anforderungen des teams
 				$deleteAllTeamReqs = "delete from requirements where team_id=".$teamIDtoDelete.";";
 				$allTeamReqsDeleted =  mysql_query($deleteAllTeamReqs) OR die(mysql_error());
 		

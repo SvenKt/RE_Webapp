@@ -43,7 +43,11 @@ $.ajax({
 
 
 function redirectToDashboard(){
-window.location="/RE/dashboard.php";
+	if (getUserName() == 'admin'){
+		window.location="/RE/adminpage.html";
+	} else {
+		window.location="/RE/dashboard.php";
+	}
 }
 
 function StoreCookieIntoDatabase(number, user, doAfterFinished){
