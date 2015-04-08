@@ -102,6 +102,17 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 
 }
 
+//Eingaben der Anforderung kontrollieren
+function checkRequirement(){
+	if($('#wann').val() == ""){fieldError(); return false;}
+	if($('#system').val() == ""){fieldError(); return false;}
+	if($('#objekt').val() == ""){fieldError(); return false;}
+	if($('#verb').val() == ""){fieldError(); return false;}
+	var reqId=$('#identity').val();
+	if(isNaN(reqId) || reqId < 0 || reqId == ""){$('#error').text("Bitte einen gültigen ID Wert angeben!").slideDown(500).delay(2000).slideUp(500); return false;}
+	return true;
+}
+
 //error Benachrichtigung bei Fehlerhafter Eingabe
 function fieldError(){
 $('#error').text("Bitte alle nicht-optionalen Felder ausfüllen").slideDown(500).delay(2000).slideUp(500);
@@ -109,45 +120,38 @@ $('#error').text("Bitte alle nicht-optionalen Felder ausfüllen").slideDown(500)
 
 //Eintragen der zusammengefügten Anforderung
 function insertReq(){
-var user=$('#content');
-var wann=$('#wann').val(); if(wann==""){fieldError(); return;}
-var muss=$('#muss').val();
-var system=$('#system').val(); if(system==""){fieldError(); return;}
-var wem="";
-var bieten="";
-var objekt=$('#objekt').val(); if(objekt==""){fieldError(); return;}
-var verb=$('#verb').val(); if(verb==""){fieldError(); return;}
-var prio=$('#prio').val();
-//prüfe, ob id ein integer ist
-var reqId=$('#identity').val(); if(isNaN(reqId) || reqId < 0 || reqId == ""){$('#error').text("Bitte einen gültigen ID Wert angeben!").slideDown(500).delay(2000).slideUp(500);; return;}
-var reqStatus=$('#status option:selected').text();
-var relations=$('#relations').val();
-
-if($('#bieten').val() != "-"){
-	bieten=$('#bieten').val() + " ";
-}
-if($('#wem').val() != ""){
-	wem=$('#wem').val() + " ";
-}
-
-var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten + ":" + objekt + ":" + verb;
-
-	if(	loadCookieFromDatabase(cookiesEqual)){
-		$.ajax({
-			url: "php/insertRequirement.php",
-			type: "POST",
-			data: {"req": theRequirement, "prio": prio, "username": getUserName(), "id": reqId, "status": reqStatus, "relations": relations},
-			dataType: "json",
-			success: function(success){
-				$('#error').text(success).slideDown(500).delay(2000).slideUp(500);
-				if (success.search("Fehler") == -1){ getRequirements() };
+	if(checkRequirement()){
+		var user=$('#content');
+		var wann=$('#wann').val();
+		var muss=$('#muss').val();
+		var system=$('#system').val();
+		var wem="";
+		var bieten="";
+		var objekt=$('#objekt').val();
+		var verb=$('#verb').val();
+		var prio=$('#prio').val();
+		var reqId=$('#identity').val();
+		var reqStatus=$('#status option:selected').text();
+		var relations=$('#relations').val();
+		if($('#wem').val() != ""){
+			wem=$('#wem').val() + " ";
+		}
+		var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten + ":" + objekt + ":" + verb;
+		if(	loadCookieFromDatabase(cookiesEqual)){
+			$.ajax({
+				url: "php/insertRequirement.php",
+				type: "POST",
+				data: {"req": theRequirement, "prio": prio, "username": getUserName(), "id": reqId, "status": reqStatus, "relations": relations},
+				dataType: "json",
+				success: function(success){
+					$('#error').text(success).slideDown(500).delay(2000).slideUp(500);
+					if (success.search("Fehler") == -1){ getRequirements() };
 				
-			}
-		});
-	} else alert("fehler");
+				}
+			});
+		} else alert("Cookie-fehler");
+	}//else alert("Anforderungsfehler");
 } 
-
-
 
 //löschen einer Anforderung
 function deleteReq(id, doAfterThis){
@@ -179,6 +183,7 @@ $.ajax({
 			success: function(success){
 					if (success.length != 0){
 						displayedRequirements = success;
+						reversedID = true;
 						sortById(displayedRequirements);
 						setTable(displayedRequirements);
 					}
@@ -278,7 +283,6 @@ function setTable(requirementsArray){
 	var req;
 	var req_id;
 	displayedRequirements = requirementsArray;
-	console.log(displayedRequirements);
 	for (var i = 0; i < requirementsArray.length; i++){
 							req = requirementsArray[i][0].replace(/:/g," ");
 							req_id=requirementsArray[i][1];
@@ -390,14 +394,16 @@ function createEditForm(id){
 											</div>\
 										</fieldset>\
 										<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
-			}	
+			}
 	});
 }
 
 function edit(id){
 	if (loadCookieFromDatabase(cookiesEqual)){
 		//muss erst gelöscht werden, damit abhängigkeiten und bedingungen erfüllt bleiben
-		deleteReq(id, insertReq);
+		if(checkRequirement()){
+			deleteReq(id, insertReq);
+		}
 	} else {
 		alert ("fehler");
 	}
@@ -617,7 +623,6 @@ var teams = "Noch kein Team vorhanden";
 								</tbody></table>");					
 			}
 	});
-	
 }
 
 function loadTeamOptions(){
