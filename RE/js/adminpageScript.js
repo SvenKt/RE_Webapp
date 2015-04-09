@@ -225,10 +225,24 @@ $.ajax({
 			success: function(success){
 				for (var i = 0; i < success.length; i++){
 				curUser = success[i];
+				
 						id = curUser[0];
 						name = curUser[1];
 						email = curUser[2];
 						teamid = curUser[3];
+						
+					if(name == "admin"){
+
+						string+="<tr>\
+									<td>"+id+"</td>\
+									<td>"+name+"</td>\
+									<td>"+email+"</td>\
+									<td>"+teamid+"</td>\
+									<td>\
+									</td>\
+								</tr>";
+					
+					} else {
 				
 						string+="<tr>\
 									<td>"+id+"</td>\
@@ -244,6 +258,7 @@ $.ajax({
 										</button>\
 									</td>\
 								</tr>";
+					}
 				}
 				
 				body.html(	"<div id='field' class='panel panel-default'>\

@@ -189,11 +189,12 @@ $.ajax({
 						reversedID = true;
 						sortById(displayedRequirements);
 						setTable(displayedRequirements);
+						refreshExport(displayedRequirements);
 					
 				},
 			error: function(){alert("error");}
 			});
-	refreshExport();
+	
 }
 //Sortier Funktionen -------------------------------------------------------------------------------------------
 //arr nach id sortieren
@@ -210,6 +211,7 @@ function sortById(arr){
 					}
 	displayedRequirements = arr;
 	setTable(displayedRequirements);
+	refreshExport(displayedRequirements);
 }
 
 //arr nach Anforderungen alphabetisch sortieren
@@ -233,6 +235,7 @@ function sortByReq(arr){
 					}
 	displayedRequirements = arr;
 	setTable(displayedRequirements);
+	refreshExport(displayedRequirements);
 }
 
 //arr nach prio sortieren
@@ -249,6 +252,7 @@ function sortByPrio(arr){
 					}
 	displayedRequirements = arr;
 	setTable(displayedRequirements);
+	refreshExport(displayedRequirements);
 }
 
 //arr nach Anforderungen alphabetisch sortieren
@@ -272,6 +276,7 @@ function sortByStatus(arr){
 					}
 	displayedRequirements = arr;
 	setTable(displayedRequirements);
+	refreshExport(displayedRequirements);
 }
 
 //Anzeigen der Anforderungen
@@ -444,7 +449,7 @@ function confirmRemoval(reqID){
 }
 	
 //Anforderungen als .csv exportieren
-function refreshExport(){
+function refreshExport(arr){
 var user = getUserName();
 var csvRows = new Array();
 var prio;
@@ -454,29 +459,15 @@ var p_status;
 var p_rel;
 var req_id;
 
-	$.ajax({
-			url: "php/getRequirements.php",
-			type: "POST",
-			data: {"username": user},
-			dataType: "json",
-			success: function(success){
-					var string="";
-					if (success.length != 0){
-						success.sort(function(a, b) { //works for single-digit prio (0-9)
-							if (a[2] > b[2]) return -1;
-							if (a[2] < b[2]) return 1;
-							return 0;
-						});
-					}
-					// csv daten aufbereiten
+			// csv daten aufbereiten
 					
 			csvRows.push("ID"+"\t"+"Anforderung"+"\t"+"Priorität"+"\t"+"Status"+"\t"+"Abhängigkeiten");
-					for (var i = 0; i< success.length; i++){
-							req = success[i][0].replace(/:/g," ");
-							prio = success[i][2];
-							p_id=success[i][3];
-							p_status=success[i][4];
-							p_rel=success[i][5];
+					for (var i = 0; i< arr.length; i++){
+							req = arr[i][0].replace(/:/g," ");
+							prio = arr[i][2];
+							p_id=arr[i][3];
+							p_status=arr[i][4];
+							p_rel=arr[i][5];
 							csvRows.push(p_id+"\t"+req+"\t"+prio+"\t"+p_status+"\t"+p_rel);
 						
 					}
@@ -492,8 +483,8 @@ var req_id;
 					$("#download_reqs").attr("download", 'Anforderungen.csv' );
 			}
 	
-	});
-} 
+	//});
+//} 
 
 //Neues Team erstellen
 function createTeam(){
