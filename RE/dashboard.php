@@ -21,7 +21,7 @@
 		<link rel="stylesheet" href="css/dashboard.css">
 		<title> Dashboard</title>
 	</head>
-	<body>
+	<body onload="if (document.referrer == '') self.location='index.php';">
 		<div id="head">
 		</div><!--head-->
 		<div id="left_nav" class="col-md-2" ng-controller="NavCtrl">
