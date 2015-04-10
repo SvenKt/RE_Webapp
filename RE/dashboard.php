@@ -38,7 +38,7 @@
 				<li class="navlist" role="presentation"><a onClick="logOut()" title="Melden Sie sich vom System ab">Logout</a></li>
 			</ul>
 		</div><!--left_nav-->
-		<div id="content-wrapper" class="panel col-md-10">
+		<div id="content-wrapper" class=" content-wrapper panel col-md-10">
 			<h2 id="headline_dashboard">Anforderungen</h2>
 			<hr>
 				<p class="panel panel-warning"id="error"></p>

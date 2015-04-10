@@ -109,7 +109,7 @@ function checkRequirement(){
 	if($('#objekt').val() == ""){fieldError(); return false;}
 	if($('#verb').val() == ""){fieldError(); return false;}
 	var reqId=$('#identity').val();
-	if(isNaN(reqId) || reqId < 0 || reqId == ""){$('#error').text("Bitte einen gültigen ID Wert angeben!").slideDown(500).delay(2000).slideUp(500); return false;}
+	if(isNaN(reqId) || reqId < 0 || reqId == ""){$('#error').text("Bitte einen gültigen ID Wert größer / gleich 0 angeben!").slideDown(500).delay(2000).slideUp(500); return false;}
 	return true;
 }
 
@@ -540,7 +540,7 @@ var teams = "Noch kein Team vorhanden";
 				
 					if (success[0] != null){
 					for(var i = 0; i < success[0].length; i++){
-						//wenn elemente (teams) im rückgabeobjek enthalten sind, führe nachfolgendes aus
+						//wenn elemente (teams) im rückgabeobjekt enthalten sind, führe nachfolgendes aus
 						
 						curTeam=success[0][i][0];
 						curTeamID=success[0][i][1];
@@ -566,7 +566,7 @@ var teams = "Noch kein Team vorhanden";
 						} else if (curTeam == memberOf){
 									teams+="<tr>\
 									<th id='team"+curTeamID+"'>"+curTeam+"</th>\
-									<th>Sie sind Mitglied dieser Gruppe"+"</th>\
+									<th>Sie sind Mitglied dieses Teams"+"</th>\
 									<th class='req-btn'>\
 										<button  class='btn btn-default' data-toggle='modal' data-target='#modal_editTeam' onClick='editTeam("+curTeamID+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\

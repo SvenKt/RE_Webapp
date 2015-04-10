@@ -24,11 +24,6 @@ height:50vh;
 padding:1%;
 }
 
-#content-wrapper{
-background-color: #EEEEEE;
-height:50vh;
-padding:1%;
-}
 
 #footer{
 min-height:10vh;
@@ -64,6 +59,12 @@ width: 89%;
 
 .req-btn {
 width: 5%;
+}
+
+.content-wrapper{
+background-color: #EEEEEE;
+height:50vh;
+padding:1%;
 }
 
 #field {
