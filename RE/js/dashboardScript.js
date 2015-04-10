@@ -6,7 +6,6 @@ $(document).ready(function(){
 $("#error").hide();
 $("#dialog").hide();
 $("#dialog_team_modal").hide();
-getRequirements();
 refreshTeamData();
 $(this).tooltip();
 $("#accordion").accordion({collapsible: true});
@@ -735,7 +734,6 @@ function refreshTeamData(){
 	//hier alle funktionen rein, die abhängig von den ausgelesenen teams sind
 	$("#headline_dashboard").text("Anforderungen");
 	refreshTeamDropdown();
-	getMyGroups();
 	getRequirements();
 	
 }
