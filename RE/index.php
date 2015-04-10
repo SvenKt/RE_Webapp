@@ -14,10 +14,9 @@
 	</head>
 	<body>
 		<div class="jumbotron">
-			<h1>Willkommen!</h2>
+			<img id='logo' src='img/logo.png' alt="logo">
 			<p  class="panel panel-warning" id="read"></p>
-			<p>In der Requirements Engineering Web-Applikation<br>Bitte loggen Sie sich ein:</p>
-			<p>	
+			</br></br>
 			<fieldset>
 			<label for="name">Username:	</label><input type="text" class="form-control" name="username" id="userPHP" ></br>
 			<label for="pass">Passwort:	</label><input type="password" class="form-control" name="password" id="passPHP"></br>

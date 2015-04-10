@@ -6,7 +6,7 @@ $(document).ready(function(){
 $("#error").hide();
 $("#dialog").hide();
 $("#dialog_team_modal").hide();
-refreshTeamData();
+refreshTeamData(true);
 $(this).tooltip();
 $("#accordion").accordion({collapsible: true});
 
@@ -504,7 +504,7 @@ if (teamname != ""){
 							dataType: "json",
 							success: function(success){
 								//teams neu laden --> meine Teams
-								refreshTeamData();	
+								refreshTeamData(true);	
 								$("#team_name").val('');	
 								window.setTimeout(function(){$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);},3000);
 							}
@@ -730,13 +730,16 @@ $.ajax({
 
 }
 
-function refreshTeamData(){
+function refreshTeamData(opt){
+
+
 	//hier alle funktionen rein, die abhängig von den ausgelesenen teams sind
 	$("#headline_dashboard").text("Anforderungen");
 	refreshTeamDropdown();
 	getMyGroups();
-	getRequirements();
-	
+	if (opt){	
+		getRequirements();
+	}
 }
 
 //User zum Team hinzufügen

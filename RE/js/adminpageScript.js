@@ -250,9 +250,6 @@ $.ajax({
 									<td>"+email+"</td>\
 									<td>"+teamid+"</td>\
 									<td>\
-										<button type='button' class='btn btn-default' onClick='editUser("+id+")' aria-label='Left Align'>\
-											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
-										</button>\
 										<button type='button' class='btn btn-default' onClick=\confirmUserRemoval('"+name+"',"+id+")\ aria-label='Right Align'>\
 											<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>\
 										</button>\
