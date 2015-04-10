@@ -734,6 +734,7 @@ function refreshTeamData(){
 	//hier alle funktionen rein, die abhängig von den ausgelesenen teams sind
 	$("#headline_dashboard").text("Anforderungen");
 	refreshTeamDropdown();
+	getMyGroups();
 	getRequirements();
 	
 }
