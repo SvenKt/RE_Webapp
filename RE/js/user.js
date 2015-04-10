@@ -44,9 +44,9 @@ $.ajax({
 
 function redirectToDashboard(){
 	if (getUserName() == 'admin'){
-		window.location="/RE/adminpage.html";
+		window.location="adminpage.html";
 	} else {
-		window.location="/RE/dashboard.php";
+		window.location="dashboard.php";
 	}
 }
 

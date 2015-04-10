@@ -28,6 +28,11 @@ $teamLeft = mysql_query($leaveTeam);
 
 }
 
+function deleteUsersReqs($userID){
+	$deleteRequirements = "delete from requirements where owner_id=".$userID.";";
+	$reqsDeleted = mysql_query($deleteRequirements) OR die(mysql_error());
+}
+
 function deleteUser($userID){
 	$deleteUser = "delete from users where id='".$userID."';";
 	$userDeleted = mysql_query($deleteUser) OR die(mysql_error());
@@ -46,6 +51,7 @@ function deleteUser($userID){
 		kickUserFromTeam($id);
 	} 
 	
+	deleteUsersReqs($id);
 	deleteUser($id);
 	
 		
