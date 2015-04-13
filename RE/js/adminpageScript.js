@@ -159,12 +159,12 @@ $.ajax({
 											<th>"+curTeam+"</th>\
 											<th><input id='newOwner"+curTeamID+"' type='text' class='form-control'></th>\
 											<th>\
-												<button class='btn btn-default' onClick=\confirmNewOwner("+curTeamID+",'"+username+"',"+userID+")\ aria-label='Right Align'>\
+												<button class='btn btn-default' onClick=\"confirmNewOwner("+curTeamID+",'"+username+"',"+userID+")\" aria-label='Right Align'>\
 													<span class='glyphicon glyphicon-ok' aria-hidden='true'></span>\
 												</button>\
 											</th>\
 											<th>\
-												<button class='btn btn-default' onClick=\confirmTeamRemoval('"+username+"',"+curTeamID+","+userID+")\ aria-label='Right Align'>\
+												<button class='btn btn-default' onClick=\"confirmTeamRemoval('"+username+"',"+curTeamID+","+userID+")\" aria-label='Right Align'>\
 													<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>\
 												</button>\
 											</th>\
@@ -250,7 +250,7 @@ $.ajax({
 									<td>"+email+"</td>\
 									<td>"+teamid+"</td>\
 									<td>\
-										<button type='button' class='btn btn-default' onClick=\confirmUserRemoval('"+name+"',"+id+")\ aria-label='Right Align'>\
+										<button type='button' class='btn btn-default' onClick=\"confirmUserRemoval('"+name+"',"+id+")\" aria-label='Right Align'>\
 											<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>\
 										</button>\
 									</td>\
