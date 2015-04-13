@@ -44,7 +44,7 @@ function createTeam(){
 	}
 }
 
-//Teams für den User laden
+//Teams fÃ¼r den User laden
 function getMyGroups(){
 var user = getUserName();
 var curTeam;
@@ -59,7 +59,7 @@ var teams = "Noch kein Team vorhanden";
 			memberOf=success[1];
 			if (success[0] != null){
 				for(var i = 0; i < success[0].length; i++){
-					//wenn elemente (teams) im rückgabeobjekt enthalten sind, führe nachfolgendes aus
+					//wenn elemente (teams) im rÃ¼ckgabeobjekt enthalten sind, fÃ¼hre nachfolgendes aus
 					curTeam=success[0][i][0];
 					curTeamID=success[0][i][1];
 					
@@ -80,7 +80,7 @@ var teams = "Noch kein Team vorhanden";
 									</button>\
 								</th>\
 								</tr>";	
-					//wenn aktueller teamname == teamname, in dem nutzer mitglied ist, dann erstelle noch zusätzlich einen 'leave team' button
+					//wenn aktueller teamname == teamname, in dem nutzer mitglied ist, dann erstelle noch zusÃ¤tzlich einen 'leave team' button
 					} else if (curTeam == memberOf){
 								teams+="<tr>\
 								<th id='team"+curTeamID+"'>"+curTeam+"</th>\
@@ -98,7 +98,7 @@ var teams = "Noch kein Team vorhanden";
 								</th>\
 								</tr>";	
 								
-								//überschrift anpassen
+								//Ã¼berschrift anpassen
 								$("#headline_dashboard").text("Anforderungen von Team '"+curTeam+"'");
 					//bei teams, die der user erstellt hat, in welchen er aber nicht mitglied ist
 					} else {
@@ -159,18 +159,18 @@ function intoTeam(team_id){
 	});
 }
 
-//Team (&Anforderungen) löschen bestätigen
+//Team (&Anforderungen) lÃ¶schen bestÃ¤tigen
 function confirmTeamRemoval(team_id){
 $('#team_modal').hide();
 $( "#dialog" ).dialog({
 		resizable: false,
 		height: 140,
 		width: 600,
-		title: "Team mitsamt Anforderungen wirklich löschen?",
+		title: "Team mitsamt Anforderungen wirklich lÃ¶schen?",
 		modal: true,
 		bgiframe: true,
 		buttons: {
-			"Team löschen!": function() {
+			"Team lÃ¶schen!": function() {
 				deleteTeam(team_id);
 				$( this ).dialog( "close" );
 				$('#team_modal').show();
@@ -183,7 +183,7 @@ $( "#dialog" ).dialog({
 	});
 }
 
-//Team (&Anforderungen) löschen
+//Team (&Anforderungen) lÃ¶schen
 function deleteTeam(team_id){
 //erst team verlassen, damit keine foreign key exceptions in mysql auftreten
 	var user = getUserName();
@@ -201,7 +201,7 @@ function deleteTeam(team_id){
 }
 
 function refreshTeamDropdown(){
-//füllt das dropdown in [team]->[mitglieder hinzufügen] mit den teams des users
+//fÃ¼llt das dropdown in [team]->[mitglieder hinzufÃ¼gen] mit den teams des users
 var body = $("#team_list");
 var user = getUserName();
 var string = "";
@@ -225,7 +225,7 @@ $.ajax({
 }
 
 function refreshTeamData(opt){
-	//hier alle funktionen rein, die abhängig von den ausgelesenen teams sind
+	//hier alle funktionen rein, die abhÃ¤ngig von den ausgelesenen teams sind
 	$("#headline_dashboard").text("Anforderungen");
 	refreshTeamDropdown();
 	getMyGroups();
@@ -234,7 +234,7 @@ function refreshTeamData(opt){
 	}
 }
 
-//User zum Team hinzufügen
+//User zum Team hinzufÃ¼gen
 function addTeamMember(){
 var newMember = $("#team_user").val();
 var team = 	$("#team_list option:selected" ).text();
@@ -308,6 +308,6 @@ $.ajax({
 }
 
 function placeholder(){
-//für funktionen, die eine funktion als param benötigen
-//aber diese für den jeweiligen zweck undienlich ist.
+//fÃ¼r funktionen, die eine funktion als param benÃ¶tigen
+//aber diese fÃ¼r den jeweiligen zweck undienlich ist.
 }

@@ -14,9 +14,19 @@ hr{
 background-color:black;
 height:1px;
 }
+
 #head{
 height:15vh; 
 background-image: url(../img/header.jpg);
+}
+/* Optional als Farbverlauf */
+/*#head{
+height:15vh; 
+background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
+}*/
+
+#logo{
+height:13vh; 
 }
 
 #left_nav{
@@ -93,3 +103,58 @@ body .modal-dialog {
 	cursor:pointer;
 	background-color:#D6D6D6;
  }
+ 
+ #colors{
+	float:right;
+	margin-right: 5vh;
+	margin-top: 2vh;
+ }
+ 
+ #fontSizes{
+	float: right;
+	margin-top: 2vh;
+	margin-right: 4vh;
+ }
+ 
+ #fontSizePicker{
+	float: right;
+	width: 15vh;
+	margin-left: 1vh;
+	margin-top: 1vh;
+ }
+ 
+ #textSizeGlyph{
+	margin-top: 0.5vh;
+ }
+
+ 
+ /* Slider*/
+ input[type=range]{
+    -webkit-appearance: none;
+	margin-top: 1.5vh;
+ }
+
+ input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+ }
+ input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+    margin-top: -5px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}

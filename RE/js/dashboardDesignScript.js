@@ -7,7 +7,7 @@ refreshTeamData(true);
 $(this).tooltip();
 $("#accordion").accordion({collapsible: true});
 
-//enter best‰tigung beim erstellen von teams
+//enter best√§tigung beim erstellen von teams
 $("#team_name").keypress(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if(keycode == '13'){
@@ -16,7 +16,7 @@ $("#team_name").keypress(function(event){
 		event.stopPropagation();
 	});
 
-//enter best‰tigung beim hinzuf¸gen von teammitgliedern
+//enter best√§tigung beim hinzuf√ºgen von teammitgliedern
 $("#team_user").keypress(function(event){
 	var keycode = (event.keyCode ? event.keyCode : event.which);
 	if(keycode == '13'){
@@ -25,7 +25,7 @@ $("#team_user").keypress(function(event){
 	event.stopPropagation();
 });
 
-//enter best‰tigung im suchfeld
+//enter best√§tigung im suchfeld
 $("#search_field").keypress(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if(keycode == '13'){
@@ -55,18 +55,18 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 					<div class='col-md-3'><input type='text' class='form-control' name='system' id='system' placeholder='Systemname?'></div>\
 					<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' placeholder='wem? (optional)'></div>\
 					<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
-						<option>f‰hig sein,</option>\
-						<option>die Mˆglichkeit bieten,</option>\
+						<option>f√§hig sein,</option>\
+						<option>die M√∂glichkeit bieten,</option>\
 					</select></div>\
 				</fieldset></br>\
 				<fieldset>\
 					<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' placeholder='Objekt?'></div>\
 					<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' placeholder='Verb?'></div>\
 					<div class='col-md-2'><input type='text' class='form-control' name='identity' id='identity' placeholder='ID?'></div>\
-					<div class='col-md-4'><input type='text' class='form-control' name='relations' id='relations' placeholder='Abh‰ngigkeiten? (optional)'></div>\
+					<div class='col-md-4'><input type='text' class='form-control' name='relations' id='relations' placeholder='Abh√§ngigkeiten? (optional)'></div>\
 				</fieldset></br>\
 				<fieldset>\
-					<div class='col-md-2'>Priorit‰t:<input type='number' class='form-control' name='prio' id='prio' max=3 min=0 step=1 value=0 onkeydown='return false'></div>\
+					<div class='col-md-2'>Priorit√§t:<input type='number' class='form-control' name='prio' id='prio' max=3 min=0 step=1 value=0 onkeydown='return false'></div>\
 					<div class='col-md-3'>Status:<select id='status' class='form-control'>\
 													<option>im Backlog</option>\
 													<option>in Bearbeitung</option>\
@@ -75,11 +75,11 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 												</select>\
 					</div>\
 				</fieldset>\
-		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq()'>Best‰tigen</button>");
+		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq()'>Best√§tigen</button>");
 
 }
 
-//Formular f¸r Anforderung bearbeiten
+//Formular f√ºr Anforderung bearbeiten
 function createEditForm(id){
 	var body=$('#content');
 	var user= getUserName();
@@ -119,8 +119,8 @@ function createEditForm(id){
 					<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='"+wem+"'></div>\
 					<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
 						<option>"+bieten+"</option>\
-						<option>f‰hig sein,</option>\
-						<option>die Mˆglichkeit bieten,</option>\
+						<option>f√§hig sein,</option>\
+						<option>die M√∂glichkeit bieten,</option>\
 					</select></div>\
 				</fieldset></br>\
 				<fieldset>\
@@ -130,7 +130,7 @@ function createEditForm(id){
 					<div class='col-md-3'><input type='text' class='form-control' name='relations' id='relations'  value='"+p_rel+"'></div>\
 				</fieldset></br>\
 				<fieldset>\
-					<div class='col-md-2'>Priorit‰t:<input type='number' class='form-control' name='prio' id='prio' max=3 min=0 step=1 value='"+priority+"' onkeydown='return false'></div>\
+					<div class='col-md-2'>Priorit√§t:<input type='number' class='form-control' name='prio' id='prio' max=3 min=0 step=1 value='"+priority+"' onkeydown='return false'></div>\
 					<div class='col-md-3'>Status:<select id='status' class='form-control'>\
 						<option>"+p_status+"</option>\
 						<option>im Backlog</option>\
@@ -140,7 +140,28 @@ function createEditForm(id){
 					</select>\
 					</div>\
 				</fieldset>\
-				<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Best‰tigen</button>");
+				<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Best√§tigen</button>");
 		}
 	});
+}
+					
+function changeColor(c){
+	var color = $("#colorPicker").val();
+	if(c != ""){
+		color = c;
+		document.getElementById("colorPicker").value = "";
+	}
+	document.getElementsByTagName("html")[0].style.backgroundColor = "#"+color;
+	document.getElementById("content-wrapper").style.backgroundColor = "#"+color;
+	c = "";
+}
+
+function setFontSize(f){
+	var value = $("#fontSizePicker").val();
+	if(f != ""){
+		value=f;
+		document.getElementById("fontSizePicker").value = value;
+		f = "";
+	}
+	document.getElementById("content-wrapper").style.fontSize = (value*10)+"%";
 }

@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<script type="text/javascript" src="jscolor/jscolor.js"></script>
 		<script type="text/javascript" src="js/user.js"></script>
 		<script type="text/javascript" src="js/dashboardScript.js"></script>
 		<script type="text/javascript" src="js/dashboardDesignScript.js"></script>
@@ -25,7 +26,21 @@
 	</head>
 	<body onload="if (document.referrer == '') self.location='index.php';">
 		<div id="head">
+			<img id='logo' src='img/logo.png' alt="logo">
 		</div><!--head-->
+		
+		<!-- Options on top -->
+		<div id="colors"> <!--Color picker -->
+			<a onClick="changeColor('EEEEEE')" title="Standard Farbe"><span class='glyphicon glyphicon-tint' aria-hidden='true'></span></a>
+			<input id='colorPicker' autocomplete='off' onchange="changeColor('')" title="Entdecke die Farbvariation" class="color {required:false,pickerBorder:2,pickerInset:10,styleElement:'nowhere'}">
+			<!-- Umleitung nach nowhere erzeugt Fehlermeldung in der jscolor.js, ist aber unwichtig & funktioniert (Feld ändert seine Farbe nicht) -->
+		</div>
+		<div id="fontSizes"> <!-- Font size picker-->
+			<a onClick="setFontSize('10')" title="Standard Schriftgröße"><span id="textSizeGlyph" class='glyphicon glyphicon-text-size' aria-hidden='true'></span></a>
+			<input id="fontSizePicker" type="range" min="5" max="20" value="10" onchange="setFontSize('')" title="Passe die Schriftgröße an"></input>
+		</div>
+		
+		<!-- Left Navigation Bar -->
 		<div id="left_nav" class="col-md-2" ng-controller="NavCtrl">
 			<div class="input-group">
 				<span class="input-group-addon" onClick="getResult()" id="search">Go</span>
@@ -51,7 +66,6 @@
 			<hr>
 		</div><!--content-wrapper-->
 		<div id="footer">
-		
 		</div><!--footer-->
 		
 		<!-- Modal Profil-->
@@ -146,7 +160,6 @@
 					</div>
 				</div>
 			</div>
-		
-		
+			
 	</body>
 </html>
