@@ -2,8 +2,8 @@
 
 <html ng-app="requirements">
 	<head>
-		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<meta charset="UTF-8">
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<meta http-equiv="Expires" CONTENT="0">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="Pragma" CONTENT="no-cache">
@@ -11,9 +11,11 @@
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/dashboardScript.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/user.js"></script>
+		<script type="text/javascript" src="js/dashboardScript.js"></script>
+		<script type="text/javascript" src="js/dashboardDesignScript.js"></script>
+		<script type="text/javascript" src="js/teamsScript.js"></script>
 		<!--Angular-->
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.js"></script>
 		<script src="js/nav.js"></script>
