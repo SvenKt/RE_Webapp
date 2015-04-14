@@ -105,34 +105,42 @@ body .modal-dialog {
  }
  
  #colors{
-	float:right;
-	margin-right: 5vh;
-	margin-top: 2vh;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	float: right;
  }
  
  #fontSizes{
-	float: right;
-	margin-top: 2vh;
-	margin-right: 4vh;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	margin-right: 1vh;
+	float: left;
  }
  
  #fontSizePicker{
 	float: right;
 	width: 15vh;
-	margin-left: 1vh;
-	margin-top: 1vh;
  }
  
  #textSizeGlyph{
-	margin-top: 0.5vh;
+	float: left;
+	cursor: pointer;
  }
-
  
- /* ----------- Slider ----------- */
+ #optionsTop{
+	float:right;
+	margin-right: 5vh;
+	margin-top: 3vh;
+ }
+ 
+ /* ----------- Slider ----------- (unperfect)*/
  /* Für Webkit Browser (Chrome, Safari, Opera) */
  input[type=range]{
     -webkit-appearance: none;
-	margin-top: 1.5vh;
+	background-color: #ddd;
  }
 
  input[type=range]::-webkit-slider-runnable-track {
@@ -156,37 +164,18 @@ input[type=range]:focus {
     outline: none;
 }
 
-input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #ccc;
-}
-
-/*Für Mozilla (ungetestet)*/
-input[type=range]::-ms-track {
-    width: 300px;
+/*Für Mozilla*/
+input[type=range]::-moz-range-track {
+    width: 15vh;
     height: 5px;
-    background: transparent;
-    border-color: transparent;
-    border-width: 6px 0;
-    color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-    background: #777;
-    border-radius: 10px;
-}
-input[type=range]::-ms-fill-upper {
     background: #ddd;
-    border-radius: 10px;
+    border: none;
+    border-radius: 3px;
 }
-input[type=range]::-ms-thumb {
+input[type=range]::-moz-range-thumb {
     border: none;
     height: 16px;
     width: 16px;
     border-radius: 50%;
     background: goldenrod;
-}
-input[type=range]:focus::-ms-fill-lower {
-    background: #888;
-}
-input[type=range]:focus::-ms-fill-upper {
-    background: #ccc;
 }

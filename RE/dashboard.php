@@ -30,14 +30,16 @@
 		</div><!--head-->
 		
 		<!-- Options on top -->
-		<div id="colors"> <!--Color picker -->
-			<a onClick="changeColor('EEEEEE')" title="Standard Farbe"><span class='glyphicon glyphicon-tint' aria-hidden='true'></span></a>
-			<input id='colorPicker' autocomplete='off' onchange="changeColor('')" title="Entdecke die Farbvariation" class="color {required:false,pickerBorder:2,pickerInset:10,styleElement:'nowhere'}">
-			<!-- Umleitung nach nowhere erzeugt Fehlermeldung in der jscolor.js, ist aber unwichtig & funktioniert (Feld ändert seine Farbe nicht) -->
-		</div>
-		<div id="fontSizes"> <!-- Font size picker-->
-			<a onClick="setFontSize('10')" title="Standard Schriftgröße"><span id="textSizeGlyph" class='glyphicon glyphicon-text-size' aria-hidden='true'></span></a>
-			<input id="fontSizePicker" type="range" min="5" max="20" value="10" onchange="setFontSize('')" title="Passe die Schriftgröße an"></input>
+		<div id="optionsTop">
+			<div id="fontSizes"> <!-- Font size picker-->
+				<a class="col-md-1" onClick="setFontSize('10')" title="Standard Schriftgröße"><span id="textSizeGlyph" class='glyphicon glyphicon-text-size' aria-hidden='true'></span></a>
+				<input class="col-md-5" id="fontSizePicker" type="range" min="5" max="20" value="10" onchange="setFontSize('')" title="Passe die Schriftgröße an"></input>
+			</div>
+			<div id="colors"> <!--Color picker -->
+				<a class="col-md-1" onClick="changeColor('EEEEEE')" title="Standard Farbe"><span class='glyphicon glyphicon-tint' aria-hidden='true'></span></a>
+				<span class="col-md-5"><input id='colorPicker' autocomplete='off' onchange="changeColor('')" title="Entdecke die Farbvariation" class="color {required:false,pickerBorder:2,pickerInset:10,styleElement:'nowhere'}"></span>
+				<!-- Umleitung nach nowhere erzeugt Fehlermeldung in der jscolor.js, ist aber unwichtig & funktioniert (Feld ändert seine Farbe nicht) -->
+			</div>
 		</div>
 		
 		<!-- Left Navigation Bar -->
