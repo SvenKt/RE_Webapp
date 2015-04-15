@@ -5,6 +5,7 @@
 $(document).ready(function(){
 $("#error").hide();
 $("#dialog").hide();
+refreshTeamData(true);
 //$("#dialog_team_modal").hide(); //nicht genutzt?
 $(this).tooltip();
 });

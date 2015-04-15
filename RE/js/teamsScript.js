@@ -3,7 +3,6 @@
 ////////////////
 
 $(document).ready(function(){
-refreshTeamData(true);
 $(this).tooltip();
 });
 
