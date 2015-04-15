@@ -11,29 +11,29 @@ $(document).ready(function(){
 });
 
 var theIntervalId;
-var updateTimeInSec = 1;
+var updateTimeInSec = 3;
 var news = 0;
+//stop interval
 function updateOn() {
+	getUpdateCount();
 	//check no intervall is set
 	if(!theIntervalId){
 		//save the intervall id to clear later
 		theIntervalId = setInterval(function(){ 
 			//code here will be run every updateTimeInSec seconds
-			console.log("tick");
-			$("#newsNumber").text(news);
-			news++;
+			getUpdateCount();
 		}, updateTimeInSec*1000);
 	}
 	console.log("update on", theIntervalId);
 }
-
+//activate interval
 function updateOff() {
 	console.log("update off");
 	//clear intervall and reset id variable
 	clearInterval(theIntervalId);
 	theIntervalId = "";
 }
-
+//what happens when the button is clicked
 function update() {
 	getRequirements();
 	news = 0;
@@ -41,6 +41,37 @@ function update() {
 	updateOn();
 	$('#main-nav').find('.active').removeClass('active');
 	$('#main-nav').children().first().addClass('active');
+}
+
+//get number of updates
+var oldArrayLenght;
+function getUpdateCount() {
+var arrayOfTimeStamps;
+var user= getUserName();
+$.ajax({
+			url: "php/getUpdates.php",
+			type: "POST",
+			data: {"username": user},
+			dataType: "json",
+			success: function(success){
+						arrayOfTimeStamps = success;
+						if(arrayOfTimeStamps.length < oldArrayLenght) {
+								news++;
+								console.log("Something got deleted");
+						}
+						for(var i = 0; i < arrayOfTimeStamps.length; i++) {
+							var t = arrayOfTimeStamps[i][0];
+							if(t > lastReadFromDb) {
+								news++;
+								console.log("A requirement has been added/changed");
+							}
+						}
+						oldArrayLenght = arrayOfTimeStamps.length;
+						lastReadFromDb = Date.now();
+						$("#newsNumber").text(news);
+				},
+			error: function(){alert("error");}
+			});
 }
 
 //ändern der Nutzerdaten
@@ -101,10 +132,11 @@ function insertReq(origin){
 		var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten + ":" + objekt + ":" + verb;
 		
 		if(	loadCookieFromDatabase(cookiesEqual)){
+		var currentTime = Date.now();
 			$.ajax({
 				url: "php/insertRequirement.php",
 				type: "POST",
-				data: {"req": theRequirement, "prio": prio, "username": getUserName(), "id": reqId, "status": reqStatus, "relations": relations},
+				data: {"req": theRequirement, "prio": prio, "username": getUserName(), "id": reqId, "status": reqStatus, "relations": relations, "currentTime": currentTime},
 				dataType: "json",
 				success: function(success){
 					$('#error').text(success).slideDown(500).delay(2000).slideUp(500);
@@ -131,7 +163,6 @@ function deleteReq(id, doAfterThis){
 			data: {"id": id},
 			dataType: "json",
 			success: function(success){
-				
 				getRequirements();
 				doAfterThis();
 			}
@@ -142,6 +173,7 @@ function deleteReq(id, doAfterThis){
 }
 
 //Auslesen der Anforderungen
+var lastReadFromDb;
 function getRequirements(query){
 var user= getUserName();
 var search = query;
@@ -151,6 +183,8 @@ $.ajax({
 			data: {"username": user, "query": search},
 			dataType: "json",
 			success: function(success){
+						lastReadFromDb = Date.now();
+						news = 0;
 						displayedRequirements = success;
 						reversedID = true;
 						sortById(displayedRequirements);
@@ -337,6 +371,7 @@ function confirmRemoval(reqID){
 		buttons: {
 			"Anforderung löschen!": function() {
 				deleteReq(reqID,placeholder);
+				oldArrayLenght = oldArrayLenght - 1;
 				$( this ).dialog( "close" );
 			},
 			"doch nicht": function() {

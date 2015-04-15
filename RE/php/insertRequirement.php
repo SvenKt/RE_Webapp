@@ -7,6 +7,7 @@ $user=$_POST['username'];
 $reqId=$_POST['id'];
 $reqStatus=$_POST['status'];
 $reqRel=$_POST['relations'];
+$reqTime=$_POST['currentTime'];
 $userTeamId=null;
 $idAlreadyExists=false;
 
@@ -36,7 +37,7 @@ $idAlreadyExists=false;
    if ($userTeamId == null){
 	   echo json_encode("Fehler: Sie müssen erst Mitglied eines Teams sein, um Anforderungen eintragen zu können!");
    } else {
-		    $injection = "insert into requirements (requirement, priority, project_id, status, relations ,owner_id, team_id) values ('".$requirement."', '".$priority."','".$reqId."','".$reqStatus."','".$reqRel."','".$userId."','".$userTeamId."');";
+		    $injection = "insert into requirements (requirement, priority, project_id, status, relations ,owner_id, team_id, timestamp) values ('".$requirement."', '".$priority."','".$reqId."','".$reqStatus."','".$reqRel."','".$userId."','".$userTeamId."','".$reqTime."');";
 			$done = mysql_query($injection);
 	
 			if ($done){
