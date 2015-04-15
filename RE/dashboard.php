@@ -32,7 +32,6 @@
 				<input type="text" id="search_field" class="form-control" placeholder="Suche..."  title="Durchsuchen Sie Ihre Anforderungen">
 			</div><!--input-group-->
 			<ul id="main-nav" class="nav nav-pills nav-stacked">
-<<<<<<< HEAD
 				<li role="presentation" class="navlist active"><a onClick="getRequirements(), updateOn()" title="Gehen Sie zurück auf den Startbildschirm" >Home</a></li>
 				<li class="navlist "role="presentation"><a onClick="createReqForm(), updateOff()" title="Erstellen Sie eine neue Anforderung" >Anforderung erstellen</a></li>
 				<li class="navlist" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()" title="Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen" >Team</a></li>
