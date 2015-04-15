@@ -3,11 +3,11 @@
 ////////////////
 
 $(document).ready(function(){
-$("#error").hide();
-$("#dialog").hide();
-refreshTeamData(true);
-//$("#dialog_team_modal").hide(); //nicht genutzt?
-$(this).tooltip();
+	$("#error").hide();
+	$("#dialog").hide();
+	refreshTeamData(true);
+	//$("#dialog_team_modal").hide(); //nicht genutzt?
+	$(this).tooltip();
 });
 
 var theIntervalId;
@@ -17,12 +17,12 @@ function updateOn() {
 	//check no intervall is set
 	if(!theIntervalId){
 		//save the intervall id to clear later
-		/*theIntervalId = setInterval(function(){ 
+		theIntervalId = setInterval(function(){ 
 			//code here will be run every updateTimeInSec seconds
 			console.log("tick");
-			//document.getElementById("newsNumber").textContent = news;
+			$("#newsNumber").text(news);
 			news++;
-		}, updateTimeInSec*1000);*/
+		}, updateTimeInSec*1000);
 	}
 	console.log("update on", theIntervalId);
 }
@@ -30,14 +30,17 @@ function updateOn() {
 function updateOff() {
 	console.log("update off");
 	//clear intervall and reset id variable
-	//clearInterval(theIntervalId);
+	clearInterval(theIntervalId);
 	theIntervalId = "";
 }
 
 function update() {
-	getResult();
+	getRequirements();
 	news = 0;
-	//document.getElementById("newsNumber").textContent = news;
+	$("#newsNumber").text(news);
+	updateOn();
+	$('#main-nav').find('.active').removeClass('active');
+	$('#main-nav').children().first().addClass('active');
 }
 
 //ändern der Nutzerdaten

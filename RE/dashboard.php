@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-<html ng-app="requirements">
+<html>
 	<head>
 		<meta charset="UTF-8">
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -12,14 +12,10 @@
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-		<script type="text/javascript" src="jscolor/jscolor.js"></script>
 		<script type="text/javascript" src="js/user.js"></script>
 		<script type="text/javascript" src="js/dashboardScript.js"></script>
 		<script type="text/javascript" src="js/dashboardDesignScript.js"></script>
 		<script type="text/javascript" src="js/teamsScript.js"></script>
-		<!--Angular-->
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.js"></script>
-		<script src="js/nav.js"></script>
 		
 		<link rel="stylesheet" href="css/dashboard.css">
 		<title> Dashboard</title>
@@ -30,17 +26,17 @@
 		</div><!--head-->
 		
 		<!-- Left Navigation Bar -->
-		<div id="left_nav" class="col-md-2" ng-controller="NavCtrl">
+		<div id="left_nav" class="col-md-2">
 			<div class="input-group">
 				<span class="input-group-addon" onClick="getResult()" id="search">Go</span>
 				<input type="text" id="search_field" class="form-control" placeholder="Suche..."  title="Durchsuchen Sie Ihre Anforderungen">
 			</div><!--input-group-->
 			<ul id="main-nav" class="nav nav-pills nav-stacked">
-				<li role="presentation" class="active navlist"><a onClick="getRequirements(), updateOn()" title="Gehen Sie zurück auf den Startbildschirm" >Home</a></li>
+				<li role="presentation" class="navlist active"><a onClick="getRequirements(), updateOn()" title="Gehen Sie zurück auf den Startbildschirm" >Home</a></li>
 				<li class="navlist "role="presentation"><a onClick="createReqForm(), updateOff()" title="Erstellen Sie eine neue Anforderung" >Anforderung erstellen</a></li>
+				<li class="navlist" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()" title="Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen" >Team</a></li>
 				<li class="navlist" role="presentation"><a data-toggle="modal" title="Ändern Sie Ihre persönlichen Informationen" data-target="#profil">Profil</a></li>
 				<li class="navlist" role="presentation"><a id="download_reqs" title="Laden Sie Ihre Anforderungen als .csv Datei herunter" >Download</a></li>
-				<li class="navlist" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()" title="Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen" >Team</a></li>
 				<li class="navlist" role="presentation"><a onClick="logOut(), updateOff()" title="Melden Sie sich vom System ab">Logout</a></li>
 			</ul>
 		</div><!--left_nav-->

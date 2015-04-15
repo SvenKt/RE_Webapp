@@ -3,36 +3,55 @@
 ////////////////
 
 $(document).ready(function(){
-$(this).tooltip();
-$("#accordion").accordion({collapsible: true});
+	$(this).tooltip();
+	$("#accordion").accordion({collapsible: true});
 
-//enter bestätigung beim erstellen von teams
-$("#team_name").keypress(function(event){
+	//enter bestätigung beim erstellen von teams
+	$("#team_name").keypress(function(event){
+			var keycode = (event.keyCode ? event.keyCode : event.which);
+			if(keycode == '13'){
+				createTeam();
+			}
+			event.stopPropagation();
+		});
+
+	//enter bestätigung beim hinzufügen von teammitgliedern
+	$("#team_user").keypress(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if(keycode == '13'){
-			createTeam();
+			addTeamMember();
 		}
 		event.stopPropagation();
 	});
 
-//enter bestätigung beim hinzufügen von teammitgliedern
-$("#team_user").keypress(function(event){
-	var keycode = (event.keyCode ? event.keyCode : event.which);
-	if(keycode == '13'){
-		addTeamMember();
-	}
-	event.stopPropagation();
-});
-
-//enter bestätigung im suchfeld
-$("#search_field").keypress(function(event){
+	//enter bestätigung im suchfeld
+	$("#search_field").keypress(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if(keycode == '13'){
 			getResult();
 		}
 		event.stopPropagation();
 	});
+		
+	//navlist anpassungen nach Modal
+	$('#main-nav li a').on('click', function() {
+		oldActive = $(this).parent().parent().find('.active');
+		if($(this).attr('id') != "download_reqs") {
+			$(this).parent().parent().find('.active').removeClass('active');
+			$(this).parent().addClass('active');
+		}
+	});
+	$("#profil").on('hidden.bs.modal', function(){
+		$('#main-nav').find('.active').removeClass('active');
+		oldActive.addClass('active');
+	});
+	$("#team_modal").on('hidden.bs.modal', function(){
+		$('#main-nav').find('.active').removeClass('active');
+		oldActive.addClass('active');
+	});
 });
+
+var oldActive;
 
 function sizeAccordion(){
 $("#accordion").accordion({ heightStyle: "content" });
