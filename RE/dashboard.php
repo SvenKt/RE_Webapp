@@ -48,9 +48,13 @@
 		
 		<!--content-->
 		<div id="content-wrapper" class=" content-wrapper panel col-md-10">
-			<button class="btn btn-primary" type="button" id="news" title="Klicken zum aktualisieren" onClick="update()">
+			<div class="col-md-10">
+				<!--platzhalter div> -->
+			</div>
+			<button class="btn btn-primary col-md-2" type="button" id="news" title="Klicken zum aktualisieren" onClick="update()">
 				Aktualisierungen <span class="badge" id="newsNumber">0</span>
 			</button>
+			</br>
 			<h2 id="headline_dashboard">Anforderungen</h2>
 			<hr>
 				<p class="panel panel-warning"id="error"></p>
