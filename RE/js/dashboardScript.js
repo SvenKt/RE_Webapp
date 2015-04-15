@@ -39,6 +39,7 @@ function update() {
 	news = 0;
 	$("#newsNumber").text(news);
 	updateOn();
+	$('#newsNumber').css({"background-color": "white", "color": "#337ab7"});
 	$('#main-nav').find('.active').removeClass('active');
 	$('#main-nav').children().first().addClass('active');
 }
@@ -69,6 +70,9 @@ $.ajax({
 						oldArrayLenght = arrayOfTimeStamps.length;
 						lastReadFromDb = Date.now();
 						$("#newsNumber").text(news);
+						if(news > 0){
+							$('#newsNumber').css({"background-color": "red", "color": "white"});
+						}
 				},
 			error: function(){alert("error");}
 			});
