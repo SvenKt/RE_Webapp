@@ -35,7 +35,7 @@ function updateOff() {
 }
 
 function update() {
-	getResult();
+	getRequirements();
 	news = 0;
 	//document.getElementById("newsNumber").textContent = news;
 }
