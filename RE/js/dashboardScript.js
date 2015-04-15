@@ -3,10 +3,11 @@
 ////////////////
 
 $(document).ready(function(){
-	$("#error").hide();
-	$("#dialog").hide();
-	//$("#dialog_team_modal").hide(); //nicht genutzt?
-	$(this).tooltip();
+$("#error").hide();
+$("#dialog").hide();
+refreshTeamData(true);
+//$("#dialog_team_modal").hide(); //nicht genutzt?
+$(this).tooltip();
 });
 
 var theIntervalId;

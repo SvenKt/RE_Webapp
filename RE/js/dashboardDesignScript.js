@@ -3,7 +3,6 @@
 ////////////////
 
 $(document).ready(function(){
-refreshTeamData(true);
 $(this).tooltip();
 $("#accordion").accordion({collapsible: true});
 
@@ -143,14 +142,4 @@ function createEditForm(id){
 				<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
 		}
 	});
-}
-
-function setFontSize(f){
-	var value = $("#fontSizePicker").val();
-	if(f != ""){
-		value=f;
-		document.getElementById("fontSizePicker").value = value;
-		f = "";
-	}
-	document.getElementById("content-wrapper").style.fontSize = (value*10)+"%";
 }
