@@ -4,6 +4,7 @@
 
 $(document).ready(function(){
 $(this).tooltip();
+$("#dialog_team_modal").hide();
 });
 
 function loadTeamOptions(){

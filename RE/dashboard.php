@@ -32,6 +32,7 @@
 				<input type="text" id="search_field" class="form-control" placeholder="Suche..."  title="Durchsuchen Sie Ihre Anforderungen">
 			</div><!--input-group-->
 			<ul id="main-nav" class="nav nav-pills nav-stacked">
+<<<<<<< HEAD
 				<li role="presentation" class="navlist active"><a onClick="getRequirements(), updateOn()" title="Gehen Sie zurück auf den Startbildschirm" >Home</a></li>
 				<li class="navlist "role="presentation"><a onClick="createReqForm(), updateOff()" title="Erstellen Sie eine neue Anforderung" >Anforderung erstellen</a></li>
 				<li class="navlist" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()" title="Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen" >Team</a></li>
@@ -44,9 +45,13 @@
 		
 		<!--content-->
 		<div id="content-wrapper" class=" content-wrapper panel col-md-10">
-			<button class="btn btn-primary" type="button" id="news" title="Klicken zum aktualisieren" onClick="update()">
+			<div class="col-md-10">
+				<!--platzhalter div> -->
+			</div>
+			<button class="btn btn-primary col-md-2" type="button" id="news" title="Klicken zum Aktualisieren" onClick="update()">
 				Aktualisierungen <span class="badge" id="newsNumber">0</span>
 			</button>
+			</br>
 			<h2 id="headline_dashboard">Anforderungen</h2>
 			<hr>
 				<p class="panel panel-warning"id="error"></p>
