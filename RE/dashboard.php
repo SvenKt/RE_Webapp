@@ -24,23 +24,10 @@
 		<link rel="stylesheet" href="css/dashboard.css">
 		<title> Dashboard</title>
 	</head>
-	<body onload="if (document.referrer == '') self.location='index.php';">
+	<body onload="if (document.referrer == '') self.location='index.php'; updateOn()">
 		<div id="head">
 			<img id='logo' src='img/logo.png' alt="logo">
 		</div><!--head-->
-		
-		<!-- Options on top -->
-		<div id="optionsTop">
-			<div id="fontSizes"> <!-- Font size picker-->
-				<a class="col-md-1" onClick="setFontSize('10')" title="Standard Schriftgröße"><span id="textSizeGlyph" class='glyphicon glyphicon-text-size' aria-hidden='true'></span></a>
-				<input class="col-md-5" id="fontSizePicker" type="range" min="5" max="20" value="10" onchange="setFontSize('')" title="Passe die Schriftgröße an"></input>
-			</div>
-			<div id="colors"> <!--Color picker -->
-				<a class="col-md-1" onClick="changeColor('EEEEEE')" title="Standard Farbe"><span class='glyphicon glyphicon-tint' aria-hidden='true'></span></a>
-				<span class="col-md-5"><input id='colorPicker' autocomplete='off' onchange="changeColor('')" title="Entdecke die Farbvariation" class="color {required:false,pickerBorder:2,pickerInset:10,styleElement:'nowhere'}"></span>
-				<!-- Umleitung nach nowhere erzeugt Fehlermeldung in der jscolor.js, ist aber unwichtig & funktioniert (Feld ändert seine Farbe nicht) -->
-			</div>
-		</div>
 		
 		<!-- Left Navigation Bar -->
 		<div id="left_nav" class="col-md-2" ng-controller="NavCtrl">
@@ -49,15 +36,21 @@
 				<input type="text" id="search_field" class="form-control" placeholder="Suche..."  title="Durchsuchen Sie Ihre Anforderungen">
 			</div><!--input-group-->
 			<ul id="main-nav" class="nav nav-pills nav-stacked">
-				<li role="presentation" class="active navlist"><a onClick="getRequirements()" title="Gehen Sie zurück auf den Startbildschirm" >Home</a></li>
-				<li class="navlist "role="presentation"><a onClick="createReqForm()" title="Erstellen Sie eine neue Anforderung" >Anforderung erstellen</a></li>
+				<li role="presentation" class="active navlist"><a onClick="getRequirements(), updateOn()" title="Gehen Sie zurück auf den Startbildschirm" >Home</a></li>
+				<li class="navlist "role="presentation"><a onClick="createReqForm(), updateOff()" title="Erstellen Sie eine neue Anforderung" >Anforderung erstellen</a></li>
 				<li class="navlist" role="presentation"><a data-toggle="modal" title="Ändern Sie Ihre persönlichen Informationen" data-target="#profil">Profil</a></li>
 				<li class="navlist" role="presentation"><a id="download_reqs" title="Laden Sie Ihre Anforderungen als .csv Datei herunter" >Download</a></li>
 				<li class="navlist" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()" title="Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen" >Team</a></li>
-				<li class="navlist" role="presentation"><a onClick="logOut()" title="Melden Sie sich vom System ab">Logout</a></li>
+				<li class="navlist" role="presentation"><a onClick="logOut(), updateOff()" title="Melden Sie sich vom System ab">Logout</a></li>
 			</ul>
 		</div><!--left_nav-->
+		<!-- Update Message -->
+		
+		<!--content-->
 		<div id="content-wrapper" class=" content-wrapper panel col-md-10">
+			<button class="btn btn-primary" type="button" id="news" title="Klicken zum aktualisieren" onClick="update()">
+				Aktualisierungen <span class="badge" id="newsNumber">0</span>
+			</button>
 			<h2 id="headline_dashboard">Anforderungen</h2>
 			<hr>
 				<p class="panel panel-warning"id="error"></p>

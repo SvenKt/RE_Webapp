@@ -3,13 +3,41 @@
 ////////////////
 
 $(document).ready(function(){
-$("#error").hide();
-$("#dialog").hide();
-//$("#dialog_team_modal").hide(); //nicht genutzt?
-$(this).tooltip();
+	$("#error").hide();
+	$("#dialog").hide();
+	//$("#dialog_team_modal").hide(); //nicht genutzt?
+	$(this).tooltip();
 });
 
+var theIntervalId;
+var updateTimeInSec = 1;
+var news = 0;
+function updateOn() {
+	//check no intervall is set
+	if(!theIntervalId){
+		//save the intervall id to clear later
+		/*theIntervalId = setInterval(function(){ 
+			//code here will be run every updateTimeInSec seconds
+			console.log("tick");
+			//document.getElementById("newsNumber").textContent = news;
+			news++;
+		}, updateTimeInSec*1000);*/
+	}
+	console.log("update on", theIntervalId);
+}
 
+function updateOff() {
+	console.log("update off");
+	//clear intervall and reset id variable
+	//clearInterval(theIntervalId);
+	theIntervalId = "";
+}
+
+function update() {
+	getResult();
+	news = 0;
+	//document.getElementById("newsNumber").textContent = news;
+}
 
 //ändern der Nutzerdaten
 function changeData(){
@@ -49,7 +77,7 @@ $('#error').text("Bitte alle nicht-optionalen Felder ausfüllen").slideDown(500)
 }
 
 //Eintragen der zusammengefügten Anforderung
-function insertReq(){
+function insertReq(origin){
 	if(checkRequirement()){
 		var user=$('#content');
 		var wann=$('#wann').val();
@@ -76,8 +104,13 @@ function insertReq(){
 				dataType: "json",
 				success: function(success){
 					$('#error').text(success).slideDown(500).delay(2000).slideUp(500);
-					if (success.search("Fehler") == -1){ getRequirements() };
-				
+					if (success.search("Fehler") == -1){
+						switch (origin) {
+							case 0:	createReqForm();break;
+							case 1: getRequirements();break;
+							default: getRequirements(); break;
+						}
+					}
 				}
 			});
 		} else alert("Cookie-fehler");
@@ -104,7 +137,6 @@ function deleteReq(id, doAfterThis){
 	}
 }
 
-
 //Auslesen der Anforderungen
 function getRequirements(query){
 var user= getUserName();
@@ -120,7 +152,6 @@ $.ajax({
 						sortById(displayedRequirements);
 						setTable(displayedRequirements);
 						refreshExport(displayedRequirements);
-					
 				},
 			error: function(){alert("error");}
 			});
@@ -237,7 +268,7 @@ function setTable(requirementsArray){
 									<th>"+p_status+"</th>\
 									<th>"+p_rel+"</th>\
 									<th class='req-btn'>\
-										<button type='button' class='btn btn-default' onClick='createEditForm("+req_id+")' aria-label='Left Align'>\
+										<button type='button' class='btn btn-default' onClick='updateOff(), createEditForm("+req_id+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
 										</button>\
 										<button type='button' class='btn btn-default' onClick='confirmRemoval("+req_id+")' aria-label='Right Align'>\
@@ -273,6 +304,7 @@ function edit(id){
 		//muss erst gelöscht werden, damit abhängigkeiten und bedingungen erfüllt bleiben
 		if(checkRequirement()){
 			deleteReq(id, insertReq);
+			updateOn();
 		}
 	} else {
 		alert ("fehler");

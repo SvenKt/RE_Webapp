@@ -75,7 +75,7 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 												</select>\
 					</div>\
 				</fieldset>\
-		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq()'>Bestätigen</button>");
+		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq(0)'>Bestätigen</button>");
 
 }
 
@@ -143,17 +143,6 @@ function createEditForm(id){
 				<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
 		}
 	});
-}
-					
-function changeColor(c){
-	var color = $("#colorPicker").val();
-	if(c != ""){
-		color = c;
-		document.getElementById("colorPicker").value = "";
-	}
-	document.getElementsByTagName("html")[0].style.backgroundColor = "#"+color;
-	document.getElementById("content-wrapper").style.backgroundColor = "#"+color;
-	c = "";
 }
 
 function setFontSize(f){
