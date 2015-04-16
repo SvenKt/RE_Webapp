@@ -52,7 +52,6 @@ function updateOn() {
 			}
 		}, updateTimeInSec*1000);
 	}
-	console.log("update on", theIntervalId);
 }
 //stop interval
 function updateOff() {
@@ -65,22 +64,17 @@ function updateOff() {
 function update() {
 	getRequirements();
 	setNews(0);
-	resetFeed();
 	$("#newsNumber").text(getNews());
 	$('#main-nav').find('.active').removeClass('active');
 	$('#main-nav').children().first().addClass('active');
-}
-
-function resetFeed(){
-$("#feed").html("");
 }
 
 function addMessageToFeed(message){
 var feed = $("#feed");
 var string="";
 
-string = feed.html()+message+"</br>";
-feed.html(string);
+string = feed.text()+"\n"+message;
+feed.text(string);
 
 }
 
@@ -125,7 +119,7 @@ $.ajax({
  				}
 				setArrayLength(length);
 				lastReadFromDb = Date.now();
-				console.log(getNews());
+				//console.log(getNews());
 				$("#newsNumber").text(getNews());
 				},
 			error: function(){alert("error");}
