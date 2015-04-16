@@ -47,7 +47,9 @@ function updateOn() {
 		//save the intervall id to clear later
 		theIntervalId = setInterval(function(){ 
 			//code here will be run every updateTimeInSec seconds
-			getUpdateCount();
+			if(!getUpdateCount()){
+				console.log("nichts passiert");
+			}
 		}, updateTimeInSec*1000);
 	}
 	console.log("update on", theIntervalId);
@@ -73,6 +75,7 @@ var length;
 function getUpdateCount() {
 var oldLength=getArrayLength();
 var user= getUserName();
+var changes = false;
 $.ajax({
 			url: "php/getUpdates.php",
 			type: "POST",
@@ -83,20 +86,31 @@ $.ajax({
 						if (oldLength < length){
 							console.log("neue req dazu");
 							setNews(getNews()+1);
+							changes =  true;
 						} else if (oldLength > length){
 							console.log("req gelöscht");
 							setNews(getNews()+1);
+							changes = true;
 						} else {
-							console.log("nichts passiert");
+							for( var i=0; i < length; i++) {
+								if(success[i] > lastReadFromDb) {
+									console.log("req editiert");
+									setNews(getNews()+1);
+									changes = true;
+								}
+							}
 						}
+				if(getNews() > 0){		
+-					$('#newsNumber').css({"background-color": "red", "color": "white"});		
+ 				}
 				setArrayLength(length);
+				lastReadFromDb = Date.now();
 				console.log(getNews());
 				$("#newsNumber").text(getNews());
 				},
 			error: function(){alert("error");}
 			});
-
-
+	return changes;
 }
 
 //ändern der Nutzerdaten
@@ -405,6 +419,7 @@ function edit(id){
 		//muss erst gelöscht werden, damit abhängigkeiten und bedingungen erfüllt bleiben
 		if(checkRequirement()){
 			deleteReq(id, insertReq);
+			setNews(getNews()-1);
 		}
 	} else {
 		alert ("fehler");
@@ -433,6 +448,7 @@ function confirmRemoval(reqID){
 		buttons: {
 			"Anforderung löschen!": function() {
 				deleteReq(reqID,placeholder);
+				setArrayLength(getArrayLength()- 1); 
 				$( this ).dialog( "close" );
 			},
 			"doch nicht": function() {
@@ -441,7 +457,6 @@ function confirmRemoval(reqID){
 		}
 	});
 }
-	
 //Anforderungen als .csv exportieren
 function refreshExport(arr){
 	var user = getUserName();
