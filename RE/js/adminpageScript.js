@@ -12,9 +12,6 @@ getUsers();
 $(this).tooltip();
 });
 
-
-
-
 function changeData(){
 var password=$("#ch_pw").val();
 var password_repeat=$("#ch_pw2").val();
