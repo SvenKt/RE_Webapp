@@ -281,7 +281,37 @@ function sortByStatus(arr){
 	setTable(displayedRequirements);
 	refreshExport(displayedRequirements);
 }
+//arr nach Zeit sortieren
+var reversedTime = false;//variable für Umkehren bei erneutem Klicken
+function sortByTime(arr){
+	if (arr.length != 0){
+						arr.sort(function(a, b){return a[6]-b[6]});
+						if(reversedTime == false){
+							arr.reverse();
+							reversedTime = true;
+						} else {
+							reversedTime = false;
+						}
+					}
+	displayedRequirements = arr;
+	setTable(displayedRequirements);
+	refreshExport(displayedRequirements);
+}
 
+//Time converter to change timestamp from DB to a string
+function timeConverter(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp*1); // *1 to get a number
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  //var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var time = date + '. ' + month + '. ' + year + ' ' + hour + ':' + min;
+  return time;
+}
 //Anzeigen der Anforderungen
 var displayedRequirements; //Globales Array für onclick() Funktionen der Tabelle
 function setTable(requirementsArray){
@@ -293,15 +323,18 @@ function setTable(requirementsArray){
 	var p_rel;
 	var req;
 	var req_id;
+	var p_timestamp;
+	var p_time;
 	displayedRequirements = requirementsArray;
 	for (var i = 0; i < requirementsArray.length; i++){
 							req = requirementsArray[i][0].replace(/&req#/g," ");
 							req_id=requirementsArray[i][1];
+							priority=requirementsArray[i][2];
 							p_id=requirementsArray[i][3];
 							p_status=requirementsArray[i][4];
 							p_rel=requirementsArray[i][5];
-							priority=requirementsArray[i][2];
-							
+							p_timestamp=requirementsArray[i][6];
+							p_time = timeConverter(p_timestamp);
 							//Tabelleninhalt
 							string+="<tr>\
 									<th>"+p_id+"</th>\
@@ -309,6 +342,7 @@ function setTable(requirementsArray){
 									<th scope='row'>"+priority+"</th>\
 									<th>"+p_status+"</th>\
 									<th>"+p_rel+"</th>\
+									<th>"+p_time+" Uhr</th>\
 									<th class='req-btn'>\
 										<button type='button' class='btn btn-default' onClick='createEditForm("+req_id+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
@@ -329,7 +363,8 @@ function setTable(requirementsArray){
 									<th class='col-md-1' id='sortHead' onclick='sortByPrio(displayedRequirements)' title='Klicken zum Sortieren nach Priorität'>Priorität</th>\
 									<th class='col-md-1' id='sortHead' onclick='sortByStatus(displayedRequirements)' title='Klicken zum Sortieren nach Status'>Status</th>\
 									<th class='col-md-2'>Abhängigkeiten</th>\
-									<th class='col-md-2'>Optionen</th>\
+									<th class='col-md-1' id='sortHead' onclick='sortByTime(displayedRequirements)' title='Klicken um nach Änderungsdatum zu sortieren'>Geändert am</th>\
+									<th class='col-md-1'>Optionen</th>\
 								</tr></thead>\
 								<tbody>\
 									"+string+"\
