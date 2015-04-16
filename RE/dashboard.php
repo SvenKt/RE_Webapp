@@ -24,9 +24,9 @@
 		<div id="head">
 			<img id='logo' src='img/logo.png' alt="logo">
 		</div><!--head-->
-		
+	<div id="leftSide"  class="col-md-2">
 		<!-- Left Navigation Bar -->
-		<div id="left_nav" class="col-md-2">
+		<div id="left_nav">
 			<div class="input-group">
 				<span class="input-group-btn" onClick="getResult()" id="search">
 					<button class="btn btn-default" type="button" id="goButton">Go!</button>
@@ -43,7 +43,9 @@
 			</ul>
 		</div><!--left_nav-->
 		<!-- Update Message -->
-		
+		<div id="feed">
+		</div>
+	</div>
 		<!--content-->
 		<div id="content-wrapper" class=" content-wrapper panel col-md-10">
 			<div class="col-md-10">

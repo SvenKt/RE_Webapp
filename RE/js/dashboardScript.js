@@ -70,12 +70,23 @@ function update() {
 	$('#main-nav').children().first().addClass('active');
 }
 
+function addMessageToFeed(message){
+var feed = $("#feed");
+var string="";
+
+string = feed.text()+"\n"+message;
+feed.text(string);
+
+}
+
+
 //get number of updates
 var length;
 function getUpdateCount() {
 var oldLength=getArrayLength();
 var user= getUserName();
 var changes = false;
+var messageToDisplay="";
 $.ajax({
 			url: "php/getUpdates.php",
 			type: "POST",
@@ -85,11 +96,15 @@ $.ajax({
 						length=success.length;
 						if (oldLength < length){
 							console.log("neue req dazu");
+							messageToDisplay="Neue Anforderung erstellt";
 							setNews(getNews()+1);
+							addMessageToFeed(messageToDisplay);
 							changes =  true;
 						} else if (oldLength > length){
 							console.log("req gelöscht");
+							messageToDisplay="Anforderung gelöscht";
 							setNews(getNews()+1);
+							addMessageToFeed(messageToDisplay);
 							changes = true;
 						} else {
 							for( var i=0; i < length; i++) {
