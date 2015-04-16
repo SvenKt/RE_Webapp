@@ -28,7 +28,9 @@
 		<!-- Left Navigation Bar -->
 		<div id="left_nav" class="col-md-2">
 			<div class="input-group">
-				<span class="input-group-addon" onClick="getResult()" id="search">Go</span>
+				<span class="input-group-btn" onClick="getResult()" id="search">
+					<button class="btn btn-default" type="button" id="goButton">Go!</button>
+				</span>
 				<input type="text" id="search_field" class="form-control" placeholder="Suche..."  title="Durchsuchen Sie Ihre Anforderungen">
 			</div><!--input-group-->
 			<ul id="main-nav" class="nav nav-pills nav-stacked">

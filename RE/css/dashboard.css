@@ -34,6 +34,12 @@ height:50vh;
 padding:1%;
 }
 
+#goButton {
+	background-color: lightgrey;
+}
+#goButton:hover {
+	background-color: #C3C3C3;
+}
 
 #footer{
 position: absolute; 
