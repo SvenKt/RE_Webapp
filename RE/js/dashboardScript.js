@@ -15,12 +15,30 @@ $(document).ready(function(){
 		position: { my: "center top-75", collision: "flipfit" },
 		track: true,
 	});
+	initArrayLength();
+	initNews();
 	//content
 });
 
 var theIntervalId;
 var updateTimeInSec = 3;
-var news = 0;
+
+function initNews(){
+	var news= new Object();
+	news.amount=0;
+	localStorage.setItem("news", JSON.stringify(news));
+}
+function getNews(){
+	var news = JSON.parse(localStorage.getItem("news"));
+	return news.amount;
+}
+function setNews(val){
+	var news = JSON.parse(localStorage.getItem("news"));
+	news.amount=val;
+	localStorage.setItem("news", JSON.stringify(news));
+}
+
+
 //activate interval
 function updateOn() {
 	getUpdateCount();
@@ -44,16 +62,16 @@ function updateOff() {
 //what happens when the button is clicked
 function update() {
 	getRequirements();
-	news = 0;
-	$("#newsNumber").text(news);
+	setNews(0);
+	$("#newsNumber").text(getNews());
 	$('#main-nav').find('.active').removeClass('active');
 	$('#main-nav').children().first().addClass('active');
 }
 
 //get number of updates
-var oldArrayLenght;
+var length;
 function getUpdateCount() {
-var arrayOfTimeStamps;
+var oldLength=getArrayLength();
 var user= getUserName();
 $.ajax({
 			url: "php/getUpdates.php",
@@ -61,27 +79,24 @@ $.ajax({
 			data: {"username": user},
 			dataType: "json",
 			success: function(success){
-						arrayOfTimeStamps = success;
-						if(arrayOfTimeStamps.length < oldArrayLenght) {
-								news++;
-								console.log("Something got deleted");
+						length=success.length;
+						if (oldLength < length){
+							console.log("neue req dazu");
+							setNews(getNews()+1);
+						} else if (oldLength > length){
+							console.log("req gelöscht");
+							setNews(getNews()+1);
+						} else {
+							console.log("nichts passiert");
 						}
-						for(var i = 0; i < arrayOfTimeStamps.length; i++) {
-							var t = arrayOfTimeStamps[i];
-							if(t > lastReadFromDb) {
-								news++;
-								console.log("A requirement has been added/changed");
-							}
-						}
-						oldArrayLenght = arrayOfTimeStamps.length;
-						lastReadFromDb = Date.now();
-						$("#newsNumber").text(news);
-						if(news > 0){
-							$('#newsNumber').css({"background-color": "red", "color": "white"});
-						}
+				setArrayLength(length);
+				console.log(getNews());
+				$("#newsNumber").text(getNews());
 				},
 			error: function(){alert("error");}
 			});
+
+
 }
 
 //ändern der Nutzerdaten
@@ -193,9 +208,10 @@ $.ajax({
 			data: {"username": user, "query": search},
 			dataType: "json",
 			success: function(success){
+				
 						lastReadFromDb = Date.now();
-						news = 0;
-						$("#newsNumber").text(news);
+						setNews(0);
+						$("#newsNumber").text(getNews());
 						$('#newsNumber').css({"background-color": "white", "color": "#337ab7"});
 						displayedRequirements = success;
 						reversedID = true;
@@ -417,7 +433,6 @@ function confirmRemoval(reqID){
 		buttons: {
 			"Anforderung löschen!": function() {
 				deleteReq(reqID,placeholder);
-				oldArrayLenght = oldArrayLenght - 1;
 				$( this ).dialog( "close" );
 			},
 			"doch nicht": function() {

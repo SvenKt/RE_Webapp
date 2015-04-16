@@ -1,3 +1,32 @@
+function initArrayLength(){
+var arr = new Object();
+var arrayOfTimeStamps;
+var user= getUserName();
+$.ajax({
+			url: "php/getUpdates.php",
+			type: "POST",
+			data: {"username": user},
+			dataType: "json",
+			success: function(success){
+						arr.length=success.length;
+						console.log(arr.length);
+						localStorage.setItem("array", JSON.stringify(arr));
+				},
+			error: function(){alert("error");}
+			});
+}
+
+function setArrayLength(val){
+var arr = JSON.parse(localStorage.getItem("array"));
+arr.length=val;
+localStorage.setItem("array", JSON.stringify(arr));
+}
+
+function getArrayLength(){
+var arr = JSON.parse(localStorage.getItem("array"));
+return arr.length;
+}
+
 
 function createUser(name, cookie){
 var user = new Object();
