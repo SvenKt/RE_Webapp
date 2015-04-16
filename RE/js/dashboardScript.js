@@ -361,7 +361,9 @@ function timeConverter(UNIX_timestamp){
   var date = a.getDate();
   var hour = a.getHours();
   var min = a.getMinutes();
-  var sec = a.getSeconds();
+  if(min < 10){
+	min = "0" + min;
+  }
   var time = date + '. ' + month + '. ' + year + ' ' + hour + ':' + min;
   return time;
 }
@@ -486,7 +488,7 @@ function refreshExport(arr){
 	// csv daten aufbereiten	
 	csvRows.push("ID"+"\t"+"Anforderung"+"\t"+"Priorität"+"\t"+"Status"+"\t"+"Abhängigkeiten");
 	for (var i = 0; i< arr.length; i++){
-		req = arr[i][0].replace(/:/g," ");
+		req = arr[i][0].replace(/&req#/g," ");
 		prio = arr[i][2];
 		p_id=arr[i][3];
 		p_status=arr[i][4];
