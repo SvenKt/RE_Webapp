@@ -17,6 +17,7 @@ $(document).ready(function(){
 	});
 	initArrayLength();
 	initNews();
+	resetFeed();
 	//content
 });
 
@@ -73,10 +74,12 @@ function update() {
 
 function resetFeed(){
 $("#feed").html("");
+$("#feed").hide();
 }
 
 function addMessageToFeed(message){
 var feed = $("#feed");
+feed.show();
 var string="";
 
 string = feed.html()+"<div class='panel panel-default'>\
@@ -368,9 +371,7 @@ function timeConverter(UNIX_timestamp){
   var date = a.getDate();
   var hour = a.getHours();
   var min = a.getMinutes();
-  if(min < 10){
-	min = "0" + min;
-  }
+  var sec = a.getSeconds();
   var time = date + '. ' + month + '. ' + year + ' ' + hour + ':' + min;
   return time;
 }
@@ -495,7 +496,7 @@ function refreshExport(arr){
 	// csv daten aufbereiten	
 	csvRows.push("ID"+"\t"+"Anforderung"+"\t"+"Priorität"+"\t"+"Status"+"\t"+"Abhängigkeiten");
 	for (var i = 0; i< arr.length; i++){
-		req = arr[i][0].replace(/&req#/g," ");
+		req = arr[i][0].replace(/:/g," ");
 		prio = arr[i][2];
 		p_id=arr[i][3];
 		p_status=arr[i][4];
