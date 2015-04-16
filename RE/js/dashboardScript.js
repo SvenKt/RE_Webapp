@@ -67,7 +67,7 @@ $.ajax({
 								console.log("Something got deleted");
 						}
 						for(var i = 0; i < arrayOfTimeStamps.length; i++) {
-							var t = arrayOfTimeStamps[i][0];
+							var t = arrayOfTimeStamps[i];
 							if(t > lastReadFromDb) {
 								news++;
 								console.log("A requirement has been added/changed");

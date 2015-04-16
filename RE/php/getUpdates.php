@@ -15,7 +15,7 @@ $req_array="";
 		if($ergebnis){
 			while($row = mysql_fetch_object($ergebnis))
 			{
-				$req_array[] = array($row->timestamp);
+				$req_array[] = $row->timestamp;
 			}
 		}
 	echo json_encode($req_array);
