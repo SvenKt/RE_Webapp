@@ -73,8 +73,8 @@ function update() {
 
 
 function resetFeed(){
-$("#feed").html("");
-$("#feed").hide();
+	$("#feed").html("");
+	$("#feed").hide();
 }
 
 function addMessageToFeed(message){
@@ -362,17 +362,19 @@ function sortByTime(arr){
 
 //Time converter to change timestamp from DB to a string
 function timeConverter(UNIX_timestamp){
-  var a = new Date(UNIX_timestamp*1); // *1 to get a number
-  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  //var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
-  var year = a.getFullYear();
-  var month = months[a.getMonth()];
-  var date = a.getDate();
-  var hour = a.getHours();
-  var min = a.getMinutes();
-  var sec = a.getSeconds();
-  var time = date + '. ' + month + '. ' + year + ' ' + hour + ':' + min;
-  return time;
+	var a = new Date(UNIX_timestamp*1); // *1 to get a number
+	var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	//var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+	var year = a.getFullYear();
+	var month = months[a.getMonth()];
+	var date = a.getDate();
+	var hour = a.getHours();
+	var min = a.getMinutes();
+	if(min < 10){
+		min = "0" + min;		
+	}
+	var time = date + '. ' + month + '. ' + year + ' ' + hour + ':' + min;
+	return time;
 }
 //Anzeigen der Anforderungen
 var displayedRequirements; //Globales Array für onclick() Funktionen der Tabelle
@@ -495,7 +497,7 @@ function refreshExport(arr){
 	// csv daten aufbereiten	
 	csvRows.push("ID"+"\t"+"Anforderung"+"\t"+"Priorität"+"\t"+"Status"+"\t"+"Abhängigkeiten");
 	for (var i = 0; i< arr.length; i++){
-		req = arr[i][0].replace(/:/g," ");
+		req = arr[i][0].replace(/&req#/g," ");
 		prio = arr[i][2];
 		p_id=arr[i][3];
 		p_status=arr[i][4];

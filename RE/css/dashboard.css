@@ -30,17 +30,14 @@ height:7vh;
 }
 
 #leftSide{
-height:70vh;
+height:90vh;
 }
 
 #feed{
-	height: 30vh;
-    overflow: scroll;
-	overflow-x: hidden;
 }
 
 #left_nav{
-height:40vh;
+height:50vh;
 padding:2%;
 }
 
