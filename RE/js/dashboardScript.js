@@ -13,7 +13,7 @@ $(document).ready(function(){
 var theIntervalId;
 var updateTimeInSec = 3;
 var news = 0;
-//stop interval
+//activate interval
 function updateOn() {
 	getUpdateCount();
 	//check no intervall is set
@@ -26,7 +26,7 @@ function updateOn() {
 	}
 	console.log("update on", theIntervalId);
 }
-//activate interval
+//stop interval
 function updateOff() {
 	console.log("update off");
 	//clear intervall and reset id variable
@@ -38,8 +38,6 @@ function update() {
 	getRequirements();
 	news = 0;
 	$("#newsNumber").text(news);
-	updateOn();
-	$('#newsNumber').css({"background-color": "white", "color": "#337ab7"});
 	$('#main-nav').find('.active').removeClass('active');
 	$('#main-nav').children().first().addClass('active');
 }
@@ -133,7 +131,7 @@ function insertReq(origin){
 		if($('#wem').val() != ""){
 			wem=$('#wem').val() + " ";
 		}
-		var theRequirement = wann + ":" + muss + ":" + system + ":" + wem +":" + bieten + ":" + objekt + ":" + verb;
+		var theRequirement = wann + "&req#" + muss + "&req#" + system + "&req#" + wem +"&req#" + bieten + "&req#" + objekt + "&req#" + verb;
 		
 		if(	loadCookieFromDatabase(cookiesEqual)){
 		var currentTime = Date.now();
@@ -189,6 +187,7 @@ $.ajax({
 			success: function(success){
 						lastReadFromDb = Date.now();
 						news = 0;
+						$('#newsNumber').css({"background-color": "white", "color": "#337ab7"});
 						displayedRequirements = success;
 						reversedID = true;
 						sortById(displayedRequirements);
@@ -295,7 +294,7 @@ function setTable(requirementsArray){
 	var req_id;
 	displayedRequirements = requirementsArray;
 	for (var i = 0; i < requirementsArray.length; i++){
-							req = requirementsArray[i][0].replace(/:/g," ");
+							req = requirementsArray[i][0].replace(/&req#/g," ");
 							req_id=requirementsArray[i][1];
 							p_id=requirementsArray[i][3];
 							p_status=requirementsArray[i][4];
@@ -310,7 +309,7 @@ function setTable(requirementsArray){
 									<th>"+p_status+"</th>\
 									<th>"+p_rel+"</th>\
 									<th class='req-btn'>\
-										<button type='button' class='btn btn-default' onClick='updateOff(), createEditForm("+req_id+")' aria-label='Left Align'>\
+										<button type='button' class='btn btn-default' onClick='createEditForm("+req_id+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
 										</button>\
 										<button type='button' class='btn btn-default' onClick='confirmRemoval("+req_id+")' aria-label='Right Align'>\
@@ -346,7 +345,6 @@ function edit(id){
 		//muss erst gelöscht werden, damit abhängigkeiten und bedingungen erfüllt bleiben
 		if(checkRequirement()){
 			deleteReq(id, insertReq);
-			updateOn();
 		}
 	} else {
 		alert ("fehler");
