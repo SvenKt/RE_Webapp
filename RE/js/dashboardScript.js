@@ -65,17 +65,22 @@ function updateOff() {
 function update() {
 	getRequirements();
 	setNews(0);
+	resetFeed();
 	$("#newsNumber").text(getNews());
 	$('#main-nav').find('.active').removeClass('active');
 	$('#main-nav').children().first().addClass('active');
+}
+
+function resetFeed(){
+$("#feed").html("");
 }
 
 function addMessageToFeed(message){
 var feed = $("#feed");
 var string="";
 
-string = feed.text()+"\n"+message;
-feed.text(string);
+string = feed.html()+message+"</br>";
+feed.html(string);
 
 }
 
