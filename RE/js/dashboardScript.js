@@ -187,6 +187,7 @@ $.ajax({
 			success: function(success){
 						lastReadFromDb = Date.now();
 						news = 0;
+						$("#newsNumber").text(news);
 						$('#newsNumber').css({"background-color": "white", "color": "#337ab7"});
 						displayedRequirements = success;
 						reversedID = true;
