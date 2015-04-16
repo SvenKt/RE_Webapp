@@ -73,9 +73,10 @@ function addMessageToFeed(message){
 var feed = $("#feed");
 var string="";
 
-string = feed.text()+"\n"+message;
-feed.text(string);
-
+string = feed.html()+"<div class='panel panel-default'>\
+						"+message+"<br>"+timeConverter(Date.now())+"\
+					</div>";
+feed.html(string);
 }
 
 
