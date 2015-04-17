@@ -82,9 +82,9 @@ var feed = $("#feed");
 feed.show();
 var string="";
 
-string = feed.html()+"<div class='panel panel-default'>\
-						"+message+"<br>"+timeConverter(Date.now())+"\
-					</div>";
+string = "<div class='panel panel-default'>\
+			"+message+"<br>"+timeConverter(Date.now())+"\
+		 </div>"+ feed.html();
 feed.html(string);
 }
 

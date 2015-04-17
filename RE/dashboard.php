@@ -41,10 +41,17 @@
 				<li class="navlist" role="presentation"><a id="download_reqs" title="Laden Sie Ihre Anforderungen als .csv Datei herunter" >Download</a></li>
 				<li class="navlist" role="presentation"><a onClick="logOut(), updateOff()" title="Melden Sie sich vom System ab">Logout</a></li>
 			</ul>
-		</div><!--left_nav-->
+		<!--left_nav-->
 		<!-- Update Message -->
-		<div id="feed">
-		</div>
+		<div class="panel panel-info" id="newsFeedPanel">
+			<div class="panel-heading">
+				<h3 class="panel-title">News-Feed</h3>
+			</div>
+			<div class="panel-body">
+				<div id="feed">
+				</div>
+			</div>
+		</div></div>
 	</div>
 		<!--content-->
 		<div id="content-wrapper" class=" content-wrapper panel col-md-10">
