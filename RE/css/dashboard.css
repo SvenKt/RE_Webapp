@@ -121,7 +121,6 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
 .content-wrapper {
   background-color: #EEEEEE;
   padding: 1%;
-  clear: both;
 }
 
 @media (max-width: 800px) {
