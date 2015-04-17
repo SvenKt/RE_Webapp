@@ -1,0 +1,20 @@
+benötigt: installiere sass.
+
+-"start command prompt with ruby" ausführen
+-"gem install compass" ausführen
+-"compass create <Pfad zu deinem Projekt> 
+	(ich habe hier den ordner "compass" als projektordner angelegt,
+	kannst du dann auch, damit es nicht redundant wird.)
+-öffne "config.rb"
+
+-bearbeite:
+
+....
+css_dir="../css"
+sass_dir="sass"
+....
+
+-"compass watch <pfad zu deinem projekt>"
+
+fertig :-) alle .scss Dateien, die in dem compass "sass" ordner sind, 
+werden automatisch nach dem speichern kompiliert und in ../css kopiert.
