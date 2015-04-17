@@ -18,12 +18,13 @@
 			<p  class="panel panel-warning" id="read"></p>
 			</br></br>
 			<fieldset>
-			<label for="name">Username:	</label><input type="text" class="form-control" name="username" id="userPHP" ></br>
-			<label for="pass">Passwort:	</label><input type="password" class="form-control" name="password" id="passPHP"></br>
-			<input type="button" class="btn btn-success" onClick="checkCredentials()" value="Einloggen"></button> 
-			<label class="showLabel"> Neu hier? --> </label> 
-			<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#register">Registrieren</button>
+				<label for="name">Username:	</label><input type="text" class="form-control" name="username" id="userPHP" ></br>
+				<label for="pass">Passwort:	</label><input type="password" class="form-control" name="password" id="passPHP"></br>
 			</fieldset>		
+			<input type="button" class="btn btn-success login" onClick="checkCredentials()" value="Einloggen"></button> 
+			<label class="showLabel login"> Neu hier? --> </label> 
+			<button type="button" class="btn btn-warning login" data-toggle="modal" data-target="#register">Registrieren</button>
+			
 			</p>
 		</div>
 			

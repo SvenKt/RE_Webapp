@@ -426,9 +426,9 @@ function setTable(requirementsArray){
 									<th class='col-md-5' id='sortHead' onclick='sortByReq(displayedRequirements)' title='Klicken um alphabetisch zu sortieren'>Anforderung</th>\
 									<th class='col-md-1' id='sortHead' onclick='sortByPrio(displayedRequirements)' title='Klicken zum Sortieren nach Priorität'>Priorität</th>\
 									<th class='col-md-1' id='sortHead' onclick='sortByStatus(displayedRequirements)' title='Klicken zum Sortieren nach Status'>Status</th>\
-									<th class='col-md-2'>Abhängigkeiten</th>\
+									<th class='col-md-1'>Abhängigkeiten</th>\
 									<th class='col-md-1' id='sortHead' onclick='sortByTime(displayedRequirements)' title='Klicken um nach Änderungsdatum zu sortieren'>Geändert am</th>\
-									<th class='col-md-1'>Optionen</th>\
+									<th class='col-md-2'>Optionen</th>\
 								</tr></thead>\
 								<tbody>\
 									"+string+"\

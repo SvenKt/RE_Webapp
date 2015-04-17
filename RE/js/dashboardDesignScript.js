@@ -3,7 +3,6 @@
 ////////////////
 
 $(document).ready(function(){
-	$(this).tooltip();
 	$("#accordion").accordion({collapsible: true});
 
 	//enter bestätigung beim erstellen von teams
