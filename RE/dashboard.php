@@ -71,9 +71,7 @@
 				</div><!--content-->
 			<hr>
 		</div><!--content-wrapper-->
-		<div id="footer">
-		</div><!--footer-->
-		
+
 		<!-- Modal Profil-->
 			<div class="modal fade" id="profil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">

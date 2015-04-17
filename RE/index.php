@@ -11,8 +11,10 @@
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/login.css">
 		<title> Login Page</title>
+	
 	</head>
 	<body>
+	
 		<div class="jumbotron">
 			<img id='logo' src='img/logo.png' alt="logo">
 			<p  class="panel panel-warning" id="read"></p>

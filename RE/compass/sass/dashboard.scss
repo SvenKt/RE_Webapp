@@ -1,0 +1,139 @@
+
+body {
+width: 100%; 
+margin:auto; 
+background-color: #EEEEEE;
+}
+
+a{
+color:black;
+font-size:15px;
+}
+
+hr{
+background-color:black;
+height:1px;
+}
+
+#head{
+height:8vh; 
+background-image: url(../img/header.jpg);
+}
+/* Optional als Farbverlauf */
+/*#head{
+height:15vh; 
+background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
+}*/
+
+#logo{
+height:7vh; 
+}
+
+#leftSide{
+height:70vh;
+}
+
+#feed{
+	height: 30vh;
+    overflow: hidden;
+	overflow-x: hidden;
+}
+
+#left_nav{
+	@media(max-width:800){
+		height: 40vh;
+		margin: 2%;
+		overflow:hidden;
+	}
+	@media(min-width:800){
+		height:40vh;
+		padding:2%;
+	}
+}
+
+#left_nav li{
+ float: right;
+ width: 100%;
+}
+
+#goButton {
+	background-color: lightgrey;
+}
+#goButton:hover {
+	background-color: #C3C3C3;
+}
+
+
+#copyright{
+position: absolute; 
+bottom: 0;
+}
+
+#infotxt{
+margin-left: 1%;
+}
+
+.marginClass{
+margin: 1.5%;
+}
+
+.send {
+color: green;
+}
+
+.navlist {
+margin-top:2%;
+}
+
+.req-label {
+width: 89%;
+}
+
+.req-btn {
+width: 5%;
+}
+
+.content-wrapper{
+background-color: #EEEEEE;
+padding:1%;
+}
+
+#field {
+	@media(max-device-height:800px){
+		width: 100%;
+		height: 53vh;
+		overflow: hidden;
+		overflow-x: hidden;
+	}
+	@media(min-device-height:800px){
+		width: 100%;
+		height: 62vh;
+		overflow: hidden;
+		overflow-x: hidden;
+	}
+	
+} 
+
+body .modal-dialog {
+    /* new custom width */
+    width: 80%;
+    /* must be half of the width, minus scrollbar on the left (30px) */
+    margin: auto;
+}
+
+#accordion .ui-accordion-content {
+   height: 40vh;
+}
+
+#main-nav{
+	cursor:default;
+}
+
+#sortHead:hover{
+	cursor:pointer;
+	background-color:#D6D6D6;
+ }
+
+#news {
+	
+}

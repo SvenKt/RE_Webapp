@@ -4,7 +4,20 @@
 
 $(document).ready(function(){
 	$("#accordion").accordion({collapsible: true});
-
+	
+	if($(document).width() < 800){
+		//no tooltips enabled
+	} else {
+		$(this).tooltip();
+		$("#left_nav").tooltip({
+			position: { my: "left-80vh center", at: "right center" }
+		});
+		$("#content").tooltip({
+			position: { my: "center top-75", collision: "flipfit" },
+			track: true,
+		});
+	}
+	
 	//enter bestätigung beim erstellen von teams
 	$("#team_name").keypress(function(event){
 			var keycode = (event.keyCode ? event.keyCode : event.which);

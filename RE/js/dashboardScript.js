@@ -7,14 +7,6 @@ $(document).ready(function(){
 	$("#dialog").hide();
 	refreshTeamData(true);
 	//$("#dialog_team_modal").hide(); //nicht genutzt?
-	$(this).tooltip();
-	$("#left_nav").tooltip({
-		position: { my: "left-80vh center", at: "right center" }
-	});
-	$("#content").tooltip({
-		position: { my: "center top-75", collision: "flipfit" },
-		track: true,
-	});
 	initArrayLength();
 	initNews();
 	resetFeed();
