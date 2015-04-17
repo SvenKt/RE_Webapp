@@ -1,6 +1,10 @@
 
 
-body {width: 60%; margin: auto;}
+body {
+	width: 60%; 
+	margin: auto;
+}
+
 .showLabel {margin-left:2%; margin-right:2%;}
 
 .jumbotron{
@@ -24,6 +28,10 @@ body {width: 60%; margin: auto;}
 }
 
 .login{
-float: left;
+	@media screen and (max-width: 640px){
+		width:100%;
+		margin: 1%;
+	}
 }
+
 
