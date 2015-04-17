@@ -33,6 +33,10 @@ height:7vh;
 height:70vh;
 }
 
+#newsFeedPanel {
+	margin-top: 10vh;
+}
+
 #feed{
 	height: 30vh;
     overflow: scroll;
