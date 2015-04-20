@@ -43,7 +43,7 @@
 			</ul>
 		<!--left_nav-->
 		<!-- Update Message -->
-		<div class="panel panel-info" id="newsFeedPanel">
+		<div class="panel panel-info floater" id="newsFeedPanel">
 			<div class="panel-heading">
 				<h3 class="panel-title">News-Feed</h3>
 			</div>
@@ -55,10 +55,8 @@
 	</div>
 		<!--content-->
 		<div id="content-wrapper" class=" content-wrapper panel col-md-10">
-			<div class="col-md-10">
-				<!--platzhalter div> -->
-			</div>
-			<button class="btn btn-primary col-md-2" type="button" id="news" title="Klicken zum Aktualisieren" onClick="update()">
+
+			<button class="btn btn-primary c_button" type="button" id="news" title="Klicken zum Aktualisieren" onClick="update()">
 				Aktualisierungen <span class="badge" id="newsNumber">0</span>
 			</button>
 			</br>
