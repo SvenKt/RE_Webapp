@@ -111,7 +111,9 @@ $.ajax({
 							for( var i=0; i < length; i++) {
 								if(success[i] > lastReadFromDb) {
 									console.log("req editiert");
+									messageToDisplay="Anforderung bearbeitet";
 									setNews(getNews()+1);
+									addMessageToFeed(messageToDisplay);
 									changes = true;
 								}
 							}
