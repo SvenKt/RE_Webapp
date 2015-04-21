@@ -55,8 +55,7 @@
 	</div>
 		<!--content-->
 		<div id="content-wrapper" class=" content-wrapper panel col-md-10">
-
-			<button class="btn btn-primary c_button" type="button" id="news" title="Klicken zum Aktualisieren" onClick="update()">
+			<button class="btn btn-primary col-md-2" type="button" id="news" title="Klicken zum Aktualisieren" onClick="update()">
 				Aktualisierungen <span class="badge" id="newsNumber">0</span>
 			</button>
 			</br>
@@ -69,7 +68,17 @@
 				</div><!--content-->
 			<hr>
 		</div><!--content-wrapper-->
-
+		<div id="footer">
+		<center>
+			<a id="footerLink" data-toggle="modal" title="Kontaktinformationen" data-target="#modal_kontact">Kontakt</a>
+			-
+			<a id="footerLink" title="Ich bin ein dummy">Dummy</a>
+			-
+			<a id="footerLink" title="Ich bin ein dummy">Dummy</a>
+		</center>
+		</div>
+		
+		
 		<!-- Modal Profil-->
 			<div class="modal fade" id="profil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -155,6 +164,37 @@
 							<div id="content_editTeam">
 								<!--content here-->
 							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Modal Kontakt-->
+			<div class="modal fade" id="modal_kontact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h3 class="modal-title" id="myModalLabel">Kontakt</h3>
+						</div>
+						<div class="modal-body">
+							<table style="width:100%">
+								<tr>
+									<td><h4>Sven-Erik Kujat</h4></td>
+									<td><h4>Marvin Hartmann</h4></td>
+								</tr>
+								<tr>
+									<td>sv-kujat@t-online.de</td>
+									<td>Marvin.hartmann@gmx.de</td>
+								</tr>
+								<tr>
+									<td>Germany</td>
+									<td>Germany</td>
+								</tr>
+							</table>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

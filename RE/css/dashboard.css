@@ -31,6 +31,7 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
 /* line 28, ../compass/sass/dashboard.scss */
 #logo {
   height: 7vh;
+  margin-top: 3vh;
 }
 
 /* line 32, ../compass/sass/dashboard.scss */
@@ -43,6 +44,19 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   height: 30vh;
   overflow: hidden;
   overflow-x: hidden;
+}
+
+#footer{
+ position: inherit;
+ bottom: 1vh;
+ width:100%;
+}
+
+#footerLink {
+ cursor: pointer;
+ font-style: italic;
+ margin-left: 10px;
+ margin-right: 10px;
 }
 
 /* line 42, ../compass/sass/dashboard.scss */
@@ -150,8 +164,7 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   #field {
     width: 100%;
     height: 62vh;
-    overflow: hidden;
-    overflow-x: hidden;
+    overflow: auto; /*Hide when not needed, show when needed*/
   }
 }
 
