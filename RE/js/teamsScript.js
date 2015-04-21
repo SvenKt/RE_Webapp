@@ -138,6 +138,7 @@ function leaveTeam(){
 		data: {"user":user},
 		dataType: "json",
 		success: function(success){
+			setArrayLength(0);
 			refreshTeamData(true);
 			$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);
 		}

@@ -67,17 +67,25 @@ function update() {
 function resetFeed(){
 	$("#feed").html("");
 	$("#feed").hide();
+	starNum = 1;
 }
 
+var starNum = 1;
 function addMessageToFeed(message){
-var feed = $("#feed");
-feed.show();
-var string="";
+	var feed = $("#feed");
+	feed.show();
+	var string="";
+	string = "<div class='panel panel-default'>\
+				"+message+"<br>"+timeConverter(Date.now())+"\
+				<img id='star"+starNum+"' src='img/star.png' alt='star'>\
+			 </div>"+ feed.html();
+	feed.html(string);
 
-string = "<div class='panel panel-default'>\
-			"+message+"<br>"+timeConverter(Date.now())+"\
-		 </div>"+ feed.html();
-feed.html(string);
+	$("#star"+starNum).fadeOut(5000);
+	for( var i=1; i<=starNum; i++){
+		$("#star"+i).fadeOut(3000);
+	}
+	starNum++;
 }
 
 
@@ -97,7 +105,7 @@ $.ajax({
 						length=success.length;
 						if (oldLength < length){
 							console.log("neue req dazu");
-							messageToDisplay="Neue Anforderung erstellt";
+							messageToDisplay="Neue Anforderung gefunden";
 							setNews(getNews()+1);
 							addMessageToFeed(messageToDisplay);
 							changes =  true;
@@ -198,6 +206,7 @@ function insertReq(origin){
 				success: function(success){
 					$('#error').text(success).slideDown(500).delay(2000).slideUp(500);
 					if (success.search("Fehler") == -1){
+						getUpdateCount();
 						switch (origin) {
 							case 0:	createReqForm();break;
 							case 1: getRequirements();break;
@@ -221,6 +230,7 @@ function deleteReq(id, doAfterThis){
 			dataType: "json",
 			success: function(success){
 				getRequirements();
+				getUpdateCount();
 				doAfterThis();
 			}
 		});
@@ -245,6 +255,7 @@ $.ajax({
 						setNews(0);
 						$("#newsNumber").text(getNews());
 						$('#newsNumber').css({"background-color": "white", "color": "#337ab7"});
+						resetFeed();
 						displayedRequirements = success;
 						reversedID = true;
 						sortById(displayedRequirements);
@@ -467,8 +478,8 @@ function confirmRemoval(reqID){
 		modal: true,
 		buttons: {
 			"Anforderung löschen!": function() {
+				getUpdateCount();
 				deleteReq(reqID,placeholder);
-				setArrayLength(getArrayLength()- 1); 
 				$( this ).dialog( "close" );
 			},
 			"doch nicht": function() {
