@@ -230,7 +230,6 @@ function deleteReq(id, doAfterThis){
 			dataType: "json",
 			success: function(success){
 				getRequirements();
-				getUpdateCount();
 				doAfterThis();
 			}
 		});
@@ -449,6 +448,7 @@ function edit(id){
 	if (loadCookieFromDatabase(cookiesEqual)){
 		//muss erst gelöscht werden, damit abhängigkeiten und bedingungen erfüllt bleiben
 		if(checkRequirement()){
+			getUpdateCount();
 			deleteReq(id, insertReq);
 			setNews(getNews()-1);
 		}
