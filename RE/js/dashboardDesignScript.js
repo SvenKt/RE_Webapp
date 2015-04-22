@@ -227,7 +227,7 @@ var patchnotes = "\
 			<li>Aussehen des Suche-Buttons geändert</li>\
 		</ul></br>\
 		<li>Bugfixes:</li><ul>\
-			li>Bugfix bezüglich Menüdarstellung</li>\
+			<li>Bugfix bezüglich Menüdarstellung</li>\
 		</ul>\
 	</ul></div>\
 	\
