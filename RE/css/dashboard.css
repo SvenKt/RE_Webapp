@@ -64,6 +64,10 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
  margin-right: 10px;
 }
 
+#versionText {
+	text-decoration: underline;
+}
+
 /* line 42, ../compass/sass/dashboard.scss */
 .floater {
   float: left;
@@ -183,6 +187,10 @@ body .modal-dialog {
 
 /* line 142, ../compass/sass/dashboard.scss */
 #accordion .ui-accordion-content {
+  height: 40vh;
+}
+
+#patchnotes .ui-accordion-content {
   height: 40vh;
 }
 

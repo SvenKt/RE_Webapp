@@ -20,7 +20,7 @@
 			<p  class="panel panel-warning" id="read"></p>
 			</br></br>
 			<fieldset>
-				<label for="name">Username:	</label><input type="text" class="form-control" name="username" id="userPHP" ></br>
+				<label for="name">Username:	</label><input type="text" class="form-control" name="username" id="userPHP" autofocus></br>
 				<label for="pass">Passwort:	</label><input type="password" class="form-control" name="password" id="passPHP"></br>
 			</fieldset>		
 			<input type="button" class="btn btn-success login" onClick="checkCredentials()" value="Einloggen"></button> 

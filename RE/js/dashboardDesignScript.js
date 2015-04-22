@@ -5,6 +5,9 @@
 $(document).ready(function(){
 	$("#accordion").accordion({collapsible: true});
 	
+	$("#patchnotes").html(patchnotes);
+	$("#patchnotes").accordion({collapsible: true});
+	
 	if($(document).width() < 800){
 		//no tooltips enabled
 	} else {
@@ -174,3 +177,87 @@ function createEditForm(id){
 		}
 	});
 }
+
+var patchnotes = "\
+	<h3><span style='font-style:bold'>Version 1.0</span></h3>\
+	<div><ul>\
+		<li>Allgemeine Änderungen:</li><ul>\
+			<li>Versionsübersicht hinzugefügt</li>\
+			<li>Inputfeld für Name wird beim Laden der Loginseite automatisch ausgewählt</li>\
+		</ul>\
+	</ul></div>\
+	\
+	<h3>Version 0.9</h3>\
+	<div><ul>\
+		<li>Allgemeine Änderungen:</li><ul>\
+			<li>Feed-Performance verbessert</li>\
+			<li>Feed-Nachricht bei neuen Anforderungen geändert</li>\
+			<li>Feed-Nachricht bei bearbeiteter Anforderung hinzugefügt</li>\
+			<li>Link zu Kontaktmöglichkeiten hinzugefügt</li>\
+		</ul></br>\
+		<li>Visuelle Änderungen:</li><ul>\
+			<li>Stern bei neuen Feeds hinzugefügt</li>\
+			<li>Anforderungen sind bei kleinem Bildschirm scrollbar</li>\
+		</ul>\
+	</ul></div>\
+	\
+	<h3>Version 0.8</h3>\
+	<div><ul>\
+		<li>News-Feed hinzugefügt:</li><ul>\
+			<li>Information bei neuen / gelöschten Anforderungen</li>\
+			<li>Feed wird nach nach Aktualisierung des Dashboards zurückgesetzt</li>\
+		</ul></br>\
+		<li>Visuelle Änderungen:</li><ul>\
+			<li>Login und Dashboard für Mobilgeräte angepasst</li>\
+			<li>Neue Positionen für Tooltips</li>\
+		</ul></br>\
+		<li>Bugfixes:</li><ul>\
+			<li>Bugfix bezüglich Uhrzeitanzeige</li>\
+		</ul>\
+	</ul></div>\
+	\
+	<h3>Version 0.7</h3>\
+	<div><ul>\
+		<li>Allgemeine Änderungen:</li><ul>\
+			<li>Zu Anforderungen wird der Zeitpunkt der letzten Änderungen angezeigt</li>\
+			<li>Automatische Suche nach Änderungen von Anforderungen</li>\
+			<li>Anzahl der Änderungen wird dargestellt</li>\
+		</ul></br>\
+		<li>Visuelle Änderungen:</li><ul>\
+			<li>Aussehen des Suche-Buttons geändert</li>\
+		</ul></br>\
+		<li>Bugfixes:</li><ul>\
+			li>Bugfix bezüglich Menüdarstellung</li>\
+		</ul>\
+	</ul></div>\
+	\
+	<h3>Version 0.6</h3>\
+	<div><ul>\
+		<li>Allgemeine Änderungen:</li><ul>\
+			<li>Geschwindigkeit verbessert</li>\
+		</ul></br>\
+		<li>Visuelle Änderungen:</li><ul>\
+			<li>Logo geändert</li>\
+		</ul></br>\
+		<li>Bugfixes:</li><ul>\
+			<li>Bugfix bezüglich der Edit-Funktion</li>\
+			<li>Bugfix bezüglich der Tabellendarstellung der Anforderungen</li>\
+		</ul>\
+	</ul></div>\
+	\
+	<h3>Version 0.5</h3>\
+	<div><ul>\
+		<li>Teams hinzugefügt:</li>\
+		<ul>\
+			<li>Teams erstellen, bearbeiten und löschen</li>\
+			<li>Eigenen Teams beitreten oder verlassen</li>\
+			<li>Mitglieder zu Teams hinzufügen</li>\
+		</ul></br>\
+		<li>Visuelle Änderungen:</li><ul>\
+			<li>Anzeige von Tooltips hinzugefügt</li>\
+		</ul></br>\
+		<li>Bugfixes:</li><ul>\
+			<li>Bugfix bezüglich Menüdarstellung</li>\
+		</ul>\
+	</ul></div>\
+	";

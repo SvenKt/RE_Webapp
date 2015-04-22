@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-
+<?php
+	$version = "1.0";
+?>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -72,7 +74,7 @@
 		<center>
 			<a id="footerLink" data-toggle="modal" title="Kontaktinformationen" data-target="#modal_kontact">Kontakt</a>
 			-
-			<a id="footerLink" title="Ich bin ein dummy">Dummy</a>
+			<a id="footerLink" data-toggle="modal" title="Informationen zu Version und Patches" data-target="#modal_version">Version <?php echo $version ?></a>
 			-
 			<a id="footerLink" title="Ich bin ein dummy">Dummy</a>
 		</center>
@@ -195,6 +197,28 @@
 									<td>Germany</td>
 								</tr>
 							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Modal Version-->
+			<div class="modal fade" id="modal_version" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h3 class="modal-title" id="myModalLabel">Versionen & Patches</h3>
+						</div>
+						<div class="modal-body">
+							<h2>Aktuelle Version: <?php echo $version ?></h2></br>
+							<h4>Patchnotes:</h4>
+							<div id="patchnotes">
+								<!--Content in Variable patchnotes gespeichert-->
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
