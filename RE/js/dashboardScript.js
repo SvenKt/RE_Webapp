@@ -82,9 +82,9 @@ function addMessageToFeed(message){
 	feed.html(string);
 
 	$("#star"+starNum).fadeOut(5000);
-	for( var i=1; i<=starNum; i++){
+/*	for( var i=1; i<=starNum; i++){
 		$("#star"+i).fadeOut(3000);
-	}
+	} */
 	starNum++;
 }
 
