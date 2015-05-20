@@ -154,7 +154,7 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   }
 }
 
-/* line 135, ../compass/sass/dashboard.scss */
+/* line 134, ../compass/sass/dashboard.scss */
 body .modal-dialog {
   /* new custom width */
   width: 80%;
@@ -162,23 +162,24 @@ body .modal-dialog {
   margin: auto;
 }
 
-/* line 146, ../compass/sass/dashboard.scss */
-#accordion .ui-accordion-content {
-  height: 40vh;
+/* line 141, ../compass/sass/dashboard.scss */
+.ui-accordion-content {
+  height: 45vh;
+  overflow: hidden;
 }
 
-/* line 150, ../compass/sass/dashboard.scss */
+/* line 146, ../compass/sass/dashboard.scss */
 #main-nav {
   cursor: default;
 }
 
-/* line 154, ../compass/sass/dashboard.scss */
+/* line 150, ../compass/sass/dashboard.scss */
 #sortHead:hover {
   cursor: pointer;
   background-color: #D6D6D6;
 }
 
-/* line 159, ../compass/sass/dashboard.scss */
+/* line 155, ../compass/sass/dashboard.scss */
 #newsFeedPanel {
   width: 100%;
 }
