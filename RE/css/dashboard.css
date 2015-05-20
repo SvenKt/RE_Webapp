@@ -36,7 +36,6 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
 /* line 32, ../compass/sass/dashboard.scss */
 #leftSide {
   height: 70vh;
-  margin-top: 3vh;
 }
 
 /* line 36, ../compass/sass/dashboard.scss */
@@ -44,24 +43,6 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   height: 30vh;
   overflow: hidden;
   overflow-x: hidden;
-}
-
-*[id^='star'] {
-  float: right;
-  margin-right: 2px;
-}
-
-#footer{
- position: inherit;
- bottom: 1vh;
- width:100%;
-}
-
-#footerLink {
- cursor: pointer;
- font-style: italic;
- margin-left: 10px;
- margin-right: 10px;
 }
 
 /* line 42, ../compass/sass/dashboard.scss */
@@ -160,16 +141,16 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   #field {
     width: 100%;
     height: 53vh;
-    overflow: hidden;
-    overflow-x: hidden;
+    overflow: scroll;
   }
 }
 @media (min-device-height: 800px) {
   /* line 119, ../compass/sass/dashboard.scss */
   #field {
     width: 100%;
-    height: 62vh;
-    overflow: auto; /*Hide when not needed, show when needed*/
+    height: 60vh;
+    overflow: hidden;
+    overflow-x: hidden;
   }
 }
 
@@ -181,27 +162,23 @@ body .modal-dialog {
   margin: auto;
 }
 
-/* line 142, ../compass/sass/dashboard.scss */
+/* line 146, ../compass/sass/dashboard.scss */
 #accordion .ui-accordion-content {
   height: 40vh;
 }
 
-#patchnotes .ui-accordion-content {
-  height: 40vh;
-}
-
-/* line 146, ../compass/sass/dashboard.scss */
+/* line 150, ../compass/sass/dashboard.scss */
 #main-nav {
   cursor: default;
 }
 
-/* line 150, ../compass/sass/dashboard.scss */
+/* line 154, ../compass/sass/dashboard.scss */
 #sortHead:hover {
   cursor: pointer;
   background-color: #D6D6D6;
 }
 
-/* line 155, ../compass/sass/dashboard.scss */
+/* line 159, ../compass/sass/dashboard.scss */
 #newsFeedPanel {
   width: 100%;
 }

@@ -99,7 +99,12 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 					<div class='col-md-4'><input type='text' class='form-control' name='relations' id='relations' placeholder='Abhängigkeiten? (optional)'></div>\
 				</fieldset></br>\
 				<fieldset>\
-					<div class='col-md-2'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=3 min=0 step=1 value=0 onkeydown='return false'></div>\
+					<div class='col-md-2'>Priorität:<select id='prio' class='form-control'>\
+													<option>0</option>\
+													<option>1</option>\
+													<option>2</option>\
+													<option>3</option>\
+												</select>\</div>\
 					<div class='col-md-3'>Status:<select id='status' class='form-control'>\
 													<option>im Backlog</option>\
 													<option>in Bearbeitung</option>\
@@ -163,7 +168,13 @@ function createEditForm(id){
 					<div class='col-md-3'><input type='text' class='form-control' name='relations' id='relations'  value='"+p_rel+"'></div>\
 				</fieldset></br>\
 				<fieldset>\
-					<div class='col-md-2'>Priorität:<input type='number' class='form-control' name='prio' id='prio' max=3 min=0 step=1 value='"+priority+"' onkeydown='return false'></div>\
+					<div class='col-md-2'>Priorität:<select id='prio' class='form-control'>\
+													<option>"+priority+"</option>\
+													<option>0</option>\
+													<option>1</option>\
+													<option>2</option>\
+													<option>3</option>\
+												</select></div>\
 					<div class='col-md-3'>Status:<select id='status' class='form-control'>\
 						<option>"+p_status+"</option>\
 						<option>im Backlog</option>\
@@ -177,7 +188,6 @@ function createEditForm(id){
 		}
 	});
 }
-
 var patchnotes = "\
 	<h3><span style='font-style:bold'>Version 1.0</span></h3>\
 	<div><ul>\
@@ -244,7 +254,6 @@ var patchnotes = "\
 			<li>Bugfix bezüglich der Tabellendarstellung der Anforderungen</li>\
 		</ul>\
 	</ul></div>\
-	\
 	<h3>Version 0.5</h3>\
 	<div><ul>\
 		<li>Teams hinzugefügt:</li>\

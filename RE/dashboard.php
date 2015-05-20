@@ -75,8 +75,6 @@
 			<a id="footerLink" data-toggle="modal" title="Kontaktinformationen" data-target="#modal_kontact">Kontakt</a>
 			-
 			<a id="footerLink" data-toggle="modal" title="Informationen zu Version und Patches" data-target="#modal_version">Version <?php echo $version ?></a>
-			-
-			<a id="footerLink" title="Ich bin ein dummy">Dummy</a>
 		</center>
 		</div>
 		
@@ -183,20 +181,18 @@
 							<h3 class="modal-title" id="myModalLabel">Kontakt</h3>
 						</div>
 						<div class="modal-body">
-							<table style="width:100%">
-								<tr>
-									<td><h4>Sven-Erik Kujat</h4></td>
-									<td><h4>Marvin Hartmann</h4></td>
-								</tr>
-								<tr>
-									<td>sv-kujat@t-online.de</td>
-									<td>Marvin.hartmann@gmx.de</td>
-								</tr>
-								<tr>
-									<td>Germany</td>
-									<td>Germany</td>
-								</tr>
-							</table>
+								<div class="row">
+									<div class="col-md-6">
+										<h4>Sven-Erik Kujat</h4>
+										sv-kujat@t-online.de<br>
+										Germany<br>
+									</div>
+									<div class="col-md-6">
+										<h4>Marvin Hartmann</h4>
+										Marvin.hartmann@gmx.de<br>
+										Germany<br>
+									</div>
+								</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -204,7 +200,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Modal Version-->
 			<div class="modal fade" id="modal_version" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">

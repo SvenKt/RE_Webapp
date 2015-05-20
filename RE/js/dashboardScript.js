@@ -424,7 +424,7 @@ function setTable(requirementsArray){
 					
 					//Tabellenrahmen
 					body.html("<div id='field' class='panel panel-default'>\
-								<table class='table'><thead style='background-color:#E6E6E6'>\
+								<table id='reqTable' class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
 									<th class='col-md-1' id='sortHead' onclick='sortById(displayedRequirements)' title='Klicken zum Sortieren nach ID'>ID</th>\
 									<th class='col-md-5' id='sortHead' onclick='sortByReq(displayedRequirements)' title='Klicken um alphabetisch zu sortieren'>Anforderung</th>\
