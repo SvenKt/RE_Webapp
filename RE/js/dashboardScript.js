@@ -13,6 +13,23 @@ $(document).ready(function(){
 	//content
 });
 
+function make100Reqs(){
+	var currentTime = Date.now();
+	for(var i=0; i<1000; i++){
+	var theRequirement = "Das" + "&req#" + "muss" + "&req#" + "Requirement" + "&req#" + "Nummer" +"&req#" + "fähig sein" + "&req#" + "i" + "&req#" + i;
+			$.ajax({
+				url: "php/insertRequirement.php",
+				type: "POST",
+				data: {"req": theRequirement, "prio": i%3, "username": getUserName(), "id": i, "status": "im Backlog", "relations": "", "currentTime": currentTime},
+				dataType: "json",
+				success: function(success){
+				// nichts
+				console.log(i);
+				}
+			});
+	}
+}
+
 var theIntervalId;
 var updateTimeInSec = 3;
 
