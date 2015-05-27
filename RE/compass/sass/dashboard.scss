@@ -39,6 +39,11 @@ height:70vh;
 	overflow-x: hidden;
 }
 
+*[id^='star'] {
+  float: right;
+  margin-right: 2px;
+}
+
 .floater{
 	float: left;
 }

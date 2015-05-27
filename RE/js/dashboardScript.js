@@ -31,7 +31,6 @@ function setNews(val){
 	localStorage.setItem("news", JSON.stringify(news));
 }
 
-
 //activate interval
 function updateOn() {
 	getUpdateCount();
@@ -81,7 +80,7 @@ function addMessageToFeed(message){
 			 </div>"+ feed.html();
 	feed.html(string);
 
-	$("#star"+starNum).fadeOut(5000);
+	$("#star"+starNum).fadeOut(updateTimeInSec*1000);
 /*	for( var i=1; i<=starNum; i++){
 		$("#star"+i).fadeOut(3000);
 	} */
@@ -367,7 +366,7 @@ function sortByTime(arr){
 //Time converter to change timestamp from DB to a string
 function timeConverter(UNIX_timestamp){
 	var a = new Date(UNIX_timestamp*1); // *1 to get a number
-	var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	var months = ['Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
 	//var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
 	var year = a.getFullYear();
 	var month = months[a.getMonth()];
@@ -377,7 +376,7 @@ function timeConverter(UNIX_timestamp){
 	if(min < 10){
 		min = "0" + min;		
 	}
-	var time = date + '. ' + month + '. ' + year + ' ' + hour + ':' + min;
+	var time = date + '. ' + month + ' ' + year + ' ' + hour + ':' + min;
 	return time;
 }
 //Anzeigen der Anforderungen
