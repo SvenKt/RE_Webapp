@@ -474,6 +474,8 @@ function edit(id){
 }
 
 function getResult(){
+	$('#main-nav').find('.active').removeClass('active');
+	$('#main-nav li:first-child').addClass('active');
 	var searchQuery=$("#search_field").val();
 	getRequirements(searchQuery);	
 }
