@@ -13,6 +13,23 @@ $(document).ready(function(){
 	//content
 });
 
+function make100Reqs(){
+	var currentTime = Date.now();
+	for(var i=0; i<1000; i++){
+	var theRequirement = "Das" + "&req#" + "muss" + "&req#" + "Requirement" + "&req#" + "Nummer" +"&req#" + "fähig sein" + "&req#" + "i" + "&req#" + i;
+			$.ajax({
+				url: "php/insertRequirement.php",
+				type: "POST",
+				data: {"req": theRequirement, "prio": i%3, "username": getUserName(), "id": i, "status": "im Backlog", "relations": "", "currentTime": currentTime},
+				dataType: "json",
+				success: function(success){
+				// nichts
+				console.log(i);
+				}
+			});
+	}
+}
+
 var theIntervalId;
 var updateTimeInSec = 3;
 
@@ -30,7 +47,6 @@ function setNews(val){
 	news.amount=val;
 	localStorage.setItem("news", JSON.stringify(news));
 }
-
 
 //activate interval
 function updateOn() {
@@ -81,7 +97,7 @@ function addMessageToFeed(message){
 			 </div>"+ feed.html();
 	feed.html(string);
 
-	$("#star"+starNum).fadeOut(5000);
+	$("#star"+starNum).fadeOut(updateTimeInSec*1000);
 /*	for( var i=1; i<=starNum; i++){
 		$("#star"+i).fadeOut(3000);
 	} */
@@ -367,7 +383,7 @@ function sortByTime(arr){
 //Time converter to change timestamp from DB to a string
 function timeConverter(UNIX_timestamp){
 	var a = new Date(UNIX_timestamp*1); // *1 to get a number
-	var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	var months = ['Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
 	//var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
 	var year = a.getFullYear();
 	var month = months[a.getMonth()];
@@ -377,7 +393,7 @@ function timeConverter(UNIX_timestamp){
 	if(min < 10){
 		min = "0" + min;		
 	}
-	var time = date + '. ' + month + '. ' + year + ' ' + hour + ':' + min;
+	var time = date + '. ' + month + ' ' + year + ' ' + hour + ':' + min;
 	return time;
 }
 //Anzeigen der Anforderungen
@@ -458,6 +474,8 @@ function edit(id){
 }
 
 function getResult(){
+	$('#main-nav').find('.active').removeClass('active');
+	$('#main-nav li:first-child').addClass('active');
 	var searchQuery=$("#search_field").val();
 	getRequirements(searchQuery);	
 }

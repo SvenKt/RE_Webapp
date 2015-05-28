@@ -45,6 +45,11 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   overflow-x: hidden;
 }
 
+*[id^='star'] {
+  float: right;
+  margin-right: 2px;
+}
+
 /* line 42, ../compass/sass/dashboard.scss */
 .floater {
   float: left;
