@@ -75,7 +75,7 @@ function redirectToDashboard(){
 	if (getUserName() == 'admin'){
 		window.location="adminpage.html";
 	} else {
-		window.location="dashboard.php";
+		window.location="dashboard_de.php";
 	}
 }
 

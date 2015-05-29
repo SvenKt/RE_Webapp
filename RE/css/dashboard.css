@@ -45,22 +45,19 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   overflow-x: hidden;
 }
 
+/* line 42, ../compass/sass/dashboard.scss */
 *[id^='star'] {
   float: right;
   margin-right: 2px;
 }
 
-#footerLink {
-	cursor:pointer;
-}
-
-/* line 42, ../compass/sass/dashboard.scss */
+/* line 47, ../compass/sass/dashboard.scss */
 .floater {
   float: left;
 }
 
 @media (max-width: 800) {
-  /* line 46, ../compass/sass/dashboard.scss */
+  /* line 51, ../compass/sass/dashboard.scss */
   #left_nav {
     /*height: 40vh;*/
     margin: 2%;
@@ -68,85 +65,85 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   }
 }
 @media (min-width: 800) {
-  /* line 46, ../compass/sass/dashboard.scss */
+  /* line 51, ../compass/sass/dashboard.scss */
   #left_nav {
     height: 40vh;
     padding: 2%;
   }
 }
-/* line 58, ../compass/sass/dashboard.scss */
+/* line 63, ../compass/sass/dashboard.scss */
 #left_nav li {
   float: right;
   width: 100%;
 }
 
-/* line 64, ../compass/sass/dashboard.scss */
+/* line 69, ../compass/sass/dashboard.scss */
 #goButton {
   background-color: lightgrey;
 }
 
-/* line 67, ../compass/sass/dashboard.scss */
+/* line 72, ../compass/sass/dashboard.scss */
 #goButton:hover {
   background-color: #C3C3C3;
 }
 
-/* line 72, ../compass/sass/dashboard.scss */
+/* line 77, ../compass/sass/dashboard.scss */
 #copyright {
   position: absolute;
   bottom: 0;
 }
 
-/* line 77, ../compass/sass/dashboard.scss */
+/* line 82, ../compass/sass/dashboard.scss */
 #infotxt {
   margin-left: 1%;
 }
 
-/* line 81, ../compass/sass/dashboard.scss */
+/* line 86, ../compass/sass/dashboard.scss */
 .marginClass {
   margin: 1.5%;
 }
 
-/* line 85, ../compass/sass/dashboard.scss */
+/* line 90, ../compass/sass/dashboard.scss */
 .send {
   color: green;
 }
 
-/* line 89, ../compass/sass/dashboard.scss */
+/* line 94, ../compass/sass/dashboard.scss */
 .navlist {
   margin-top: 2%;
 }
 
-/* line 93, ../compass/sass/dashboard.scss */
+/* line 98, ../compass/sass/dashboard.scss */
 .req-label {
   width: 89%;
 }
 
-/* line 97, ../compass/sass/dashboard.scss */
+/* line 102, ../compass/sass/dashboard.scss */
 .req-btn {
   width: 5%;
 }
 
-/* line 101, ../compass/sass/dashboard.scss */
+/* line 106, ../compass/sass/dashboard.scss */
 .content-wrapper {
   background-color: #EEEEEE;
   padding: 1%;
 }
 
 @media (max-width: 800px) {
-  /* line 109, ../compass/sass/dashboard.scss */
+  /* line 114, ../compass/sass/dashboard.scss */
   .c_button {
     width: 100%;
   }
 }
 @media (min-width: 800px) {
-  /* line 109, ../compass/sass/dashboard.scss */
+  /* line 114, ../compass/sass/dashboard.scss */
   .c_button {
     float: right;
   }
 }
 
 @media (max-device-height: 800px) {
-  /* line 119, ../compass/sass/dashboard.scss */
+  /* line 124, ../compass/sass/dashboard.scss */
   #field {
     width: 100%;
     height: 53vh;
@@ -154,7 +151,7 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   }
 }
 @media (min-device-height: 800px) {
-  /* line 119, ../compass/sass/dashboard.scss */
+  /* line 124, ../compass/sass/dashboard.scss */
   #field {
     width: 100%;
     height: 60vh;
@@ -163,7 +160,7 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   }
 }
 
-/* line 134, ../compass/sass/dashboard.scss */
+/* line 139, ../compass/sass/dashboard.scss */
 body .modal-dialog {
   /* new custom width */
   width: 80%;
@@ -171,25 +168,34 @@ body .modal-dialog {
   margin: auto;
 }
 
-/* line 141, ../compass/sass/dashboard.scss */
+/* line 146, ../compass/sass/dashboard.scss */
 .ui-accordion-content {
   height: 45vh;
   overflow: hidden;
 }
 
-/* line 146, ../compass/sass/dashboard.scss */
+/* line 151, ../compass/sass/dashboard.scss */
 #main-nav {
   cursor: default;
 }
 
-/* line 150, ../compass/sass/dashboard.scss */
+/* line 155, ../compass/sass/dashboard.scss */
 #sortHead:hover {
   cursor: pointer;
   background-color: #D6D6D6;
 }
 
-/* line 155, ../compass/sass/dashboard.scss */
+/* line 160, ../compass/sass/dashboard.scss */
 #newsFeedPanel {
   width: 100%;
 }
 
+/* line 164, ../compass/sass/dashboard.scss */
+#languageSwitcher {
+  float: right;
+}
+/* line 165, ../compass/sass/dashboard.scss */
+#languageSwitcher img {
+  width: 100%;
+  height: 3vh;
+}

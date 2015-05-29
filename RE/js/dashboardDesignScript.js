@@ -76,8 +76,8 @@ $("#accordion").accordion({ heightStyle: "content" });
 function createReqForm(){
 var body=$('#content');
 var user= getUserName();
-
-body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforderung ein:</h3>\
+if(window.location.pathname.search("_en") == -1){
+	body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforderung ein:</h3>\
 				<fieldset>\
 					<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' placeholder='Wann?/Bedingung?'></div>\
 					<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
@@ -114,6 +114,46 @@ body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforder
 					</div>\
 				</fieldset>\
 		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq(0)'>Bestätigen</button>");
+		} else {
+		
+		body.html("<h3 class='marginClass'>Hello "+user+", enter a new requirement:</h3>\
+				<fieldset>\
+					<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' placeholder='When?'></div>\
+					<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
+						<option>muss</option>\
+						<option>soll</option>\
+						<option>wird</option>\
+					</select></div>\
+					<div class='col-md-3'><input type='text' class='form-control' name='system' id='system' placeholder='System name?'></div>\
+					<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' placeholder='whom? (optional)'></div>\
+					<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
+						<option>fähig sein,</option>\
+						<option>die Möglichkeit bieten,</option>\
+					</select></div>\
+				</fieldset></br>\
+				<fieldset>\
+					<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' placeholder='Object?'></div>\
+					<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' placeholder='Verb?'></div>\
+					<div class='col-md-2'><input type='text' class='form-control' name='identity' id='identity' placeholder='ID?'></div>\
+					<div class='col-md-4'><input type='text' class='form-control' name='relations' id='relations' placeholder='dependencies? (optional)'></div>\
+				</fieldset></br>\
+				<fieldset>\
+					<div class='col-md-2'>Priority:<select id='prio' class='form-control'>\
+													<option>0</option>\
+													<option>1</option>\
+													<option>2</option>\
+													<option>3</option>\
+												</select>\</div>\
+					<div class='col-md-3'>Status:<select id='status' class='form-control'>\
+													<option>im Backlog</option>\
+													<option>in Bearbeitung</option>\
+													<option>in Testphase</option>\
+													<option>abgeschlossen</option>\
+												</select>\
+					</div>\
+				</fieldset>\
+		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq(0)'>Send</button>");
+		}
 
 }
 
@@ -144,6 +184,9 @@ function createEditForm(id){
 			p_rel=req[4];
 			
 			//Erzeuge Edit-Form
+			
+			if(window.location.pathname.search("_en") == -1){
+			
 			body.html("<h3 class='marginClass'>Hallo "+user+", bearbeiten Sie Ihre Anforderung:</h3>\
 				<fieldset>\
 					<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' value='"+wann+"'></div>\
@@ -185,6 +228,50 @@ function createEditForm(id){
 					</div>\
 				</fieldset>\
 				<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
+			} else {
+				
+				body.html("<h3 class='marginClass'>Hello "+user+", edit your requirement:</h3>\
+				<fieldset>\
+					<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' value='"+wann+"'></div>\
+					<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
+						<option>"+muss+"</option>\
+						<option>muss</option>\
+						<option>sollte</option>\
+						<option>wird</option>\
+					</select></div>\
+					<div class='col-md-3'><input type='text' class='form-control' name='system' id='system' value='"+wer+"'></div>\
+					<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='"+wem+"'></div>\
+					<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
+						<option>"+bieten+"</option>\
+						<option>to be able to,</option>\
+						<option>give the opportunity to,</option>\
+					</select></div>\
+				</fieldset></br>\
+				<fieldset>\
+					<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' value='"+objekt+"'></div>\
+					<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb'  value='"+verb+"'></div>\
+					<div class='col-md-2'><input type='text' class='form-control' name='identity' id='identity'  value='"+p_id+"'></div>\
+					<div class='col-md-3'><input type='text' class='form-control' name='relations' id='relations'  value='"+p_rel+"'></div>\
+				</fieldset></br>\
+				<fieldset>\
+					<div class='col-md-2'>Priority:<select id='prio' class='form-control'>\
+													<option>"+priority+"</option>\
+													<option>0</option>\
+													<option>1</option>\
+													<option>2</option>\
+													<option>3</option>\
+												</select></div>\
+					<div class='col-md-3'>Status:<select id='status' class='form-control'>\
+						<option>"+p_status+"</option>\
+						<option>im Backlog</option>\
+						<option>in Bearbeitung</option>\
+						<option>in Testphase</option>\
+						<option>abgeschlossen</option>\
+					</select>\
+					</div>\
+				</fieldset>\
+				<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Send</button>");
+			}
 		}
 	});
 }
@@ -192,13 +279,8 @@ var patchnotes = "\
 	<h3><span style='font-style:bold'>Version 1.0</span></h3>\
 	<div><ul>\
 		<li>Allgemeine Änderungen:</li><ul>\
-			<li>Möglichkeit zur Abfrage der Nutzerinformationen von Teammitgliedern</li>\
-			<li>Inputfeld für Name wird beim Laden der Loginseite automatisch ausgewählt</li>\
 			<li>Versionsübersicht hinzugefügt</li>\
-		</ul></br>\
-		<li>Bugfixes:</li><ul>\
-			<li>Suche setzt Menüpunkt Home jetzt als aktiv</li>\
-			<li>Abkürzungspunkt vom Monat May entfernt</li>\
+			<li>Inputfeld für Name wird beim Laden der Loginseite automatisch ausgewählt</li>\
 		</ul>\
 	</ul></div>\
 	\
@@ -227,7 +309,7 @@ var patchnotes = "\
 			<li>Neue Positionen für Tooltips</li>\
 		</ul></br>\
 		<li>Bugfixes:</li><ul>\
-			<li>Uhrzeit ist jetzt auch bei 0-9 jeweils zweistellig</li>\
+			<li>Bugfix bezüglich Uhrzeitanzeige</li>\
 		</ul>\
 	</ul></div>\
 	\

@@ -98,7 +98,13 @@ var teams = "Noch kein Team vorhanden";
 								</tr>";	
 								
 								//überschrift anpassen
-								$("#headline_dashboard").text("Anforderungen von Team '"+curTeam+"'");
+								if(window.location.pathname.search("_en") == -1){
+									$("#headline_dashboard").text("Anforderungen von Team '"+curTeam+"'");
+								} else {
+									$("#headline_dashboard").text("Team's '"+curTeam+"' requirements");
+								}
+								
+								
 					//bei teams, die der user erstellt hat, in welchen er aber nicht mitglied ist
 					} else {
 								teams+="<tr>\
@@ -226,7 +232,11 @@ $.ajax({
 
 function refreshTeamData(opt){
 	//hier alle funktionen rein, die abhängig von den ausgelesenen teams sind
-	$("#headline_dashboard").text("Anforderungen");
+	if(window.location.pathname.search("_en") == -1){
+		$("#headline_dashboard").text("Anforderungen");
+	} else {
+		$("#headline_dashboard").text("Requirements");
+	}
 	refreshTeamDropdown();
 	getMyGroups();
 	if (opt){	

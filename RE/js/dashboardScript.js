@@ -13,6 +13,14 @@ $(document).ready(function(){
 	//content
 });
 
+function switchToEN(){
+	window.location="dashboard_en.php";
+}
+
+function switchToDE(){
+	window.location="dashboard_de.php";
+}
+
 function make100Reqs(){
 	var currentTime = Date.now();
 	for(var i=0; i<1000; i++){
@@ -112,6 +120,8 @@ var oldLength=getArrayLength();
 var user= getUserName();
 var changes = false;
 var messageToDisplay="";
+
+
 $.ajax({
 			url: "php/getUpdates.php",
 			type: "POST",
@@ -439,7 +449,9 @@ function setTable(requirementsArray){
 						}
 					
 					//Tabellenrahmen
-					body.html("<div id='field' class='panel panel-default'>\
+					
+					if(window.location.pathname.search("_en") == -1){
+						body.html("<div id='field' class='panel panel-default'>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
 									<th class='col-md-1' id='sortHead' onclick='sortById(displayedRequirements)' title='Klicken zum Sortieren nach ID'>ID</th>\
@@ -453,7 +465,24 @@ function setTable(requirementsArray){
 								<tbody>\
 									"+string+"\
 								</tbody></table></div>"
-					);
+						);
+					} else {
+						body.html("<div id='field' class='panel panel-default'>\
+								<table class='table'><thead style='background-color:#E6E6E6'>\
+								<tr>\
+									<th class='col-md-1' id='sortHead' onclick='sortById(displayedRequirements)' title='Click for ID sort'>ID</th>\
+									<th class='col-md-5' id='sortHead' onclick='sortByReq(displayedRequirements)' title='Click for alphabetical sort'>Requirements</th>\
+									<th class='col-md-1' id='sortHead' onclick='sortByPrio(displayedRequirements)' title='Click for priority sort'>Priority</th>\
+									<th class='col-md-1' id='sortHead' onclick='sortByStatus(displayedRequirements)' title='Click for status sort'>Status</th>\
+									<th class='col-md-1'>Dependencies</th>\
+									<th class='col-md-1' id='sortHead' onclick='sortByTime(displayedRequirements)' title='Click for date time sort'>Last change</th>\
+									<th class='col-md-2'>Options</th>\
+								</tr></thead>\
+								<tbody>\
+									"+string+"\
+								</tbody></table></div>"
+						);
+					}
 }
 
 function logOut(){
@@ -518,7 +547,11 @@ function refreshExport(arr){
 	var req_id;
 
 	// csv daten aufbereiten	
-	csvRows.push("ID"+"\t"+"Anforderung"+"\t"+"Priorität"+"\t"+"Status"+"\t"+"Abhängigkeiten");
+	if(window.location.pathname.search("_en") == -1){
+		csvRows.push("ID"+"\t"+"Anforderung"+"\t"+"Priorität"+"\t"+"Status"+"\t"+"Abhängigkeiten");
+	} else {
+		csvRows.push("ID"+"\t"+"Requirement"+"\t"+"Priority"+"\t"+"Status"+"\t"+"Dependencies");
+	}
 	for (var i = 0; i< arr.length; i++){
 		req = arr[i][0].replace(/&req#/g," ");
 		prio = arr[i][2];

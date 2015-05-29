@@ -44,10 +44,6 @@ height:70vh;
   margin-right: 2px;
 }
 
-#footerLink {
-	cursor:pointer;
-}
-
 .floater{
 	float: left;
 }
@@ -163,4 +159,13 @@ body .modal-dialog {
 
 #newsFeedPanel {
 	width:100%;
+}
+
+#languageSwitcher {
+	img {
+		width: 100%;
+		height: 3vh;
+	}
+	
+	float: right;
 }
