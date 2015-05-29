@@ -192,8 +192,13 @@ var patchnotes = "\
 	<h3><span style='font-style:bold'>Version 1.0</span></h3>\
 	<div><ul>\
 		<li>Allgemeine Änderungen:</li><ul>\
-			<li>Versionsübersicht hinzugefügt</li>\
+			<li>Möglichkeit zur Abfrage der Nutzerinformationen von Teammitgliedern</li>\
 			<li>Inputfeld für Name wird beim Laden der Loginseite automatisch ausgewählt</li>\
+			<li>Versionsübersicht hinzugefügt</li>\
+		</ul></br>\
+		<li>Bugfixes:</li><ul>\
+			<li>Suche setzt Menüpunkt Home jetzt als aktiv</li>\
+			<li>Abkürzungspunkt vom Monat May entfernt</li>\
 		</ul>\
 	</ul></div>\
 	\
@@ -222,7 +227,7 @@ var patchnotes = "\
 			<li>Neue Positionen für Tooltips</li>\
 		</ul></br>\
 		<li>Bugfixes:</li><ul>\
-			<li>Bugfix bezüglich Uhrzeitanzeige</li>\
+			<li>Uhrzeit ist jetzt auch bei 0-9 jeweils zweistellig</li>\
 		</ul>\
 	</ul></div>\
 	\
