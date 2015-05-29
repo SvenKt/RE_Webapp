@@ -280,7 +280,7 @@ $.ajax({
 					curUser = success[i][1];
 					curUserID = success[i][0];
 					users+="<tr>\
-								<th id='user"+curUserID+"'>"+curUser+"</th>\
+								<th data-toggle='modal' data-target='#modal_userData' onClick='showUserData("+curUserID+")'id='user"+curUserID+"'>"+curUser+"</th>\
 								<th></th>\
 								<th class='req-btn'>\
 									<button class='btn btn-default' onClick='deleteUserFromTeam("+curUserID+","+teamID+")' aria-label='Right Align'>\
@@ -310,4 +310,25 @@ $.ajax({
 function placeholder(){
 //für funktionen, die eine funktion als param benötigen
 //aber diese für den jeweiligen zweck undienlich ist.
+}
+
+function showUserData(userID){
+	$.ajax({
+		url: "php/getUserInfos.php",
+		type: "POST",
+		data: {"userID":userID},
+		dataType: "json",
+		success: function(userData){
+			var name=userData[0];
+			var mail=userData[1];
+			var body=$("#content_userData");
+			
+			body.html("<div class='row'>\
+						<label class='col-md-3'>Nutzername:</label><label class='col-md-8'>"+name+"</label><br/>\
+					    <label class='col-md-3'>E-Mail:</label><label class='col-md-8'>"+mail+"</label><br/>\
+					   </div>");
+			
+		}
+	});
+
 }
