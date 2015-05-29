@@ -330,7 +330,7 @@ function showUserData(userID){
 						<label class='col-md-3'>Nutzername:</label><label class='col-md-8'>"+name+"</label><br/>\
 						<label class='col-md-3'>E-Mail:</label>\
 						<label class='col-md-8'>\
-							<a href='mailto:"+mail+"'><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span></a> "+mail+"\
+							<a href='mailto:"+mail+"?Subject=Kontakt%20über%20Red:Wire'>"+mail+"</a>\
 						</label><br/>\
 					   </div>");
 			
@@ -338,3 +338,4 @@ function showUserData(userID){
 	});
 
 }
+//<a href='mailto:"+mail+"'><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span></a> "+mail+"\
