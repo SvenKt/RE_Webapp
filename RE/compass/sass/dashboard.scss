@@ -39,6 +39,10 @@ height:70vh;
 	overflow-x: hidden;
 }
 
+#footerLink {
+	cursor:pointer;		
+}
+
 *[id^='star'] {
   float: right;
   margin-right: 2px;
@@ -163,7 +167,7 @@ body .modal-dialog {
 
 #languageSwitcher {
 	img {
-		width: 100%;
+		/*width: 100%;*/
 		height: 3vh;
 	}
 	
