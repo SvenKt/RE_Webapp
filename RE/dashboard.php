@@ -60,6 +60,7 @@
 			<button class="btn btn-primary col-md-2" type="button" id="news" title="Klicken zum Aktualisieren" onClick="update()">
 				Aktualisierungen <span class="badge" id="newsNumber">0</span>
 			</button>
+
 			</br>
 			<h2 id="headline_dashboard">Anforderungen</h2>
 			<hr>

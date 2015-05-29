@@ -280,9 +280,12 @@ $.ajax({
 					curUser = success[i][1];
 					curUserID = success[i][0];
 					users+="<tr>\
-								<th data-toggle='modal' data-target='#modal_userData' onClick='showUserData("+curUserID+")'id='user"+curUserID+"'>"+curUser+"</th>\
+								<th id='user"+curUserID+"'>"+curUser+"</th>\
 								<th></th>\
 								<th class='req-btn'>\
+									<button class='btn btn-default' data-toggle='modal' data-target='#modal_userData' onClick='showUserData("+curUserID+")' aria-label='Right Align'>\
+										<span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span>\
+									</button>\
 									<button class='btn btn-default' onClick='deleteUserFromTeam("+curUserID+","+teamID+")' aria-label='Right Align'>\
 										<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>\
 									</button>\
