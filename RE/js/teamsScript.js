@@ -328,7 +328,10 @@ function showUserData(userID){
 			
 			body.html("<div class='row'>\
 						<label class='col-md-3'>Nutzername:</label><label class='col-md-8'>"+name+"</label><br/>\
-					    <label class='col-md-3'>E-Mail:</label><label class='col-md-8'>"+mail+"</label><br/>\
+						<label class='col-md-3'>E-Mail:</label>\
+						<label class='col-md-8'>\
+							<a href='mailto:"+mail+"'><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span></a> "+mail+"\
+						</label><br/>\
 					   </div>");
 			
 		}
