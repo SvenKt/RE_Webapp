@@ -22,7 +22,7 @@
 		<link rel="stylesheet" href="css/dashboard.css">
 		<title> Dashboard</title>
 	</head>
-	<body onload="if (document.referrer == '') self.location='index.php'; updateOn()">
+	<body contextmenu="mouseMenu"onload="if (document.referrer == '') self.location='index.php'; updateOn()">
 		<div id="head">
 			<img id='logo' src='img/logo.png' alt="logo">
 		</div><!--head-->
@@ -243,5 +243,15 @@
 					</div>
 				</div>
 			</div>
+			
+			<menu id="mouseMenu" type="context">
+				<menuitem label="Home" onClick="update();"></menuitem>
+				<menuitem label="Anforderung erstellen" onClick="createReqForm();"></menuitem>
+				<menuitem label="Team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions;"></menuitem>
+				<menuitem label="Profil" data-toggle="modal" data-target="#profil" ></menuitem>
+				<menuitem label="Logout" onClick="logOut()"></menuitem>
+			</menu>
 	</body>
+	</menu>
+
 </html>

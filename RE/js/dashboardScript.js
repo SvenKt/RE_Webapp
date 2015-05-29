@@ -537,6 +537,7 @@ function refreshExport(arr){
 	$("#download_reqs").attr("href",uri);
 	$("#download_reqs").attr("target",'_blank');
 	$("#download_reqs").attr("download", 'Anforderungen.csv' );
+	
 }
 	
 	//});
