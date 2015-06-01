@@ -515,7 +515,7 @@ function confirmRemoval(reqID){
 		buttons: {
 			"Anforderung löschen!": function() {
 				getUpdateCount(); //überprüfen ob etwas inzwischen geändert wurde
-				deleteReq(reqID,  function(){setArrayLength(getArrayLength()-1); getUpdateCount()});
+				deleteReq(reqID,placeholder);
 				$( this ).dialog( "close" );
 			},
 			"doch nicht": function() {
