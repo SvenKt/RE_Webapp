@@ -22,7 +22,7 @@
 		<link rel="stylesheet" href="css/dashboard.css">
 		<title> Dashboard</title>
 	</head>
-	<body contextmenu="mouseMenu"onload="if (document.referrer == '') self.location='index.php'; updateOn()">
+	<body contextmenu="mouseMenu" onload="if (document.referrer == '') self.location='index.php'; updateOn()">
 		<div id="head">
 			<img id='logo' src='img/logo.png' alt="logo">
 		</div><!--head-->
