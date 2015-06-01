@@ -117,6 +117,6 @@ $.ajax({
 }
 
 function logOut(){
-	location.replace("index.php");
 	localStorage.removeItem("user"+getParameter("session"));
+	location.replace("index.php");
 }
