@@ -122,6 +122,7 @@ function getUpdateCount() {
 			success: function(success){
 						//Nachschauen was genau passiert ist
 						length=success.length;
+						console.log(oldLength+"   "+length)
 						if (oldLength < length){
 							console.log("neue req dazu");
 							messageToDisplay="Neue Anforderung gefunden";
@@ -145,10 +146,10 @@ function getUpdateCount() {
 								}
 							}
 						}
+						window.setTimeout(function(){setArrayLength(length);}, 2300);
 				if(getNews() > 0){		
 -					$('#newsNumber').css({"background-color": "red", "color": "white"});		
  				}
-				setArrayLength(length);
 				lastReadFromDb = Date.now();
 				$("#newsNumber").text(getNews());
 				},
