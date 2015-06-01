@@ -21,9 +21,9 @@ function switchToDE(){
 	window.location="dashboard_de.php?session="+getParameter("session");
 }
 
-function make100Reqs(){
+function make10Reqs(){
 	var currentTime = Date.now();
-	for(var i=0; i<1000; i++){
+	for(var i=0; i<10; i++){
 	var theRequirement = "Das" + "&req#" + "muss" + "&req#" + "Requirement" + "&req#" + "Nummer" +"&req#" + "fähig sein" + "&req#" + "i" + "&req#" + i;
 			$.ajax({
 				url: "php/insertRequirement.php",
@@ -40,22 +40,6 @@ function make100Reqs(){
 
 var theIntervalId;
 var updateTimeInSec = 3;
-/*
-function initNews(){
-	var news= new Object();
-	news.amount=0;
-	localStorage.setItem("news", JSON.stringify(news));
-}
-function getNews(){
-	var news = JSON.parse(localStorage.getItem("news"));
-	return news.amount;
-}
-function setNews(val){
-	var news = JSON.parse(localStorage.getItem("news"));
-	news.amount=val;
-	localStorage.setItem("news", JSON.stringify(news));
-}
-*/
 var newsAmount;
 function initNews(){
 	newsAmount=0;
@@ -83,7 +67,7 @@ function updateOn() {
 		}, updateTimeInSec*1000);
 	}
 }
-//stop interval
+//stop interval (unused)
 function updateOff() {
 	console.log("update off");
 	//clear intervall and reset id variable
@@ -100,13 +84,14 @@ function update() {
 	$('#main-nav').children().first().addClass('active');
 }
 
-
+//Feed reset
 function resetFeed(){
 	$("#feed").html("");
 	$("#feed").hide();
 	starNum = 1;
 }
 
+//Nachricht zum Feed hinzufügen
 var starNum = 1;
 function addMessageToFeed(message){
 	var feed = $("#feed");
@@ -117,11 +102,7 @@ function addMessageToFeed(message){
 				<img id='star"+starNum+"' src='img/star.png' alt='star'>\
 			 </div>"+ feed.html();
 	feed.html(string);
-
 	$("#star"+starNum).fadeOut(updateTimeInSec*1000);
-/*	for( var i=1; i<=starNum; i++){
-		$("#star"+i).fadeOut(3000);
-	} */
 	starNum++;
 }
 
@@ -129,18 +110,17 @@ function addMessageToFeed(message){
 //get number of updates
 var length;
 function getUpdateCount() {
-var oldLength=getArrayLength();
-var user= getUserName();
-var changes = false;
-var messageToDisplay="";
-
-
-$.ajax({
+	var oldLength=getArrayLength();
+	var user= getUserName();
+	var changes = false;
+	var messageToDisplay="";
+	$.ajax({
 			url: "php/getUpdates.php",
 			type: "POST",
 			data: {"username": user},
 			dataType: "json",
 			success: function(success){
+						//Nachschauen was genau passiert ist
 						length=success.length;
 						if (oldLength < length){
 							console.log("neue req dazu");
@@ -170,7 +150,6 @@ $.ajax({
  				}
 				setArrayLength(length);
 				lastReadFromDb = Date.now();
-				//console.log(getNews());
 				$("#newsNumber").text(getNews());
 				},
 			error: function(){alert("error");}
@@ -180,12 +159,12 @@ $.ajax({
 
 //ändern der Nutzerdaten
 function changeData(){
-var password=$("#ch_pw").val();
-var password_repeat=$("#ch_pw2").val();
-var email=$("#ch_email").val();
-var username=getUserName;
+	var password=$("#ch_pw").val();
+	var password_repeat=$("#ch_pw2").val();
+	var email=$("#ch_email").val();
+	var username=getUserName;
 
-$.ajax({
+	$.ajax({
 			url: "php/changeData.php",
 			type: "POST",
 			data: {"username": username, "password": password, "password2": password_repeat, "email": email},
@@ -212,7 +191,7 @@ function checkRequirement(){
 
 //error Benachrichtigung bei Fehlerhafter Eingabe
 function fieldError(){
-$('#error').text("Bitte alle nicht-optionalen Felder ausfüllen").slideDown(500).delay(2000).slideUp(500);
+	$('#error').text("Bitte alle nicht-optionalen Felder ausfüllen").slideDown(500).delay(2000).slideUp(500);
 }
 
 //Eintragen der zusammengefügten Anforderung
@@ -245,7 +224,7 @@ function insertReq(origin){
 				success: function(success){
 					$('#error').text(success).slideDown(500).delay(2000).slideUp(500);
 					if (success.search("Fehler") == -1){
-						//getUpdateCount();
+						getUpdateCount();
 						switch (origin) {
 							case 0:	createReqForm();break;
 							case 1: getRequirements();break;
@@ -280,20 +259,21 @@ function deleteReq(id, doAfterThis){
 //Auslesen der Anforderungen
 var lastReadFromDb;
 function getRequirements(query){
-var user= getUserName();
-var search = query;
-$.ajax({
+	var user= getUserName();
+	var search = query;
+	$.ajax({
 			url: "php/getRequirements.php",
 			type: "POST",
 			data: {"username": user, "query": search},
 			dataType: "json",
 			success: function(success){
-				
+						//News reset, da ab hier alles aktuell
 						lastReadFromDb = Date.now();
-						//setNews(0);
+						resetFeed();
+						setNews(0);
 						$("#newsNumber").text(getNews());
 						$('#newsNumber').css({"background-color": "white", "color": "#337ab7"});
-						//resetFeed();
+						//Anforderungen darstellen
 						displayedRequirements = success;
 						reversedID = true;
 						sortById(displayedRequirements);
@@ -407,7 +387,6 @@ function sortByTime(arr){
 function timeConverter(UNIX_timestamp){
 	var a = new Date(UNIX_timestamp*1); // *1 to get a number
 	var months = ['Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
-	//var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
 	var year = a.getFullYear();
 	var month = months[a.getMonth()];
 	var date = a.getDate();
@@ -499,20 +478,20 @@ function setTable(requirementsArray){
 }
 
 
-
+//Anforderung bearbeiten
 function edit(id){
 	if (loadCookieFromDatabase(cookiesEqual)){
 		//muss erst gelöscht werden, damit abhängigkeiten und bedingungen erfüllt bleiben
 		if(checkRequirement()){
-			//getUpdateCount();
+			getUpdateCount(); //überprüfen ob inzwischen etwas geändert wurde
 			deleteReq(id, insertReq);
-			//setNews(getNews()-1);
 		}
 	} else {
 		alert ("fehler");
 	}
 }
 
+//"Home" aktiv setzen und Tabelle mit Query neu laden
 function getResult(){
 	$('#main-nav').find('.active').removeClass('active');
 	$('#main-nav li:first-child').addClass('active');
@@ -522,7 +501,6 @@ function getResult(){
 
 
 function cookiesEqual(){
-	//console.log("user "+getUserCookie() + " db " + getDatabaseCookie());
 	return (getUserCookie() == getDatabaseCookie());
 }
 
@@ -536,8 +514,8 @@ function confirmRemoval(reqID){
 		modal: true,
 		buttons: {
 			"Anforderung löschen!": function() {
-				//getUpdateCount();
-				deleteReq(reqID,placeholder);
+				getUpdateCount(); //überprüfen ob etwas inzwischen geändert wurde
+				deleteReq(reqID,  function(){setArrayLength(getArrayLength()-1); getUpdateCount()});
 				$( this ).dialog( "close" );
 			},
 			"doch nicht": function() {

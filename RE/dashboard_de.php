@@ -25,6 +25,7 @@
 	<body contextmenu="mouseMenu" onload="if (document.referrer == '') self.location='index.php'; updateOn()">
 		<div id="head">
 			<img id='logo' src='img/logo.png' alt="logo">
+			<button style="display:none" onClick=make10Reqs()>10er</button><!-- Wird nicht dargestellt aber hilfreich zu Testzwecken-->
 		</div><!--head-->
 	<div id="leftSide"  class="col-md-2">
 		<!-- Left Navigation Bar -->
