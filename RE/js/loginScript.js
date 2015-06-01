@@ -28,7 +28,7 @@ $.ajax({
 				if(exists == 'true'){
 				cookie = Math.round(Math.random()*999999);
 				
-				createUser(user,cookie);
+				console.log(createUser(user,cookie));
 				StoreCookieIntoDatabase(cookie, user, redirectToDashboard);		
 				
 				} else {

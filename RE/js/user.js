@@ -1,3 +1,5 @@
+var sessionID;
+
 function initArrayLength(){
 var arr = new Object();
 var arrayOfTimeStamps;
@@ -9,12 +11,26 @@ $.ajax({
 			dataType: "json",
 			success: function(success){
 						arr.length=success.length;
-						console.log(arr.length);
+						//console.log(arr.length);
 						localStorage.setItem("array", JSON.stringify(arr));
 				},
 			error: function(){alert("error");}
 			});
 }
+
+
+function getParameter(param){
+    var url = window.location.search.substring(1);
+    var variables = url.split('&');
+    for (var i = 0; i < variables.length; i++) 
+    {
+        var varName = variables[i].split('=');
+        if (varName[0] == param) 
+        {
+            return varName[1];
+        }
+    }
+}   
 
 function setArrayLength(val){
 var arr = JSON.parse(localStorage.getItem("array"));
@@ -30,32 +46,38 @@ return arr.length;
 
 function createUser(name, cookie){
 var user = new Object();
+sessionID = Date.now();
 user.name= name;
 user.cookie= cookie;
 //objekt user wird in den lokalen datenstream übertragen, um überall verfügbar zu sein.
-localStorage.setItem("user", JSON.stringify(user));
+localStorage.setItem("user"+sessionID, JSON.stringify(user));
+return sessionID;
 }
 
 function getUserName(){
-var user = JSON.parse(localStorage.getItem("user"));
+if (window.location.pathname.search("index")){
+	var user = JSON.parse(localStorage.getItem("user"+sessionID));
+} else {
+	var user = JSON.parse(localStorage.getItem("user"+getParameter("session")));
+}
 return user.name; 
 }
 
 
 function getUserCookie(){
-var user = JSON.parse(localStorage.getItem("user"));
+var user = JSON.parse(localStorage.getItem("user"+getParameter("session")));
 return user.cookie; 
 }
 
 function setDatabaseCookie(ref_cookie){
-var user = JSON.parse(localStorage.getItem("user"));
+var user = JSON.parse(localStorage.getItem("user"+getParameter("session")));
 user.referenceCookie = ref_cookie;
-localStorage.setItem("user", JSON.stringify(user));
+localStorage.setItem("user"+getParameter("session"), JSON.stringify(user));
 }
 
 
 function getDatabaseCookie(){
-var user = JSON.parse(localStorage.getItem("user"));
+var user = JSON.parse(localStorage.getItem("user"+getParameter("session")));
 return user.referenceCookie; 
 }
 
@@ -73,9 +95,9 @@ $.ajax({
 
 function redirectToDashboard(){
 	if (getUserName() == 'admin'){
-		window.location="adminpage.html";
+		window.location="adminpage.html?session="+sessionID;
 	} else {
-		window.location="dashboard_de.php";
+		window.location="dashboard_de.php?session="+sessionID;
 	}
 }
 
@@ -85,6 +107,7 @@ $.ajax({
 			type: "POST",
 			data: {"cookie": number, "username" : user },
 			dataType: "json",
-			success: function(success){ doAfterFinished();}
+			success: function(success){ doAfterFinished();
+			}
 			});
 }

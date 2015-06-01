@@ -14,11 +14,11 @@ $(document).ready(function(){
 });
 
 function switchToEN(){
-	window.location="dashboard_en.php";
+	window.location="dashboard_en.php?session="+getParameter("session");
 }
 
 function switchToDE(){
-	window.location="dashboard_de.php";
+	window.location="dashboard_de.php?session="+getParameter("session");
 }
 
 function make100Reqs(){
@@ -40,7 +40,7 @@ function make100Reqs(){
 
 var theIntervalId;
 var updateTimeInSec = 3;
-
+/*
 function initNews(){
 	var news= new Object();
 	news.amount=0;
@@ -54,6 +54,19 @@ function setNews(val){
 	var news = JSON.parse(localStorage.getItem("news"));
 	news.amount=val;
 	localStorage.setItem("news", JSON.stringify(news));
+}
+*/
+var newsAmount;
+function initNews(){
+	newsAmount=0;
+}
+
+function getNews(){
+	return newsAmount;
+}
+
+function setNews(val){
+	newsAmount=val;
 }
 
 //activate interval
@@ -232,7 +245,7 @@ function insertReq(origin){
 				success: function(success){
 					$('#error').text(success).slideDown(500).delay(2000).slideUp(500);
 					if (success.search("Fehler") == -1){
-						getUpdateCount();
+						//getUpdateCount();
 						switch (origin) {
 							case 0:	createReqForm();break;
 							case 1: getRequirements();break;
@@ -277,10 +290,10 @@ $.ajax({
 			success: function(success){
 				
 						lastReadFromDb = Date.now();
-						setNews(0);
+						//setNews(0);
 						$("#newsNumber").text(getNews());
 						$('#newsNumber').css({"background-color": "white", "color": "#337ab7"});
-						resetFeed();
+						//resetFeed();
 						displayedRequirements = success;
 						reversedID = true;
 						sortById(displayedRequirements);
@@ -493,9 +506,9 @@ function edit(id){
 	if (loadCookieFromDatabase(cookiesEqual)){
 		//muss erst gelöscht werden, damit abhängigkeiten und bedingungen erfüllt bleiben
 		if(checkRequirement()){
-			getUpdateCount();
+			//getUpdateCount();
 			deleteReq(id, insertReq);
-			setNews(getNews()-1);
+			//setNews(getNews()-1);
 		}
 	} else {
 		alert ("fehler");
@@ -525,7 +538,7 @@ function confirmRemoval(reqID){
 		modal: true,
 		buttons: {
 			"Anforderung löschen!": function() {
-				getUpdateCount();
+				//getUpdateCount();
 				deleteReq(reqID,placeholder);
 				$( this ).dialog( "close" );
 			},

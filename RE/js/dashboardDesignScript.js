@@ -10,6 +10,7 @@ $(document).ready(function(){
 	
 	if($(document).width() < 800){
 		//no tooltips enabled
+		$("#newsFeedPanel").hide();
 	} else {
 		$(this).tooltip();
 		$("#left_nav").tooltip({
