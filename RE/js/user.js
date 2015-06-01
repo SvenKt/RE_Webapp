@@ -55,11 +55,15 @@ return sessionID;
 }
 
 function getUserName(){
-if (window.location.pathname.search("index")){
-	var user = JSON.parse(localStorage.getItem("user"+sessionID));
+var user;
+if (window.location.pathname.search("index") != -1){
+	 user = JSON.parse(localStorage.getItem("user"+sessionID));
 } else {
-	var user = JSON.parse(localStorage.getItem("user"+getParameter("session")));
+	 user = JSON.parse(localStorage.getItem("user"+getParameter("session")));
 }
+
+console.log(JSON.parse(localStorage.getItem("user"+getParameter("session"))));
+
 return user.name; 
 }
 
@@ -110,4 +114,9 @@ $.ajax({
 			success: function(success){ doAfterFinished();
 			}
 			});
+}
+
+function logOut(){
+	location.replace("index.php");
+	localStorage.removeItem("user"+getParameter("session"));
 }

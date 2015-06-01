@@ -498,9 +498,7 @@ function setTable(requirementsArray){
 					}
 }
 
-function logOut(){
-	location.replace("index.php");
-}
+
 
 function edit(id){
 	if (loadCookieFromDatabase(cookiesEqual)){
