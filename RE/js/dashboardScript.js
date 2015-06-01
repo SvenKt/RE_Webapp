@@ -108,8 +108,9 @@ function addMessageToFeed(message){
 
 
 //get number of updates
-var length;
+var length=getArrayLength();
 function getUpdateCount() {
+	setArrayLength(length);
 	var oldLength=getArrayLength();
 	var user= getUserName();
 	var changes = false;
@@ -146,7 +147,8 @@ function getUpdateCount() {
 								}
 							}
 						}
-						window.setTimeout(function(){setArrayLength(length);}, 2300);
+						
+						//window.setTimeout(function(){setArrayLength(length);}, 2300);
 				if(getNews() > 0){		
 -					$('#newsNumber').css({"background-color": "red", "color": "white"});		
  				}
