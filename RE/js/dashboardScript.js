@@ -6,7 +6,6 @@ $(document).ready(function(){
 	$("#error").hide();
 	$("#dialog").hide();
 	refreshTeamData(true);
-	//$("#dialog_team_modal").hide(); //nicht genutzt?
 	initArrayLength();
 	initNews();
 	resetFeed();
@@ -39,7 +38,7 @@ function make10Reqs(){
 }
 
 var theIntervalId;
-var updateTimeInSec = 3;
+var updateTimeInSec = 2;
 var newsAmount;
 function initNews(){
 	newsAmount=0;
@@ -76,9 +75,9 @@ function updateOff() {
 }
 //what happens when the button is clicked
 function update() {
-	getRequirements();
-	setNews(0);
 	resetFeed();
+	setNews(0);
+	getRequirements();
 	$("#newsNumber").text(getNews());
 	$('#main-nav').find('.active').removeClass('active');
 	$('#main-nav').children().first().addClass('active');
@@ -160,8 +159,6 @@ function getUpdateCount() {
 								}
 							}
 						}
-						
-						//window.setTimeout(function(){setArrayLength(length);}, 2300);
 				if(getNews() > 0){		
 -					$('#newsNumber').css({"background-color": "red", "color": "white"});		
  				}
@@ -288,8 +285,6 @@ function getRequirements(query){
 			success: function(success){
 						//News reset, da ab hier alles aktuell
 						lastReadFromDb = Date.now();
-						resetFeed();
-						//setNews(0);
 						if(getNews()==0){
 							$("#newsNumber").text(getNews());
 						}
@@ -506,7 +501,6 @@ function edit(id){
 		if(checkRequirement()){
 			getUpdateCount(); //überprüfen ob inzwischen etwas geändert wurde
 			deleteReq(id, insertReq);
-			setFeedMessage("Sie haben eine Anforderung bearbeitet");
 		}
 	} else {
 		alert ("fehler");
