@@ -504,7 +504,7 @@ function edit(id){
 		if(checkRequirement()){
 			getUpdateCount(); //überprüfen ob inzwischen etwas geändert wurde
 			deleteReq(id, insertReq);
-			resetFeed()
+			resetFeed();
 			setNews(0);
 		}
 	} else {
