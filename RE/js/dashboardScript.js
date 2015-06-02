@@ -467,12 +467,12 @@ function setTable(requirementsArray){
 						body.html("<div id='field' class='panel panel-default'>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
-									<th class='col-md-1' id='sortHead' onclick='sortById(displayedRequirements)' title='Klicken zum Sortieren nach ID'>ID</th>\
-									<th class='col-md-5' id='sortHead' onclick='sortByReq(displayedRequirements)' title='Klicken um alphabetisch zu sortieren'>Anforderung</th>\
-									<th class='col-md-1' id='sortHead' onclick='sortByPrio(displayedRequirements)' title='Klicken zum Sortieren nach Priorität'>Priorität</th>\
-									<th class='col-md-1' id='sortHead' onclick='sortByStatus(displayedRequirements)' title='Klicken zum Sortieren nach Status'>Status</th>\
+									<th class='sortHead col-md-1' id='sortHead1' onclick='sortById(displayedRequirements)' title='Klicken zum Sortieren nach ID'>ID</th>\
+									<th class='sortHead col-md-5' id='sortHead2' onclick='sortByReq(displayedRequirements)' title='Klicken um alphabetisch zu sortieren'>Anforderung</th>\
+									<th class='sortHead col-md-1' id='sortHead3' onclick='sortByPrio(displayedRequirements)' title='Klicken zum Sortieren nach Priorität'>Priorität</th>\
+									<th class='sortHead col-md-1' id='sortHead4' onclick='sortByStatus(displayedRequirements)' title='Klicken zum Sortieren nach Status'>Status</th>\
 									<th class='col-md-1'>Abhängigkeiten</th>\
-									<th class='col-md-1' id='sortHead' onclick='sortByTime(displayedRequirements)' title='Klicken um nach Änderungsdatum zu sortieren'>Geändert am</th>\
+									<th class='sortHead col-md-1' id='sortHead5' onclick='sortByTime(displayedRequirements)' title='Klicken um nach Änderungsdatum zu sortieren'>Geändert am</th>\
 									<th class='col-md-2'>Optionen</th>\
 								</tr></thead>\
 								<tbody>\
@@ -483,13 +483,13 @@ function setTable(requirementsArray){
 						body.html("<div id='field' class='panel panel-default'>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
-									<th class='col-md-1' id='sortHead' onclick='sortById(displayedRequirements)' title='Click for ID sort'>ID</th>\
-									<th class='col-md-5' id='sortHead' onclick='sortByReq(displayedRequirements)' title='Click for alphabetical sort'>Requirements</th>\
-									<th class='col-md-1' id='sortHead' onclick='sortByPrio(displayedRequirements)' title='Click for priority sort'>Priority</th>\
-									<th class='col-md-1' id='sortHead' onclick='sortByStatus(displayedRequirements)' title='Click for status sort'>Status</th>\
-									<th class='col-md-1'>Dependencies</th>\
-									<th class='col-md-1' id='sortHead' onclick='sortByTime(displayedRequirements)' title='Click for date time sort'>Last change</th>\
-									<th class='col-md-2'>Options</th>\
+									<th class='sortHead col-md-1' id='sortHead1' onclick='sortById(displayedRequirements)' title='Click for ID sort'>ID</th>\
+									<th class='sortHead col-md-5' id='sortHead2' onclick='sortByReq(displayedRequirements)' title='Click for alphabetical sort'>Requirements</th>\
+									<th class='sortHead col-md-1' id='sortHead3' onclick='sortByPrio(displayedRequirements)' title='Click for priority sort'>Priority</th>\
+									<th class='sortHead col-md-1' id='sortHead4' onclick='sortByStatus(displayedRequirements)' title='Click for status sort'>Status</th>\
+									<th class='sortHead col-md-1'>Dependencies</th>\
+									<th class='sortHead col-md-1' id='sortHead5' onclick='sortByTime(displayedRequirements)' title='Click for date time sort'>Last change</th>\
+									<th class='sortHead col-md-2'>Options</th>\
 								</tr></thead>\
 								<tbody>\
 									"+string+"\

@@ -66,11 +66,12 @@ function helpDisabled(){
 var initTT = false;
 
 function initTooltips(){
+		
 		if($(document).width() < 800){
 				//no tooltips enabled
 				$("#newsFeedPanel").hide();
 		} else {
-				$(this).tooltip();
+				$(document).tooltip();
 				$("#left_nav").tooltip({
 					position: { my: "left-10vh center", at: "right center" }
 				});
@@ -79,33 +80,39 @@ function initTooltips(){
 					track: true,
 				});
 		}
+		
+		
 		initTT=true;
 } 
 
 function checkHelpEnabled(){
 	if(helpDisabled()){
-		if($(document).width() < 800){
-			//no tooltips enabled
-			$("#newsFeedPanel").hide();
-		} else {
-			$(this).tooltip("disable");
-			$("#left_nav").tooltip("disable");
-			$("#content").tooltip("disable");
-		}
+		$(document).tooltip("disable");
+
+		
+		
 	} else {
-			if($(document).width() < 800){
-				//no tooltips enabled
-				$("#newsFeedPanel").hide();
-			} else {
-				$(this).tooltip("enable");
-				$("#left_nav").tooltip({
-					position: { my: "left-10vh center", at: "right center" }
-				});
-				$("#content").tooltip({
-					position: { my: "center top-80", collision: "flipfit" },
-					track: true,
-				});
-			}
+
+		$('#l1').attr('title','Gehen Sie zurück auf den Startbildschirm');
+		$('#l2').attr('title','Erstellen Sie eine neue Anforderung');
+		$('#l3').attr('title','Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen');
+		$('#l4').attr('title','Ändern Sie Ihre persönlichen Informationen');
+		$('#l5').attr('title','Laden Sie Ihre Anforderungen als .csv Datei herunter');
+		$('#l6').attr('title','Melden Sie sich vom System ab');
+	
+		$('#sortHead1').attr('title','Klicken zum Sortieren nach ID');
+		$('#sortHead2').attr('title','Klicken um alphabetisch zu sortieren');
+		$('#sortHead3').attr('title','Klicken zum Sortieren nach Priorität');
+		$('#sortHead4').attr('title','Klicken zum Sortieren nach Status');
+		$('#sortHead5').attr('title','Klicken um nach Änderungsdatum zu sortieren');
+		
+		$('#search_field').attr('title','Durchsuchen Sie Ihre Anforderungen');
+		
+		$('#news').attr('title','Klicken zum Aktualisieren');
+		
+		$(document).tooltip("enable");
+
+	
 	}
 }
 

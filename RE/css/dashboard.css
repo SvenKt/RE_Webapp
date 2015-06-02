@@ -187,7 +187,7 @@ body .modal-dialog {
 }
 
 /* line 164, ../compass/sass/dashboard.scss */
-#sortHead:hover {
+.sortHead:hover {
   cursor: pointer;
   background-color: #D6D6D6;
 }
