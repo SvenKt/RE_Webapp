@@ -12,6 +12,7 @@ $(document).ready(function(){
 	//content
 });
 
+
 function switchToEN(){
 	window.location="dashboard_en.php?session="+getParameter("session");
 }
@@ -120,6 +121,7 @@ function getUpdateCount() {
 	var user= getUserName();
 	var changes = false;
 	var messageToDisplay="";
+	checkHelpEnabled();
 	$.ajax({
 			url: "php/getUpdates.php",
 			type: "POST",

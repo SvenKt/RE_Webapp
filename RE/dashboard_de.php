@@ -37,12 +37,12 @@
 				<input type="text" id="search_field" class="form-control" placeholder="Suche..."  title="Durchsuchen Sie Ihre Anforderungen">
 			</div><!--input-group-->
 			<ul id="main-nav" class="nav nav-pills nav-stacked">
-				<li role="presentation" class="navlist active"><a onClick="update()" title="Gehen Sie zurück auf den Startbildschirm" >Home</a></li>
-				<li class="navlist "role="presentation"><a onClick="createReqForm()" title="Erstellen Sie eine neue Anforderung" >Anforderung erstellen</a></li>
-				<li class="navlist" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()" title="Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen" >Team</a></li>
-				<li class="navlist" role="presentation"><a data-toggle="modal" title="Ändern Sie Ihre persönlichen Informationen" data-target="#profil">Profil</a></li>
-				<li class="navlist" role="presentation"><a id="download_reqs" title="Laden Sie Ihre Anforderungen als .csv Datei herunter" >Download</a></li>
-				<li class="navlist" role="presentation"><a onClick="logOut(), updateOff()" title="Melden Sie sich vom System ab">Logout</a></li>
+				<li role="presentation" class="navlist active clickable"><a onClick="update()" title="Gehen Sie zurück auf den Startbildschirm" >Home</a></li>
+				<li class="navlist clickable"role="presentation"><a onClick="createReqForm()" title="Erstellen Sie eine neue Anforderung" >Anforderung erstellen</a></li>
+				<li class="navlist clickable" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()" title="Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen" >Team</a></li>
+				<li class="navlist clickable" role="presentation"><a data-toggle="modal" title="Ändern Sie Ihre persönlichen Informationen" data-target="#profil">Profil</a></li>
+				<li class="navlist clickable" role="presentation"><a id="download_reqs" title="Laden Sie Ihre Anforderungen als .csv Datei herunter" >Download</a></li>
+				<li class="navlist clickable" role="presentation"><a onClick="logOut(), updateOff()" title="Melden Sie sich vom System ab">Logout</a></li>
 			</ul>
 		<!--left_nav-->
 		<!-- Update Message -->
@@ -58,11 +58,14 @@
 	</div>
 		<!--content-->
 		<div id="content-wrapper" class=" content-wrapper panel col-md-10">
-			<button class="btn btn-primary col-md-2" type="button" id="news" title="Klicken zum Aktualisieren" onClick="update()">
+			<button class="clickable btn btn-primary col-md-2" type="button" id="news" title="Klicken zum Aktualisieren" onClick="update()">
 				Aktualisierungen <span class="badge" id="newsNumber">0</span>
 			</button>
-			<div id="languageSwitcher">
+			<div class="clickable" id="languageSwitcher">
 				<img title="Switch to english language" onClick="switchToEN()" src="img/uk.png"></img>
+			</div>
+			<div class="checkbox" id="disChecker">
+				<input  id="helpCheckbox" type="checkbox" value="Hilfe ausschalten">Hilfe ausschalten</input>
 			</div>
 
 			</br>

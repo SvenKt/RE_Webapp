@@ -21,6 +21,7 @@ hr {
 #head {
   height: 8vh;
   background-image: url(../img/header.jpg);
+  margin-bottom: 1%;
 }
 
 /* Optional als Farbverlauf */
@@ -28,41 +29,41 @@ hr {
 height:15vh; 
 background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
 }*/
-/* line 28, ../compass/sass/dashboard.scss */
+/* line 29, ../compass/sass/dashboard.scss */
 #logo {
   height: 7vh;
 }
 
-/* line 32, ../compass/sass/dashboard.scss */
+/* line 33, ../compass/sass/dashboard.scss */
 #leftSide {
   height: 70vh;
 }
 
-/* line 36, ../compass/sass/dashboard.scss */
+/* line 37, ../compass/sass/dashboard.scss */
 #feed {
   height: 30vh;
   overflow: hidden;
   overflow-x: hidden;
 }
 
-/* line 42, ../compass/sass/dashboard.scss */
+/* line 43, ../compass/sass/dashboard.scss */
 #footerLink {
   cursor: pointer;
 }
 
-/* line 46, ../compass/sass/dashboard.scss */
+/* line 47, ../compass/sass/dashboard.scss */
 *[id^='star'] {
   float: right;
   margin-right: 2px;
 }
 
-/* line 51, ../compass/sass/dashboard.scss */
+/* line 52, ../compass/sass/dashboard.scss */
 .floater {
   float: left;
 }
 
 @media (max-width: 800) {
-  /* line 55, ../compass/sass/dashboard.scss */
+  /* line 57, ../compass/sass/dashboard.scss */
   #left_nav {
     /*height: 40vh;*/
     margin: 2%;
@@ -70,86 +71,86 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   }
 }
 @media (min-width: 800) {
-  /* line 55, ../compass/sass/dashboard.scss */
+  /* line 57, ../compass/sass/dashboard.scss */
   #left_nav {
     height: 40vh;
     padding: 2%;
   }
 }
-/* line 67, ../compass/sass/dashboard.scss */
+/* line 69, ../compass/sass/dashboard.scss */
 #left_nav li {
   float: right;
   width: 100%;
   z-index: 4;
 }
 
-/* line 74, ../compass/sass/dashboard.scss */
+/* line 76, ../compass/sass/dashboard.scss */
 #goButton {
   background-color: lightgrey;
 }
 
-/* line 77, ../compass/sass/dashboard.scss */
+/* line 79, ../compass/sass/dashboard.scss */
 #goButton:hover {
   background-color: #C3C3C3;
 }
 
-/* line 82, ../compass/sass/dashboard.scss */
+/* line 84, ../compass/sass/dashboard.scss */
 #copyright {
   position: absolute;
   bottom: 0;
 }
 
-/* line 87, ../compass/sass/dashboard.scss */
+/* line 89, ../compass/sass/dashboard.scss */
 #infotxt {
   margin-left: 1%;
 }
 
-/* line 91, ../compass/sass/dashboard.scss */
+/* line 93, ../compass/sass/dashboard.scss */
 .marginClass {
   margin: 1.5%;
 }
 
-/* line 95, ../compass/sass/dashboard.scss */
+/* line 97, ../compass/sass/dashboard.scss */
 .send {
   color: green;
 }
 
-/* line 99, ../compass/sass/dashboard.scss */
+/* line 101, ../compass/sass/dashboard.scss */
 .navlist {
   margin-top: 2%;
 }
 
-/* line 103, ../compass/sass/dashboard.scss */
+/* line 106, ../compass/sass/dashboard.scss */
 .req-label {
   width: 89%;
 }
 
-/* line 107, ../compass/sass/dashboard.scss */
+/* line 110, ../compass/sass/dashboard.scss */
 .req-btn {
   width: 5%;
 }
 
-/* line 111, ../compass/sass/dashboard.scss */
+/* line 114, ../compass/sass/dashboard.scss */
 .content-wrapper {
   background-color: #EEEEEE;
   padding: 1%;
 }
 
 @media (max-width: 800px) {
-  /* line 119, ../compass/sass/dashboard.scss */
+  /* line 122, ../compass/sass/dashboard.scss */
   .c_button {
     width: 100%;
   }
 }
 @media (min-width: 800px) {
-  /* line 119, ../compass/sass/dashboard.scss */
+  /* line 122, ../compass/sass/dashboard.scss */
   .c_button {
     float: right;
   }
 }
 
 @media (max-width: 800px) {
-  /* line 129, ../compass/sass/dashboard.scss */
+  /* line 132, ../compass/sass/dashboard.scss */
   #field {
     width: 100%;
     height: 53vh;
@@ -157,7 +158,7 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   }
 }
 @media (min-width: 800px) {
-  /* line 129, ../compass/sass/dashboard.scss */
+  /* line 132, ../compass/sass/dashboard.scss */
   #field {
     width: 100%;
     height: 60vh;
@@ -166,7 +167,7 @@ background-image: linear-gradient(90deg, blue 0%, #ED8A47 40%, white 100%);
   }
 }
 
-/* line 145, ../compass/sass/dashboard.scss */
+/* line 148, ../compass/sass/dashboard.scss */
 body .modal-dialog {
   /* new custom width */
   width: 80%;
@@ -174,35 +175,54 @@ body .modal-dialog {
   margin: auto;
 }
 
-/* line 152, ../compass/sass/dashboard.scss */
+/* line 155, ../compass/sass/dashboard.scss */
 .ui-accordion-content {
   height: 45vh;
   overflow: hidden;
 }
 
-/* line 157, ../compass/sass/dashboard.scss */
+/* line 160, ../compass/sass/dashboard.scss */
 #main-nav {
   cursor: default;
 }
 
-/* line 161, ../compass/sass/dashboard.scss */
+/* line 164, ../compass/sass/dashboard.scss */
 #sortHead:hover {
   cursor: pointer;
   background-color: #D6D6D6;
 }
 
-/* line 166, ../compass/sass/dashboard.scss */
+/* line 169, ../compass/sass/dashboard.scss */
 #newsFeedPanel {
   width: 100%;
   z-index: 5;
 }
 
-/* line 171, ../compass/sass/dashboard.scss */
+/* line 174, ../compass/sass/dashboard.scss */
 #languageSwitcher {
   float: right;
 }
-/* line 172, ../compass/sass/dashboard.scss */
+/* line 175, ../compass/sass/dashboard.scss */
 #languageSwitcher img {
   /*width: 100%;*/
   height: 3vh;
+}
+
+/* line 183, ../compass/sass/dashboard.scss */
+#disChecker {
+  float: right;
+  margin-right: 1%;
+}
+
+/* line 188, ../compass/sass/dashboard.scss */
+.clickable :hover {
+  -webkit-transform: scale(1.1);
+  /* Safari and Chrome */
+  -moz-transform: scale(1.1);
+  /* Firefox */
+  -ms-transform: scale(1.1);
+  /* IE 9 */
+  -o-transform: scale(1.1);
+  /* Opera */
+  transform: scale(1.1);
 }

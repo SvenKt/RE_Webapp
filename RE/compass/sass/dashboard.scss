@@ -18,6 +18,7 @@ height:1px;
 #head{
 height:8vh; 
 background-image: url(../img/header.jpg);
+margin-bottom: 1%;
 }
 /* Optional als Farbverlauf */
 /*#head{
@@ -51,6 +52,7 @@ height:70vh;
 .floater{
 	float: left;
 }
+
 
 #left_nav{
 
@@ -97,7 +99,8 @@ color: green;
 }
 
 .navlist {
-margin-top:2%;
+ margin-top:2%;
+ 
 }
 
 .req-label {
@@ -175,4 +178,22 @@ body .modal-dialog {
 	}
 	
 	float: right;
+}
+
+#disChecker {
+	float: right;
+	margin-right: 1%;
+}
+.clickable {
+   :hover {
+    -webkit-transform: scale(1.1);
+    /* Safari and Chrome */
+    -moz-transform: scale(1.1);
+    /* Firefox */
+    -ms-transform: scale(1.1);
+    /* IE 9 */
+    -o-transform: scale(1.1);
+    /* Opera */
+    transform: scale(1.1);
+  }
 }

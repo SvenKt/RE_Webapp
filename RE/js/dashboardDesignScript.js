@@ -8,19 +8,7 @@ $(document).ready(function(){
 	$("#patchnotes").html(patchnotes);
 	$("#patchnotes").accordion({collapsible: true});
 	
-	if($(document).width() < 800){
-		//no tooltips enabled
-		$("#newsFeedPanel").hide();
-	} else {
-		$(this).tooltip();
-		$("#left_nav").tooltip({
-			position: { my: "left-80vh center", at: "right center" }
-		});
-		$("#content").tooltip({
-			position: { my: "center top-75", collision: "flipfit" },
-			track: true,
-		});
-	}
+
 	
 	//enter bestätigung beim erstellen von teams
 	$("#team_name").keypress(function(event){
@@ -68,6 +56,32 @@ $(document).ready(function(){
 });
 
 var oldActive;
+
+//returns false if help checkbox ticked
+function helpEnabled(){
+	var val=$("#helpCheckbox").prop('checked');
+	if(val){ console.log("ja");} else {console.log("nein");}
+	return val;
+}
+
+
+function checkHelpEnabled(){
+	if(!helpEnabled()){
+		if($(document).width() < 800){
+			//no tooltips enabled
+			$("#newsFeedPanel").hide();
+		} else {
+			$(this).tooltip();
+			$("#left_nav").tooltip({
+				position: { my: "left-10vh center", at: "right center" }
+			});
+			$("#content").tooltip({
+				position: { my: "center top-80", collision: "flipfit" },
+				track: true,
+			});
+		}
+	}
+}
 
 function sizeAccordion(){
 $("#accordion").accordion({ heightStyle: "content" });
