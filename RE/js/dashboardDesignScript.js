@@ -8,7 +8,7 @@ $(document).ready(function(){
 	$("#patchnotes").html(patchnotes);
 	$("#patchnotes").accordion({collapsible: true});
 	
-
+	initTooltips();
 	
 	//enter bestätigung beim erstellen von teams
 	$("#team_name").keypress(function(event){
@@ -58,28 +58,54 @@ $(document).ready(function(){
 var oldActive;
 
 //returns false if help checkbox ticked
-function helpEnabled(){
+function helpDisabled(){
 	var val=$("#helpCheckbox").prop('checked');
 	if(val){ console.log("ja");} else {console.log("nein");}
 	return val;
 }
+var initTT = false;
 
+function initTooltips(){
+		if($(document).width() < 800){
+				//no tooltips enabled
+				$("#newsFeedPanel").hide();
+		} else {
+				$(this).tooltip();
+				$("#left_nav").tooltip({
+					position: { my: "left-10vh center", at: "right center" }
+				});
+				$("#content").tooltip({
+					position: { my: "center top-80", collision: "flipfit" },
+					track: true,
+				});
+		}
+		initTT=true;
+} 
 
 function checkHelpEnabled(){
-	if(!helpEnabled()){
+	if(helpDisabled()){
 		if($(document).width() < 800){
 			//no tooltips enabled
 			$("#newsFeedPanel").hide();
 		} else {
-			$(this).tooltip();
-			$("#left_nav").tooltip({
-				position: { my: "left-10vh center", at: "right center" }
-			});
-			$("#content").tooltip({
-				position: { my: "center top-80", collision: "flipfit" },
-				track: true,
-			});
+			$(this).tooltip("disable");
+			$("#left_nav").tooltip("disable");
+			$("#content").tooltip("disable");
 		}
+	} else {
+			if($(document).width() < 800){
+				//no tooltips enabled
+				$("#newsFeedPanel").hide();
+			} else {
+				$(this).tooltip("enable");
+				$("#left_nav").tooltip({
+					position: { my: "left-10vh center", at: "right center" }
+				});
+				$("#content").tooltip({
+					position: { my: "center top-80", collision: "flipfit" },
+					track: true,
+				});
+			}
 	}
 }
 
