@@ -142,10 +142,13 @@ function getUpdateCount() {
 							console.log("req gelöscht");
 							if(getFeedMessage() == ""){
 								setFeedMessage("Jemand hat eine Anforderung gelöscht");
-							} 
-							setNews(getNews()+1);
-							addMessageToFeed(getFeedMessage());
-							setFeedMessage("");
+								addMessageToFeed(getFeedMessage());
+								setFeedMessage("");
+								setNews(getNews()+1);
+							} else {
+								resetFeed();
+								setNews(0);
+							}
 							changes = true;
 						} else {
 							for( var i=0; i < length; i++) {
