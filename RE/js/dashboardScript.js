@@ -273,7 +273,7 @@ function getRequirements(query){
 						//News reset, da ab hier alles aktuell
 						lastReadFromDb = Date.now();
 						resetFeed();
-						setNews(0);
+						//setNews(0);
 						$("#newsNumber").text(getNews());
 						$('#newsNumber').css({"background-color": "white", "color": "#337ab7"});
 						//Anforderungen darstellen
