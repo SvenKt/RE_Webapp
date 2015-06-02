@@ -88,27 +88,25 @@ function initTooltips(){
 function checkHelpEnabled(){
 	if(helpDisabled()){
 		$(document).tooltip("disable");
-
-		
-		
 	} else {
-//all vars in translate.js
-		$('#l1').attr('title',GER_l1);
-		$('#l2').attr('title',GER_l2);
-		$('#l3').attr('title',GER_l3);
-		$('#l4').attr('title',GER_l4);
-		$('#l5').attr('title',GER_l5);
-		$('#l6').attr('title',GER_l6);
+	//all vars in translate.js
 	
-		$('#sortHead1').attr('title',GER_sh1);
-		$('#sortHead2').attr('title',GER_sh2);
-		$('#sortHead3').attr('title',GER_sh3);
-		$('#sortHead4').attr('title',GER_sh4);
-		$('#sortHead5').attr('title',GER_sh5);
+		$('#l1').attr('title',l1);
+		$('#l2').attr('title',l2);
+		$('#l3').attr('title',l3);
+		$('#l4').attr('title',l4);
+		$('#l5').attr('title',l5);
+		$('#l6').attr('title',l6);
+	
+		$('#sortHead1').attr('title',sh1);
+		$('#sortHead2').attr('title',sh2);
+		$('#sortHead3').attr('title',sh3);
+		$('#sortHead4').attr('title',sh4);
+		$('#sortHead5').attr('title',sh5);
 		
-		$('#search_field').attr('title',GER_search);
+		$('#search_field').attr('title',search);
 		
-		$('#news').attr('title',GER_news);
+		$('#news').attr('title',news);
 		
 		$(document).tooltip("enable");
 
