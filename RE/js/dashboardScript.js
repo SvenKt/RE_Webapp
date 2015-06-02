@@ -105,11 +105,17 @@ function addMessageToFeed(message){
 	$("#star"+starNum).fadeOut(updateTimeInSec*1000);
 	starNum++;
 }
-
-
+var feedMessage="";
+function setFeedMessage(mess){
+	feedMessage=mess;
+}
+function getFeedMessage(){
+	return feedMessage;
+}
 //get number of updates
 var length=getArrayLength();
 function getUpdateCount() {
+//länge wird erst bei nächsten zyklus neu gesetzt, damit alle anderen clients die änderung mitbekommen
 	setArrayLength(length);
 	var oldLength=getArrayLength();
 	var user= getUserName();
@@ -126,23 +132,30 @@ function getUpdateCount() {
 						console.log(oldLength+"   "+length)
 						if (oldLength < length){
 							console.log("neue req dazu");
-							messageToDisplay="Neue Anforderung gefunden";
+							if(getFeedMessage() == ""){
+								setFeedMessage("Jemand hat eine Anforderung erstellt");
+							} 
 							setNews(getNews()+1);
-							addMessageToFeed(messageToDisplay);
+							addMessageToFeed(getFeedMessage());
+							setFeedMessage("");
 							changes =  true;
 						} else if (oldLength > length){
 							console.log("req gelöscht");
-							messageToDisplay="Anforderung gelöscht";
+							if(getFeedMessage() == ""){
+								setFeedMessage("Jemand hat eine Anforderung gelöscht");
+							} 
 							setNews(getNews()+1);
-							addMessageToFeed(messageToDisplay);
+							addMessageToFeed(getFeedMessage());
+							setFeedMessage("");
 							changes = true;
 						} else {
 							for( var i=0; i < length; i++) {
 								if(success[i] > lastReadFromDb) {
 									console.log("req editiert");
-									messageToDisplay="Anforderung bearbeitet";
+									setFeedMessage("Jemand hat eine Anforderung bearbeitet");
 									setNews(getNews()+1);
-									addMessageToFeed(messageToDisplay);
+									addMessageToFeed(getFeedMessage());
+									setFeedMessage("");
 									changes = true;
 								}
 							}
@@ -153,7 +166,9 @@ function getUpdateCount() {
 -					$('#newsNumber').css({"background-color": "red", "color": "white"});		
  				}
 				lastReadFromDb = Date.now();
-				$("#newsNumber").text(getNews());
+				if(getNews()>=0){
+					$("#newsNumber").text(getNews());
+				}
 				},
 			error: function(){alert("error");}
 			});
@@ -234,6 +249,7 @@ function insertReq(origin){
 							default: getRequirements(); break;
 						}
 					}
+					setFeedMessage("Sie haben eine Anforderung erstellt");
 				}
 			});
 		} else alert("Cookie-fehler");
@@ -274,7 +290,9 @@ function getRequirements(query){
 						lastReadFromDb = Date.now();
 						resetFeed();
 						//setNews(0);
-						$("#newsNumber").text(getNews());
+						if(getNews()==0){
+							$("#newsNumber").text(getNews());
+						}
 						$('#newsNumber').css({"background-color": "white", "color": "#337ab7"});
 						//Anforderungen darstellen
 						displayedRequirements = success;
@@ -488,6 +506,7 @@ function edit(id){
 		if(checkRequirement()){
 			getUpdateCount(); //überprüfen ob inzwischen etwas geändert wurde
 			deleteReq(id, insertReq);
+			setFeedMessage("Sie haben eine Anforderung bearbeitet");
 		}
 	} else {
 		alert ("fehler");
@@ -517,6 +536,7 @@ function confirmRemoval(reqID){
 		modal: true,
 		buttons: {
 			"Anforderung löschen!": function() {
+				setFeedMessage("Sie haben eine Anforderung gelöscht!");
 				getUpdateCount(); //überprüfen ob etwas inzwischen geändert wurde
 				deleteReq(reqID,placeholder);
 				$( this ).dialog( "close" );
