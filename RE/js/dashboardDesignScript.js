@@ -92,23 +92,23 @@ function checkHelpEnabled(){
 		
 		
 	} else {
-
-		$('#l1').attr('title','Gehen Sie zurück auf den Startbildschirm');
-		$('#l2').attr('title','Erstellen Sie eine neue Anforderung');
-		$('#l3').attr('title','Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen');
-		$('#l4').attr('title','Ändern Sie Ihre persönlichen Informationen');
-		$('#l5').attr('title','Laden Sie Ihre Anforderungen als .csv Datei herunter');
-		$('#l6').attr('title','Melden Sie sich vom System ab');
+//all vars in translate.js
+		$('#l1').attr('title',GER_l1);
+		$('#l2').attr('title',GER_l2);
+		$('#l3').attr('title',GER_l3);
+		$('#l4').attr('title',GER_l4);
+		$('#l5').attr('title',GER_l5);
+		$('#l6').attr('title',GER_l6);
 	
-		$('#sortHead1').attr('title','Klicken zum Sortieren nach ID');
-		$('#sortHead2').attr('title','Klicken um alphabetisch zu sortieren');
-		$('#sortHead3').attr('title','Klicken zum Sortieren nach Priorität');
-		$('#sortHead4').attr('title','Klicken zum Sortieren nach Status');
-		$('#sortHead5').attr('title','Klicken um nach Änderungsdatum zu sortieren');
+		$('#sortHead1').attr('title',GER_sh1);
+		$('#sortHead2').attr('title',GER_sh2);
+		$('#sortHead3').attr('title',GER_sh3);
+		$('#sortHead4').attr('title',GER_sh4);
+		$('#sortHead5').attr('title',GER_sh5);
 		
-		$('#search_field').attr('title','Durchsuchen Sie Ihre Anforderungen');
+		$('#search_field').attr('title',GER_search);
 		
-		$('#news').attr('title','Klicken zum Aktualisieren');
+		$('#news').attr('title',GER_news);
 		
 		$(document).tooltip("enable");
 
