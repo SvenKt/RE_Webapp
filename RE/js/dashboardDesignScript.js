@@ -4,11 +4,13 @@
 
 $(document).ready(function(){
 	$("#accordion").accordion({collapsible: true});
-	
 	$("#patchnotes").html(patchnotes);
 	$("#patchnotes").accordion({collapsible: true});
 	
-	initTooltips();
+
+	enableTooltips();
+	switchToDE();
+	
 	
 	//enter bestätigung beim erstellen von teams
 	$("#team_name").keypress(function(event){
@@ -57,40 +59,40 @@ $(document).ready(function(){
 
 var oldActive;
 
-//returns false if help checkbox ticked
-function helpDisabled(){
-	var val=$("#helpCheckbox").prop('checked');
-	if(val){ console.log("ja");} else {console.log("nein");}
-	return val;
-}
-var initTT = false;
+//						  //
+//tooltips and translation//
+//						  //
 
-function initTooltips(){
-		
-		if($(document).width() < 800){
-				//no tooltips enabled
-				$("#newsFeedPanel").hide();
-		} else {
-				$(document).tooltip();
-				$("#left_nav").tooltip({
-					position: { my: "left-10vh center", at: "right center" }
-				});
-				$("#content").tooltip({
-					position: { my: "center top-80", collision: "flipfit" },
-					track: true,
-				});
-		}
-		
-		
-		initTT=true;
-} 
-
-function checkHelpEnabled(){
-	if(helpDisabled()){
-		$(document).tooltip("disable");
-	} else {
-	//all vars in translate.js
+function changeMenuLanguage(){
+	//defineTranslationVars(language);
 	
+	$('#sortHead1').text(th1);
+	$('#sortHead2').text(th2);
+	$('#sortHead3').text(th3);
+	$('#sortHead4').text(th4);
+	$('#sortHead5').text(th5);
+	$('#sortHead6').text(th6);
+	$('#sortHead7').text(th7);
+	
+	$('#home').text(m1);
+	$('#create').text(m2);
+	$('#team').text(m3);
+	$('#prof').text(m4);
+	$('#download_reqs').text(m5);
+	$('#logt').text(m6);
+	
+	$('#search_field').attr('placeholder',sfp);
+	
+	$("#news_text").text(news_text);
+	getMyGroups();
+	
+
+}
+
+function enableTooltips(){
+		
+		defineTranslationVars(language);
+
 		$('#l1').attr('title',l1);
 		$('#l2').attr('title',l2);
 		$('#l3').attr('title',l3);
@@ -102,17 +104,54 @@ function checkHelpEnabled(){
 		$('#sortHead2').attr('title',sh2);
 		$('#sortHead3').attr('title',sh3);
 		$('#sortHead4').attr('title',sh4);
-		$('#sortHead5').attr('title',sh5);
+		$('#sortHead6').attr('title',sh6);
 		
 		$('#search_field').attr('title',search);
 		
 		$('#news').attr('title',news);
 		
-		$(document).tooltip("enable");
+		if($(document).width() < 800){
+				//no tooltips enabled
+				$("#newsFeedPanel").hide();
+		} else {
+				$(document).tooltip();
+				$('#news').tooltip();
+				$("#left_nav").tooltip({
+					position: { my: "left-10vh center", at: "right center" }
+				});
+				$("#content").tooltip({
+					position: { my: "center top-80", collision: "flipfit" },
+					track: true,
+				});
+		}
+}
+
+
+//returns false if help checkbox ticked
+function helpDisabled(){
+	var val=$("#helpCheckbox").prop('checked');
+	if(val){ console.log("ja");} else {console.log("nein");}
+	return val;
+}
+
+
+
+function checkHelpEnabled(){
+	if(helpDisabled()){
+		$(document).tooltip("disable");
+	} else {
+	//all vars in translate.js
+		defineTranslationVars("de");
+		enableTooltips();
 
 	
 	}
 }
+
+//
+// 	END tooltips and translation//
+//
+
 
 function sizeAccordion(){
 $("#accordion").accordion({ heightStyle: "content" });

@@ -11,14 +11,20 @@ $(document).ready(function(){
 	resetFeed();
 	//content
 });
-
+var language = "de";
 
 function switchToEN(){
-	window.location="dashboard_en.php?session="+getParameter("session");
+	language="en";
+	enableTooltips();
+	changeMenuLanguage();
+	$("#languageSwitcher").html("<img title='Wechseln Sie zu deutscher Sprache' onClick='switchToDE()' src='img/de.png'></img>");
 }
 
 function switchToDE(){
-	window.location="dashboard_de.php?session="+getParameter("session");
+	language="de";
+	enableTooltips();
+	changeMenuLanguage();
+	$("#languageSwitcher").html("<img title='Switch to english language' onClick='switchToEN()' src='img/uk.png'></img>");
 }
 
 function make10Reqs(){
@@ -463,39 +469,21 @@ function setTable(requirementsArray){
 					
 					//Tabellenrahmen
 					
-					if(window.location.pathname.search("_en") == -1){
 						body.html("<div id='field' class='panel panel-default'>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
-									<th class='sortHead col-md-1' id='sortHead1' onclick='sortById(displayedRequirements)' title='Klicken zum Sortieren nach ID'>ID</th>\
-									<th class='sortHead col-md-5' id='sortHead2' onclick='sortByReq(displayedRequirements)' title='Klicken um alphabetisch zu sortieren'>Anforderung</th>\
-									<th class='sortHead col-md-1' id='sortHead3' onclick='sortByPrio(displayedRequirements)' title='Klicken zum Sortieren nach Priorität'>Priorität</th>\
-									<th class='sortHead col-md-1' id='sortHead4' onclick='sortByStatus(displayedRequirements)' title='Klicken zum Sortieren nach Status'>Status</th>\
-									<th class='col-md-1'>Abhängigkeiten</th>\
-									<th class='sortHead col-md-1' id='sortHead5' onclick='sortByTime(displayedRequirements)' title='Klicken um nach Änderungsdatum zu sortieren'>Geändert am</th>\
-									<th class='col-md-2'>Optionen</th>\
+									<th class='sortHead col-md-1' id='sortHead1' onclick='sortById(displayedRequirements)' >"+th1+"</th>\
+									<th class='sortHead col-md-5' id='sortHead2' onclick='sortByReq(displayedRequirements)' >"+th2+"</th>\
+									<th class='sortHead col-md-1' id='sortHead3' onclick='sortByPrio(displayedRequirements)' >"+th3+"</th>\
+									<th class='sortHead col-md-1' id='sortHead4' onclick='sortByStatus(displayedRequirements)' >"+th4+"</th>\
+									<th class='col-md-1' id='sortHead5'>"+th5+"</th>\
+									<th class='sortHead col-md-1' id='sortHead6' onclick='sortByTime(displayedRequirements)' >"+th6+"</th>\
+									<th class='col-md-2' id='sortHead7'>"+th7+"</th>\
 								</tr></thead>\
 								<tbody>\
 									"+string+"\
 								</tbody></table></div>"
 						);
-					} else {
-						body.html("<div id='field' class='panel panel-default'>\
-								<table class='table'><thead style='background-color:#E6E6E6'>\
-								<tr>\
-									<th class='sortHead col-md-1' id='sortHead1' onclick='sortById(displayedRequirements)' title='Click for ID sort'>ID</th>\
-									<th class='sortHead col-md-5' id='sortHead2' onclick='sortByReq(displayedRequirements)' title='Click for alphabetical sort'>Requirements</th>\
-									<th class='sortHead col-md-1' id='sortHead3' onclick='sortByPrio(displayedRequirements)' title='Click for priority sort'>Priority</th>\
-									<th class='sortHead col-md-1' id='sortHead4' onclick='sortByStatus(displayedRequirements)' title='Click for status sort'>Status</th>\
-									<th class='sortHead col-md-1'>Dependencies</th>\
-									<th class='sortHead col-md-1' id='sortHead5' onclick='sortByTime(displayedRequirements)' title='Click for date time sort'>Last change</th>\
-									<th class='sortHead col-md-2'>Options</th>\
-								</tr></thead>\
-								<tbody>\
-									"+string+"\
-								</tbody></table></div>"
-						);
-					}
 }
 
 

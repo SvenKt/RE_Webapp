@@ -18,11 +18,12 @@
 		<script type="text/javascript" src="js/dashboardScript.js"></script>
 		<script type="text/javascript" src="js/dashboardDesignScript.js"></script>
 		<script type="text/javascript" src="js/teamsScript.js"></script>
+		<script type="text/javascript" src="js/translate.js"></script>
 		
 		<link rel="stylesheet" href="css/dashboard.css">
 		<title> Dashboard</title>
 	</head>
-	<body contextmenu="mouseMenu"onload="if (document.referrer == '') self.location='index.php'; updateOn()">
+	<body contextmenu="mouseMenu" onload="if (document.referrer == '') self.location='index.php'; updateOn()">
 		<div id="head">
 			<img id='logo' src='img/logo.png' alt="logo">
 		</div><!--head-->
@@ -60,8 +61,11 @@
 			<button class="btn btn-primary col-md-2" type="button" id="news" title="Klicken zum Aktualisieren" onClick="update()">
 				Updates <span class="badge" id="newsNumber">0</span>
 			</button>
-			<div id="languageSwitcher">
+			<div class="clickable" id="languageSwitcher">
 				<img title="Wechseln Sie zu deutscher Sprache" onClick="switchToDE()" src="img/de.png"></img>
+			</div>
+			<div class="checkbox" id="disChecker">
+				<input  id="helpCheckbox" type="checkbox" value="Hilfe ausschalten">Hilfe ausschalten</input>
 			</div>
 
 			</br>

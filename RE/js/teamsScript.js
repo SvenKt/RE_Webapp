@@ -98,13 +98,8 @@ var teams = "Noch kein Team vorhanden";
 								</tr>";	
 								
 								//überschrift anpassen
-								if(window.location.pathname.search("_en") == -1){
-									$("#headline_dashboard").text("Anforderungen von Team '"+curTeam+"'");
-								} else {
-									$("#headline_dashboard").text("Team's '"+curTeam+"' requirements");
-								}
-								
-								
+									$("#headline_dashboard").text(head_dash2+curTeam);
+
 					//bei teams, die der user erstellt hat, in welchen er aber nicht mitglied ist
 					} else {
 								teams+="<tr>\

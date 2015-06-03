@@ -14,11 +14,12 @@
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/translate.js"></script>
 		<script type="text/javascript" src="js/user.js"></script>
 		<script type="text/javascript" src="js/dashboardScript.js"></script>
 		<script type="text/javascript" src="js/dashboardDesignScript.js"></script>
 		<script type="text/javascript" src="js/teamsScript.js"></script>
-		<script type="text/javascript" src="js/translate.js"></script>
+
 		
 		<link rel="stylesheet" href="css/dashboard.css">
 		<title> Dashboard</title>
@@ -35,15 +36,15 @@
 				<span class="input-group-btn" onClick="getResult()" id="search">
 					<button class="btn btn-default" type="button" id="goButton">Go!</button>
 				</span>
-				<input type="text" id="search_field" class="form-control" placeholder="Suche..."  title="Durchsuchen Sie Ihre Anforderungen">
+				<input type="text" id="search_field" class="form-control"   title="Durchsuchen Sie Ihre Anforderungen">
 			</div><!--input-group-->
 			<ul id="main-nav" class="nav nav-pills nav-stacked">
-				<li id="l1" role="presentation" class="navlist active clickable"><a onClick="update()" title="Gehen Sie zurück auf den Startbildschirm" >Home</a></li>
-				<li id="l2" class="navlist clickable"role="presentation"><a onClick="createReqForm()" title="Erstellen Sie eine neue Anforderung" >Anforderung erstellen</a></li>
-				<li id="l3" class="navlist clickable" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()" title="Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen" >Team</a></li>
-				<li id="l4" class="navlist clickable" role="presentation"><a data-toggle="modal" title="Ändern Sie Ihre persönlichen Informationen" data-target="#profil">Profil</a></li>
-				<li id="l5" class="navlist clickable" role="presentation"><a id="download_reqs" title="Laden Sie Ihre Anforderungen als .csv Datei herunter" >Download</a></li>
-				<li id="l6" class="navlist clickable" role="presentation"><a onClick="logOut(), updateOff()" title="Melden Sie sich vom System ab">Logout</a></li>
+				<li id="l1" role="presentation" class="navlist active clickable"><a onClick="update()" id="home" ></a></li>
+				<li id="l2" class="navlist clickable"role="presentation"><a onClick="createReqForm()" id="create" ></a></li>
+				<li id="l3" class="navlist clickable" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()"  ></a></li>
+				<li id="l4" class="navlist clickable" role="presentation"><a data-toggle="modal" id="prof"  data-target="#profil" ></a></li>
+				<li id="l5" class="navlist clickable" role="presentation"><a id="download_reqs"  ></a></li>
+				<li id="l6" class="navlist clickable" role="presentation"><a onClick="logOut(), updateOff()" id="logt" ></a></li>
 			</ul>
 		<!--left_nav-->
 		<!-- Update Message -->
@@ -60,7 +61,7 @@
 		<!--content-->
 		<div id="content-wrapper" class=" content-wrapper panel col-md-10">
 			<button class="clickable btn btn-primary col-md-2" type="button" id="news" title="Klicken zum Aktualisieren" onClick="update()">
-				Aktualisierungen <span class="badge" id="newsNumber">0</span>
+				<span id="news_text"></span><span class="badge" id="newsNumber">0</span>
 			</button>
 			<div class="clickable" id="languageSwitcher">
 				<img title="Switch to english language" onClick="switchToEN()" src="img/uk.png"></img>
