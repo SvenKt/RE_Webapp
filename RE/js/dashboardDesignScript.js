@@ -55,6 +55,8 @@ $(document).ready(function(){
 		$('#main-nav').find('.active').removeClass('active');
 		oldActive.addClass('active');
 	});
+	//init clock
+	initClock();
 });
 
 var oldActive;
@@ -447,3 +449,27 @@ var patchnotes = "\
 		</ul>\
 	</ul></div>\
 	";
+
+// UHRZEIT
+function initClock() {
+
+    //Uhrzeit auslesen und konvertieren
+    function getTime() {
+		var d = new Date();
+		return {
+			h: ("0"+d.getHours()).slice(-2),
+			m: ("0"+d.getMinutes()).slice(-2)
+		}
+    }
+
+    //Aktualisieren der Uhrzeit
+    function refresh() {
+      var now = getTime();
+      $('#time').html("<span class='now'>" + now.h + ":" + now.m + "</span>");
+    }
+
+    //Alle 5 sek, je nach Ressourcenbedarf
+    refresh();
+    setInterval(refresh, 5000);
+
+}

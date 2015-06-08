@@ -20,7 +20,7 @@
 		<script type="text/javascript" src="js/dashboardDesignScript.js"></script>
 		<script type="text/javascript" src="js/teamsScript.js"></script>
 
-		
+		<link rel="stylesheet" href="css/clock.css">
 		<link rel="stylesheet" href="css/dashboard.css">
 		<title> Dashboard</title>
 	</head>
@@ -28,6 +28,9 @@
 		<div id="head">
 			<img id='logo' src='img/logo.png' alt="logo">
 			<button style="display:none" onClick=make10Reqs()>10er</button><!-- Wird nicht dargestellt aber hilfreich zu Testzwecken-->
+			<div id="clock">
+				<div id="time"></div>
+			</div>
 		</div><!--head-->
 	<div id="leftSide"  class="col-md-2">
 		<!-- Left Navigation Bar -->
