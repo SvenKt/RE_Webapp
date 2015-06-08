@@ -373,6 +373,7 @@ var patchnotes = "\
 		<li>Visuelle Änderungen:</li><ul>\
 			<li>Die aktuelle Uhrzeit wird nun rechts oben angezeigt</li>\
 			<li>Feed-Nachrichten beinhalten jetzt ob jemand Anderes oder man selbst eine Aktion durchgeführt hat</li>\
+			<li>Der Footer ist nun immer korrekt am unteren Bildschirmrand</li>\
 		</ul></br>\
 		<li>Bugfixes:</li><ul>\
 			<li>Uhrzeit ist jetzt auch bei 0-9 jeweils zweistellig</li>\

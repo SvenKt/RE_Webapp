@@ -32,64 +32,66 @@
 				<div id="time"></div>
 			</div>
 		</div><!--head-->
-	<div id="leftSide"  class="col-md-2">
-		<!-- Left Navigation Bar -->
-		<div id="left_nav">
-			<div class="input-group">
-				<span class="input-group-btn" onClick="getResult()" id="search">
-					<button class="btn btn-default" type="button" id="goButton">Go!</button>
-				</span>
-				<input type="text" id="search_field" class="form-control"   title="Durchsuchen Sie Ihre Anforderungen">
-			</div><!--input-group-->
-			<ul id="main-nav" class="nav nav-pills nav-stacked">
-				<li id="l1" role="presentation" class="navlist active clickable"><a onClick="update()" id="home" ></a></li>
-				<li id="l2" class="navlist clickable"role="presentation"><a onClick="createReqForm()" id="create" ></a></li>
-				<li id="l3" class="navlist clickable" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()"  ></a></li>
-				<li id="l4" class="navlist clickable" role="presentation"><a data-toggle="modal" id="prof"  data-target="#profil" ></a></li>
-				<li id="l5" class="navlist clickable" role="presentation"><a id="download_reqs"  ></a></li>
-				<li id="l6" class="navlist clickable" role="presentation"><a onClick="logOut(), updateOff()" id="logt" ></a></li>
-			</ul>
-		<!--left_nav-->
-		<!-- Update Message -->
-		<div class="panel panel-info floater" id="newsFeedPanel">
-			<div class="panel-heading">
-				<h3 class="panel-title">News-Feed</h3>
-			</div>
-			<div class="panel-body">
-				<div id="feed">
+	<div id="main">
+		<div id="leftSide"  class="col-md-2">
+			<!-- Left Navigation Bar -->
+			<div id="left_nav">
+				<div class="input-group">
+					<span class="input-group-btn" onClick="getResult()" id="search">
+						<button class="btn btn-default" type="button" id="goButton">Go!</button>
+					</span>
+					<input type="text" id="search_field" class="form-control"   title="Durchsuchen Sie Ihre Anforderungen">
+				</div><!--input-group-->
+				<ul id="main-nav" class="nav nav-pills nav-stacked">
+					<li id="l1" role="presentation" class="navlist active clickable"><a onClick="update()" id="home" ></a></li>
+					<li id="l2" class="navlist clickable"role="presentation"><a onClick="createReqForm()" id="create" ></a></li>
+					<li id="l3" class="navlist clickable" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()"  ></a></li>
+					<li id="l4" class="navlist clickable" role="presentation"><a data-toggle="modal" id="prof"  data-target="#profil" ></a></li>
+					<li id="l5" class="navlist clickable" role="presentation"><a id="download_reqs"  ></a></li>
+					<li id="l6" class="navlist clickable" role="presentation"><a onClick="logOut(), updateOff()" id="logt" ></a></li>
+				</ul>
+			<!--left_nav-->
+			<!-- Update Message -->
+			<div class="panel panel-info floater" id="newsFeedPanel">
+				<div class="panel-heading">
+					<h3 class="panel-title">News-Feed</h3>
 				</div>
-			</div>
-		</div></div>
-	</div>
-		<!--content-->
-		<div id="content-wrapper" class=" content-wrapper panel col-md-10">
-			<button class="clickable btn btn-primary col-md-2" type="button" id="news" title="Klicken zum Aktualisieren" onClick="update()">
-				<span id="news_text"></span><span class="badge" id="newsNumber">0</span>
-			</button>
-			<div class="clickable" id="languageSwitcher">
-				<img title="Switch to english language" onClick="switchToEN()" src="img/uk.png"></img>
-			</div>
-			<div class="checkbox" id="disChecker">
-				<input  id="helpCheckbox" type="checkbox" value="Hilfe ausschalten">Hilfe ausschalten</input>
-			</div>
-
-			</br>
-			<h2 id="headline_dashboard">Anforderungen</h2>
-			<hr>
-				<p class="panel panel-warning"id="error"></p>
-				<div class="panel panel-warning" id="dialog"></div>
-				<div id="content" class="panel panel-body">
-					
-				</div><!--content-->
-			<hr>
-		</div><!--content-wrapper-->
-		<div id="footer">
-		<center>
-			<a id="footerLink" data-toggle="modal" title="Kontaktinformationen" data-target="#modal_kontact">Kontakt</a>
-			-
-			<a id="footerLink" data-toggle="modal" title="Informationen zu Version und Patches" data-target="#modal_version">Version <?php echo $version ?></a>
-		</center>
+				<div class="panel-body">
+					<div id="feed">
+					</div>
+				</div>
+			</div></div>
 		</div>
+			<!--content-->
+			<div id="content-wrapper" class=" content-wrapper panel col-md-10">
+				<button class="clickable btn btn-primary col-md-2" type="button" id="news" title="Klicken zum Aktualisieren" onClick="update()">
+					<span id="news_text"></span><span class="badge" id="newsNumber">0</span>
+				</button>
+				<div class="clickable" id="languageSwitcher">
+					<img title="Switch to english language" onClick="switchToEN()" src="img/uk.png"></img>
+				</div>
+				<div class="checkbox" id="disChecker">
+					<input  id="helpCheckbox" type="checkbox" value="Hilfe ausschalten">Hilfe ausschalten</input>
+				</div>
+
+				</br>
+				<h2 id="headline_dashboard">Anforderungen</h2>
+				<hr>
+					<p class="panel panel-warning"id="error"></p>
+					<div class="panel panel-warning" id="dialog"></div>
+					<div id="content" class="panel panel-body">
+						
+					</div><!--content-->
+				<hr>
+			</div><!--content-wrapper-->
+		</div>
+		<footer id="footer">
+			<center>
+				<a id="footerLink" data-toggle="modal" title="Kontaktinformationen" data-target="#modal_kontact">Kontakt</a>
+				-
+				<a id="footerLink" data-toggle="modal" title="Informationen zu Version und Patches" data-target="#modal_version">Version <?php echo $version ?></a>
+			</center>
+		</footer>
 		
 		
 		<!-- Modal Profil-->
