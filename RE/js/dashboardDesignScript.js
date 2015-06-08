@@ -363,16 +363,32 @@ function createEditForm(id){
 	});
 }
 var patchnotes = "\
+	<h3><span style='font-style:bold'>Version 1.1</span></h3>\
+	<div><ul>\
+		<li>Allgemeine Änderungen:</li><ul>\
+			<li>Website kann nun auf Englisch umgestellt werden</li>\
+			<li>Ein Klick auf die Email eines Teammitgliedes öffnet direkt eine Vorlage im Standardemailprogramm</li>\
+			<li>Tooltips können jetzt deaktiviert werden</li>\
+		</ul></br>\
+		<li>Visuelle Änderungen:</li><ul>\
+			<li>Die aktuelle Uhrzeit wird nun rechts oben angezeigt</li>\
+			<li>Feed-Nachrichten beinhalten jetzt ob jemand Anderes oder man selbst eine Aktion durchgeführt hat</li>\
+		</ul></br>\
+		<li>Bugfixes:</li><ul>\
+			<li>Uhrzeit ist jetzt auch bei 0-9 jeweils zweistellig</li>\
+		</ul>\
+	</ul></div>\
+	\
 	<h3><span style='font-style:bold'>Version 1.0</span></h3>\
 	<div><ul>\
 		<li>Allgemeine Änderungen:</li><ul>\
 			<li>Möglichkeit zur Abfrage der Nutzerinformationen von Teammitgliedern</li>\
 			<li>Inputfeld für Name wird beim Laden der Loginseite automatisch ausgewählt</li>\
 			<li>Versionsübersicht hinzugefügt</li>\
-			</ul></br>\
-			<li>Bugfixes:</li><ul>\
-				<li>Suche setzt Menüpunkt Home jetzt als aktiv</li>\
-				<li>Abkürzungspunkt vom Monat May entfernt</li>\
+		</ul></br>\
+		<li>Bugfixes:</li><ul>\
+			<li>Suche setzt Menüpunkt Home jetzt als aktiv</li>\
+			<li>Abkürzungspunkt vom Monat May entfernt</li>\
 		</ul>\
 	</ul></div>\
 	\
