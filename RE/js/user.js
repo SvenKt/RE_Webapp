@@ -61,9 +61,6 @@ if (window.location.pathname.search("index") != -1){
 } else {
 	 user = JSON.parse(localStorage.getItem("user"+getParameter("session")));
 }
-
-console.log(JSON.parse(localStorage.getItem("user"+getParameter("session"))));
-
 return user.name; 
 }
 

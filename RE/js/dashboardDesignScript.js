@@ -132,7 +132,7 @@ function enableTooltips(){
 //returns false if help checkbox ticked
 function helpDisabled(){
 	var val=$("#helpCheckbox").prop('checked');
-	if(val){ console.log("ja");} else {console.log("nein");}
+	//if(val){ console.log("ja");} else {console.log("nein");}
 	return val;
 }
 
@@ -257,7 +257,6 @@ function createEditForm(id){
 		data: {"id": id},
 		dataType: "json",
 		success: function(req){
-			console.log(req);
 			wann = req[0].split("&req#")[0];
 			muss =req[0].split("&req#")[1];
 			wer =req[0].split("&req#")[2];
@@ -373,10 +372,10 @@ var patchnotes = "\
 		<li>Visuelle Änderungen:</li><ul>\
 			<li>Die aktuelle Uhrzeit wird nun rechts oben angezeigt</li>\
 			<li>Feed-Nachrichten beinhalten jetzt ob jemand Anderes oder man selbst eine Aktion durchgeführt hat</li>\
-			<li>Der Footer ist nun immer korrekt am unteren Bildschirmrand</li>\
 		</ul></br>\
 		<li>Bugfixes:</li><ul>\
 			<li>Uhrzeit ist jetzt auch bei 0-9 jeweils zweistellig</li>\
+			<li>Der Footer ist nun immer korrekt am unteren Bildschirmrand</li>\
 		</ul>\
 	</ul></div>\
 	\

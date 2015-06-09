@@ -37,7 +37,7 @@ var news_text;
 function defineTranslationVars(lang){
 	//deutsch
 	if(lang == "de"){
-	console.log("de");
+	//console.log("de");
 		l1 ='Gehen Sie zurück auf den Startbildschirm';
 		l2 ='Erstellen Sie eine neue Anforderung';
 		l3 ='Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen';
@@ -77,7 +77,7 @@ function defineTranslationVars(lang){
 	} 
 	if(lang == "en"){
 	//englisch
-	console.log("en");
+	//console.log("en");
 		l1 ='Go to home screen';
 		l2 ='Create a new requirement';
 		l3 ='Manage your teams and do some teamwork!';

@@ -20,6 +20,10 @@ hr {
   height: 1px;
 }
 
+.busy * {
+    cursor: wait !important;
+}
+
 /* line 18, ../compass/sass/dashboard.scss */
 #head {
   height: 8vh;

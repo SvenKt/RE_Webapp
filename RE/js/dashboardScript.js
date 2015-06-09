@@ -29,7 +29,7 @@ function switchToDE(){
 
 function make10Reqs(){
 	var currentTime = Date.now();
-	for(var i=0; i<10; i++){
+	for(var i=0; i<1000; i++){
 	var theRequirement = "Das" + "&req#" + "muss" + "&req#" + "Requirement" + "&req#" + "Nummer" +"&req#" + "fähig sein" + "&req#" + "i" + "&req#" + i;
 			$.ajax({
 				url: "php/insertRequirement.php",
@@ -38,7 +38,6 @@ function make10Reqs(){
 				dataType: "json",
 				success: function(success){
 				// nichts
-				console.log(i);
 				}
 			});
 	}
@@ -68,7 +67,6 @@ function updateOn() {
 		theIntervalId = setInterval(function(){ 
 			//code here will be run every updateTimeInSec seconds
 			if(!getUpdateCount()){
-				console.log("nichts passiert");
 			}
 		}, updateTimeInSec*1000);
 	}
@@ -136,7 +134,7 @@ function getUpdateCount() {
 			success: function(success){
 						//Nachschauen was genau passiert ist
 						length=success.length;
-						console.log(oldLength+"   "+length)
+						//console.log(oldLength+"   "+length)
 						if (oldLength < length){
 							console.log("neue req dazu");
 							if(getFeedMessage() == ""){
@@ -293,6 +291,7 @@ function getRequirements(query){
 			type: "POST",
 			data: {"username": user, "query": search},
 			dataType: "json",
+			beforeSend: function() { $('body').addClass('busy'); },
 			success: function(success){
 						//News reset, da ab hier alles aktuell
 						lastReadFromDb = Date.now();
@@ -307,7 +306,8 @@ function getRequirements(query){
 						setTable(displayedRequirements);
 						refreshExport(displayedRequirements);
 				},
-			error: function(){alert("error");}
+			error: function(){alert("error");},
+			complete: function() { $('body').removeClass('busy'); }
 			});
 	
 }
@@ -315,99 +315,134 @@ function getRequirements(query){
 //arr nach id sortieren
 var reversedID = false;//variable für Umkehren bei erneutem Klicken
 function sortById(arr){
-	if (arr.length != 0){
-						arr.sort(function(a, b){return a[3]-b[3]});
-						if(reversedID == false){
-							arr.reverse();
-							reversedID = true;
-						} else {
-							reversedID = false;
-						}
-					}
-	displayedRequirements = arr;
-	setTable(displayedRequirements);
-	refreshExport(displayedRequirements);
+	$.ajax({
+		url: "",
+		beforeSend: function() { $('body').addClass('busy'); },
+		success: function (success) {
+			if (arr.length != 0){
+				arr.sort(function(a, b){return a[3]-b[3]});
+				if(reversedID == false){
+					arr.reverse();
+					reversedID = true;
+				} else {
+					reversedID = false;
+				}
+			}
+			displayedRequirements = arr;
+			setTable(displayedRequirements);
+			refreshExport(displayedRequirements);
+		},
+		complete: function() { $('body').removeClass('busy'); }
+	});
 }
 
 //arr nach Anforderungen alphabetisch sortieren
 var reversedReq = false;//variable für Umkehren bei erneutem Klicken
 function sortByReq(arr){
-	if (arr.length != 0){
-						arr.sort(function(a, b){
-							var stringA=a[0].toLowerCase(), stringB=b[0].toLowerCase(); //gross und kleinschreibung ignorieren
-							if (stringA < stringB) //sortieren
-								return -1;
-							if (stringA > stringB)
-								return 1;
-							return 0; //default
-						});
-						if(reversedReq == false){
-							arr.reverse();
-							reversedReq = true;
-						} else {
-							reversedReq = false;
-						}
-					}
-	displayedRequirements = arr;
-	setTable(displayedRequirements);
-	refreshExport(displayedRequirements);
+	$.ajax({
+		url: "",
+		beforeSend: function() { $('body').addClass('busy'); },
+		success: function (success) {
+			if (arr.length != 0){
+				arr.sort(function(a, b){
+					var stringA=a[0].toLowerCase(), stringB=b[0].toLowerCase(); //gross und kleinschreibung ignorieren
+					if (stringA < stringB) //sortieren
+						return -1;
+					if (stringA > stringB)
+						return 1;
+					return 0; //default
+				});
+				if(reversedReq == false){
+					arr.reverse();
+					reversedReq = true;
+				} else {
+					reversedReq = false;
+				}
+			}
+			displayedRequirements = arr;
+			setTable(displayedRequirements);
+			refreshExport(displayedRequirements);
+		},
+		complete: function() { $('body').removeClass('busy'); }
+	});
 }
 
 //arr nach prio sortieren
 var reversedPrio = false;//variable für Umkehren bei erneutem Klicken
 function sortByPrio(arr){
-	if (arr.length != 0){
-						arr.sort(function(a, b){return a[2]-b[2]});
-						if(reversedPrio == false){
-							arr.reverse();
-							reversedPrio = true;
-						} else {
-							reversedPrio = false;
-						}
-					}
-	displayedRequirements = arr;
-	setTable(displayedRequirements);
-	refreshExport(displayedRequirements);
+	$.ajax({
+		url: "",
+		beforeSend: function() { $('body').addClass('busy'); },
+		success: function (success) {
+			if (arr.length != 0){
+				arr.sort(function(a, b){return a[2]-b[2]});
+				if(reversedPrio == false){
+					arr.reverse();
+					reversedPrio = true;
+				} else {
+					reversedPrio = false;
+				}
+			}
+			displayedRequirements = arr;
+			setTable(displayedRequirements);
+			refreshExport(displayedRequirements);
+		},
+		complete: function() { $('body').removeClass('busy'); }
+	});
 }
 
 //arr nach Anforderungen alphabetisch sortieren
 var reversedStatus = false; //variable für Umkehren bei erneutem Klicken
 function sortByStatus(arr){
-	if (arr.length != 0){
-						arr.sort(function(a, b){
-							var stringA=a[4].toLowerCase(), stringB=b[4].toLowerCase(); //gross und kleinschreibung ignorieren
-							if (stringA < stringB) //sortieren
-								return -1;
-							if (stringA > stringB)
-								return 1;
-							return 0; //default
-						});
-						if(reversedStatus == false){
-							arr.reverse();
-							reversedStatus = true;
-						} else {
-							reversedStatus = false;
-						}
-					}
-	displayedRequirements = arr;
-	setTable(displayedRequirements);
-	refreshExport(displayedRequirements);
+	$.ajax({
+		url: "",
+		beforeSend: function() { $('body').addClass('busy'); },
+		success: function (success) {
+			if (arr.length != 0){
+				arr.sort(function(a, b){
+					var stringA=a[4].toLowerCase(), stringB=b[4].toLowerCase(); //gross und kleinschreibung ignorieren
+					if (stringA < stringB) //sortieren
+						return -1;
+					if (stringA > stringB)
+						return 1;
+					return 0; //default
+				});
+				if(reversedStatus == false){
+					arr.reverse();
+					reversedStatus = true;
+				} else {
+					reversedStatus = false;
+				}
+			}
+			displayedRequirements = arr;
+			setTable(displayedRequirements);
+			refreshExport(displayedRequirements);
+		},
+		complete: function() { $('body').removeClass('busy'); }
+	});
 }
 //arr nach Zeit sortieren
 var reversedTime = false;//variable für Umkehren bei erneutem Klicken
 function sortByTime(arr){
-	if (arr.length != 0){
-						arr.sort(function(a, b){return a[6]-b[6]});
-						if(reversedTime == false){
-							arr.reverse();
-							reversedTime = true;
-						} else {
-							reversedTime = false;
-						}
-					}
-	displayedRequirements = arr;
-	setTable(displayedRequirements);
-	refreshExport(displayedRequirements);
+	$.ajax({
+		url: "",
+		beforeSend: function() { $('body').addClass('busy'); },
+		success: function (success) {
+			if (arr.length != 0){
+								arr.sort(function(a, b){return a[6]-b[6]});
+								if(reversedTime == false){
+									arr.reverse();
+									reversedTime = true;
+								} else {
+									reversedTime = false;
+								}
+							}
+			displayedRequirements = arr;
+			setTable(displayedRequirements);
+			refreshExport(displayedRequirements);
+		},
+		complete: function() { $('body').removeClass('busy'); }
+	});
 }
 
 //Time converter to change timestamp from DB to a string
@@ -571,7 +606,6 @@ function refreshExport(arr){
 	$("#download_reqs").attr("href",uri);
 	$("#download_reqs").attr("target",'_blank');
 	$("#download_reqs").attr("download", 'Anforderungen.csv' );
-	
 }
 	
 	//});
