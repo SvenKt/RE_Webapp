@@ -34,9 +34,6 @@
 		<div id="head">
 			<img id='logo' src='img/logo.png' alt="logo">
 			<button style="display:none" onClick=make10Reqs()>1000er</button><!-- Wird nicht dargestellt aber hilfreich zu Testzwecken-->
-			<div id="clock">
-				<div id="time"></div>
-			</div>
 		</div><!--head-->
 	<div id="main">
 		<div id="leftSide"  class="col-md-2">
