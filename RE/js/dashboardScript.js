@@ -5,11 +5,18 @@
 $(document).ready(function(){
 	$("#error").hide();
 	$("#dialog").hide();
-	refreshTeamData(true);
 	initArrayLength();
+	refreshTeamData();
 	initNews();
 	resetFeed();
 	//content
+	
+	$(window).load(function() {
+		getRequirements();
+		$('#status').fadeOut(); // will first fade out the loading animation
+		$('#preloader').delay(2000).fadeOut('slow'); // will fade out the white DIV that covers the website.
+		$('body').delay(2000).css({'overflow':'visible'});
+	});
 });
 var language = "de";
 
@@ -303,7 +310,7 @@ function getRequirements(query){
 						displayedRequirements = success;
 						reversedID = true;
 						sortById(displayedRequirements);
-						setTable(displayedRequirements);
+						//setTable(displayedRequirements);
 						refreshExport(displayedRequirements);
 				},
 			error: function(){alert("error");},
