@@ -514,13 +514,13 @@ function setTable(requirementsArray){
 						body.html("<div id='field' class='panel panel-default'>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
-									<th class='sortHead col-md-1' id='sortHead1' onclick='sortById(displayedRequirements)' >"+th1+"</th>\
-									<th class='sortHead col-md-5' id='sortHead2' onclick='sortByReq(displayedRequirements)' >"+th2+"</th>\
-									<th class='sortHead col-md-1' id='sortHead3' onclick='sortByPrio(displayedRequirements)' >"+th3+"</th>\
-									<th class='sortHead col-md-1' id='sortHead4' onclick='sortByStatus(displayedRequirements)' >"+th4+"</th>\
-									<th class='col-md-1' id='sortHead5'>"+th5+"</th>\
-									<th class='sortHead col-md-1' id='sortHead6' onclick='sortByTime(displayedRequirements)' >"+th6+"</th>\
-									<th class='col-md-2' id='sortHead7'>"+th7+"</th>\
+									<th class='sortHead col-md-1' id='sortHead1' onclick='sortById(displayedRequirements)' >"+tableHead.item1+"</th>\
+									<th class='sortHead col-md-5' id='sortHead2' onclick='sortByReq(displayedRequirements)' >"+tableHead.item2+"</th>\
+									<th class='sortHead col-md-1' id='sortHead3' onclick='sortByPrio(displayedRequirements)' >"+tableHead.item3+"</th>\
+									<th class='sortHead col-md-1' id='sortHead4' onclick='sortByStatus(displayedRequirements)' >"+tableHead.item4+"</th>\
+									<th class='col-md-1' id='sortHead5'>"+tableHead.item5+"</th>\
+									<th class='sortHead col-md-1' id='sortHead6' onclick='sortByTime(displayedRequirements)' >"+tableHead.item6+"</th>\
+									<th class='col-md-2' id='sortHead7'>"+tableHead.item7+"</th>\
 								</tr></thead>\
 								<tbody>\
 									"+string+"\

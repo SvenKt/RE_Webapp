@@ -1,118 +1,116 @@
-var l1 ;
-var l2 ;
-var l3 ;
-var l4 ;
-var l5 ;
-var l6 ;
+var menu = {
+ item1:"",
+ item2:"",
+ item3:"",
+ item4:"",
+ item5:"",
+ item6:"",
+ item1_tt: "",
+ item2_tt: "",
+ item3_tt: "",
+ item4_tt: "",
+ item5_tt: "",
+ item6_tt: ""
+}
 
-var sh1 ;
-var sh2 ;
-var sh3 ;
-var sh4 ;
-var sh5 ;
-	
-var search ;
-var sfp;
-var news ;
+var tableHead = {
+ item1:"",
+ item2:"",
+ item3:"",
+ item4:"",
+ item5:"",
+ item6:"",
+ item1_tt: "" ,
+ item2_tt: "" ,
+ item3_tt: "" ,
+ item4_tt: "" ,
+ item6_tt: "" 
+}
 
-var th1;
-var th2;
-var th3;
-var th4;
-var th5;
-var th6;
-
-var m1;
-var m2;
-var m3;
-var m4;
-var m5;
-var m6;
-
-var head_dash1;
-var head_dash2;
-
-var news_text;
-
+var otherContent = {
+ search:"",
+ sfp:"",
+ news:"",
+ head_dash1:"",
+ head_dash:"",
+ news_text:"",
+ helpbox:""
+}
 function defineTranslationVars(lang){
 	//deutsch
 	if(lang == "de"){
 	//console.log("de");
-		l1 ='Gehen Sie zurück auf den Startbildschirm';
-		l2 ='Erstellen Sie eine neue Anforderung';
-		l3 ='Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen';
-		l4 ='Ändern Sie Ihre persönlichen Informationen';
-		l5 ='Laden Sie Ihre Anforderungen als .csv Datei herunter';
-		l6 ='Melden Sie sich vom System ab';
+		menu.item1_tt ='Gehen Sie zurück auf den Startbildschirm';
+		menu.item2_tt ='Erstellen Sie eine neue Anforderung';
+		menu.item3_tt ='Erstellen Sie ein Team und arbeiten Sie mit anderen zusammen';
+		menu.item4_tt ='Ändern Sie Ihre persönlichen Informationen';
+		menu.item5_tt ='Laden Sie Ihre Anforderungen als .csv Datei herunter';
+		menu.item6_tt ='Melden Sie sich vom System ab';
 	
-		sh1 ='Klicken zum Sortieren nach ID';
-		sh2 ='Klicken um alphabetisch zu sortieren';
-		sh3 ='Klicken zum Sortieren nach Priorität';
-		sh4 ='Klicken zum Sortieren nach Status';
-		sh6 ='Klicken um nach Änderungsdatum zu sortieren';
-	
-		search ='Durchsuchen Sie Ihre Anforderungen';
-		sfp = 'Suche...';
-		news ='Klicken zum Aktualisieren';
+		tableHead.item1_tt ='Klicken zum Sortieren nach ID';
+		tableHead.item2_tt ='Klicken um alphabetisch zu sortieren';
+		tableHead.item3_tt ='Klicken zum Sortieren nach Priorität';
+		tableHead.item4_tt ='Klicken zum Sortieren nach Status';
+		tableHead.item6_tt ='Klicken um nach Änderungsdatum zu sortieren';
 		
-		th1 = "ID";
-		th2 = "Anforderung";
-		th3 = "Priorität";
-		th4 = "Status";
-		th5 = "Abhängigkeiten";
-		th6 = "Geändert am";
-		th7 = "Optionen";
+		tableHead.item1 = "ID";
+		tableHead.item2 = "Anforderung";
+		tableHead.item3 = "Priorität";
+		tableHead.item4 = "Status";
+		tableHead.item5 = "Abhängigkeiten";
+		tableHead.item6 = "Geändert am";
+		tableHead.item7 = "Optionen";
 		
-		m1="Home";
-		m2="Anforderung erstellen";
-		m3="Team";
-		m4="Profil";
-		m5="Download";
-		m6="Logout";
+		menu.item1="Home";
+		menu.item2="Anforderung erstellen";
+		menu.item3="Team";
+		menu.item4="Profil";
+		menu.item5="Download";
+		menu.item6="Logout";
 		
-		head_dash1= "Anforderungen";
-		head_dash2= "Anforderungen von Team ";
-		
-		news_text="Aktualisieren   ";
+		otherContent.search ='Durchsuchen Sie Ihre Anforderungen';
+		otherContent.sfp = 'Suche...';
+		otherContent.news ='Klicken zum Aktualisieren';
+		otherContent.head_dash1= "Anforderungen";
+		otherContent.head_dash2= "Anforderungen von Team ";
+		otherContent.news_text="Aktualisieren   ";
 	} 
 	if(lang == "en"){
 	//englisch
 	//console.log("en");
-		l1 ='Go to home screen';
-		l2 ='Create a new requirement';
-		l3 ='Manage your teams and do some teamwork!';
-		l4 ='change your personal data';
-		l5 ='Download your requirements a .csv data';
-		l6 ='Logout from the system';
+		menu.item1_tt ='Go to home screen';
+		menu.item2_tt ='Create a new requirement';
+		menu.item3_tt ='Manage your teams and do some teamwork!';
+		menu.item4_tt ='change your personal data';
+		menu.item5_tt ='Download your requirements a .csv data';
+		menu.item6_tt ='Logout from the system';
 	
-		sh1 ='Click for ID sort';
-		sh2 ='Click for alphabetical sort';
-		sh3 ='Click for priotity sort';
-		sh4 ='Click for status sort';
-		sh6 ='Click for date time sort';
+		tableHead.item1_tt ='Click for ID sort';
+		tableHead.item2_tt ='Click for alphabetical sort';
+		tableHead.item3_tt ='Click for priotity sort';
+		tableHead.item4_tt ='Click for status sort';
+		tableHead.item6_tt ='Click for date time sort';
 	
-		search ='Search for matching requirements';
-		sfp = 'pattern...';
-		news ='Click to update';
+		tableHead.item1 = "ID";
+		tableHead.item2 = "Requirement";
+		tableHead.item3 = "Priority";
+		tableHead.item4 = "Status";
+		tableHead.item5 = "Dependencies";
+		tableHead.item6 = "Last change";
+		tableHead.item7 = "Options";
 		
-		th1 = "ID";
-		th2 = "Requirement";
-		th3 = "Priority";
-		th4 = "Status";
-		th5 = "Dependencies";
-		th6 = "Last change";
-		th7 = "Options";
+		menu.item1="Home";
+		menu.item2="Create Requirement";
+		menu.item3="Team";
+		menu.item4="Profile";
+		menu.item5="Download";
+		menu.item6="Logout";
 		
-		m1="Home";
-		m2="Create Requirement";
-		m3="Team";
-		m4="Profile";
-		m5="Download";
-		m6="Logout";
-		
-		head_dash1= "Requirements";
-		head_dash2= "Requirements of team ";
-		
-		news_text="Update   ";
+		otherContent.search ='Search for matching requirements';
+		otherContent.sfp = 'pattern...';
+		otherContent.news ='Click to update';
+		otherContent.head_dash1= "Requirements";
+		otherContent.head_dash2= "Requirements of team ";
+		otherContent.news_text="Update   ";
 	}	
 }

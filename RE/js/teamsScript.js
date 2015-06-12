@@ -98,7 +98,7 @@ var teams = "Noch kein Team vorhanden";
 								</tr>";	
 								
 								//überschrift anpassen
-									$("#headline_dashboard").text(head_dash2+curTeam);
+									$("#headline_dashboard").text(otherContent.head_dash2+curTeam);
 
 					//bei teams, die der user erstellt hat, in welchen er aber nicht mitglied ist
 					} else {

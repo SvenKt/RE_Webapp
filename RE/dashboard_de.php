@@ -19,8 +19,6 @@
 		<script type="text/javascript" src="js/dashboardScript.js"></script>
 		<script type="text/javascript" src="js/dashboardDesignScript.js"></script>
 		<script type="text/javascript" src="js/teamsScript.js"></script>
-		
-		<link rel="stylesheet" href="css/clock.css">
 		<link rel="stylesheet" href="css/dashboard.css">
 		
 		<title> Dashboard</title>
@@ -74,7 +72,7 @@
 					<img title="Switch to english language" onClick="switchToEN()" src="img/uk.png"></img>
 				</div>
 				<div class="checkbox" id="disChecker">
-					<input  id="helpCheckbox" type="checkbox" value="Hilfe ausschalten">Hilfe ausschalten</input>
+					<input  id="helpCheckbox" type="checkbox" value="Hilfe ausschalten">Tooltips</input>
 				</div>
 
 				</br>
@@ -109,9 +107,9 @@
 							<p id="head_modal_dash"><h4>Geben Sie Ihre neuen Daten ein:</h4></p></br>
 							
 							<fieldset>
-								<label for="pw">Neues Passwort</label><input type="password" class="form-control" name="passwd" id="ch_pw" ></br>
-								<label for="pw_repeat">Neues Passwort wiederholen</label><input type="password" class="form-control" name="passwd_repeat" id="ch_pw2" ></br>
-								<label for="email">Neue E-Mail</label><input type="text" class="form-control" name="email" id="ch_email" ></br>
+								<label id="newPW">Neues Passwort</label><input type="password" class="form-control" name="passwd" id="ch_pw" ></br>
+								<label id="newPW_repeat">Neues Passwort wiederholen</label><input type="password" class="form-control" name="passwd_repeat" id="ch_pw2" ></br>
+								<label id="newEmail">Neue E-Mail</label><input type="text" class="form-control" name="email" id="ch_email" ></br>
 							</fieldset>
 						</div>
 						<div class="modal-footer">

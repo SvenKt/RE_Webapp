@@ -66,24 +66,25 @@ var oldActive;
 function changeMenuLanguage(){
 	//defineTranslationVars(language);
 	
-	$('#sortHead1').text(th1);
-	$('#sortHead2').text(th2);
-	$('#sortHead3').text(th3);
-	$('#sortHead4').text(th4);
-	$('#sortHead5').text(th5);
-	$('#sortHead6').text(th6);
-	$('#sortHead7').text(th7);
+	$('#sortHead1').text(tableHead.item1);
+	$('#sortHead2').text(tableHead.item2);
+	$('#sortHead3').text(tableHead.item3);
+	$('#sortHead4').text(tableHead.item4);
+	$('#sortHead5').text(tableHead.item5);
+	$('#sortHead6').text(tableHead.item6);
+	$('#sortHead7').text(tableHead.item7);
 	
-	$('#home').text(m1);
-	$('#create').text(m2);
-	$('#team').text(m3);
-	$('#prof').text(m4);
-	$('#download_reqs').text(m5);
-	$('#logt').text(m6);
+	$('#home').text(menu.item1);
+	$('#create').text(menu.item2);
+	$('#team').text(menu.item3);
+	$('#prof').text(menu.item4);
+	$('#download_reqs').text(menu.item5);
+	$('#logt').text(menu.item6);
 	
-	$('#search_field').attr('placeholder',sfp);
-	
-	$("#news_text").text(news_text);
+	$('#helpCheckbox').val(otherContent.helpbox);
+	$("#news_text").text(otherContent.news_text);
+	$('#search_field').attr('placeholder',otherContent.sfp);
+
 	getMyGroups();
 	
 
@@ -93,22 +94,22 @@ function enableTooltips(){
 		
 		defineTranslationVars(language);
 
-		$('#l1').attr('title',l1);
-		$('#l2').attr('title',l2);
-		$('#l3').attr('title',l3);
-		$('#l4').attr('title',l4);
-		$('#l5').attr('title',l5);
-		$('#l6').attr('title',l6);
+		$('#l1').attr('title',menu.item1_tt);
+		$('#l2').attr('title',menu.item2_tt);
+		$('#l3').attr('title',menu.item3_tt);
+		$('#l4').attr('title',menu.item4_tt);
+		$('#l5').attr('title',menu.item5_tt);
+		$('#l6').attr('title',menu.item6_tt);
 	
-		$('#sortHead1').attr('title',sh1);
-		$('#sortHead2').attr('title',sh2);
-		$('#sortHead3').attr('title',sh3);
-		$('#sortHead4').attr('title',sh4);
-		$('#sortHead6').attr('title',sh6);
+		$('#sortHead1').attr('title',tableHead.item1_tt);
+		$('#sortHead2').attr('title',tableHead.item1_tt);
+		$('#sortHead3').attr('title',tableHead.item1_tt);
+		$('#sortHead4').attr('title',tableHead.item1_tt);
+		$('#sortHead6').attr('title',tableHead.item1_tt);
 		
-		$('#search_field').attr('title',search);
+		$('#search_field').attr('title',otherContent.search);
 		
-		$('#news').attr('title',news);
+		$('#news').attr('title',otherContent.news);
 		
 		if($(document).width() < 800){
 				//no tooltips enabled
@@ -128,7 +129,7 @@ function enableTooltips(){
 
 
 //returns false if help checkbox ticked
-function helpDisabled(){
+function helpEnabled(){
 	var val=$("#helpCheckbox").prop('checked');
 	//if(val){ console.log("ja");} else {console.log("nein");}
 	return val;
@@ -137,7 +138,7 @@ function helpDisabled(){
 
 
 function checkHelpEnabled(){
-	if(helpDisabled()){
+	if(!helpEnabled()){
 		$(document).tooltip("disable");
 	} else {
 	//all vars in translate.js
