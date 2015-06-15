@@ -22,14 +22,12 @@ var language = "de";
 
 function switchToEN(){
 	language="en";
-	enableTooltips();
 	changeMenuLanguage();
 	$("#languageSwitcher").html("<img title='Wechseln Sie zu deutscher Sprache' onClick='switchToDE()' src='img/de.png'></img>");
 }
 
 function switchToDE(){
 	language="de";
-	enableTooltips();
 	changeMenuLanguage();
 	$("#languageSwitcher").html("<img title='Switch to english language' onClick='switchToEN()' src='img/uk.png'></img>");
 }
@@ -368,7 +366,7 @@ function sortByReq(arr){
 			}
 			displayedRequirements = arr;
 			setTable(displayedRequirements);
-			refreshExport(displayedRequirements);
+			
 		},
 		complete: function() { $('body').removeClass('busy'); }
 	});
@@ -559,20 +557,21 @@ function cookiesEqual(){
 
 //Löschen bestätigen
 function confirmRemoval(reqID){
+	
 	$( "#dialog" ).dialog({
 		resizable: false,
 		height: 140,
 		width: 400,
-		title: "Anforderung wirklich löschen?",
+		title: deleteReq.confirm,
 		modal: true,
 		buttons: {
-			"Anforderung löschen!": function() {
-				setFeedMessage("Sie haben eine Anforderung gelöscht!");
+			"OK": function() {
+				setFeedMessage(deleteReq.feedMessage);
 				getUpdateCount(); //überprüfen ob etwas inzwischen geändert wurde
 				deleteReq(reqID,placeholder);
 				$( this ).dialog( "close" );
 			},
-			"doch nicht": function() {
+			"Cancel": function() {
 				$( this ).dialog( "close" );
 			}
 		}
@@ -590,19 +589,16 @@ function refreshExport(arr){
 	var req_id;
 
 	// csv daten aufbereiten	
-	if(window.location.pathname.search("_en") == -1){
-		csvRows.push("ID"+"\t"+"Anforderung"+"\t"+"Priorität"+"\t"+"Status"+"\t"+"Abhängigkeiten");
-	} else {
-		csvRows.push("ID"+"\t"+"Requirement"+"\t"+"Priority"+"\t"+"Status"+"\t"+"Dependencies");
-	}
-	for (var i = 0; i< arr.length; i++){
-		req = arr[i][0].replace(/&req#/g," ");
-		prio = arr[i][2];
-		p_id=arr[i][3];
-		p_status=arr[i][4];
-		p_rel=arr[i][5];
-		csvRows.push(p_id+"\t"+req+"\t"+prio+"\t"+p_status+"\t"+p_rel);
-	}
+		csvRows.push("ID"+"\t"+csvtxt.req+"\t"+csvtxt.prio+"\t"+"Status"+"\t"+csvtxt.dep);
+		for (var i = 0; i< arr.length; i++){
+			req = arr[i][0].replace(/&req#/g," ");
+			prio = arr[i][2];
+			p_id=arr[i][3];
+			p_status=arr[i][4];
+			p_rel=arr[i][5];
+			csvRows.push(p_id+"\t"+req+"\t"+prio+"\t"+p_status+"\t"+p_rel);
+		}
+	
 	
 	//csv datei anlegen
 	var csvData = csvRows.join("\n");

@@ -64,7 +64,7 @@ var oldActive;
 //						  //
 
 function changeMenuLanguage(){
-	//defineTranslationVars(language);
+	defineTranslationVars(language);
 	
 	$('#sortHead1').text(tableHead.item1);
 	$('#sortHead2').text(tableHead.item2);
@@ -81,10 +81,27 @@ function changeMenuLanguage(){
 	$('#download_reqs').text(menu.item5);
 	$('#logt').text(menu.item6);
 	
+	$('#profile_tophead').text(modal_profile.tophead);
+	$('#head_modal_dash').text(modal_profile.headline);
+	$('#newPW').text(modal_profile.pw1);
+	$('#newPW_repeat').text(modal_profile.pw2);
+	$('#newEmail').text(modal_profile.mail);
+	$('#reg_submit_p').text(button.ok);
+	
 	$('#helpCheckbox').val(otherContent.helpbox);
 	$("#news_text").text(otherContent.news_text);
 	$('#search_field').attr('placeholder',otherContent.sfp);
+	
+	$("#head_modal_dash_team").text(modal_team.headline);
+	$('#modal_dash_team_subheadline').text(modal_team.subheadline);
+	$('#modal_dash_team_topic').text(modal_team.topic);
+	$('#modal_dash_team_ok').text(modal_team.create_team_Button);
+	$('#add_members').text(modal_team.add_members_head);
+	$('#add_mem_1').text(modal_team.add_mem1);
+	$('#add_mem_2').text(modal_team.add_mem2);
+	$('#add_mem_button').text(modal_team.add_mem_button);
 
+	$("#head_modal_dash_team_edit").text(modal_editTeam.headline);
 	getMyGroups();
 	
 
@@ -142,7 +159,6 @@ function checkHelpEnabled(){
 		$(document).tooltip("disable");
 	} else {
 	//all vars in translate.js
-		defineTranslationVars("de");
 		enableTooltips();
 
 	
@@ -162,8 +178,7 @@ $("#accordion").accordion({ heightStyle: "content" });
 function createReqForm(){
 var body=$('#content');
 var user= getUserName();
-if(window.location.pathname.search("_en") == -1){
-	body.html("<h3 class='marginClass'>Hallo "+user+", tragen Sie eine neue Anforderung ein:</h3>\
+	body.html("<h3 class='marginClass'>"+reqForm.headline+"</h3>\
 				<fieldset>\
 					<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' placeholder='Wann?/Bedingung?'></div>\
 					<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
@@ -185,13 +200,13 @@ if(window.location.pathname.search("_en") == -1){
 					<div class='col-md-4'><input type='text' class='form-control' name='relations' id='relations' placeholder='Abhängigkeiten? (optional)'></div>\
 				</fieldset></br>\
 				<fieldset>\
-					<div class='col-md-2'>Priorität:<select id='prio' class='form-control'>\
+					<div class='col-md-2'>"+reqForm.prio+"<select id='prio' class='form-control'>\
 													<option>0</option>\
 													<option>1</option>\
 													<option>2</option>\
 													<option>3</option>\
 												</select>\</div>\
-					<div class='col-md-3'>Status:<select id='status' class='form-control'>\
+					<div class='col-md-3'>"+reqForm.status+":<select id='status' class='form-control'>\
 													<option>im Backlog</option>\
 													<option>in Bearbeitung</option>\
 													<option>in Testphase</option>\
@@ -199,48 +214,8 @@ if(window.location.pathname.search("_en") == -1){
 												</select>\
 					</div>\
 				</fieldset>\
-		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq(0)'>Bestätigen</button>");
-		} else {
-		
-		body.html("<h3 class='marginClass'>Hello "+user+", enter a new requirement:</h3>\
-				<fieldset>\
-					<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' placeholder='When?'></div>\
-					<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
-						<option>muss</option>\
-						<option>soll</option>\
-						<option>wird</option>\
-					</select></div>\
-					<div class='col-md-3'><input type='text' class='form-control' name='system' id='system' placeholder='System name?'></div>\
-					<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' placeholder='whom? (optional)'></div>\
-					<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
-						<option>fähig sein,</option>\
-						<option>die Möglichkeit bieten,</option>\
-					</select></div>\
-				</fieldset></br>\
-				<fieldset>\
-					<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' placeholder='Object?'></div>\
-					<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb' placeholder='Verb?'></div>\
-					<div class='col-md-2'><input type='text' class='form-control' name='identity' id='identity' placeholder='ID?'></div>\
-					<div class='col-md-4'><input type='text' class='form-control' name='relations' id='relations' placeholder='dependencies? (optional)'></div>\
-				</fieldset></br>\
-				<fieldset>\
-					<div class='col-md-2'>Priority:<select id='prio' class='form-control'>\
-													<option>0</option>\
-													<option>1</option>\
-													<option>2</option>\
-													<option>3</option>\
-												</select>\</div>\
-					<div class='col-md-3'>Status:<select id='status' class='form-control'>\
-													<option>im Backlog</option>\
-													<option>in Bearbeitung</option>\
-													<option>in Testphase</option>\
-													<option>abgeschlossen</option>\
-												</select>\
-					</div>\
-				</fieldset>\
-		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq(0)'>Send</button>");
-		}
-
+		<button class='btn btn-success marginClass' id='reg_submit' onClick='insertReq(0)'>"+button.ok+"</button>");
+	
 }
 
 //Formular für Anforderung bearbeiten
@@ -270,9 +245,7 @@ function createEditForm(id){
 			
 			//Erzeuge Edit-Form
 			
-			if(window.location.pathname.search("_en") == -1){
-			
-			body.html("<h3 class='marginClass'>Hallo "+user+", bearbeiten Sie Ihre Anforderung:</h3>\
+			body.html("<h3 class='marginClass'>"+editForm.greeting+"</h3>\
 				<fieldset>\
 					<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' value='"+wann+"'></div>\
 					<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
@@ -296,7 +269,7 @@ function createEditForm(id){
 					<div class='col-md-3'><input type='text' class='form-control' name='relations' id='relations'  value='"+p_rel+"'></div>\
 				</fieldset></br>\
 				<fieldset>\
-					<div class='col-md-2'>Priorität:<select id='prio' class='form-control'>\
+					<div class='col-md-2'>"+editForm.prio+"<select id='prio' class='form-control'>\
 													<option>"+priority+"</option>\
 													<option>0</option>\
 													<option>1</option>\
@@ -312,51 +285,7 @@ function createEditForm(id){
 					</select>\
 					</div>\
 				</fieldset>\
-				<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Bestätigen</button>");
-			} else {
-				
-				body.html("<h3 class='marginClass'>Hello "+user+", edit your requirement:</h3>\
-				<fieldset>\
-					<div class='col-md-3'><input type='text' class='form-control' name='wann' id='wann' value='"+wann+"'></div>\
-					<div class='col-md-2'><select class='form-control' name='muss' id='muss'>\
-						<option>"+muss+"</option>\
-						<option>muss</option>\
-						<option>sollte</option>\
-						<option>wird</option>\
-					</select></div>\
-					<div class='col-md-3'><input type='text' class='form-control' name='system' id='system' value='"+wer+"'></div>\
-					<div class='col-md-2'><input type='text' class='form-control' name='wem' id='wem' value='"+wem+"'></div>\
-					<div class='col-md-2'><select class='form-control' name='bieten' id='bieten'>\
-						<option>"+bieten+"</option>\
-						<option>to be able to,</option>\
-						<option>give the opportunity to,</option>\
-					</select></div>\
-				</fieldset></br>\
-				<fieldset>\
-					<div class='col-md-2'><input type='text' class='form-control' name='objekt'	id='objekt' value='"+objekt+"'></div>\
-					<div class='col-md-2'><input type='text' class='form-control' name='verb' id='verb'  value='"+verb+"'></div>\
-					<div class='col-md-2'><input type='text' class='form-control' name='identity' id='identity'  value='"+p_id+"'></div>\
-					<div class='col-md-3'><input type='text' class='form-control' name='relations' id='relations'  value='"+p_rel+"'></div>\
-				</fieldset></br>\
-				<fieldset>\
-					<div class='col-md-2'>Priority:<select id='prio' class='form-control'>\
-													<option>"+priority+"</option>\
-													<option>0</option>\
-													<option>1</option>\
-													<option>2</option>\
-													<option>3</option>\
-												</select></div>\
-					<div class='col-md-3'>Status:<select id='status' class='form-control'>\
-						<option>"+p_status+"</option>\
-						<option>im Backlog</option>\
-						<option>in Bearbeitung</option>\
-						<option>in Testphase</option>\
-						<option>abgeschlossen</option>\
-					</select>\
-					</div>\
-				</fieldset>\
-				<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>Send</button>");
-			}
+				<button class='btn btn-success marginClass' id='reg_submit' onClick='edit("+id+")'>"+button.ok+"</button>");
 		}
 	});
 }

@@ -83,7 +83,7 @@ var teams = "Noch kein Team vorhanden";
 					} else if (curTeam == memberOf){
 								teams+="<tr>\
 								<th id='team"+curTeamID+"'>"+curTeam+"</th>\
-								<th>Sie sind Mitglied dieses Teams"+"</th>\
+								<th>"+modal_team.tbl_text+"</th>\
 								<th class='req-btn'>\
 									<button  class='btn btn-default' data-toggle='modal' data-target='#modal_editTeam' onClick='editTeam("+curTeamID+")' aria-label='Left Align'>\
 										<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
@@ -119,9 +119,9 @@ var teams = "Noch kein Team vorhanden";
 			}
 			$("#content_team").html("<table class='table'><thead style='background-color:#E6E6E6'>\
 						<tr>\
-							<th class='col-md-4'>Team</th>\
+							<th class='col-md-4'>"+modal_team.tbl1+"</th>\
 							<th class='col-md-5'></th>\
-							<th class='col-md-3'>Optionen</th>\
+							<th class='col-md-3'>"+modal_team.tbl2+"</th>\
 						</tr></thead>\
 						<tbody>\
 							"+teams+"\
@@ -166,17 +166,17 @@ $('#team_modal').hide();
 $( "#dialog" ).dialog({
 		resizable: false,
 		height: 140,
-		width: 600,
-		title: "Team mitsamt Anforderungen wirklich löschen?",
+		width: 700,
+		title: team.del,
 		modal: true,
 		bgiframe: true,
 		buttons: {
-			"Team löschen!": function() {
+			"OK": function() {
 				deleteTeam(team_id);
 				$( this ).dialog( "close" );
 				$('#team_modal').show();
 			},
-			"doch nicht": function() {
+			"Cancel": function() {
 				$( this ).dialog( "close" );
 				$('#team_modal').show();
 			}
@@ -227,11 +227,8 @@ $.ajax({
 
 function refreshTeamData(opt){
 	//hier alle funktionen rein, die abhängig von den ausgelesenen teams sind
-	if(window.location.pathname.search("_en") == -1){
-		$("#headline_dashboard").text("Anforderungen");
-	} else {
-		$("#headline_dashboard").text("Requirements");
-	}
+		$("#headline_dashboard").text("");
+
 	refreshTeamDropdown();
 	getMyGroups();
 	if (opt){	

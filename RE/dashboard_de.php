@@ -76,7 +76,7 @@
 				</div>
 
 				</br>
-				<h2 id="headline_dashboard">Anforderungen</h2>
+				<h2 id="headline_dashboard"></h2>
 				<hr>
 					<p class="panel panel-warning"id="error"></p>
 					<div class="panel panel-warning" id="dialog"></div>
@@ -101,10 +101,10 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h3 class="modal-title" id="myModalLabel">Profil</h3>
+							<h3 class="modal-title" id="profile_tophead">Profil</h3>
 						</div>
 						<div class="modal-body">
-							<p id="head_modal_dash"><h4>Geben Sie Ihre neuen Daten ein:</h4></p></br>
+							<p ><h4 id="head_modal_dash">Geben Sie Ihre neuen Daten ein:</h4></p></br>
 							
 							<fieldset>
 								<label id="newPW">Neues Passwort</label><input type="password" class="form-control" name="passwd" id="ch_pw" ></br>
@@ -114,7 +114,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button class="btn btn-success" id="reg_submit" onClick="changeData()">Bestätigen</button>
+							<button class="btn btn-success" id="reg_submit_p" onClick="changeData()">Bestätigen</button>
 						</div>
 					</div>
 				</div>
@@ -129,29 +129,29 @@
 							<h3 class="modal-title" id="myModalLabel">Team</h3>
 						</div>
 						<div class="modal-body">
-							<p id="head_modal_dash_team"><h4>Teamoptionen</h4></p></br>
+							<p ><h4 id="head_modal_dash_team" >Teamoptionen</h4></p></br>
 							<div class="panel panel-warning" id="dialog_team_modal"></div>
 							<div id="accordion">
-								<h3>Meine Teams</h3>
+								<h3 id='modal_dash_team_subheadline'>Meine Teams</h3>
 								<div id="content_team">
 									<!-- hier alle teams des users -> getMyGroups() -->
 								</div>
-								<h3>Team erstellen</h3>
+								<h3 id='modal_dash_team_topic'>Team erstellen</h3>
 								<div>
 									<label for="pw">Teamname</label><input type="text" class="form-control" id="team_name" ></br>
-									<button class="btn btn-success" onClick="createTeam()">Team erstellen</button>
+									<button id='modal_dash_team_ok' class="btn btn-success" onClick="createTeam()">Team erstellen</button>
 								</div>
-								<h3>Mitglieder hinzufügen</h3>
+								<h3 id='add_members'>Mitglieder hinzufügen</h3>
 								<div>
 									<div class="row">
-										<div class="col-md-5">Mitglied</div>
-										<div class="col-md-3">Meine Gruppen</div>
+										<div id='add_mem_1' class="col-md-5">Mitglied</div>
+										<div id='add_mem_2' class="col-md-3">Meine Gruppen</div>
 										<div class="col-md-2"></div>
 									</div>
 									<div class="row">
 										<div class="col-md-5"><input type="text" class="form-control" id="team_user" ></div>
 										<div id="team_list" class="col-md-3"><!--  dropdown for all teams here -> refreshTeamDropdown() --></div>
-										<div class="col-md-2"><button onClick="addTeamMember()" class="btn btn-success">Mitglied hinzufügen</button></div>
+										<div class="col-md-2"><button id='add_mem_button' onClick="addTeamMember()" class="btn btn-success">Mitglied hinzufügen</button></div>
 									</div>
 								</div>
 							</div>
@@ -176,7 +176,7 @@
 							<h3 class="modal-title" id="myModalLabel">Team</h3>
 						</div>
 						<div class="modal-body">
-							<p id="head_modal_dash_team_edit"><h4>Bearbeiten Sie Ihr Team</h4></p></br>
+							<p ><h4 id="head_modal_dash_team_edit" >Bearbeiten Sie Ihr Team</h4></p></br>
 							<div id="content_editTeam">
 								<!--content here-->
 							</div>
