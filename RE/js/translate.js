@@ -2,6 +2,12 @@ var button = {
 	ok:"",
 	dismiss:""
 }
+
+var modal_user = {
+ headline:"",
+ name:""
+}
+
 var menu = {
  item1:"",
  item2:"",
@@ -93,10 +99,18 @@ var deleteReq = {
  confirm:"",
  feedmessage:""
 }
+
+var modal_editTeam = {
+	member:"",
+	option:""
+}
 function defineTranslationVars(lang){
 	//deutsch
 	if(lang == "de"){
 	//console.log("de");
+	
+		modal_editTeam.member="Mitglieder";
+		modal_editTeam.option="Optionen";
 	
 		team.del="Team mitsamt Anforderungen wirklich löschen?";
 		
@@ -155,7 +169,7 @@ function defineTranslationVars(lang){
 		modal_team.add_mem1="Mitglied";
 		modal_team.add_mem2="Meine Teams";
 		modal_team.add_mem_button="Mitglied hinzufügen";
-		modal_team.tbl1="Mitglied";
+		modal_team.tbl1="Mitglieder";
 		modal_team.tbl2="Optionen";
 		modal_team.tbl_text="Sie sind Mitglied dieses Teams";
 		
@@ -176,11 +190,17 @@ function defineTranslationVars(lang){
 		csvtxt.prio="Priorität";
 		csvtxt.dep="Abhängigkeiten";
 		
+		modal_user.headline="Nutzerinformationen";
+		modal_user.name="Nutzername:";
+		
 		
 	} 
 	if(lang == "en"){
 	//englisch
 	//console.log("en");
+	
+		modal_editTeam.member="Members";
+		modal_editTeam.option="Options";
 	
 		team.del="Do you really want to delete the team with all it's requirements?";
 		
@@ -239,7 +259,7 @@ function defineTranslationVars(lang){
 		modal_team.add_mem1="Member";
 		modal_team.add_mem2="My teams";
 		modal_team.add_mem_button="Add member";
-		modal_team.tbl1="Member";
+		modal_team.tbl1="Members";
 		modal_team.tbl2="Options";
 		modal_team.tbl_text="You're a member of this team";
 		
@@ -259,6 +279,9 @@ function defineTranslationVars(lang){
 		csvtxt.req="Requirement";
 		csvtxt.prio="Priority";
 		csvtxt.dep="Dependencies";
+		
+		modal_user.headline="User's information";
+		modal_user.name="Username:";
 		
 	}	
 }

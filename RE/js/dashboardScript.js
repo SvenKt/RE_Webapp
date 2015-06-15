@@ -65,6 +65,7 @@ function setNews(val){
 
 //activate interval
 function updateOn() {
+	console.log("updateOn");
 	getUpdateCount();
 	//check no intervall is set
 	if(!theIntervalId){
@@ -140,39 +141,42 @@ function getUpdateCount() {
 						//Nachschauen was genau passiert ist
 						length=success.length;
 						//console.log(oldLength+"   "+length)
-						if (oldLength < length){
-							console.log("neue req dazu");
-							if(getFeedMessage() == ""){
-								setFeedMessage(reqForm.feed_create);
-							} 
-							setNews(getNews()+1);
-							addMessageToFeed(getFeedMessage());
-							setFeedMessage("");
-							changes =  true;
-						} else if (oldLength > length){
-							console.log("req gelöscht");
-							if(getFeedMessage() == ""){
-								setFeedMessage(reqForm.feed.del);
+						if(!justEnteredTeam){
+							if (oldLength < length){
+								console.log("neue req dazu");
+								if(getFeedMessage() == ""){
+									setFeedMessage(reqForm.feed_create);
+								} 
+								setNews(getNews()+1);
 								addMessageToFeed(getFeedMessage());
 								setFeedMessage("");
-								setNews(getNews()+1);
-							} else {
-								resetFeed();
-								setNews(0);
-							}
-							changes = true;
-						} else {
-							for( var i=0; i < length; i++) {
-								if(success[i] > lastReadFromDb) {
-									console.log("req editiert");
-									setFeedMessage(reqForm.feed_edit);
-									setNews(getNews()+1);
+								changes =  true;
+							} else if (oldLength > length){
+								console.log("req gelöscht");
+								if(getFeedMessage() == ""){
+									setFeedMessage(reqForm.feed_del);
 									addMessageToFeed(getFeedMessage());
 									setFeedMessage("");
-									changes = true;
+									setNews(getNews()+1);
+								} else {
+									resetFeed();
+									setNews(0);
+								}
+								changes = true;
+							} else {
+								for( var i=0; i < length; i++) {
+									if(success[i] > lastReadFromDb) {
+										console.log("req editiert");
+										setFeedMessage(reqForm.feed_edit);
+										setNews(getNews()+1);
+										addMessageToFeed(getFeedMessage());
+										setFeedMessage("");
+										changes = true;
+									}
 								}
 							}
 						}
+				justEnteredTeam = false;
 				if(getNews() > 0){		
 -					$('#newsNumber').css({"background-color": "red", "color": "white"});		
  				}

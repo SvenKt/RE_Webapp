@@ -102,6 +102,9 @@ function changeMenuLanguage(){
 	$('#add_mem_button').text(modal_team.add_mem_button);
 
 	$("#head_modal_dash_team_edit").text(modal_editTeam.headline);
+	
+	$("#user_info").text(modal_user.headline);
+	$("#user_info_name").html(modal_user.name);
 	getMyGroups();
 	
 

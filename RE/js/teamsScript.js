@@ -11,6 +11,9 @@ function loadTeamOptions(){
 	refreshTeamData();
 }
 
+
+var justEnteredTeam = false;
+
 //Neues Team erstellen
 function createTeam(){
 	var teamname = $("#team_name").val();	
@@ -81,6 +84,8 @@ var teams = "Noch kein Team vorhanden";
 								</tr>";	
 					//wenn aktueller teamname == teamname, in dem nutzer mitglied ist, dann erstelle noch zusätzlich einen 'leave team' button
 					} else if (curTeam == memberOf){
+					
+					//Übersetzung muss hier gemacht werden, da das DOM bei klick auf englisch/deutsch noch 
 								teams+="<tr>\
 								<th id='team"+curTeamID+"'>"+curTeam+"</th>\
 								<th>"+modal_team.tbl_text+"</th>\
@@ -117,6 +122,9 @@ var teams = "Noch kein Team vorhanden";
 					}			
 				}
 			}
+			
+			//Übersetzung muss hier gemacht werden, da das DOM bei klick auf englisch/deutsch noch 
+			
 			$("#content_team").html("<table class='table'><thead style='background-color:#E6E6E6'>\
 						<tr>\
 							<th class='col-md-4'>"+modal_team.tbl1+"</th>\
@@ -141,6 +149,7 @@ function leaveTeam(){
 		success: function(success){
 			setArrayLength(0);
 			refreshTeamData(true);
+			updateOff();
 			$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);
 		}
 	});
@@ -155,6 +164,8 @@ function intoTeam(team_id){
 		dataType: "json",
 		success: function(success){
 			refreshTeamData(true);
+			justEnteredTeam = true;
+			updateOn();
 			$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);		
 		}
 	});
@@ -298,9 +309,9 @@ $.ajax({
 					"<table class='table'>\
 						<thead style='background-color:#E6E6E6'>\
 							<tr>\
-								<th class='col-md-4'>Mitglieder</th>\
+								<th class='col-md-4'>"+modal_editTeam.member+"</th>\
 								<th class='col-md-5'></th>\
-								<th class='col-md-3'>Optionen</th>\
+								<th class='col-md-3'>"+modal_editTeam.option+"</th>\
 							</tr>\
 							</thead>\
 							<tbody>	"+users+"\
@@ -328,8 +339,10 @@ function showUserData(userID){
 			var mail=userData[1];
 			var body=$("#content_userData");
 			
+			//Übersetzung muss hier gemacht werden, da das DOM bei klick auf englisch/deutsch noch nicht existiert!!!
+			
 			body.html("<div class='row'>\
-						<label class='col-md-3'>Nutzername:</label><label class='col-md-8'>"+name+"</label><br/>\
+						<label class='col-md-3'>"+modal_user.name+"</label><label class='col-md-8'>"+name+"</label><br/>\
 						<label class='col-md-3'>E-Mail:</label>\
 						<label class='col-md-8'>\
 							<a href='mailto:"+mail+"?Subject=Kontakt%20über%20Red:Wire'>"+mail+"</a>\
