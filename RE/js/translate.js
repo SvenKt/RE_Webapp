@@ -76,7 +76,11 @@ var team = {
 var reqForm = {
  headline:"",
  prio:"",
- status:""
+ status:"",
+ feed_create:"",
+ feed_create_u:"",
+ feed_edit:"",
+ feed_del:"",
 }
 
 var csvtxt = {
@@ -163,6 +167,10 @@ function defineTranslationVars(lang){
 		reqForm.headline="Hallo "+getUserName()+", geben Sie eine neue Anforderung ein:";
 		reqForm.prio="Priorität";
 		reqForm.status="Status";
+		reqForm.feed_create="Jemand hat eine Anforderung erstellt";
+		reqForm.feed_del="Jemand hat eine Anforderung gelöscht";
+		reqForm.feed_edit="Jemand hat eine Anforderung bearbeitet";
+		reqForm.feed_create_u="Sie haben eine neue Anforderung erstellt";
 
 		csvtxt.req="Anforderung";
 		csvtxt.prio="Priorität";
@@ -243,6 +251,10 @@ function defineTranslationVars(lang){
 		reqForm.headline="Hello "+getUserName()+", enter a new requirement:";
 		reqForm.prio="Priority";
 		reqForm.status="Status";
+		reqForm.feed_create="A new requirement has been created";
+		reqForm.feed_del="A requirement has been deleted";
+		reqForm.feed_edit="A requirement has been edited";
+		reqForm.feed_create_u="You've created a new requirement";
 		
 		csvtxt.req="Requirement";
 		csvtxt.prio="Priority";

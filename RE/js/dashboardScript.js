@@ -143,7 +143,7 @@ function getUpdateCount() {
 						if (oldLength < length){
 							console.log("neue req dazu");
 							if(getFeedMessage() == ""){
-								setFeedMessage("Jemand hat eine Anforderung erstellt");
+								setFeedMessage(reqForm.feed_create);
 							} 
 							setNews(getNews()+1);
 							addMessageToFeed(getFeedMessage());
@@ -152,7 +152,7 @@ function getUpdateCount() {
 						} else if (oldLength > length){
 							console.log("req gelöscht");
 							if(getFeedMessage() == ""){
-								setFeedMessage("Jemand hat eine Anforderung gelöscht");
+								setFeedMessage(reqForm.feed.del);
 								addMessageToFeed(getFeedMessage());
 								setFeedMessage("");
 								setNews(getNews()+1);
@@ -165,7 +165,7 @@ function getUpdateCount() {
 							for( var i=0; i < length; i++) {
 								if(success[i] > lastReadFromDb) {
 									console.log("req editiert");
-									setFeedMessage("Jemand hat eine Anforderung bearbeitet");
+									setFeedMessage(reqForm.feed_edit);
 									setNews(getNews()+1);
 									addMessageToFeed(getFeedMessage());
 									setFeedMessage("");
@@ -260,7 +260,7 @@ function insertReq(origin){
 							default: getRequirements(); break;
 						}
 					}
-					setFeedMessage("Sie haben eine Anforderung erstellt");
+					setFeedMessage(reqForm.feed_create_u);
 				}
 			});
 		} else alert("Cookie-fehler");
