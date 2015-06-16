@@ -26,14 +26,19 @@ $userExists=false;
 	$newOwnerDefined=mysql_query($defineNewOwner) OR die(mysql_error());
 	
 		if($newOwnerDefined){
-			echo json_encode("Team erfolgreich überschrieben");
+			$code=0;
+			//echo json_encode("Team erfolgreich überschrieben");
 		} else {
-			echo json_encode("Fehler: Team konnte nicht überschrieben werden");
+			$code=1;
+			//echo json_encode("Fehler: Team konnte nicht überschrieben werden");
 		}
+
 	} else {
-		echo json_encode("Fehler: Nutzer existiert nicht!");
+			$code=2;
+			//echo json_encode("Fehler: Nutzer existiert nicht!");
 	}
 	
+	echo json_encode($code);
 		
 		
 

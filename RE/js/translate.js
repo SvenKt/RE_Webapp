@@ -2,7 +2,21 @@ var button = {
 	ok:"",
 	dismiss:""
 }
-
+var admin = {
+ headline:"",
+}
+var userdel_admin = {
+ title:"",
+ message:"",
+ teamname:"",
+ owner:"",
+ ok:"",
+ deleteTeam:"",
+ user:"",
+ mail:"",
+ teamid:"",
+ option:"",
+}
 var modal_user = {
  headline:"",
  name:""
@@ -129,7 +143,9 @@ var createTeam = {
 }
 
 var defineNewTeamOwner = {
-
+ mess0:"",
+ mess1:"",
+ mess2:""
 }
 
 var delete_php = {
@@ -232,6 +248,8 @@ function defineTranslationVars(lang){
 	//deutsch
 	if(lang == "de"){
 	//console.log("de");
+		
+		admin.headline="Übersicht";
 	
 		modal_editTeam.member="Mitglieder";
 		modal_editTeam.option="Optionen";
@@ -317,6 +335,18 @@ function defineTranslationVars(lang){
 		modal_user.headline="Nutzerinformationen";
 		modal_user.name="Nutzername:";
 		
+		userdel_admin.title="Nutzer wirklich löschen?";
+		userdel_admin.message="Fehler: User ist der Ersteller von mindestens einem Team. Löschen Sie diese/s oder übertragen Sie es an einen anderen User!";
+		userdel_admin.teamname="Teamname";
+		userdel_admin.owner="Neuer Besitzer";
+		userdel_admin.ok="Bestätigen";
+		userdel_admin.deleteTeam="Team Löschen";
+		userdel_admin.teamTitle="Team mitsamt Usern und allen Anforderungen löschen?";
+		userdel_admin.user="Username";
+		userdel_admin.mail="E-Mail";
+		userdel_admin.teamid="Team-ID";
+		userdel_admin.option="Optionen";
+		
 		//PHP//
 		addMember.mess0="wurde hinzugefügt zu Team:";
 		addMember.mess1="konnte diesem Team nicht hinzugefügt werden:";
@@ -336,10 +366,15 @@ function defineTranslationVars(lang){
 		insertGroupOwner.mess0="Sie wurden erfolgreich als Teammitglied eingetragen";
 		insertGroupOwner.mess1="Sie wurden dem Team nicht hinzugefügt, da Sie schon Mitglied eines anderen Teams sind.";
 		
+		defineNewTeamOwner.mess0="Team erfolgreich überschrieben";
+		defineNewTeamOwner.mess1="Fehler: Team konnte nicht überschrieben werden";
+		defineNewTeamOwner.mess2="Fehler: Nutzer existiert nicht!";
 	} 
 	if(lang == "en"){
 	//englisch
 	//console.log("en");
+	
+		admin.headline="Dashboard";
 	
 		modal_editTeam.member="Members";
 		modal_editTeam.option="Options";
@@ -425,6 +460,18 @@ function defineTranslationVars(lang){
 		modal_user.headline="User's information";
 		modal_user.name="Username:";
 		
+		userdel_admin.title="Do you really want to delete this user?";
+		userdel_admin.message="Error: User is assigned to at least one team. Please assign it to another user oder delete it!";
+		userdel_admin.teamname="Team name";
+		userdel_admin.owner="New owner";
+		userdel_admin.ok="Accept";
+		userdel_admin.deleteTeam="Delete team";
+		userdel_admin.teamTitle="Delete team with all users and its requirements?";
+		userdel_admin.user="Username";
+		userdel_admin.mail="E-Mail";
+		userdel_admin.teamid="Team-ID";
+		userdel_admin.option="Options";
+		
 		//PHP//
 		addMember.mess0="was added to team:";
 		addMember.mess1="could not be added to team:";
@@ -443,6 +490,11 @@ function defineTranslationVars(lang){
 		
 		insertGroupOwner.mess0="You've been added successfully as a member";
 		insertGroupOwner.mess1="You've not been added as a member, because you're already member of another team";
+		
+		defineNewTeamOwner.mess0="Team was successfully assigned to a new user";
+		defineNewTeamOwner.mess1="Error: Team couldn't be assigned to a new user";
+		defineNewTeamOwner.mess2="Error: User doesn't exist!";
+		
 		
 	}	
 }

@@ -8,9 +8,8 @@ $("#admin_error").hide();
 $("#admin_dialog").hide();
 $("#dialog_team_modal").hide();
 getUsers();
-
-$(this).tooltip();
 });
+
 
 function changeData(){
 var password=$("#ch_pw").val();
@@ -23,9 +22,16 @@ $.ajax({
 			type: "POST",
 			data: {"username": username, "password": password, "password2": password_repeat, "email": email},
 			dataType: "json",
-			success: function(success){
-				$("#head_modal_dash").text(success).slideDown(500).delay(2000).slideUp(500);
-				if (success.search("Fehler") == -1){ window.setTimeout(function(){$('#profil').modal('hide'); }, 2000);};
+			success: function(code){
+			var mess;
+			switch (code) {
+					case 0: mess= changeData.mess0; break;
+					case 1: mess= changeData.mess1; break;
+					case 2: mess= changeData.mess2; break;
+					case 3: mess= changeData.mess3; break;
+				}
+				$("#head_modal_dash").text(mess).slideDown(500).delay(2000).slideUp(500);
+				if ((mess.search("Fehler") == -1) && (mess.search("Error") == -1)){ window.setTimeout(function(){$('#profil').modal('hide'); }, 2000);};
 			},
 			error: function(){alert("error");}
 			});
@@ -41,11 +47,11 @@ function confirmUserRemoval(username,userID){
 	$( "#admin_dialog" ).dialog({
 		resizable: false,
 		height: 140,
-		width: 400,
-		title: "User wirklich löschen?",
+		width: 600,
+		title: userdel_admin.title,
 		modal: true,
 		buttons: {
-			"User löschen!": function() {
+			"OK": function() {
 			//wenn user gelöscht werden soll, finde heraus, ihm irgendwelche teams gehören
 			$.ajax({
 				url: "php/getMyGroups.php",
@@ -62,7 +68,7 @@ function confirmUserRemoval(username,userID){
 			$( this ).dialog( "close" );
 				
 			},
-			"doch nicht": function() {
+			"Cancel": function() {
 				$( this ).dialog( "close" );
 			}
 		}
@@ -105,15 +111,15 @@ $( "#admin_dialog" ).dialog({
 		resizable: false,
 		height: 140,
 		width: 700,
-		title: "Team mitsamt Usern und Anforderungen wirklich löschen?",
+		title: userdel_admin.teamTitle,
 		modal: true,
 		bgiframe: true,
 		buttons: {
-			"Team löschen!": function() {
+			"OK": function() {
 				deleteTeam(user,team_id,userID);
 				$( this ).dialog( "close" );
 			},
-			"doch nicht": function() {
+			"Cancel": function() {
 				$( this ).dialog( "close" );
 			}
 		}
@@ -177,15 +183,15 @@ $.ajax({
 								"<b id='message' class='panel panel-warning'></b></br></br>\
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
-									<th class='col-md-3'>Teamname</th>\
-									<th class='col-md-4'>Neuer Besitzer</th>\
-									<th class='col-md-2'>Bestätigen</th>\
-									<th class='col-md-2'>Team löschen</th>\
+									<th class='col-md-3'>"+userdel_admin.teamname+"</th>\
+									<th class='col-md-4'>"+userdel_admin.owner+"</th>\
+									<th class='col-md-2'>"+userdel_admin.ok+"</th>\
+									<th class='col-md-2'>"+userdel_admin.deleteTeam+"</th>\
 								</tr></thead>\
 								<tbody>\
 									"+string+"\
 								</tbody></table>");	
-					$("#message").text("Fehler: User ist der Ersteller von mindestens einem Team.\nLöschen Sie diese/s oder übertragen Sie es an einen anderen User!").slideDown(500);
+					$("#message").text(userdel_admin.message).slideDown(500);
 					} else {
 					//andernfalls lösche den nutzer
 						forceDeleteUser(userID);
@@ -259,10 +265,10 @@ $.ajax({
 								<table class='table'><thead style='background-color:#E6E6E6'>\
 								<tr>\
 									<th class='col-md-2'>ID</th>\
-									<th class='col-md-2'>Username</th>\
-									<th class='col-md-2'>E-Mail</th>\
-									<th class='col-md-2'>Team-ID</th>\
-									<th class='col-md-2'>Optionen</th>\
+									<th class='col-md-2'>"+userdel_admin.user+"</th>\
+									<th class='col-md-2'>"+userdel_admin.mail+"</th>\
+									<th class='col-md-2'>"+userdel_admin.teamid+"</th>\
+									<th class='col-md-2'>"+userdel_admin.option+"</th>\
 								</tr></thead>\
 								<tbody>\
 									"+string+"\
@@ -283,8 +289,14 @@ var newOwner = $('#newOwner'+teamID).val();
 			type: "POST",
 			data: {"newOwner":newOwner, "teamID":teamID},
 			dataType: "json",
-			success: function(success){
-				$("#admin_error").text(success).slideDown(500).delay(2000).slideUp(500);
+			success: function(code){
+			var mess;
+			switch (code) {
+					case 0: mess= defineNewTeamOwner.mess0; break;
+					case 1: mess= defineNewTeamOwner.mess1; break;
+					case 2: mess= defineNewTeamOwner.mess2; break;
+				}
+				$("#admin_error").text(mess).slideDown(500).delay(2000).slideUp(500);
 				//if (success.search("Fehler") == -1){ $('#row'+teamID).hide();};
 				displayKickContent(oldOwner,oldOwnerID);
 			},

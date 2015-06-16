@@ -7,8 +7,12 @@ $(document).ready(function(){
 	$("#patchnotes").html(patchnotes);
 	$("#patchnotes").accordion({collapsible: true});
 	
-
-	enableTooltips();
+	//seite ist auch in adminpage eingebunden
+	//TT sollen nur auf dashboard sein
+	if(window.location.pathname.search("admin") == -1 ){
+		enableTooltips();
+	}
+	
 	switchToDE();
 	
 	
@@ -65,6 +69,12 @@ var oldActive;
 
 function changeMenuLanguage(){
 	defineTranslationVars(language);
+	
+	//adminpage//
+	
+	$("#headline_adminpage").text(admin.headline);
+	
+	//adminpage//
 	
 	$('#sortHead1').text(tableHead.item1);
 	$('#sortHead2').text(tableHead.item2);

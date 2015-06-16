@@ -43,6 +43,11 @@ var arr = JSON.parse(localStorage.getItem("array"));
 return arr.length;
 }
 
+function Length(){
+var arr = JSON.parse(localStorage.getItem("array"));
+return arr.length;
+}
+
 
 function createUser(name, cookie){
 var user = new Object();

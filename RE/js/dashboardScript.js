@@ -214,7 +214,7 @@ function changeData(){
 				}
 
 				$("#head_modal_dash").text(mess).slideDown(500).delay(2000).slideUp(500);
-				if ((mess.search("Fehler") == -1) || (mess.search("Error") == -1) ){ window.setTimeout(function(){$('#profil').modal('hide'); }, 2000);};
+				if ((mess.search("Fehler") == -1) && (mess.search("Error") == -1) ){ window.setTimeout(function(){$('#profil').modal('hide'); }, 2000);};
 			},
 			error: function(){alert("error");}
 			});
@@ -266,7 +266,7 @@ function insertReq(origin){
 				dataType: "json",
 				success: function(success){
 					$('#error').text(success).slideDown(500).delay(2000).slideUp(500);
-					if (success.search("Fehler") == -1){
+					if ((success.search("Fehler") == -1) && (success.search("Error") == -1)){
 						getUpdateCount();
 						switch (origin) {
 							case 0:	createReqForm();break;
