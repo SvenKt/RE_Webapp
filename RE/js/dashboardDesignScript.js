@@ -125,7 +125,7 @@ function enableTooltips(){
 		$('#sortHead2').attr('title',tableHead.item2_tt);
 		$('#sortHead3').attr('title',tableHead.item3_tt);
 		$('#sortHead4').attr('title',tableHead.item4_tt);
-		$('#sortHead6').attr('title',tableHead.item6_tt);
+		$('#sortHead6').attr('title',tableHead.item5_tt);
 		
 		$('#search_field').attr('title',otherContent.search);
 		

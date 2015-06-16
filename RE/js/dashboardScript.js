@@ -202,9 +202,19 @@ function changeData(){
 			type: "POST",
 			data: {"username": username, "password": password, "password2": password_repeat, "email": email},
 			dataType: "json",
-			success: function(success){
-				$("#head_modal_dash").text(success).slideDown(500).delay(2000).slideUp(500);
-				if (success.search("Fehler") == -1){ window.setTimeout(function(){$('#profil').modal('hide'); }, 2000);};
+			success: function(code){
+			var mess;
+				switch (code) {
+					case 0: mess= changeData.mess0; break;
+					case 1: mess= changeData.mess0; break;
+					case 2: mess= changeData.mess0; break;
+					case 3: mess= changeData.mess0; break;
+					case 4: mess= changeData.mess0; break;
+					case 5: mess= changeData.mess0; break;
+				}
+
+				$("#head_modal_dash").text(mess).slideDown(500).delay(2000).slideUp(500);
+				if ((mess.search("Fehler") == -1) || (mess.search("Error") == -1) ){ window.setTimeout(function(){$('#profil').modal('hide'); }, 2000);};
 			},
 			error: function(){alert("error");}
 			});

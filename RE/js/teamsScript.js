@@ -23,19 +23,30 @@ function createTeam(){
 			type: "POST",
 			data: {"team": teamname,"user":getUserName()},
 			dataType: "json",
-			success: function(success){
-					$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);
-					if (success.search("Fehler") == -1){ 
+			success: function(code){
+					var mess;
+					switch (code) {
+						case 0: mess = createTeam.mess0; break;
+						case 1: mess = createTeam.mess1; break;
+					}
+					
+					$("#head_modal_dash_team").text(mess).slideDown(500).delay(2000).slideUp(500);
+					if ((mess.search("Fehler") == -1) || (mess.search("Error") == -1)){ 
 						$.ajax({
 							url: "php/insertGroupOwner.php",
 							type: "POST",
 							data: {"team": teamname,"user":getUserName()},
 							dataType: "json",
-							success: function(success){
+							success: function(code){
+								var mess;
+								switch (code) {
+									case 0: mess = insertGroupOwner.mess0; break;
+									case 1: mess = insertGroupOwner.mess1; break;
+								}
 								//teams neu laden --> meine Teams
 								refreshTeamData(true);	
 								$("#team_name").val('');	
-								window.setTimeout(function(){$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);},3000);
+								window.setTimeout(function(){$("#head_modal_dash_team").text(mess).slideDown(500).delay(2000).slideUp(500);},3000);
 							}
 						});					
 					};
@@ -256,9 +267,16 @@ $.ajax({
 		type: "POST",
 		data: {"member":newMember, "teamName": team},
 		dataType: "json",
-		success: function(success){
+		success: function(code){
+		var mess;
+			switch (code) {
+				case 0: mess = newMember+" "+addMember.mess0+" "+team; break;
+				case 1: mess = newMember+" "+addMember.mess1+" "+team; break;
+				case 2: mess = newMember+" "+addMember.mess2; break;
+				case 3: mess = newMember+" "+addMember.mess3; break;
+			}
 			refreshTeamData();
-			$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);	
+			$("#head_modal_dash_team").text(mess).slideDown(500).delay(3000).slideUp(500);	
 		}
 	});
 }

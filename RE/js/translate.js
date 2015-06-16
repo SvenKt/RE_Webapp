@@ -104,6 +104,130 @@ var modal_editTeam = {
 	member:"",
 	option:""
 }
+
+
+//PHP STUFF//
+var addMember = {
+ mess0:"",
+ mess1:"",
+ mess2:"",
+ mess3:""
+}
+
+var changeData = {
+ mess0:"",
+ mess1:"",
+ mess2:"",
+ mess3:"",
+ mess4:"",
+ mess5:""
+}
+
+var createTeam = {
+ mess0:"",
+ mess1:""
+}
+
+var defineNewTeamOwner = {
+
+}
+
+var delete_php = {
+
+}
+
+var deleteAllUsersFromTeam = {
+
+}
+
+var deleteTeam = {
+
+}
+
+var deleteUser = {
+
+}
+
+var deleteUserFromTeam = {
+
+}
+
+var forceDeleteUser = {
+
+}
+
+var getAllUsers = {
+
+}
+
+var getCookie = {
+
+}
+
+var getMembers = {
+
+}
+
+var getMyGroups = {
+
+}
+
+var getPrioForEdit = {
+
+}
+
+var getReqForEdit = {
+
+}
+
+var getRequirements = {
+
+}
+
+var getUpdates = {
+
+}
+
+var getUserInfos = {
+
+}
+
+var insertGroupOwner = {
+ mess0:"",
+ mess1:""
+}
+
+var insertRequirement = {
+
+}
+
+var intoTeam = {
+
+}
+
+var leaveTeam = {
+
+}
+
+var loginCheck = {
+
+}
+
+var registerClass = {
+
+}
+
+var registerUser = {
+
+}
+
+var setCookie = {
+
+}
+
+
+//PHP STUFF END//
+
 function defineTranslationVars(lang){
 	//deutsch
 	if(lang == "de"){
@@ -169,7 +293,7 @@ function defineTranslationVars(lang){
 		modal_team.add_mem1="Mitglied";
 		modal_team.add_mem2="Meine Teams";
 		modal_team.add_mem_button="Mitglied hinzufügen";
-		modal_team.tbl1="Mitglieder";
+		modal_team.tbl1="Mitglied";
 		modal_team.tbl2="Optionen";
 		modal_team.tbl_text="Sie sind Mitglied dieses Teams";
 		
@@ -193,6 +317,24 @@ function defineTranslationVars(lang){
 		modal_user.headline="Nutzerinformationen";
 		modal_user.name="Nutzername:";
 		
+		//PHP//
+		addMember.mess0="wurde hinzugefügt zu Team:";
+		addMember.mess1="konnte diesem Team nicht hinzugefügt werden:";
+		addMember.mess2="ist bereits in einem anderen Team.\n Dieses muss er erst verlassen, um in Ihr Team aufgenommen zu werden. Fehler!";
+		addMember.mess3="existiert nicht. Fehler!";
+		
+		changeData.mess0="Daten erfolgreich geändert!";
+		changeData.mess1="Fehler: Daten konnten nicht geändert werden!";
+		changeData.mess2="Fehler: Bitte alle Felder ausfüllen!";
+		changeData.mess3="Fehler: E-Mail nicht gültig!";
+		changeData.mess4="Fehler: Passwörter sind nicht identisch!";
+		changeData.mess5="Fehler: Passwort zu unsicher - mindestens 8 Zeichen eingeben!";
+		
+		createTeam.mess0="Team erfolgreich erstellt!";
+		createTeam.mess1="Fehler: Team schon vorhanden!";
+		
+		insertGroupOwner.mess0="Sie wurden erfolgreich als Teammitglied eingetragen";
+		insertGroupOwner.mess1="Sie wurden dem Team nicht hinzugefügt, da Sie schon Mitglied eines anderen Teams sind.";
 		
 	} 
 	if(lang == "en"){
@@ -259,7 +401,7 @@ function defineTranslationVars(lang){
 		modal_team.add_mem1="Member";
 		modal_team.add_mem2="My teams";
 		modal_team.add_mem_button="Add member";
-		modal_team.tbl1="Members";
+		modal_team.tbl1="Member";
 		modal_team.tbl2="Options";
 		modal_team.tbl_text="You're a member of this team";
 		
@@ -282,6 +424,25 @@ function defineTranslationVars(lang){
 		
 		modal_user.headline="User's information";
 		modal_user.name="Username:";
+		
+		//PHP//
+		addMember.mess0="was added to team:";
+		addMember.mess1="could not be added to team:";
+		addMember.mess2="is already member of a team. He must leave the team first.";
+		addMember.mess3="doesn't exist!";
+		
+		changeData.mess0="Data successfully changed!";
+		changeData.mess1="Error: Data couldn't be changed!";
+		changeData.mess2="Error: Please fill out all forms!";
+		changeData.mess3="Error: E-Mail not valid!";
+		changeData.mess4="Error: Passwords do not match!";
+		changeData.mess5="Error: Password not safe. Please enter at leat 8 characters!";
+		
+		createTeam.mess0="Team has been created!";
+		createTeam.mess1="Error: Team already exist!";
+		
+		insertGroupOwner.mess0="You've been added successfully as a member";
+		insertGroupOwner.mess1="You've not been added as a member, because you're already member of another team";
 		
 	}	
 }

@@ -35,12 +35,14 @@ $alreadyExist=false;
 			$ergebnis = mysql_query($injection) OR die(mysql_error());
 			
 			if($ergebnis){
-				 echo json_encode("Team erfolgreich erstellt!");
+				$code=0;
+				 //echo json_encode("Team erfolgreich erstellt!");
 			 }
 		} else {
-			echo json_encode("Fehler: Team schon vorhanden");
+			$code=1;
+			//echo json_encode("Fehler: Team schon vorhanden");
 		}
-		
+		echo json_encode($code);
 	
 		
 		

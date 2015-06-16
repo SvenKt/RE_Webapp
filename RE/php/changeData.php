@@ -7,6 +7,8 @@ $admin->initInput();
 $admin->checkPassLength();
 $admin->checkPasswordsEqual();
 
+$code;
+
 if ($admin->inputOK && $admin->passwordEq && $admin->passSafe && $admin->emailValid){
 	
 	$md5hash = md5($admin->password);
@@ -19,21 +21,27 @@ if ($admin->inputOK && $admin->passwordEq && $admin->passSafe && $admin->emailVa
 	$passwordChanged = mysql_query($injection);
 
 	if ($passwordChanged){
-		echo json_encode("Daten erfolgreich geändert!");
+		//echo json_encode("Daten erfolgreich geändert!");
+		$code=0;
 	} else {
-		echo json_encode("Fehler: Daten konnten nicht geändert werden...");
+		$code=1;
+		//echo json_encode("Fehler: Daten konnten nicht geändert werden...");
 	}
 } else if (!$admin->inputOK){
-			echo json_encode("Fehler: Bitte alle Fehler ausfüllen!");
+			$code=2;
+			//echo json_encode("Fehler: Bitte alle Fehler ausfüllen!");
 		} else 
 		if (!$admin->emailValid){
-				echo json_encode("Fehler: Email nicht gültig!");
+			$code=3;
+				//echo json_encode("Fehler: Email nicht gültig!");
 			} else	if (!$admin->passwordEq){
-				echo json_encode("Fehler: Passwörter sind nicht identisch!");
+						$code=4;
+				//echo json_encode("Fehler: Passwörter sind nicht identisch!");
 			} else if (!$admin->passSafe){
-					echo json_encode("Fehler: Passwort zu unsicher - mindestens 8 Zeichen eingeben!!");
+						$code=5;
+					//echo json_encode("Fehler: Passwort zu unsicher - mindestens 8 Zeichen eingeben!!");
 		}
-	
+	echo json_encode($code);
 
 
 ?>

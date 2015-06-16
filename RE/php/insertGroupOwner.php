@@ -26,10 +26,13 @@ $teamID=0;
 
 				$writeTeamIDtoUser = "update users set team_id=".$teamID." where username='".$user."';";
 				$ergebnis = mysql_query($writeTeamIDtoUser) OR die(mysql_error());
-				echo json_encode("Sie wurden erfolgreich als Teammitglied eingetragen");	
+				//echo json_encode("Sie wurden erfolgreich als Teammitglied eingetragen");
+					$code=0;
 			} else {
-				echo json_encode("Sie wurden ".$team." nicht hinzugefügt, da Sie schon Mitglied eines anderen Teams sind.");	
+				$code=1;
+				//echo json_encode("Sie wurden ".$team." nicht hinzugefügt, da Sie schon Mitglied eines anderen Teams sind.");	
 			}
+			echo json_encode($code);
 			
 			
 		
