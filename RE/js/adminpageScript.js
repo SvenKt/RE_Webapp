@@ -3,11 +3,26 @@
 ////////////////
 
 $(document).ready(function(){
-//hide for adminpage
-$("#admin_error").hide();
-$("#admin_dialog").hide();
-$("#dialog_team_modal").hide();
-getUsers();
+	//hide for adminpage
+	$("#admin_error").hide();
+	$("#admin_dialog").hide();
+	$("#dialog_team_modal").hide();
+	getUsers();
+
+	//Enter zum Suchen
+	$("#search_field").keypress(function(event){
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == '13'){
+			searchUsers();
+		}
+		event.stopPropagation();
+	});
+	
+	//Navlist anpassung nach Modal
+	$("#profil").on('hidden.bs.modal', function(){
+		$('#main-nav').find('.active').removeClass('active');
+		oldActive.addClass('active');
+	});
 });
 
 
@@ -217,13 +232,14 @@ $.ajax({
 	
 }
 
-function getUsers(){
+function getUsers(query){
 var body = $('#admin_content');
 var curUser;
 var string="";
 $.ajax({
 			url: "php/getAllUsers.php",
 			type: "POST",
+			data: {"query": query},
 			dataType: "json",
 			success: function(success){
 				for (var i = 0; i < success.length; i++){
@@ -305,5 +321,10 @@ var newOwner = $('#newOwner'+teamID).val();
 	}	
 }
 	
-
+function searchUsers(){
+	$('#main-nav').find('.active').removeClass('active');
+	$('#main-nav li:first-child').addClass('active');
+	var searchQuery=$("#search_field").val();
+	getUsers(searchQuery);	
+}
 
