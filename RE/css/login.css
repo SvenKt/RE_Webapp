@@ -49,6 +49,13 @@ body {
   height: 30px;
 }
 
+#read {
+	display: none;
+	margin-top: 2vh;
+	margin-bottom: 0vh;
+}
+
+
 .clickable :hover {
   -webkit-transform: scale(1.1);
   /* Safari and Chrome */

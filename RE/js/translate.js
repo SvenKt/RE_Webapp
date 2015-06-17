@@ -341,10 +341,16 @@ function defineTranslationVars(lang){
 		
 		modal_editTeam.headline="Bearbeiten Sie Ihr Team";
 		
-		editForm.greeting="Hallo "+getUserName()+", bearbeiten Sie Ihre Anforderungen";
+		try {
+			editForm.greeting="Hallo "+getUserName()+", bearbeiten Sie Ihre Anforderungen";
+		} catch (e) {}
+		
 		editForm.prio="Priorität";
 		
-		reqForm.headline="Hallo "+getUserName()+", geben Sie eine neue Anforderung ein:";
+		try {
+			reqForm.headline="Hallo "+getUserName()+", geben Sie eine neue Anforderung ein:";
+		} catch (e) {}
+		
 		reqForm.prio="Priorität";
 		reqForm.status="Status";
 		reqForm.feed_create="Jemand hat eine Anforderung erstellt";
@@ -477,10 +483,16 @@ function defineTranslationVars(lang){
 		
 		modal_editTeam.headline="Edit your team";
 		
-		editForm.greeting="Hello "+getUserName()+", edit your team ";
+		try { 
+			editForm.greeting="Hello "+getUserName()+", edit your team ";
+		} catch (e) {}
+		
 		editForm.prio="Priority";
 		
-		reqForm.headline="Hello "+getUserName()+", enter a new requirement:";
+		try{
+			reqForm.headline="Hello "+getUserName()+", enter a new requirement:";
+		} catch (e) {}
+		
 		reqForm.prio="Priority";
 		reqForm.status="Status";
 		reqForm.feed_create="A new requirement has been created";
