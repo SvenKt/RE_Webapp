@@ -70,22 +70,28 @@ function registerUser(){
 		$register = mysql_query($injection);
 		
 		//register success
-		echo json_encode("Registrierung erfolgreich");
-		
+		//echo json_encode("Registrierung erfolgreich");
+		$code=0;
 	} else if(!$this->inputOK){
-				echo json_encode("Fehler: Bitte alle Felder ausfüllen!");
+				$code=1;
+				//echo json_encode("Fehler: Bitte alle Felder ausfüllen!");
 			}else  if(!$this->emailValid){
-				echo json_encode("Fehler: Email ist nicht gültig!");
+				$code=2;
+				//echo json_encode("Fehler: Email ist nicht gültig!");
 			}else  if (!$this->passwordEq){
+				$code=3;
 				//passwords are not equal
-				echo json_encode("Fehler: Passwörter stimmen nicht überein...");
+				//echo json_encode("Fehler: Passwörter stimmen nicht überein...");
 			}	else if ($this->userExists){
+						$code=4;
 						//user already exist
-						echo json_encode("Fehler: Username schon vergeben...");
+						//echo json_encode("Fehler: Username schon vergeben...");
 					 } else if (!$this->passSafe){
 								//password not safe
-								echo json_encode("Fehler: Passwort zu unsicher - mindestens 8 Zeichen eingeben!");
+								$code=5;
+								//echo json_encode("Fehler: Passwort zu unsicher - mindestens 8 Zeichen eingeben!");
 							}
+		echo json_encode($code);
 	}
 }
 ?>

@@ -15,7 +15,14 @@ var login = {
 	name_2:"",
 	pw:"",
 	pw_repeat:"",
-	mail:""
+	mail:"",
+	credentials:"",
+	mess0:"",
+	mess1:"",
+	mess2:"",
+	mess3:"",
+	mess4:"",
+	mess5:""
 }
 
 var userdel_admin = {
@@ -272,6 +279,14 @@ function defineTranslationVars(lang){
 		login.pw_repeat="Passwort wiederholen";
 		login.mail="E-Mail";
 		login.login="Einloggen";
+		login.credentials="Bitte korrekte Daten eingeben!";
+		login.mess0="Registrierung erfolgreich";
+		login.mess1="Fehler: Bitte alle Felder ausfüllen!";
+		login.mess2="Fehler: Email ist nicht gültig!";
+		login.mess3="Fehler: Passwörter stimmen nicht überein...";
+		login.mess4="Fehler: Username schon vergeben...";
+		login.mess5="Fehler: Passwort zu unsicher - mindestens 8 Zeichen eingeben!";
+		
 		
 		admin.headline="Übersicht";
 	
@@ -414,7 +429,14 @@ function defineTranslationVars(lang){
 		login.pw_repeat="Repeat password";
 		login.mail="E-Mail";
 		login.login="Login";
-	
+		login.credentials="Please enter valid credentials!";
+		login.mess0="Registration successful";
+		login.mess1="Error: Please fill out all forms!";
+		login.mess2="Error: E-Mail not valid!";
+		login.mess3="Error: Passwords do not match!";
+		login.mess4="Error: Username already in use...";
+		login.mess5="Error: Password not safe. Please enter at leat 8 characters!";
+		
 		admin.headline="Dashboard";
 	
 		modal_editTeam.member="Members";

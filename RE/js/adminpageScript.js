@@ -121,7 +121,7 @@ function deleteTeam(user,team_id,userID){
 	
 	
 }
-
+   
 
 function confirmTeamRemoval(user,team_id,userID){
 $( "#admin_dialog" ).dialog({

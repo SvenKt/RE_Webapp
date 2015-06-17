@@ -32,7 +32,7 @@ $.ajax({
 				StoreCookieIntoDatabase(cookie, user, redirectToDashboard);		
 				
 				} else {
-				$("#read").text("Bitte korrekte Daten eingeben!").slideDown(500).delay(2000).slideUp(500);
+				$("#read").text(login.credentials).slideDown(500).delay(2000).slideUp(500);
 				}
 			},
 			error: function(){alert("Error: Login failed.");}
@@ -54,8 +54,17 @@ $.ajax({
 			data: {"username": username, "password": password, "password2": password_repeat, "email": email},
 			dataType: "json",
 			success: function(success){
-				$("#head_modal").text(success).slideDown(500).delay(2000).slideUp(500);
-				if (success.search("Fehler") == -1){ window.setTimeout(function(){$('#register').modal('hide'); }, 2000);};
+			var mess;
+				switch (success) {
+					case 0: mess = login.mess0; break;
+					case 1: mess = login.mess1; break;
+					case 2: mess = login.mess2; break;
+					case 3: mess = login.mess3; break;
+					case 4: mess = login.mess4; break;
+					case 5: mess = login.mess5; break;
+				}
+				$("#head_modal").text(mess).slideDown(500).delay(2000).slideUp(500);
+				if ((mess.search("Fehler") == -1) && (mess.search("Error") == -1)){ window.setTimeout(function(){$('#register').modal('hide'); }, 2000);};
 			},
 			error: function(){alert("Error: Registration failed.");}
 			});
