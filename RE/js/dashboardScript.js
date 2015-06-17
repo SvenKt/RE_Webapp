@@ -18,19 +18,7 @@ $(document).ready(function(){
 		$('body').delay(2000).css({'overflow':'visible'});
 	});
 });
-var language = "de";
 
-function switchToEN(){
-	language="en";
-	changeMenuLanguage();
-	$("#languageSwitcher").html("<img title='Wechseln Sie zu deutscher Sprache' onClick='switchToDE()' src='img/de.png'></img>");
-}
-
-function switchToDE(){
-	language="de";
-	changeMenuLanguage();
-	$("#languageSwitcher").html("<img title='Switch to english language' onClick='switchToEN()' src='img/uk.png'></img>");
-}
 
 function make10Reqs(){
 	var currentTime = Date.now();

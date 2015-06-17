@@ -67,59 +67,6 @@ var oldActive;
 //tooltips and translation//
 //						  //
 
-function changeMenuLanguage(){
-	defineTranslationVars(language);
-	
-	//adminpage//
-	
-	$("#headline_adminpage").text(admin.headline);
-	
-	//adminpage//
-	
-	$('#sortHead1').text(tableHead.item1);
-	$('#sortHead2').text(tableHead.item2);
-	$('#sortHead3').text(tableHead.item3);
-	$('#sortHead4').text(tableHead.item4);
-	$('#sortHead5').text(tableHead.item5);
-	$('#sortHead6').text(tableHead.item6);
-	$('#sortHead7').text(tableHead.item7);
-	
-	$('#home').text(menu.item1);
-	$('#create').text(menu.item2);
-	$('#team').text(menu.item3);
-	$('#prof').text(menu.item4);
-	$('#download_reqs').text(menu.item5);
-	$('#logt').text(menu.item6);
-	
-	$('#profile_tophead').text(modal_profile.tophead);
-	$('#head_modal_dash').text(modal_profile.headline);
-	$('#newPW').text(modal_profile.pw1);
-	$('#newPW_repeat').text(modal_profile.pw2);
-	$('#newEmail').text(modal_profile.mail);
-	$('#reg_submit_p').text(button.ok);
-	
-	$('#helpCheckbox').val(otherContent.helpbox);
-	$("#news_text").text(otherContent.news_text);
-	$('#search_field').attr('placeholder',otherContent.sfp);
-	
-	$("#head_modal_dash_team").text(modal_team.headline);
-	$('#modal_dash_team_subheadline').text(modal_team.subheadline);
-	$('#modal_dash_team_topic').text(modal_team.topic);
-	$('#modal_dash_team_ok').text(modal_team.create_team_Button);
-	$('#add_members').text(modal_team.add_members_head);
-	$('#add_mem_1').text(modal_team.add_mem1);
-	$('#add_mem_2').text(modal_team.add_mem2);
-	$('#add_mem_button').text(modal_team.add_mem_button);
-
-	$("#head_modal_dash_team_edit").text(modal_editTeam.headline);
-	
-	$("#user_info").text(modal_user.headline);
-	$("#user_info_name").html(modal_user.name);
-	getMyGroups();
-	
-
-}
-
 function enableTooltips(){
 		
 		defineTranslationVars(language);

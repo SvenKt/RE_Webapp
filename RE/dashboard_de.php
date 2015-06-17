@@ -18,6 +18,7 @@
 		<script type="text/javascript" src="js/user.js"></script>
 		<script type="text/javascript" src="js/dashboardScript.js"></script>
 		<script type="text/javascript" src="js/dashboardDesignScript.js"></script>
+		<script type="text/javascript" src="js/lang.js"></script>
 		<script type="text/javascript" src="js/teamsScript.js"></script>
 		<link rel="stylesheet" href="css/dashboard.css">
 		
