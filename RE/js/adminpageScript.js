@@ -44,9 +44,9 @@ $.ajax({
 					case 1: mess= changeData.mess1; break;
 					case 2: mess= changeData.mess2; break;
 					case 3: mess= changeData.mess3; break;
-					case 5: mess= changeData.mess5; break;
 					case 4: mess= changeData.mess4; break;
 					case 5: mess= changeData.mess5; break;
+
 				}
 				$("#head_modal_dash").text(mess).slideDown(500).delay(2000).slideUp(500);
 				if ((mess.search("Fehler") == -1) && (mess.search("Error") == -1)){ window.setTimeout(function(){$('#profil').modal('hide'); }, 2000);};
