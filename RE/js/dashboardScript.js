@@ -54,14 +54,13 @@ function setNews(val){
 //activate interval
 function updateOn() {
 	console.log("updateOn");
-	getUpdateCount();
+	//getUpdateCount();
 	//check no intervall is set
 	if(!theIntervalId){
 		//save the intervall id to clear later
-		theIntervalId = setInterval(function(){ 
+		theIntervalId = setInterval(function(){
 			//code here will be run every updateTimeInSec seconds
-			if(!getUpdateCount()){
-			}
+			getUpdateCount();
 		}, updateTimeInSec*1000);
 	}
 }
@@ -112,6 +111,7 @@ function getFeedMessage(){
 }
 //get number of updates
 var length=getArrayLength();
+var failedOnce = false;
 function getUpdateCount() {
 //länge wird erst bei nächsten zyklus neu gesetzt, damit alle anderen clients die änderung mitbekommen
 	setArrayLength(length);
@@ -172,9 +172,16 @@ function getUpdateCount() {
 				if(getNews()>=0){
 					$("#newsNumber").text(getNews());
 				}
-				},
-			error: function(){alert("error");}
-			});
+				failedOnce = false;
+			},
+			error: function(){
+				//updates bei fail deaktivieren. Variable notwendig, da durch AJAX sonst 2 Boxen entstehen.
+				if (failedOnce) {
+					if (confirm("Error: Automatic update failed.\nTo disable press OK.") == true) {	}
+					else { updateOn(); failedOnce = false;}
+				} else { updateOff(); failedOnce = true; }
+			}
+	});
 	return changes;
 }
 
@@ -204,7 +211,7 @@ function changeData(){
 				$("#head_modal_dash").text(mess).slideDown(500).delay(2000).slideUp(500);
 				if ((mess.search("Fehler") == -1) && (mess.search("Error") == -1) ){ window.setTimeout(function(){$('#profil').modal('hide'); }, 2000);};
 			},
-			error: function(){alert("error");}
+			error: function(){alert("Error: Changing userdata failed.");}
 			});
 
 }
@@ -263,9 +270,10 @@ function insertReq(origin){
 						}
 					}
 					setFeedMessage(reqForm.feed_create_u);
-				}
+				},
+				error: function(){alert("Error: Writing requirement to DB failed.");}
 			});
-		} else alert("Cookie-fehler");
+		} else alert("Cookie-error");
 	}//else alert("Anforderungsfehler");
 } 
 
@@ -281,10 +289,11 @@ function deleteReq(id, doAfterThis){
 			success: function(success){
 				getRequirements();
 				doAfterThis();
-			}
+			},
+			error: function(){alert("Error: Deleting requirement failed.");}
 		});
 	} else {
-		alert("fehler");
+		alert("Cookie-error");
 	}
 }
 
@@ -313,7 +322,7 @@ function getRequirements(query){
 						//setTable(displayedRequirements);
 						refreshExport(displayedRequirements);
 				},
-			error: function(){alert("error");},
+			error: function(){alert("Error: Getting requirements failed.");},
 			complete: function() { $('body').removeClass('busy'); }
 			});
 	
@@ -540,7 +549,7 @@ function edit(id){
 			setNews(0);
 		}
 	} else {
-		alert ("fehler");
+		alert ("Cookie-error");
 	}
 }
 

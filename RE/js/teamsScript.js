@@ -219,7 +219,7 @@ function deleteTeam(team_id){
 			refreshTeamData();
 			$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);	
 		},
-		error: function(error){alert(error);}
+		error: function(error){alert("Error: Deleting team failed.");}
 	});
 }
 

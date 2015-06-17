@@ -46,12 +46,11 @@ $.ajax({
 					case 3: mess= changeData.mess3; break;
 					case 4: mess= changeData.mess4; break;
 					case 5: mess= changeData.mess5; break;
-
 				}
 				$("#head_modal_dash").text(mess).slideDown(500).delay(2000).slideUp(500);
 				if ((mess.search("Fehler") == -1) && (mess.search("Error") == -1)){ window.setTimeout(function(){$('#profil').modal('hide'); }, 2000);};
 			},
-			error: function(){alert("error");}
+			error: function(){alert("Error: Changing userdata failed.");}
 			});
 
 }
@@ -80,7 +79,7 @@ function confirmUserRemoval(username,userID){
 					//zeige dann die von nutzer erstellten teams an
 					displayKickContent(username,userID);
 				},
-				error: function(){alert("error");}
+				error: function(){alert("Error: Removing user failed.");}
 			});
 			
 			$( this ).dialog( "close" );
@@ -113,11 +112,11 @@ function deleteTeam(user,team_id,userID){
 					success: function(success){
 						displayKickContent(user,userID);
 					},
-					error: function(error){alert("error");}
+					error: function(error){alert("Error: Deleting team failed.");}
 				});
 				
 			},
-			error: function(error){alert("error");}
+			error: function(error){alert("Error: Deleting users from team failed.");}
 	});
 	
 	
@@ -230,7 +229,7 @@ $.ajax({
 				//$("#admin_error").text(success).slideDown(500).delay(2000).slideUp(500);	
 				getUsers();
 			},
-			error: function(error){alert("error");}
+			error: function(error){alert("Error: Forced delete of user failed.");}
 	});
 	
 }
@@ -294,7 +293,7 @@ $.ajax({
 								</tbody></table></div>\
 							</div>");
 			},
-			error: function(){alert("error");}
+			error: function(){alert("Error: Getting content failed.");}
 			});
 
 
@@ -319,7 +318,7 @@ var newOwner = $('#newOwner'+teamID).val();
 				//if (success.search("Fehler") == -1){ $('#row'+teamID).hide();};
 				displayKickContent(oldOwner,oldOwnerID);
 			},
-			error: function(error){alert("error");}
+			error: function(error){alert("Error: Setting new owner failed.");}
 		});
 	}	
 }

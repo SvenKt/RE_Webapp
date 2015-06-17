@@ -35,8 +35,8 @@ $.ajax({
 				$("#read").text("Bitte korrekte Daten eingeben!").slideDown(500).delay(2000).slideUp(500);
 				}
 			},
-			error: function(){alert("error");}
-			});
+			error: function(){alert("Error: Login failed.");}
+		});
 
 
 }
@@ -57,7 +57,7 @@ $.ajax({
 				$("#head_modal").text(success).slideDown(500).delay(2000).slideUp(500);
 				if (success.search("Fehler") == -1){ window.setTimeout(function(){$('#register').modal('hide'); }, 2000);};
 			},
-			error: function(){alert("error");}
+			error: function(){alert("Error: Registration failed.");}
 			});
 
 }
