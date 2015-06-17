@@ -5,6 +5,19 @@ var button = {
 var admin = {
  headline:"",
 }
+
+var login = {
+	name1:"",
+	pass:"",
+	register:"",
+	register_2:"",
+	headline:"",
+	name_2:"",
+	pw:"",
+	pw_repeat:"",
+	mail:""
+}
+
 var userdel_admin = {
  title:"",
  message:"",
@@ -249,6 +262,17 @@ function defineTranslationVars(lang){
 	if(lang == "de"){
 	//console.log("de");
 		
+		login.name1="Username";
+		login.pass="Passwort";
+		login.register="Registrieren";
+		login.register_2="Registrierung";
+		login.headline="Bitte geben Sie die benötigten Informationen ein:";
+		login.name_2="Username";
+		login.pw="Passwort";
+		login.pw_repeat="Passwort wiederholen";
+		login.mail="E-Mail";
+		login.login="Einloggen";
+		
 		admin.headline="Übersicht";
 	
 		modal_editTeam.member="Mitglieder";
@@ -373,6 +397,17 @@ function defineTranslationVars(lang){
 	if(lang == "en"){
 	//englisch
 	//console.log("en");
+	
+		login.name1="Username";
+		login.pass="Password";
+		login.register="Register";
+		login.register_2="Register";
+		login.headline="Please fill out the forms with the required information:";
+		login.name_2="Username";
+		login.pw="Password";
+		login.pw_repeat="Repeat password";
+		login.mail="E-Mail";
+		login.login="Login";
 	
 		admin.headline="Dashboard";
 	
