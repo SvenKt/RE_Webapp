@@ -77,7 +77,7 @@ function update() {
 	setNews(0);
 	getRequirements();
 	$("#newsNumber").text(getNews());
-	$('#main-nav').find('.active').removeClass('ac tive');
+	$('#main-nav').find('.active').removeClass('active');
 	$('#main-nav').children().first().addClass('active');
 }
 
