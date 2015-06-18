@@ -23,7 +23,7 @@ $(document).ready(function(){
 function make10Reqs(){
 	var currentTime = Date.now();
 	for(var i=0; i<1000; i++){
-	var theRequirement = "Das" + "&req#" + "muss" + "&req#" + "Requirement" + "&req#" + "Nummer" +"&req#" + "fähig sein" + "&req#" + "i" + "&req#" + i;
+	var theRequirement = "Das" + " &req# " + "muss" + " &req# " + "Requirement" + " &req# " + "Nummer" + " &req# " + "fähig sein" + " &req# " + "i" + " &req# " + i + ".";
 			$.ajax({
 				url: "php/insertRequirement.php",
 				type: "POST",
@@ -250,7 +250,7 @@ function insertReq(origin){
 		if($('#wem').val() != ""){
 			wem=$('#wem').val() + " ";
 		}
-		var theRequirement = wann + "&req#" + muss + "&req#" + system + "&req#" + wem +"&req#" + bieten + "&req#" + objekt + "&req#" + verb;
+		var theRequirement = wann + " &req# " + muss + " &req# " + system + " &req# " + wem + " &req# " + bieten + " &req# " + objekt + " &req# " + verb + ".";
 		
 		if(	loadCookieFromDatabase(cookiesEqual)){
 		var currentTime = Date.now();
@@ -510,7 +510,7 @@ function setTable(requirementsArray){
 							//Tabelleninhalt
 							string+="<tr>\
 									<th>"+p_id+"</th>\
-									<th id='result"+req_id+"'>"+req+".</th>\
+									<th id='result"+req_id+"'>"+req+"</th>\
 									<th scope='row'>"+priority+"</th>\
 									<th>"+p_status+"</th>\
 									<th>"+p_rel+"</th>\
