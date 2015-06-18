@@ -318,6 +318,9 @@ function getRequirements(query){
 			beforeSend: function() { $('body').addClass('busy'); },
 			success: function(success){
 						//News reset, da ab hier alles aktuell
+						
+					//	alert(success);
+						
 						lastReadFromDb = Date.now();
 						if(getNews()==0){
 							$("#newsNumber").text(getNews());
