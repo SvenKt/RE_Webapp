@@ -229,7 +229,7 @@ function checkRequirement(){
 
 //error Benachrichtigung bei Fehlerhafter Eingabe
 function fieldError(){
-	$('#error').text("Bitte alle nicht-optionalen Felder ausfüllen").slideDown(500).delay(2000).slideUp(500);
+	$('#error').text(reqForm.optional).slideDown(500).delay(2000).slideUp(500);
 }
 
 //Eintragen der zusammengefügten Anforderung
@@ -260,8 +260,16 @@ function insertReq(origin){
 				data: {"req": theRequirement, "prio": prio, "username": getUserName(), "id": reqId, "status": reqStatus, "relations": relations, "currentTime": currentTime},
 				dataType: "json",
 				success: function(success){
-					$('#error').text(success).slideDown(500).delay(2000).slideUp(500);
-					if ((success.search("Fehler") == -1) && (success.search("Error") == -1)){
+					var mess;
+						switch(success){
+							case 0: mess=reqForm.mess0; break;
+							case 1: mess=reqForm.mess1; break;
+							case 2: mess=reqForm.mess2; break;
+							case 3: mess=reqForm.mess3; break;
+						}
+				
+					$('#error').text(mess).slideDown(500).delay(2000).slideUp(500);
+					if ((mess.search("Fehler") == -1) && (mess.search("Error") == -1)){
 						getUpdateCount();
 						switch (origin) {
 							case 0:	createReqForm();break;

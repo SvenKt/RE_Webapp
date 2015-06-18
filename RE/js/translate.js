@@ -121,6 +121,11 @@ var reqForm = {
  feed_create_u:"",
  feed_edit:"",
  feed_del:"",
+ mess0:"",
+ mess1:"",
+ mess2:"",
+ mess3:"",
+ optional:""
 }
 
 var csvtxt = {
@@ -159,7 +164,8 @@ var changeData = {
 
 var createTeam = {
  mess0:"",
- mess1:""
+ mess1:"",
+ empty:""
 }
 
 var defineNewTeamOwner = {
@@ -407,6 +413,7 @@ function defineTranslationVars(lang){
 		
 		createTeam.mess0="Team erfolgreich erstellt!";
 		createTeam.mess1="Fehler: Team schon vorhanden!";
+		createTeam.empty="Fehler: Feld darf nicht leer sein!";
 		
 		insertGroupOwner.mess0="Sie wurden erfolgreich als Teammitglied eingetragen";
 		insertGroupOwner.mess1="Sie wurden dem Team nicht hinzugefügt, da Sie schon Mitglied eines anderen Teams sind.";
@@ -414,6 +421,13 @@ function defineTranslationVars(lang){
 		defineNewTeamOwner.mess0="Team erfolgreich überschrieben";
 		defineNewTeamOwner.mess1="Fehler: Team konnte nicht überschrieben werden";
 		defineNewTeamOwner.mess2="Fehler: Nutzer existiert nicht!";
+		
+		reqForm.mess0="Anforderung erfolgreich eingetragen!";
+		reqForm.mess1="Warnung: Anforderungs ID ist in diesem Team schon vergeben! Anforderung wurde dennoch eingetragen.";
+		reqForm.mess2="Fehler. Bitte an Administrator wenden!";
+		reqForm.mess3="Fehler: Sie müssen erst Mitglied eines Teams sein, um Anforderungen eintragen zu können!";
+		reqForm.optional="Fehler: Bitte alle nicht-optionalen Felder ausfüllen!";
+		
 	} 
 	if(lang == "en"){
 	//englisch
@@ -556,6 +570,7 @@ function defineTranslationVars(lang){
 		
 		createTeam.mess0="Team has been created!";
 		createTeam.mess1="Error: Team already exist!";
+		createTeam.empty="Error: Form cannot be empty!";
 		
 		insertGroupOwner.mess0="You've been added successfully as a member";
 		insertGroupOwner.mess1="You've not been added as a member, because you're already member of another team";
@@ -563,6 +578,12 @@ function defineTranslationVars(lang){
 		defineNewTeamOwner.mess0="Team was successfully assigned to a new user";
 		defineNewTeamOwner.mess1="Error: Team couldn't be assigned to a new user";
 		defineNewTeamOwner.mess2="Error: User doesn't exist!";
+		
+		reqForm.mess0="Requirement successfully saved!";
+		reqForm.mess1="Caution: Requirement ID is already in use. Requirement was saved though.";
+		reqForm.mess2="Error: Please contact the admin!";
+		reqForm.mess3="Error: You need to be a member of a team to insert requirements!";
+		reqForm.optional="Error: Please fill out all non-optional forms!";
 		
 		
 	}	

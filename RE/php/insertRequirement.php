@@ -35,7 +35,8 @@ $idAlreadyExists=false;
 	}
 	
    if ($userTeamId == null){
-	   echo json_encode("Fehler: Sie müssen erst Mitglied eines Teams sein, um Anforderungen eintragen zu können!");
+	   $code=3;
+	   //echo json_encode("Fehler: Sie müssen erst Mitglied eines Teams sein, um Anforderungen eintragen zu können!");
    } else {
 		    $injection = "insert into requirements (requirement, priority, project_id, status, relations ,owner_id, team_id, timestamp) values ('".$requirement."', '".$priority."','".$reqId."','".$reqStatus."','".$reqRel."','".$userId."','".$userTeamId."','".$reqTime."');";
 			$done = mysql_query($injection);
@@ -43,17 +44,22 @@ $idAlreadyExists=false;
 			if ($done){
 				
 				if (!$idAlreadyExists){
-					echo json_encode("Anforderung erfolgreich eingetragen!");
+					$code=0;
+					//echo json_encode("Anforderung erfolgreich eingetragen!");
 				} else {
-					echo json_encode("Warnung: Anforderungs ID ist in diesem Team schon vergeben! Anforderung wurde dennoch eingetragen.");
+					$code=1;
+					//echo json_encode("Warnung: Anforderungs ID ist in diesem Team schon vergeben! Anforderung wurde dennoch eingetragen.");
 				}
 			
 			} else {
-					echo json_encode("Fehler. Bitte an Administrator wenden!");	
+					$code=2;
+					//echo json_encode("Fehler. Bitte an Administrator wenden!");	
 			}
 
 
 	}
+	
+	echo json_encode($code);
    
 	
 

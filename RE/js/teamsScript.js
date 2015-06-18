@@ -53,7 +53,7 @@ function createTeam(){
 			}
 		});
 	} else {
-		$("#head_modal_dash_team").text("Fehler: Name darf nicht leer sein!").slideDown(500).delay(2000).slideUp(500);	
+		$("#head_modal_dash_team").text(createTeam.empty).slideDown(500).delay(2000).slideUp(500);	
 	}
 }
 
