@@ -125,7 +125,8 @@ var reqForm = {
  mess1:"",
  mess2:"",
  mess3:"",
- optional:""
+ optional:"",
+ id:"",
 }
 
 var csvtxt = {
@@ -427,6 +428,7 @@ function defineTranslationVars(lang){
 		reqForm.mess2="Fehler. Bitte an Administrator wenden!";
 		reqForm.mess3="Fehler: Sie müssen erst Mitglied eines Teams sein, um Anforderungen eintragen zu können!";
 		reqForm.optional="Fehler: Bitte alle nicht-optionalen Felder ausfüllen!";
+		reqForm.id="Fehler: Bitte einen ID Wert größer / gleich 0 angeben!";
 		
 	} 
 	if(lang == "en"){
@@ -584,6 +586,7 @@ function defineTranslationVars(lang){
 		reqForm.mess2="Error: Please contact the admin!";
 		reqForm.mess3="Error: You need to be a member of a team to insert requirements!";
 		reqForm.optional="Error: Please fill out all non-optional forms!";
+		reqForm.id="Error: Please enter an ID value greater / equal 0!";
 		
 		
 	}	

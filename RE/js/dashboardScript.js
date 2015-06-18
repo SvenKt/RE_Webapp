@@ -223,7 +223,7 @@ function checkRequirement(){
 	if($('#objekt').val() == ""){fieldError(); return false;}
 	if($('#verb').val() == ""){fieldError(); return false;}
 	var reqId=$('#identity').val();
-	if(isNaN(reqId) || reqId < 0 || reqId == ""){$('#error').text("Bitte einen gültigen ID Wert größer / gleich 0 angeben!").slideDown(500).delay(2000).slideUp(500); return false;}
+	if(isNaN(reqId) || reqId < 0 || reqId == ""){$('#error').text(reqForm.id).slideDown(500).delay(2000).slideUp(500); return false;}
 	return true;
 }
 
