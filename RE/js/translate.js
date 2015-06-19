@@ -74,7 +74,7 @@ var tableHead = {
 var otherContent = {
  search:"",
  helpSearchTitle:"",
- healSearchBody:"",
+ helpSearchBody:"",
  sfp:"",
  news:"",
  head_dash1:"",
