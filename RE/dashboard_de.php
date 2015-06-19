@@ -43,10 +43,10 @@
 						<button class="btn btn-default" type="button" id="goButton">Go!</button>
 					</span>
 					<input type="text" id="search_field" class="form-control" title="Durchsuchen Sie Ihre Anforderungen">
-						<a id="helpSearch" href="#" title="Nutze Slash (/) für exakte Suche" data-toggle="popover" data-trigger="hover" data-content="Bsp: 'Test/' schließt Ergebnisse wie 'Tester' aus.">
+						<a id="helpSearch" href="#" title="" data-toggle="popover" data-trigger="hover" data-content="">
 							<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
 						</a>
-						<a id="helpSearchMobile" href="#" data-placement="left" title="Nutze Slash (/) für exakte Suche" data-toggle="popover" data-content="Bsp: 'Test/' schließt Ergebnisse wie 'Tester' aus.">
+						<a id="helpSearchMobile" href="#" data-placement="left" title="" data-toggle="popover" data-content="">
 							<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
 						</a>
 					</input>
