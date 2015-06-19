@@ -254,7 +254,22 @@ function createEditForm(id){
 	});
 }
 var patchnotes = "\
-	<h3><span style='font-style:bold'>Version 1.1</span></h3>\
+	<h3><span style='font-style:bold'>Version 1.1b</span></h3>\
+	<div><ul>\
+		<li>Suchfunktion verbessert:</li><ul>\
+			<li>Suche nach Wörtern getrennt durch Leertaste optimiert</li>\
+			<li>Suche nach exakten Wortstücken begrenz durch / ist nun möglich.</li>\
+		</ul></br>\
+		<li>Visuelle Änderungen:</li><ul>\
+			<li>Ein Hilfebutton neben dem Suchfeld zeigt zusätzliche Informationen</li>\
+			<li>Ladeanimation hinzugefügt</li>\
+		</ul></br>\
+		<li>Bugfixes:</li><ul>\
+			<li>Fehlende Übersetzungen hinzugefügt</li>\
+		</ul>\
+	</ul></div>\
+	\
+	<h3><span style='font-style:bold'>Version 1.1a</span></h3>\
 	<div><ul>\
 		<li>Allgemeine Änderungen:</li><ul>\
 			<li>Website kann nun auf Englisch umgestellt werden</li>\

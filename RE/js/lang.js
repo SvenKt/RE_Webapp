@@ -8,12 +8,20 @@ function switchToEN(){
 	language="en";
 	changeMenuLanguage();
 	$("#languageSwitcher").html("<img title='Wechseln Sie zu deutscher Sprache' onClick='switchToDE()' src='img/de.png'></img>");
+	// Until translation is done //
+	$("#version").removeAttr("data-toggle");
+	$("#version").css("cursor", "default");
+	$("#version").css("textDecoration", "none");
 }
 
 function switchToDE(){
 	language="de";
 	changeMenuLanguage();
 	$("#languageSwitcher").html("<img title='Switch to english language' onClick='switchToEN()' src='img/uk.png'></img>");
+	// Until translation is done //
+	$("#version").attr("data-toggle", "modal");
+	$("#version").css("cursor", "");
+	$("#version").css("textDecoration", "");
 }
 
 function changeMenuLanguage(){

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <?php
-	$version = "1.1";
+	$version = "1.1b";
 ?>
 <html>
 	<head>
@@ -98,7 +98,7 @@
 			<center>
 				<a id="footerLink" data-toggle="modal" title="Kontaktinformationen" data-target="#modal_kontact">Kontakt</a>
 				-
-				<a id="footerLink" data-toggle="modal" title="Informationen zu Version und Patches" data-target="#modal_version">Version <?php echo $version ?></a>
+				<a id="version" data-toggle="modal" title="Informationen zu Version und Patches" data-target="#modal_version">Version <?php echo $version ?></a>
 			</center>
 		</footer>
 		
