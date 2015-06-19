@@ -73,6 +73,8 @@ var tableHead = {
 
 var otherContent = {
  search:"",
+ helpSearchTitle:"",
+ healSearchBody:"",
  sfp:"",
  news:"",
  head_dash1:"",
@@ -343,6 +345,8 @@ function defineTranslationVars(lang){
 		menu.item6="Logout";
 		
 		otherContent.search ='Durchsuchen Sie Ihre Anforderungen';
+		otherContent.helpSearchTitle = 'Nutze Slash (/) für exakte Suche';
+		otherContent.helpSearchBody = 'Bsp: "Test/" schließt Ergebnisse wie "Tester" aus.';
 		otherContent.sfp = 'Suche...';
 		otherContent.news ='Klicken zum Aktualisieren';
 		otherContent.head_dash1= "Anforderungen";
@@ -501,6 +505,8 @@ function defineTranslationVars(lang){
 		menu.item6="Logout";
 		
 		otherContent.search ='Search for matching requirements';
+		otherContent.helpSearchTitle = 'Use slash (/) for exact searching';
+		otherContent.helpSearchBody = 'e.g.: "Test/" excludes results like "Tester".';
 		otherContent.sfp = 'pattern...';
 		otherContent.news ='Click to update';
 		otherContent.head_dash1= "Requirements";

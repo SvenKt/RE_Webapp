@@ -97,6 +97,9 @@ function enableTooltips(){
 				$("#left_nav").tooltip({
 					position: { my: "left-10vh center", at: "right center" }
 				});
+				$("#SearchInputGroup").tooltip({
+					position: { my: "center top-83"}
+				});
 				$("#content").tooltip({
 					position: { my: "center top-80", collision: "flipfit" },
 					track: true,
@@ -198,6 +201,7 @@ function createEditForm(id){
 			bieten =req[0].split("&req#")[4];
 			objekt = req[0].split("&req#")[5];
 			verb = req[0].split("&req#")[6];
+			verb = verb.split(".")[0];
 			priority = req[1];
 			p_id=req[2];
 			p_status=req[3];

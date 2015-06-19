@@ -62,6 +62,11 @@ function changeMenuLanguage(){
 	$('#helpCheckbox').val(otherContent.helpbox);
 	$("#news_text").text(otherContent.news_text);
 	$('#search_field').attr('placeholder',otherContent.sfp);
+	// popover //
+	$('#helpSearch').attr('data-original-title', otherContent.helpSearchTitle);
+	$('#helpSearch').attr('data-content', otherContent.helpSearchBody);
+	$('#helpSearchMobile').attr('data-original-title', otherContent.helpSearchTitle);
+	$('#helpSearchMobile').attr('data-content', otherContent.helpSearchBody);
 	
 	$("#head_modal_dash_team").text(modal_team.headline);
 	$('#modal_dash_team_subheadline').text(modal_team.subheadline);

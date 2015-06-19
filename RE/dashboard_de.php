@@ -38,11 +38,18 @@
 		<div id="leftSide"  class="col-md-2">
 			<!-- Left Navigation Bar -->
 			<div id="left_nav">
-				<div class="input-group">
+				<div id="SearchInputGroup" class="input-group">
 					<span class="input-group-btn" onClick="getResult()" id="search">
 						<button class="btn btn-default" type="button" id="goButton">Go!</button>
 					</span>
-					<input type="text" id="search_field" class="form-control"   title="Durchsuchen Sie Ihre Anforderungen">
+					<input type="text" id="search_field" class="form-control" title="Durchsuchen Sie Ihre Anforderungen">
+						<a id="helpSearch" href="#" title="Nutze Slash (/) für exakte Suche" data-toggle="popover" data-trigger="hover" data-content="Bsp: 'Test/' schließt Ergebnisse wie 'Tester' aus.">
+							<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+						</a>
+						<a id="helpSearchMobile" href="#" data-placement="left" title="Nutze Slash (/) für exakte Suche" data-toggle="popover" data-content="Bsp: 'Test/' schließt Ergebnisse wie 'Tester' aus.">
+							<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+						</a>
+					</input>
 				</div><!--input-group-->
 				<ul id="main-nav" class="nav nav-pills nav-stacked">
 					<li id="l1" role="presentation" class="navlist active clickable"><a onClick="update()" id="home" ></a></li>

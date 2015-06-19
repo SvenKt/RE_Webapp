@@ -66,6 +66,28 @@ height:7vh;
 height:70vh;
 }
 
+#helpSearch {
+	position: absolute;
+	float:right;
+}
+#helpSearchMobile {
+	position: absolute;
+	float:right;
+}
+@media (max-width: 991px) {
+	#helpSearch {
+		display:none;
+	}
+}
+@media (min-width: 992px) {
+	#helpSearchMobile {
+		display:none;
+	}
+}
+.popover  {
+		width: 50vh;
+	}
+
 #feed{
 	height: 30vh;
     overflow: hidden;
