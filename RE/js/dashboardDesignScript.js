@@ -260,6 +260,9 @@ var patchnotes = "\
 			<li>Suche nach Wörtern getrennt durch Leertaste optimiert</li>\
 			<li>Suche nach exakten Wortstücken begrenz durch / ist nun möglich.</li>\
 		</ul></br>\
+		<li>Allgemeine Änderungen:</li><ul>\
+			<li>Es ist nun der download als csv oder excel Datei möglich.</li>\
+		</ul></br>\
 		<li>Visuelle Änderungen:</li><ul>\
 			<li>Ein Hilfebutton neben dem Suchfeld zeigt zusätzliche Informationen</li>\
 			<li>Ladeanimation hinzugefügt</li>\

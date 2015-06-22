@@ -17,7 +17,7 @@ $(document).ready(function(){
 		$('#preloader').delay(2000).fadeOut('slow'); // will fade out the white DIV that covers the website.
 		$('body').delay(2000).css({'overflow':'visible'});
 	});
-	$('[data-toggle="popover"]').popover();   
+	$('[data-toggle="popover"]').popover();
 });
 
 
@@ -519,7 +519,7 @@ function setTable(requirementsArray){
 									<th>"+p_status+"</th>\
 									<th>"+p_rel+"</th>\
 									<th>"+p_time+" Uhr</th>\
-									<th class='req-btn'>\
+									<th class='ex req-btn'>\
 										<button type='button' class='btn btn-default' onClick='createEditForm("+req_id+")' aria-label='Left Align'>\
 											<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>\
 										</button>\
@@ -533,7 +533,7 @@ function setTable(requirementsArray){
 					//Tabellenrahmen
 					
 						body.html("<div id='field' class='panel panel-default'>\
-								<table class='table'><thead style='background-color:#E6E6E6'>\
+								<table class='table' id='table2excel'><thead style='background-color:#E6E6E6'>\
 								<tr>\
 									<th class='sortHead col-md-1' id='sortHead1' onclick='sortById(displayedRequirements)' >"+tableHead.item1+"</th>\
 									<th class='sortHead col-md-5' id='sortHead2' onclick='sortByReq(displayedRequirements)' >"+tableHead.item2+"</th>\
@@ -541,7 +541,7 @@ function setTable(requirementsArray){
 									<th class='sortHead col-md-1' id='sortHead4' onclick='sortByStatus(displayedRequirements)' >"+tableHead.item4+"</th>\
 									<th class='col-md-1' id='sortHead5'>"+tableHead.item5+"</th>\
 									<th class='sortHead col-md-1' id='sortHead6' onclick='sortByTime(displayedRequirements)' >"+tableHead.item6+"</th>\
-									<th class='col-md-2' id='sortHead7'>"+tableHead.item7+"</th>\
+									<th class='ex col-md-2' id='sortHead7'>"+tableHead.item7+"</th>\
 								</tr></thead>\
 								<tbody>\
 									"+string+"\
@@ -600,7 +600,10 @@ function confirmRemoval(reqID){
 		}
 	});
 }
+
 //Anforderungen als .csv exportieren
+var uri="";
+var fileName="";
 function refreshExport(arr){
 	var user = getUserName();
 	var csvRows = new Array();
@@ -625,17 +628,43 @@ function refreshExport(arr){
 	
 	//csv datei anlegen
 	var csvData = csvRows.join("\n");
-	var uri = "data:text/csv;charset=utf-8,%EF%BB%BF" + encodeURIComponent(csvData);
-	var fileName = "Anforderungen.csv";
-	
-	//link setzen
-	$("#download_reqs").attr("href",uri);
-	$("#download_reqs").attr("target",'_blank');
-	$("#download_reqs").attr("download", 'Anforderungen.csv' );
+	uri = "data:text/csv;charset=utf-8,%EF%BB%BF" + encodeURIComponent(csvData);
+	fileName = "Anforderungen.csv";
 }
-	
-	//});
-//} 
+
+function chooseDownload(reqID){
+	$( "#chooseDownload" ).dialog({
+		resizable: false,
+		height: 140,
+		width: 400,
+		title: otherContent.download,
+		modal: true,
+		buttons: {
+			"Excel (.xls)": function() {
+				//use JQuery plugin
+				$("#table2excel").table2excel({
+					// exclude CSS class
+					exclude: ".noExl",
+					name: "Requirements"
+				});
+				$( this ).dialog( "close" );
+			},
+			".CSV": function() {
+				// create a clickable element
+				var link = document.createElement('a');
+				link.href = uri;
+				link.download = fileName;
+				//Firefox requires the link to be in the body
+				document.body.appendChild(link);
+				//simulate click
+				link.click();
+				//remove link
+				document.body.removeChild(link);
+				$( this ).dialog( "close" );
+			}
+		}
+	});
+}
 
 function placeholder(){
 //für funktionen, die eine funktion als param benötigen

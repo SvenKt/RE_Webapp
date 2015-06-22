@@ -80,7 +80,8 @@ var otherContent = {
  head_dash1:"",
  head_dash:"",
  news_text:"",
- helpbox:""
+ helpbox:"",
+ download:""
 }
 
 var modal_team = {
@@ -352,6 +353,7 @@ function defineTranslationVars(lang){
 		otherContent.head_dash1= "Anforderungen";
 		otherContent.head_dash2= "Anforderungen von Team ";
 		otherContent.news_text="Aktualisieren   ";
+		otherContent.download="Bitte wähle den Dateityp: ";
 		
 		modal_team.headline = 'Teamoptionen';
 		modal_team.subheadline ="Meine Teams";
@@ -512,6 +514,7 @@ function defineTranslationVars(lang){
 		otherContent.head_dash1= "Requirements";
 		otherContent.head_dash2= "Requirements of team ";
 		otherContent.news_text="Update   ";
+		otherContent.download="Please choose the file type: ";
 		
 		modal_team.headline = 'Team options';
 		modal_team.subheadline ="My teams";

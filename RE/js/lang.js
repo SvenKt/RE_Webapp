@@ -57,7 +57,7 @@ function changeMenuLanguage(){
 	$('#create').text(menu.item2);
 	$('#team').text(menu.item3);
 	$('#prof').text(menu.item4);
-	$('#download_reqs').text(menu.item5);
+	$('#downloadNav').text(menu.item5);
 	$('#logt').text(menu.item6);
 	
 	$('#profile_tophead').text(modal_profile.tophead);

@@ -12,6 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script type="text/javascript" src="js/table2excel.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/translate.js"></script>
@@ -56,7 +57,7 @@
 					<li id="l2" class="navlist clickable"role="presentation"><a onClick="createReqForm()" id="create" ></a></li>
 					<li id="l3" class="navlist clickable" role="presentation"><a id="team" data-toggle="modal" data-target="#team_modal" onClick="loadTeamOptions()"  ></a></li>
 					<li id="l4" class="navlist clickable" role="presentation"><a data-toggle="modal" id="prof"  data-target="#profil" ></a></li>
-					<li id="l5" class="navlist clickable" role="presentation"><a id="download_reqs"  ></a></li>
+					<li id="l5" class="navlist clickable" role="presentation"><a onClick="chooseDownload()" id="downloadNav"></a></li>
 					<li id="l6" class="navlist clickable" role="presentation"><a onClick="logOut(), updateOff()" id="logt" ></a></li>
 				</ul>
 			<!--left_nav-->
@@ -88,6 +89,7 @@
 				<hr>
 					<p class="panel panel-warning"id="error"></p>
 					<div class="panel panel-warning" id="dialog"></div>
+					<div class="panel panel-warning" id="chooseDownload"></div>
 					<div id="content" class="panel panel-body">
 						
 					</div><!--content-->
