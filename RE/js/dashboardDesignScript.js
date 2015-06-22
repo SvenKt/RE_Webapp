@@ -195,13 +195,13 @@ function createEditForm(id){
 		data: {"id": id},
 		dataType: "json",
 		success: function(req){
-			wann = req[0].split("&req#")[0];
-			muss =req[0].split("&req#")[1];
-			wer =req[0].split("&req#")[2];
-			wem = req[0].split("&req#")[3];
-			bieten =req[0].split("&req#")[4];
-			objekt = req[0].split("&req#")[5];
-			verb = req[0].split("&req#")[6];
+			wann = req[0].split(" &req# ")[0];
+			muss =req[0].split(" &req# ")[1];
+			wer =req[0].split(" &req# ")[2];
+			wem = req[0].split(" &req# ")[3];
+			bieten =req[0].split(" &req# ")[4];
+			objekt = req[0].split(" &req# ")[5];
+			verb = req[0].split(" &req# ")[6];
 			verb = verb.split(".")[0];
 			priority = req[1];
 			p_id=req[2];
