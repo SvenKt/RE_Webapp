@@ -252,7 +252,7 @@ function insertReq(origin){
 			wem=$('#wem').val() + " ";
 		}
 		var theRequirement = wann + " &req# " + muss + " &req# " + system + " &req# " + wem + " &req# " + bieten + " &req# " + objekt + " &req# " + verb + ".";
-		
+		theRequirement=theRequirement.replace(/</g, "&lt;").replace(/</g, "&gt;");
 		if(	loadCookieFromDatabase(cookiesEqual)){
 		var currentTime = Date.now();
 			$.ajax({
@@ -320,7 +320,7 @@ function getRequirements(query){
 			success: function(success){
 						//News reset, da ab hier alles aktuell
 						
-					//	alert(success);
+						console.log(success);
 						
 						lastReadFromDb = Date.now();
 						if(getNews()==0){
@@ -332,7 +332,7 @@ function getRequirements(query){
 						reversedID = true;
 						sortById(displayedRequirements);
 						//setTable(displayedRequirements);
-						refreshExport(displayedRequirements);
+						refreshExport(displayedRequirements); 
 				},
 			error: function(){alert("Error: Getting requirements failed.");},
 			complete: function() { $('body').removeClass('busy'); }

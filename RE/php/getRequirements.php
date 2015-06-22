@@ -37,7 +37,7 @@ $req_array="";
 			}
 		}
 		
-	
+		//echo json_encode($abfrage);
 		echo json_encode($req_array);
 		
 ?>

@@ -5,6 +5,7 @@
 $(document).ready(function(){
 	$("#accordion").accordion({collapsible: true});
 	$("#patchnotes").html(patchnotes);
+	$("#chooseDownload").hide();
 	$("#patchnotes").accordion({collapsible: true});
 	
 	//seite ist auch in adminpage eingebunden
