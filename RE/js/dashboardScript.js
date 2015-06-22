@@ -583,6 +583,7 @@ function confirmRemoval(reqID){
 	
 	$( "#dialog" ).dialog({
 		resizable: false,
+		draggable: false,
 		height: 140,
 		width: 400,
 		title: deleteReq.confirm,
@@ -635,6 +636,7 @@ function refreshExport(arr){
 function chooseDownload(reqID){
 	$( "#chooseDownload" ).dialog({
 		resizable: false,
+		draggable: false,
 		height: 140,
 		width: 400,
 		title: otherContent.download,

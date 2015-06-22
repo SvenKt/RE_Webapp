@@ -46,7 +46,7 @@ $(document).ready(function(){
 	//navlist anpassungen nach Modal
 	$('#main-nav li a').on('click', function() {
 		oldActive = $(this).parent().parent().find('.active');
-		if($(this).attr('id') != "download_reqs") {
+		if($(this).attr('id') != "downloadNav") {
 			$(this).parent().parent().find('.active').removeClass('active');
 			$(this).parent().addClass('active');
 		}
