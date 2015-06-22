@@ -216,8 +216,15 @@ function deleteTeam(team_id){
 		data: {"user":user, "team_id": team_id},
 		dataType: "json",
 		success: function(success){
+		var mess;
 			refreshTeamData();
-			$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);	
+			switch (success) {
+				case 0: mess = deleteTeam.mess0; break;
+				case 1: mess = deleteTeam.mess1; break;
+				case 2: mess = deleteTeam.mess2; break;
+				case 3: mess = deleteTeam.mess3; break;
+			}
+			$("#head_modal_dash_team").text(mess).slideDown(500).delay(2000).slideUp(500);	
 		},
 		error: function(error){alert("Error: Deleting team failed.");}
 	});

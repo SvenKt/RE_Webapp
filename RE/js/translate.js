@@ -187,7 +187,10 @@ var deleteAllUsersFromTeam = {
 }
 
 var deleteTeam = {
-
+ mess0:"",
+ mess1:"",
+ mess2:"",
+ mess3:"",
 }
 
 var deleteUser = {
@@ -436,6 +439,11 @@ function defineTranslationVars(lang){
 		reqForm.optional="Fehler: Bitte alle nicht-optionalen Felder ausfüllen!";
 		reqForm.id="Fehler: Bitte einen ID Wert größer / gleich 0 angeben!";
 		
+		deleteTeam.mess0="Sie haben das Team gelöscht";
+		deleteTeam.mess1="Fehler: Sie können das Team nicht löschen, da sich noch mindestens eine weitere Person im Team befindet";
+		deleteTeam.mess2="Fehler: Sie haben nicht die Berechtigung, das Team zu löschen!";
+		deleteTeam.mess3="Fehler: Sie können das Team nicht löschen, da sich noch mindestens eine weitere Person im Team befindet";
+		
 	} 
 	if(lang == "en"){
 	//englisch
@@ -597,6 +605,9 @@ function defineTranslationVars(lang){
 		reqForm.optional="Error: Please fill out all non-optional forms!";
 		reqForm.id="Error: Please enter an ID value greater / equal 0!";
 		
-		
+		deleteTeam.mess0="Team was successfully deleted";
+		deleteTeam.mess1="Error: You cannot delete this team. It still consists of at least one member.";
+		deleteTeam.mess2="Error: You have not the rights to delete this team!";
+		deleteTeam.mess3=deleteTeam.mess1;
 	}	
 }

@@ -44,7 +44,8 @@ $creatorID;
 	if($userID == $creatorID || $user == 'admin'){
 	
 		if($numerOfUsersInTeam > 1){
-			echo json_encode("Fehler: Sie können das Team nicht löschen, da sich noch mindestens eine weitere Person im Team befindet");
+			$code=3;
+			//echo json_encode("Fehler: Sie können das Team nicht löschen, da sich noch mindestens eine weitere Person im Team befindet");
 		} else {
 			//wenn usersTeamId und teamIDtoDelete gleich sein, verlässt der user das team zuerst, sonst wird nur versucht zu löschen
 			if ($UsersTeamId == $teamIDtoDelete){
@@ -60,16 +61,19 @@ $creatorID;
 			
 				//wenn nur noch eine person im team ist, dann entweder der creator oder jemand anderes. wenn es der creator wäre, dann wäre er aus der gruppe durch obige if-verzweigung ausgetreten
 				// und das team könnte ohne foreign key exception gelöscht werden. wenn es jemand anderes ist, dann bleibt diese person im team und die abfrage kann nicht ausgeführt werden.
-				if($teamdeleted){
-					echo json_encode("Sie haben das Team gelöscht");
+				if($teamdeleted){	
+					$code=0;
+					//echo json_encode("Sie haben das Team gelöscht");
 				} else {
-					echo json_encode("Fehler: Sie können das Team nicht löschen, da sich noch mindestens eine weitere Person im Team befindet");
+					$code=1;
+					//echo json_encode("Fehler: Sie können das Team nicht löschen, da sich noch mindestens eine weitere Person im Team befindet");
 				}	
 			}
 		} else {
-			echo json_encode("Fehler: Sie haben nicht die Berechtigung, das Team zu löschen!");
+			$code=2;
+			//echo json_encode("Fehler: Sie haben nicht die Berechtigung, das Team zu löschen!");
 		}
-	
+	echo json_encode($code);
 	
 		
 ?>
