@@ -13,9 +13,12 @@ $team_id=$_POST['team_id'];
 			
 		
 			if($teamJoined){
-				echo json_encode("Sie sind dem Team beigetreten");
+				//echo json_encode("Sie sind dem Team beigetreten");
+				$code=0;
 			} else {
-				echo json_encode("Fehler: Sie konnten dem Team nicht beitreten");
+				//echo json_encode("Fehler: Sie konnten dem Team nicht beitreten");
+				$code=1;
 			}	
+			echo json_encode($code);
 		
 ?>

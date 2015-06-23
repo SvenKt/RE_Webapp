@@ -251,11 +251,13 @@ var insertRequirement = {
 }
 
 var intoTeam = {
-
+ mess0:"",
+ mess1:"",
 }
 
 var leaveTeam = {
-
+ mess0:"",
+ mess1:"",
 }
 
 var loginCheck = {
@@ -444,6 +446,13 @@ function defineTranslationVars(lang){
 		deleteTeam.mess2="Fehler: Sie haben nicht die Berechtigung, das Team zu löschen!";
 		deleteTeam.mess3="Fehler: Sie können das Team nicht löschen, da sich noch mindestens eine weitere Person im Team befindet";
 		
+		intoTeam.mess0="Sie sind dem Team beigetreten";
+		intoTeam.mess1="Fehler: Sie konnten dem Team nicht beitreten";
+		
+		leaveTeam.mess0="Sie haben das Team verlassen";
+		leaveTeam.mess1="Fehler: Sie konnten das Team nicht verlassen";
+		
+		
 	} 
 	if(lang == "en"){
 	//englisch
@@ -609,5 +618,11 @@ function defineTranslationVars(lang){
 		deleteTeam.mess1="Error: You cannot delete this team. It still consists of at least one member.";
 		deleteTeam.mess2="Error: You have not the rights to delete this team!";
 		deleteTeam.mess3=deleteTeam.mess1;
+		
+		intoTeam.mess0="You've entered the team";
+		intoTeam.mess1="Error: You couldn't enter the team";
+		
+		leaveTeam.mess0="You left the team";
+		leaveTeam.mess1="Error: You couldn't leave the team";
 	}	
 }

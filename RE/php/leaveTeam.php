@@ -12,9 +12,11 @@ $user=$_POST['user'];
 			
 		
 			if($teamLeft){
-				echo json_encode("Sie haben das Team verlassen");
+				//echo json_encode("Sie haben das Team verlassen");
+				$code=0;
 			} else {
-				echo json_encode("Fehler: Sie konnten das Team nicht verlassen");
+				$code=1;
+				//echo json_encode("Fehler: Sie konnten das Team nicht verlassen");
 			}	
-		
+		echo json_encode($code);
 ?>

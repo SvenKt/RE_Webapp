@@ -158,10 +158,15 @@ function leaveTeam(){
 		data: {"user":user},
 		dataType: "json",
 		success: function(success){
+		var mess;
+			switch (success) {
+				case 0: mess = leaveTeam.mess0; break;
+				case 1: mess = leaveTeam.mess1; break;
+			}
 			setArrayLength(0);
 			refreshTeamData(true);
 			updateOff();
-			$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);
+			$("#head_modal_dash_team").text(mess).slideDown(500).delay(2000).slideUp(500);
 		}
 	});
 }
@@ -174,10 +179,15 @@ function intoTeam(team_id){
 		data: {"user":user, "team_id": team_id},
 		dataType: "json",
 		success: function(success){
+			var mess;
+			switch (success) {
+				case 0: mess = intoTeam.mess0; break;
+				case 1: mess = intoTeam.mess1; break;
+			}
 			refreshTeamData(true);
 			justEnteredTeam = true;
 			updateOn();
-			$("#head_modal_dash_team").text(success).slideDown(500).delay(2000).slideUp(500);		
+			$("#head_modal_dash_team").text(mess).slideDown(500).delay(2000).slideUp(500);		
 		}
 	});
 }
