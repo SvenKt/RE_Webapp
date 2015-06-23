@@ -248,6 +248,7 @@ function insertReq(origin){
 		var reqId=$('#identity').val();
 		var reqStatus=$('#status option:selected').text();
 		var relations=$('#relations').val();
+		relations=relations.replace(/</g, "&lt;").replace(/</g, "&gt;");
 		if($('#wem').val() != ""){
 			wem=$('#wem').val() + " ";
 		}
