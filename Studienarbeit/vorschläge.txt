@@ -1,0 +1,16 @@
+- XML Schablonentemplates
+- Code Refactoring
+- Abhängigkeiten nicht mehr manuell in Textfeld eintragen
+- Hinzufügen von weiteren Abhängigkeiten (CONSTRAINTS) in der Datenbank
+	- Bsp.:   >A2 ist von A1 abhängig.
+		  >A1 kann nicht gelöscht werden, da A2 von ihr abhängt
+- Möglichkeit einer Textkonsole zur Verwaltung der Anwendung über Kommandos (Strings)
+- Umfrage bei Anwendern -> Verbesserungsvorschläge / Feedback 
+	- Analyse
+	- Auswertung
+- Umgestaltung des Teamsystems 
+	- Umbenennung in "Projekte"
+	- logisch / sprachlich besser vertretbar 
+	- "Jeder Nutzer kann nur Mitglied bei einem Projekt sein"
+
+  
