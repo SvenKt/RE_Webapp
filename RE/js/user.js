@@ -63,8 +63,10 @@ function getUserName(){
 var user;
 if (window.location.pathname.search("dash") != -1){	 
 	 user = JSON.parse(localStorage.getItem("user"+getParameter("session")));
-} else {
-	 user = JSON.parse(localStorage.getItem("user"+sessionID));
+} else if (window.location.pathname.search("admin") != -1){
+		user = JSON.parse(localStorage.getItem("user"+getParameter("session")));
+	}
+else {	 user = JSON.parse(localStorage.getItem("user"+sessionID));
 }
 return user.name; 
 }
